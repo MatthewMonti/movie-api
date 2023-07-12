@@ -29,3 +29,153 @@ app.get('/books', (req, res) => {
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
 });
+
+const express = require('express'),
+const app = express();
+let myLogger = (req, res, next) => {
+  console.log(req.url);
+  next();
+};
+app.use(myLogger);
+app.get('/', (req, res) => {
+  res.send('Welcome to my app!');
+});
+app.get('/secreturl', (req, res) => {
+  res.send('This is a secret url with super top-secret content.');
+});
+app.listen(8080, () => {
+  console.log('Your app is listening on port 8080.');
+});
+
+const express = require('express'),
+  morgan = require('morgan');
+const app = express();
+app.use(morgan('common'));
+app.get('/', (req, res) => {
+  res.send('Welcome to my app!');
+});
+app.get('/secreturl', (req, res) => {
+  res.send('This is a secret url with super top-secret content.');
+});
+app.listen(8080, () => {
+  console.log('Your app is listening on port 8080.');
+});
+
+
+const express = require = "express";
+const app = express();
+
+let movies = [
+  {
+    movies: 'Raiders of the Lost Ark',
+  },
+  {
+    movies: 'THE SUPER MARIO BROS. MOVIE'
+  },
+  {
+    movies: 'ALL QUIET ON THE WESTERN FRONT'
+  }
+];
+
+// GET requests
+app.get('/', (req, res) => {
+  res.send('List of all the films');
+});
+app.get('/movies', (req, res) => {                  
+  res.sendFile('public/movies.html', { root: __dirname });
+});
+app.get('/movies', (req, res) => {
+  res.json(movies);
+});
+
+let rating = [
+  {
+    rating: '93%',
+  },
+  {
+    rating: '58%',
+  },
+  {
+    rating: '90%',
+  }
+];
+
+// GET requests
+app.get('/', (req, res) => {
+  res.send('Film Rating from Rotton Tomatoes');
+});
+app.get('/movies/:rating', (req, res) => {                  
+  res.sendFile('public/rating.html', { root: __dirname });
+});
+app.get('/rating', (req, res) => {
+  res.json(rating);
+});
+
+let title = [
+  {
+    title: 'Raiders of the Lost Ark',
+  },
+  {
+    title: 'THE SUPER MARIO BROS. MOVIE'
+  },
+  {
+    title: 'ALL QUIET ON THE WESTERN FRONT'
+  }
+];
+
+// GET requests
+app.get('/', (req, res) => {
+  res.send('Title of Films');
+});
+app.get('/movies/:title', (req, res) => {                  
+  res.sendFile('public/title.html', { root: __dirname });
+});
+app.get('/title', (req, res) => {
+  res.json(rating);
+});
+
+let genreName = [
+  {
+    genreName: 'adventure',
+  },
+  {
+    genreName: 'Family'
+  },
+  {
+    genreName: 'History'
+  }
+];
+
+// GET requests
+app.get('/', (req, res) => {
+  res.send('Genre of the films');
+});
+app.get('/movies/:rating', (req, res) => {                  
+  res.sendFile('public/rating.html', { root: __dirname });
+});
+app.get('/rating', (req, res) => {
+  res.json(rating);
+});
+
+let director = [
+  {
+    director: 'Steven Spielburg',
+  },
+  {
+    director: 'Aaron Horvath, Michael Jelenic'
+  },
+  {
+    director: 'Edward Berger'
+  }
+];
+  
+// GET requests
+app.get('/', (req, res) => {
+  res.send('Director of the films');
+});
+app.get('/movies/:director', (req, res) => {                  
+  res.sendFile('public/director.html', { root: __dirname });
+});
+app.get('/director', (req, res) => {
+  res.json(director);
+});
