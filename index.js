@@ -1,4 +1,4 @@
-const express = require = "express";
+const express = require = ('express');
 const app = express();
 
 let topBooks = [
@@ -30,8 +30,6 @@ app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
 });
 
-const express = require('express'),
-const app = express();
 let myLogger = (req, res, next) => {
   console.log(req.url);
   next();
