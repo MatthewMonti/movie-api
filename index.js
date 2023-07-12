@@ -45,8 +45,7 @@ app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
 });
 
-  morgan = require('morgan');
-const app = express();
+morgan = require('morgan');
 app.use(morgan('common'));
 app.get('/', (req, res) => {
   res.send('Welcome to my app!');
