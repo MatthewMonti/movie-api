@@ -1,47 +1,10 @@
 const express = require('express');
 const app = express();
 
-let topBooks = [
-  {
-    title: 'Harry Potter and the Sorcerer\'s Stone',
-    author: 'J.K. Rowling'
-  },
-  {
-    title: 'Lord of the Rings',
-    author: 'J.R.R. Tolkien'
-  },
-  {
-    title: 'Twilight',
-    author: 'Stephanie Meyer'
-  }
-];
-// GET requests
-app.get('/', (req, res) => {
-  res.send('Welcome to my book club!');
-});
-app.get('/documentation', (req, res) => {                  
-  res.sendFile('public/documentation.html', { root: __dirname });
-});
-app.get('/books', (req, res) => {
-  res.json(topBooks);
-});
 // listen for requests
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
 });
-
-let myLogger = (req, res, next) => {
-  console.log(req.url);
-  next();
-};
-app.use(myLogger);
-app.get('/', (req, res) => {
-  res.send('Welcome to my app!');
-});
-app.get('/secreturl', (req, res) => {
-  res.send('This is a secret url with super top-secret content.');
-});
-
 
 morgan = require('morgan');
 app.use(morgan('common'));
@@ -53,24 +16,46 @@ app.get('/secreturl', (req, res) => {
 });
 
 
-let movies = [
+let title = [
   {
-    movies: 'Raiders of the Lost Ark',
+    title: "Raiders of the Lost Ark"
   },
   {
-    movies: 'THE SUPER MARIO BROS. MOVIE'
+    title: "The SUPER MARIO BROS. MOVIE"
   },
   {
-    movies: 'ALL QUIET ON THE WESTERN FRONT'
+    title: "ALL QUIET ON THE WESTERN FRONT"
+  },
+  {
+    title: "Castle in the Sky"
+  },
+  {
+    title: "TO END ALL WAR: OPPENHEIMER & THE ATOMIC BOMB"
+  },
+  {
+    title: "GUARDIANS OF THE GALAXY VOL. 3"
+  },
+  {
+    title: "John Wick Chapter: 4"
+  },
+  {
+    title: "GUY RITCHIE'S THE COVENANT"
+  },
+  {
+    title: "Missing"
+  },
+  {
+    title: "INSIDIOUS: THE LAST KEY"
   }
+
 ];
 
 // GET requests
 app.get('/', (req, res) => {
-  res.send('List of all the films');
+  res.send('Title of the films');
 });
 app.get('/movies', (req, res) => {                  
-  res.sendFile('public/movies.html', { root: __dirname });
+  res.sendFile('public/title.html', { root: __dirname });
 });
 app.get('/movies', (req, res) => {
   res.json(movies);
@@ -85,6 +70,27 @@ let rating = [
   },
   {
     rating: '90%',
+  },
+  {
+    rating: '96%'
+  },
+  {
+    rating: '95%'
+  },
+  {
+    rating: '82%'
+  },
+  {
+    rating: '94%'
+  },
+  {
+    rating: '84%'
+  },
+  {
+    rating: '87%'
+  },
+  {
+    rating: '33%'
   }
 ];
 
@@ -99,29 +105,6 @@ app.get('/rating', (req, res) => {
   res.json(rating);
 });
 
-let title = [
-  {
-    title: 'Raiders of the Lost Ark',
-  },
-  {
-    title: 'THE SUPER MARIO BROS. MOVIE'
-  },
-  {
-    title: 'ALL QUIET ON THE WESTERN FRONT'
-  }
-];
-
-// GET requests
-app.get('/', (req, res) => {
-  res.send('Title of Films');
-});
-app.get('/movies/:title', (req, res) => {                  
-  res.sendFile('public/title.html', { root: __dirname });
-});
-app.get('/title', (req, res) => {
-  res.json(rating);
-});
-
 let genreName = [
   {
     genreName: 'adventure',
@@ -131,6 +114,27 @@ let genreName = [
   },
   {
     genreName: 'History'
+  },
+  {
+    genreName: 'Anime'
+  },
+  {
+    genreName: 'Biography'
+  },
+  {
+    genreName: 'Sci-Fi'
+  },
+  {
+    genreName: 'Action'
+  },
+  {
+    genreName: 'War'
+  },
+  {
+    genreName: 'mystery'
+  },
+  {
+    genreName: 'Horror'
   }
 ];
 
@@ -154,6 +158,27 @@ let director = [
   },
   {
     director: 'Edward Berger'
+  },
+  {
+    director: 'Hayao Miyazaki'
+  },
+  {
+    director: 'Christopher Cassel'
+  },
+  {
+    director: 'James Gunn'
+  },
+  {
+    director: 'Chad Stahelski'
+  },
+  {
+    director: 'Guy Ritchie'
+  },
+  {
+    director: 'Will Merrick, Nicholas D. Johnson'
+  },
+  {
+    director: 'Adam Robitel'
   }
 ];
   
