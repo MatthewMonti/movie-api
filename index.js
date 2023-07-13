@@ -143,7 +143,7 @@ app.get('/', (req, res) => {
   res.send('Genre of the films');
 });
 app.get('/movies/:rating', (req, res) => {                  
-  res.sendFile('public/rating.html', { root: __dirname });
+  res.sendFile('public/genreName.html', { root: __dirname });
 });
 app.get('/rating', (req, res) => {
   res.json(rating);
