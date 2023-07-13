@@ -33,12 +33,12 @@
     </thead>
     <tbody>
       <tr>
-        <td>Returns a list of all films</td>
-        <td>/movies</td>
+        <td>Film by title</td>
+        <td>/movies/:title</td>
         <td>GET</td>
+        <td>:title</td>
         <td>None</td>
-        <td>None</td>
-        <td>A JSON object of all the films</td>
+        <td>A JSON object of a single film</td>
       </tr>
       <tr>
         <td>Film Rating from Rotten Tomatoes</td>
@@ -47,14 +47,6 @@
         <td>:rating</td>
         <td>None</td>
         <td>A JSON object for a film rating</td>
-      </tr>
-      <tr>
-        <td>Film by title</td>
-        <td>/movies/:title</td>
-        <td>GET</td>
-        <td>:title</td>
-        <td>None</td>
-        <td>A JSON object of a single film</td>
       </tr>
       <tr>
         <td>Genre of film by title</td>
