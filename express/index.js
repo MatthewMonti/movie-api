@@ -79,7 +79,7 @@ let topmovies = [
   });
 
   app.get('/movies/:title', (req, res) => {
-    res.json(obj => obj.title);
+    res.render(obj => obj.title);
   });
 
     // listen for requests
