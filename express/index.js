@@ -80,6 +80,7 @@ let topmovies = [
 
   app.get('/movies/:title', (req, res) => {
     res.json(obj => obj.title);
+    console.log('this is the title');
   });
 
     // listen for requests
