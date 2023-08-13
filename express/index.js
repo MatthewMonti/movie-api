@@ -70,7 +70,7 @@ let topmovies = [
     res.send('Welcome to my Cinema database!');
   });
   
-  app.get('/documentation', (req, res) => {                  
+  app.get('/documentation.html', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   });
   
