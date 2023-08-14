@@ -66,6 +66,10 @@ let topmovies = [
 ];
   
 // GET requests
+    app.get('/movies', (req, res) => {
+    res.json(topmovies);
+  });
+
     app.get('/', (req, res) => {
     res.send('Welcome to my Cinema database!');
   });
@@ -74,14 +78,7 @@ let topmovies = [
     res.sendFile('public/documentation.html', { root: __dirname });
   });
   
-  app.get('/movies', (req, res) => {
-    res.json(topmovies);
-  });
 
-  app.get('/movies/:title', (req, res) => {
-    res.json(obj => obj.title);
-    console.log('this is the title');
-  });
 
     // listen for requests
     app.listen(8080, () => {
