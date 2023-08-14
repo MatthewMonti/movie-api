@@ -71,12 +71,29 @@ let topmovies = [
   });
 
     app.get('/', (req, res) => {
-    res.send('Welcome to my Cinema database!');
+      res.send('Welcome to my Cinema database!');
+      responseText += '<small>Requested at: ' + 
+      req.requestTime + '</small>';
+    res.send(responseText);
   });
   
-  app.get('/documentation.html', (req, res) => {                  
+    app.get('/documentation.html', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   });
+
+  let logwebpage = (req, res, next) => {
+    console.log(req.url);
+    next();
+  };
+
+  let requestTime = (req, res, next) => {
+    req.requestTime = Date.now();
+    next();
+  };
+  
+  app.use(logwebpage);
+  app.use(requestTime);
+  
   
 
 
