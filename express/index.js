@@ -98,7 +98,7 @@ let topmovies = [
 
   app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(8080).send('Something is broke!')
+    res.status(500).send('Something is broke!')
   });
     
    // listen for requests
