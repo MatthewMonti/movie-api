@@ -95,6 +95,26 @@ let topmovies = [
 
   app.use(logwebpage);
   app.use(requestTime);
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+
+  const bodyParser = require('body-parser'),
+  methodOverride = require('method-override');
+
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+  
+
+  app.use((err, req, res, next) => {
+    // logic
+  });
+
+
+
+
+
 
   app.use((err, req, res, next) => {
     console.error(err.stack);
