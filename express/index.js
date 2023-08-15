@@ -95,12 +95,12 @@ let topmovies = [
 
   app.use(logwebpage);
   app.use(requestTime);
-  app.use(bodyParser.json());
-  app.use(methodOverride());
+  
 
   const bodyParser = require('body-parser'),
   methodOverride = require('method-override');
-
+  app.use(bodyParser.json());
+  app.use(methodOverride());
   app.use(bodyParser.urlencoded({
     extended: true
   }));
