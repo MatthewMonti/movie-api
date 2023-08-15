@@ -92,13 +92,19 @@ let topmovies = [
     req.requestTime = Date.now();
     next();
   };
+
+  const bodyParser = require('body-parser'),
+    methodOverride = require('method-override');
+  
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
   app.use(logwebpage);
   app.use(requestTime);
+  app.use(bodyParser.json());
+  app.use(methodOverride());
   
-  
-
-
-    // listen for requests
+   // listen for requests
     app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
   });
