@@ -107,7 +107,8 @@ let topmovies = [
   app.use(methodOverride());
 
   app.use((err, req, res, next) => {
-    // logic
+    console.error(err.stack);
+    res.status(500).send('Something is broke!')
   });
     
    // listen for requests
