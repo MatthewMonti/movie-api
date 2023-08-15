@@ -92,6 +92,20 @@ let topmovies = [
     req.requestTime = Date.now();
     next();
   };
+
+  const bodyParser = require('body-parser'),
+  methodOverride = require('method-override');
+
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+
+  app.use((err, req, res, next) => {
+    // logic
+  });
   
   app.use((err, req, res, next) => {
     console.error(err.stack);
