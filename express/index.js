@@ -1,5 +1,7 @@
 const express = require("express");
+morgan = require('morgan');
 const app = express();
+app.use(morgan('common'));
 
 
 let topmovies = [
@@ -74,7 +76,7 @@ let topmovies = [
       res.send('Welcome to my Cinema database!');
       responseText += '<small>Requested at: ' + 
       req.requestTime + '</small>';
-    res.send(responseText);
+      res.send(responseText);
   });
   
     app.get('/documentation.html', (req, res) => {                  
