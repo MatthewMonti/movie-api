@@ -94,7 +94,7 @@ let topmovies = [
   };
 
   const bodyParser = require('body-parser'),
-  methodOverride = require('method-override');
+    methodOverride = require('method-override');
 
   app.use(bodyParser.urlencoded({
     extended: true
@@ -102,10 +102,6 @@ let topmovies = [
 
   app.use(bodyParser.json());
   app.use(methodOverride());
-
-  app.use((err, req, res, next) => {
-    // logic
-  });
   
   app.use((err, req, res, next) => {
     console.error(err.stack);
