@@ -163,13 +163,13 @@ app.get('/students/:name/gpa', (req, res) => {
 
     app.get('/movies/genres/:genreName', (req, res) => {
       res.json(movies.genres.find((MOVIE) =>
-        { return MOVIE.genres === req.params.genreName }));
+        { return MOVIE.genreName === req.params.genreName }));
     });
 
 
     app.get('/movies/directors/:name', (req, res) => {
       res.json(movies.find((MOVIE) =>
-        { return movies.director === req.params.name }));
+        { return MOVIE.director === req.params.name }));
     });
 
 
