@@ -172,18 +172,6 @@ app.get('/students/:name/gpa', (req, res) => {
         { return MOVIE.director === req.params.name }));
     });
 
-
-    app.get('/students/:name', (req, res) => {
-      res.json(students.find((student) =>
-        { return student.name === req.params.name }));
-    });
-
-    app.get('/students/:name', (req, res) => {
-      res.json(students.find((student) =>
-        { return student.name === req.params.name }));
-    });
-
-
     app.get('/', (req, res) => {
       res.send('Welcome to my Cinema database!');
       responseText += '<small>Requested at: ' + 
