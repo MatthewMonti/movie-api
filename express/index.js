@@ -35,7 +35,7 @@ let movies = [
     id: 4,
     title: "Guy Ritchie's The Covenant",
     director: 'Guy Ritchie',
-    rating:'84%',
+    rating: '84%',
     genreName: 'War'
   },
   {
@@ -70,14 +70,14 @@ let movies = [
     id: 9,
     title: "The Super Mario Bros. Movie",
     director: 'Aaron Horvath, Michael Jelenic',
-    rating:'58%',
+    rating: '58%',
     genreName: 'Family'
   },
   {
     id: 10,
     title: "To End All War: Oppenheimer & The Atomic Bomb",
     director: 'Christopher Cassel',
-    rating:  '95%',
+    rating: '95%',
     genreName: 'Biography'
   }
 ];
