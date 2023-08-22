@@ -114,9 +114,9 @@ let movies = [
       { return movie.genreName === req.params.genreName }));
   });
 
-  app.get('/movies/:name', (req, res) => {
+  app.get('/movies/:director', (req, res) => {
     res.json(movies.find((movie) =>
-      { return movie.name === req.params.name }));
+      { return movie.director === req.params.director }));
   });
 
   let logwebpage = (req, res, next) => {
