@@ -100,7 +100,7 @@ let topmovies = [
 
     app.get('/', (req, res) => {
       res.send('Welcome to my Cinema database!');
-      responseText + '<small>Requested at: ' + 
+      responseText += '<small>Requested at: ' + 
       req.requestTime + '</small>';
       res.send(responseText);
   });
