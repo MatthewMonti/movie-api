@@ -11,60 +11,70 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 let movies = [
   {
+    id: 8,
     title: "Raiders of the Lost Ark",
     director: 'Steven Spielburg',
     rating: '93%',
     genreName: 'adventure'
   },
   {
+    id: 9,
     title: "The SUPER MARIO BROS. MOVIE",
     director: 'Aaron Horvath, Michael Jelenic',
     rating:'58%',
     genreName: 'Family'
   },
   {
+    id: 1,
     title: "ALL QUIET ON THE WESTERN FRONT",
     director:'Edward Berger',
     rating: '90%',
     genreName: 'History'
   },
   {
+    id: 2,
     title: "Castle in the Sky",
     director: 'Hayao Miyazaki',
     rating: '96%',
     genreName: 'Anime'
   },
   {
+    id: 10,
     title:  "TO END ALL WAR: OPPENHEIMER & THE ATOMIC BOMB",
     director: 'Christopher Cassel',
     rating:  '95%',
     genreName: 'Biography'
   },
   {
+    id: 3,
     title: "GUARDIANS OF THE GALAXY VOL. 3",
     director: 'James Gunn',
     rating: '82%',
     genreName:'Sci-Fi'
   },
   {
+    id: 6,
     title:  "John Wick Chapter: 4",
     director: 'Chad Stahelski',
     rating: '94%',
     genreName: 'Action'
   },
   {
+    id: 4,
     title: "GUY RITCHIE'S THE COVENANT",
     director: 'Guy Ritchie',
     rating:'84%',
     genreName: 'War'
   },
   {
+    id: 7,
     title: "Missing",
     director: 'Will Merrick, Nicholas D. Johnson',
     rating: '87%',
     genreName: 'mystery'
   },
   {
+    id: 5,
     title: "INSIDIOUS: THE LAST KEY",
     director: 'Adam Robitel',
     rating: '33%',
@@ -80,12 +90,12 @@ let movies = [
     req.requestTime + '</small>';
     res.send(responseText);
   });
-  
+
     app.get('/movies', (req, res) => {
     res.json(movies);
   });
 
-    app.get('/documentation.html', (req, res) => {                  
+    app.get('/movies/documentation.html', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   });
 
