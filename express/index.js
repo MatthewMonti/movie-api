@@ -104,17 +104,17 @@ let movies = [
       { return movie.title === req.params.title }));
   });
 
-  app.get('/movies/rating', (req, res) => {
+  app.get('/movies/:rating', (req, res) => {
     res.json(movies.find((movie) =>
       { return movie.rating === req.params.rating }));
   });
 
-  app.get('/movies/genreName', (req, res) => {
+  app.get('/movies/:genreName', (req, res) => {
     res.json(movies.genreName.find((movie) =>
       { return movie.genreName === req.params.genreName }));
   });
 
-  app.get('/movies/name', (req, res) => {
+  app.get('/movies/:name', (req, res) => {
     res.json(movies.find((movie) =>
       { return movie.name === req.params.name }));
   });

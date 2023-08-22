@@ -29,3 +29,5 @@
 ::1 - - [22/Aug/2023:19:25:44 +0000] "GET /movies/90% HTTP/1.1" 500 19 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203"
 ::1 - - [22/Aug/2023:19:27:44 +0000] "GET /movies/90%/ HTTP/1.1" 500 19 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203"
 ::1 - - [22/Aug/2023:19:27:45 +0000] "GET /movies/90%/ HTTP/1.1" 500 19 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203"
+::1 - - [22/Aug/2023:19:32:58 +0000] "GET /movies/90%/ HTTP/1.1" 500 19 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203"
+::1 - - [22/Aug/2023:19:34:02 +0000] "GET /movies/58%/ HTTP/1.1" 500 19 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203"
