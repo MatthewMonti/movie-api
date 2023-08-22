@@ -57,14 +57,14 @@ let movies = [
     title: "Missing",
     director: 'Will Merrick, Nicholas D. Johnson',
     rating: '87%',
-    genreName: 'mystery'
+    genreName: 'Mystery'
   },
   {
     id: 8,
     title: "Raiders of the Lost Ark",
     director: 'Steven Spielburg',
     rating: '93%',
-    genreName: 'adventure'
+    genreName: 'Adventure'
   },
   {
     id: 9,
