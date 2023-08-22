@@ -99,7 +99,7 @@ let movies = [
     res.sendFile('public/documentation.html', { root: __dirname });
   });
 
-    app.get('/movies/title', (req, res) => {
+    app.get('/movies/:title', (req, res) => {
       res.json(movies.find((movie) =>
         { return movie.title === req.params.title }));
     });
