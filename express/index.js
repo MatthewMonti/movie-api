@@ -74,7 +74,7 @@ let movies = [
   
 // GET requests
     app.get('/movies', (req, res) => {
-    res.json(topmovies);
+    res.json(movies);
   });
 
     app.get('/movies/title', (req, res) => {
