@@ -101,7 +101,7 @@ let movies = [
 
     app.get('/movies/title', (req, res) => {
       res.json(movies.find((id) =>
-        { return movie.title === req.params.title }));
+        { return id.title === req.params.title }));
     });
 
     app.get('/movies/rating', (req, res) => {
