@@ -73,6 +73,14 @@ let movies = [
 ];
   
 // GET requests
+
+  app.get('/', (req, res) => {
+    res.send('Welcome to my Cinema database!');
+    responseText += '<small>Requested at: ' + 
+    req.requestTime + '</small>';
+    res.send(responseText);
+  });
+  
     app.get('/movies', (req, res) => {
     res.json(movies);
   });
@@ -101,15 +109,6 @@ let movies = [
       res.json(movies.find((movie) =>
         { return movie.name === req.params.name }));
     });
-
-    app.get('/', (req, res) => {
-      res.send('Welcome to my Cinema database!');
-      responseText += '<small>Requested at: ' + 
-      req.requestTime + '</small>';
-      res.send(responseText);
-  });
-  
-   
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
