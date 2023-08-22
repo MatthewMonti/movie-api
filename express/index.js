@@ -151,25 +151,25 @@ app.get('/students/:name/gpa', (req, res) => {
 
 
     app.get('/movies/:title', (req, res) => {
-      res.json(movies.find((MOVIE) =>
-        { return MOVIE.title === req.params.title }));
+      res.json(movies.find((movie) =>
+        { return movie.title === req.params.title }));
     });
 
 
     app.get('/movies/:rating', (req, res) => {
-      res.json(movies.find((MOVIE) =>
-        { return MOVIE.rating === req.params.rating }));
+      res.json(movies.find((movie) =>
+        { return movie.rating === req.params.rating }));
     });
 
     app.get('/movies/:genreName', (req, res) => {
-      res.json(movies.genres.find((MOVIE) =>
-        { return MOVIE.genreName === req.params.genreName }));
+      res.json(movies.genres.find((movie) =>
+        { return movie.genreName === req.params.genreName }));
     });
 
 
     app.get('/movies/:name', (req, res) => {
-      res.json(movies.find((MOVIE) =>
-        { return MOVIE.director === req.params.name }));
+      res.json(movies.find((movie) =>
+        { return movie.director === req.params.name }));
     });
 
     app.get('/', (req, res) => {
