@@ -12,7 +12,7 @@ app.use(morgan('combined', {stream:accessLogStream}));
 let movies = [
   {
     id: 1,
-    title: "ALL QUIET ON THE WESTERN FRONT",
+    title: "All Quiet on the Western Front",
     director:'Edward Berger',
     rating: '90%',
     genreName: 'History'
@@ -26,21 +26,21 @@ let movies = [
   },
   {
     id: 3,
-    title: "GUARDIANS OF THE GALAXY VOL. 3",
+    title: "Guardian of the Galaxy Vol. 3",
     director: 'James Gunn',
     rating: '82%',
     genreName:'Sci-Fi'
   },
   {
     id: 4,
-    title: "GUY RITCHIE'S THE COVENANT",
+    title: "Guy Ritchie's The Covenant",
     director: 'Guy Ritchie',
     rating:'84%',
     genreName: 'War'
   },
   {
     id: 5,
-    title: "INSIDIOUS: THE LAST KEY",
+    title: "Insidious: The Last Key",
     director: 'Adam Robitel',
     rating: '33%',
     genreName: 'Horror'
@@ -68,14 +68,14 @@ let movies = [
   },
   {
     id: 9,
-    title: "The SUPER MARIO BROS. MOVIE",
+    title: "The Super Mario Bros. Movie",
     director: 'Aaron Horvath, Michael Jelenic',
     rating:'58%',
     genreName: 'Family'
   },
   {
     id: 10,
-    title:  "TO END ALL WAR: OPPENHEIMER & THE ATOMIC BOMB",
+    title: "To End All War: Oppenheimer & The Atomic Bomb",
     director: 'Christopher Cassel',
     rating:  '95%',
     genreName: 'Biography'
@@ -91,34 +91,33 @@ let movies = [
     res.send(responseText);
   });
 
-    app.get('/movies', (req, res) => {
+  app.get('/movies', (req, res) => {
     res.json(movies);
   });
 
-    app.get('/movies/documentation.html', (req, res) => {                  
+  app.get('/movies/documentation.html', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   });
 
-    app.get('/movies/:title', (req, res) => {
-      res.json(movies.find((movie) =>
-        { return movie.title === req.params.title }));
-    });
+  app.get('/movies/:title', (req, res) => {
+    res.json(movies.find((movie) =>
+      { return movie.title === req.params.title }));
+  });
 
-    app.get('/movies/rating', (req, res) => {
-      res.json(movies.find((movie) =>
-        { return movie.rating === req.params.rating }));
-    });
+  app.get('/movies/rating', (req, res) => {
+    res.json(movies.find((movie) =>
+      { return movie.rating === req.params.rating }));
+  });
 
-    app.get('/movies/genreName', (req, res) => {
-      res.json(movies.genreName.find((movie) =>
-        { return movie.genreName === req.params.genreName }));
-    });
+  app.get('/movies/genreName', (req, res) => {
+    res.json(movies.genreName.find((movie) =>
+      { return movie.genreName === req.params.genreName }));
+  });
 
-
-    app.get('/movies/name', (req, res) => {
-      res.json(movies.find((movie) =>
-        { return movie.name === req.params.name }));
-    });
+  app.get('/movies/name', (req, res) => {
+    res.json(movies.find((movie) =>
+      { return movie.name === req.params.name }));
+  });
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
