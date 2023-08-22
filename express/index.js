@@ -95,7 +95,7 @@ let movies = [
     res.json(movies);
   });
 
-  app.get('/movies/documentation', (req, res) => {                  
+  app.get('/movie/documentation', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   });
 
