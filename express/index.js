@@ -77,6 +77,10 @@ let movies = [
     res.json(movies);
   });
 
+    app.get('/documentation.html', (req, res) => {                  
+    res.sendFile('public/documentation.html', { root: __dirname });
+  });
+
     app.get('/movies/title', (req, res) => {
       res.json(movies.find((movie) =>
         { return movie.title === req.params.title }));
@@ -105,9 +109,7 @@ let movies = [
       res.send(responseText);
   });
   
-    app.get('/documentation.html', (req, res) => {                  
-    res.sendFile('public/documentation.html', { root: __dirname });
-  });
+   
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
