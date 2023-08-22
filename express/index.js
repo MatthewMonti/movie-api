@@ -100,7 +100,7 @@ let movies = [
   });
 
     app.get('/movies/title', (req, res) => {
-      res.json(movies.find((movie) =>
+      res.json(movies.find((id) =>
         { return movie.title === req.params.title }));
     });
 
