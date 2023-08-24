@@ -9,18 +9,6 @@ app.use(morgan('common'));
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-var cssId = 'myCss';  // you could encode the css path itself to generate id..
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'style.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
 
 let movies = [
   {
@@ -203,7 +191,7 @@ let movies = [
       { return movie.title === req.params.title }));
   });
 
-  app.get('/movies/:rating', (req, res) => {
+  app.post('/movies/:rating', (req, res) => {
     res.json(movies.find((movie) =>
       { return movie.rating === req.params.rating }));
   });
