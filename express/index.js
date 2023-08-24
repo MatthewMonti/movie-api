@@ -191,7 +191,7 @@ let movies = [
       { return movie.title === req.params.title }));
   });
 
-  app.post('/movies/:rating', (req, res) => {
+  app.get('/movies/:rating', (req, res) => {
     res.json(movies.find((movie) =>
       { return movie.rating === req.params.rating }));
   });
