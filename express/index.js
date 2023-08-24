@@ -9,7 +9,6 @@ app.use(morgan('common'));
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-
 let movies = [
   {
     id: 1,
