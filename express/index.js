@@ -191,6 +191,13 @@ let movies = [
     res.send(movie);
   });
 
+  app.get('/movies/:rating', (req, res) => {
+    const movie = movies.find(m => m.rating === parseInt(req.params.rating));
+    if (!movie) res.status(404).send('This rating is not in databse');
+    res.send(movie);
+  });
+
+
 
   // Gets the Rating of a movie -FAILED
  // app.get('/movies/:rating', (req, res) => {
