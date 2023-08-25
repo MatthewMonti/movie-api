@@ -177,7 +177,7 @@ let movies = [
     src.appendChild(this.img)
   });
 
-  app.get('/movies', (req, res) => {
+  app.get('/movies/', (req, res) => {
     res.json(movies);
   });
 
@@ -190,62 +190,10 @@ let movies = [
       { return movie.title === req.params.title }));
   });
 
-  // Adds data for a new student to our list of students.
-  app.post('/movies', (req, res) => {
-    let newMovie = req.body;
-
-    if (!newMovie.name) {
-      const message = 'Missing name in request body';
-      res.status(400).send(message);
-    } else {
-      newMovie.id = uuid.v4();
-      movies.push(newMovie);
-      res.status(201).send(newMovie);
-    }
-  });
-
-  // Deletes a student from our list by ID
-  app.delete('/movies/:id', (req, res) => {
-    let student = movies.find((movie) => { return movie.id === req.params.id });
-
-    if (movie) {
-      movies = movies.filter((obj) => { return obj.id !== req.params.id });
-      res.status(201).send('Movie ' + req.params.id + ' was deleted.');
-    }
-  });
-
-  // Update the "grade" of a student by student name/class name
-  app.put('/movies/:rating', (req, res) => {
-    let movie = movies.find((student) => { return movie.title === req.params.title });
-
-    if (movie) {
-      movie.classes[req.params.rating] = parseInt(req.params.rating);
-      res.status(201).send('Movie ' + req.params.title + ' was assigned a rating of ' + req.params.rating);
-    } else {
-      res.status(404).send('Movie with the title ' + req.params.title + ' was not found.');
-    }
-  });
 
   // Gets the Rating of a movie
-  app.get('/movies/:rating', (req, res) => {
-    let movie = movies.find((movie) => { return movie.title === req.params.title });
-
-    if (movie) {
-      let movieRating = Object.values(movie.ratings); // Object.values() filters out object's keys and keeps the values that are returned as a new array
-      let sumOfRatings = 0;
-      classesGrades.forEach(grade => {
-        sumOfGrades = sumOfGrades + grade;
-      });
-
-      let gpa = sumOfGrades / classesGrades.length;
-      console.log(sumOfGrades);
-      console.log(classesGrades.length);
-      console.log(gpa);
-      res.status(201).send('' + gpa);
-      //res.status(201).send(gpa);
-    } else {
-      res.status(404).send('Student with the name ' + req.params.name + ' was not found.');
-    }
+  app.get('/movies/:id/:rating', (req, res) => {
+    movies.find(m => m.id === req.params.rating)
   });
 
   app.get('/movies/:genreName', (req, res) => {
