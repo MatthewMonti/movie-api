@@ -192,8 +192,8 @@ let movies = [
 
 
   // Gets the Rating of a movie
-  app.get('/movies/:id/:rating', (req, res) => {
-    movies.find(m => m.id === req.params.rating)
+  app.get('/movies/:rating', (req, res) => {
+      const movie = movies.find(m => m.rating === parseInt(req.params.rating));
   });
 
   app.get('/movies/:genreName', (req, res) => {
