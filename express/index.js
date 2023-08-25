@@ -181,21 +181,29 @@ let movies = [
     res.json(movies);
   });
 
-  app.get('/movies/documentation', (req, res) => {                  
-    res.sendFile('public/documentation.html', { root: __dirname });
+  app.get('api/movies', (req,res) => {
+    res.send([1,2,3,4,5,6,7,8,9,10]);                  ;
   });
 
-  app.get('/movies/:title', (req, res) => {
+  app.get('api/movies/:title', (req, res) => {
     const movie = movies.find(m => m.title === parseInt(req.params.title));
     if (!movie) res.status(404).send('This movie title not in database');
     res.send(movie);
   });
 
-  app.get('/movies/:rating', (req, res) => {
+  app.get('api/movies/:rating', (req, res) => {
     const movie = movies.find(m => m.rating === parseInt(req.params.rating));
     if (!movie) res.status(404).send('This rating is not in databse');
     res.send(movie);
   });
+
+
+  app.get('/movies/documentation', (req, res) => {                  
+    res.sendFile('public/documentation.html', { root: __dirname });
+  });
+
+ 
+
 
 
 
