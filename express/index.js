@@ -186,15 +186,16 @@ let movies = [
   });
 
   app.get('/movies/:title', (req, res) => {
-    res.json(movies.find((movie) =>
-      { return movie.title === req.params.title }));
+    const movie = movies.find(m => m.title === parseInt(req.params.title));
+    if (!movie) res.status(404).send('This movie title not in database');
+    res.send(movie);
   });
 
 
-  // Gets the Rating of a movie
-  app.get('/movies/:rating', (req, res) => {
-      const movie = movies.find(m => m.rating === parseInt(req.params.rating));
-  });
+  // Gets the Rating of a movie -FAILED
+ // app.get('/movies/:rating', (req, res) => {
+///      const movie = movies.find(m => m.rating === parseInt(req.params.rating));
+//  });
 
   app.get('/movies/:genreName', (req, res) => {
     res.json(movies.genreName.find((movie) =>
