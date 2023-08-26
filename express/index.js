@@ -181,36 +181,20 @@ let movies = [
     res.json(movies);
   });
 
-  app.get('api/movies', (req,res) => {
-    res.send([1,2,3,4,5,6,7,8,9,10]);                  ;
-  });
 
-  app.get('api/movies/:title', (req, res) => {
-    const movie = movies.find(m => m.title === parseInt(req.params.title));
-    if (!movie) res.status(404).send('This movie title not in database');
-    res.send(movie);
-  });
+ // app.get('/movies/:title', (req, res) => {
+ //   let movie = movies.find(m => m.title === parseInt(req.params.title));
+//    if (!movie) res.status(404).send('This movie title not in database');
+ //   res.send(movie);
+//  });
 
-  app.get('api/movies/:rating', (req, res) => {
-    const movie = movies.find(m => m.rating === parseInt(req.params.rating));
-    if (!movie) res.status(404).send('This rating is not in databse');
-    res.send(movie);
-  });
-
+  app.get('/movies/:rating', (req, res) => {
+    let movie = movies.find(m => m.rating === parseInt(req.params.rating));
+});
 
   app.get('/movies/documentation', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   });
-
- 
-
-
-
-
-  // Gets the Rating of a movie -FAILED
- // app.get('/movies/:rating', (req, res) => {
-///      const movie = movies.find(m => m.rating === parseInt(req.params.rating));
-//  });
 
   app.get('/movies/:genreName', (req, res) => {
     res.json(movies.genreName.find((movie) =>
@@ -243,12 +227,6 @@ let movies = [
   app.use(bodyParser.urlencoded({
     extended: true
   }));
-
-  app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something is broke!')
-  });
-    
    // listen for requests
     app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
