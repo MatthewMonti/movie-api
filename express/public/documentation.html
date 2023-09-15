@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <link rel="stylesheet" type="text/css" href="./styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
   </head>
   
-  <h1>Myflix</h1>
+  <title>Myflix Application</title>
   <h2>Objective</h2>
   <p>This application helps to sort through different genres of films and directors, and let you save your most charished film to your account.</p>
   
@@ -34,16 +35,16 @@
     <tbody>
       <tr>
         <td>Film by title</td>
-        <td>/movies/:title</td>
+        <td>/movies/title/:title</td>
         <td>GET</td>
         <td>:title</td>
         <td>None</td>
         <td>A JSON object of a single film</td>
       </tr>
       <tr>
-        <td>Film Rating from Rotten Tomatoes</td>
-        <td>/movies/:rating</td>
-        <td>DISPLAY</td>
+        <td>Copy Film Rating from Rotten Tomatoes</td>
+        <td>/movies/rating/:rating</td>
+        <td>GET</td>
         <td>:rating</td>
         <td>None</td>
         <td>A JSON object for a film rating</td>
