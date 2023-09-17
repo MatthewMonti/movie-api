@@ -36,10 +36,10 @@ let users = [
 let movies = [
   {
     Title: "All Quiet on the Western Front",
+    description: "The story follows teenagers Paul Bäumer and his friends Albert and Müller, who voluntarily enlist in the German army, riding a wave of patriotic fervor that quickly dissipates once they face the brutal realities of life on the front. Paul's preconceptions about the enemy and the rights and wrongs of the conflict soon crumble. However, amid the countdown to armistice, Paul must carry on fighting until the end, with no purpose other than to satisfy the top brass' desire to end the war on a German offensive.",
     rating: "90",
     genre: {
       name: "War",
-      description: "The story follows teenagers Paul Bäumer and his friends Albert and Müller, who voluntarily enlist in the German army, riding a wave of patriotic fervor that quickly dissipates once they face the brutal realities of life on the front. Paul's preconceptions about the enemy and the rights and wrongs of the conflict soon crumble. However, amid the countdown to armistice, Paul must carry on fighting until the end, with no purpose other than to satisfy the top brass' desire to end the war on a German offensive."
     },
     director: {
       name:"Edward Berger",
@@ -50,10 +50,10 @@ let movies = [
   },
   {
     Title: "Barbie",
+    description: "Barbie suffers a crisis that leads her to question her world and her existence.",
     rating: "80",
     genre: {
       name: "Comedy",
-      description: "Barbie suffers a crisis that leads her to question her world and her existence."
     },
     director: {
       name:"Greta Gerwig",
@@ -64,10 +64,10 @@ let movies = [
   },
   {
     Title: "Castle in the Sky",
+    description: "A young boy and a girl with a magic crystal must race against pirates and foreign agents in a search for a legendary floating castle.",
     rating: "96",
     genre: {
       name: "Anime",
-      description: "A young boy and a girl with a magic crystal must race against pirates and foreign agents in a search for a legendary floating castle."
     },
     director: {
       name:"Hayao Miyazaki",
@@ -78,10 +78,10 @@ let movies = [
   },
   {
     Title: "Elemental",
+    description: "Disney and Pixar's Elemental, an all-new, original feature film set in Element City, where fire-, water-, land- and air-residents live together. The story introduces Ember, a tough, quick-witted and fiery young woman, whose friendship with a fun, sappy, go-with-the-flow guy named Wade challenges her beliefs about the world they live in.",
     rating: "74",
     genre: {
       name: "Family",
-      description: "Disney and Pixar's Elemental, an all-new, original feature film set in Element City, where fire-, water-, land- and air-residents live together. The story introduces Ember, a tough, quick-witted and fiery young woman, whose friendship with a fun, sappy, go-with-the-flow guy named Wade challenges her beliefs about the world they live in."
     },
     director: {
       name:"Peter Sohn",
@@ -92,10 +92,10 @@ let movies = [
   },
   {
     Title: "Guardian of the Galaxy Vol.3",
+    description: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe",
     rating: "82",
     genre: {
       name: "Sci-Fi",
-      description: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe"
     },
     director: {
       name:"James Gunn",
@@ -106,10 +106,10 @@ let movies = [
   },
   {
     Title: "Insidious Last Key",
+    description: "Parapsychologist Dr. Elise Rainier faces her most fearsome and personal haunting yet, as she is drawn back to her ghostly childhood home where the terror began.",
     rating: "33",
     genre: {
       name: "Horror",
-      description: "Parapsychologist Dr. Elise Rainier faces her most fearsome and personal haunting yet, as she is drawn back to her ghostly childhood home where the terror began."
     },
     director: {
       name:"Adam Robitel",
@@ -120,10 +120,10 @@ let movies = [
   },
   {
     Title: "John Wick - Chapter 4",
+    description: "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
     rating: "94",
     genre: {
       name: "Action",
-      description: "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes."
     },
     director: {
       name:" Chad Stahelski",
@@ -134,10 +134,10 @@ let movies = [
   },
   {
     Title: "Raiders of the Lost Ark",
+    description: "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers",
     rating: "93",
     genre: {
       name: "Adventure",
-      description: "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers"
     },
     director: {
       name: "Steven Spielburg",
@@ -149,10 +149,10 @@ let movies = [
   },
    {
     Title: "Rebel Moon: Part One – A Child of Fire",
+    description: "When a peaceful colony on the edge of a galaxy finds itself threatened by the armies of a tyrannical ruling force, Kora (Sofia Boutella), a mysterious stranger living among the villagers, becomes their best hope for survival. Tasked with finding trained fighters who will unite with her in making an impossible stand against the Mother World, Kora assembles a small band of warriors -- outsiders, insurgents, peasants and orphans of war from different worlds who share a common need for redemption and revenge. As the shadow of an entire Realm bears down on the unlikeliest of moons, a battle over the fate of a galaxy is waged, and in the process, a new army of heroes is formed.",
     rating: "100",
     genre: {
       name: "Sci-Fi",
-      description: "When a peaceful colony on the edge of a galaxy finds itself threatened by the armies of a tyrannical ruling force, Kora (Sofia Boutella), a mysterious stranger living among the villagers, becomes their best hope for survival. Tasked with finding trained fighters who will unite with her in making an impossible stand against the Mother World, Kora assembles a small band of warriors -- outsiders, insurgents, peasants and orphans of war from different worlds who share a common need for redemption and revenge. As the shadow of an entire Realm bears down on the unlikeliest of moons, a battle over the fate of a galaxy is waged, and in the process, a new army of heroes is formed."
     },
     director: {
       name: "Zack Snyder",
@@ -164,10 +164,10 @@ let movies = [
   },
   {
     Title: "The Covenant",
+    description: "During the war in Afghanistan, a local interpreter risks his own life to carry an injured sergeant across miles of grueling terrain.",
     rating: "84",
     genre: {
       name: "War",
-      description: "During the war in Afghanistan, a local interpreter risks his own life to carry an injured sergeant across miles of grueling terrain."
     },
     director: {
       name:"Guy Ritchie",
@@ -262,53 +262,14 @@ app.delete('/users/:id', (req,res) => {
   })
 
 
-  app.get('/movies/:title', (req, res) => {
-      const {title} = req.params;
-      const movie = movies.find( movie => movie.title === title);
+  app.get('/movies/:Title', (req, res) => {
+      const {Title} = req.params;
+      const movie = movies.find( movie => movie.Title === Title);
 
       if(movie) {
         res.status(200).json(movie);
       } else {
         res.status(400).send('Film title not found in database')
-    }
-  })
-
-  app.get('/movies/genre/:genreName', (req, res) => {
-    const {genreName} = req.params;
-    const genre = movies.find( movie => movie.genre.name === genreName);
-
-    if(genre) {
-      res.status(200).json(genre);
-    } else {
-      res.status(400).send('category not found in database')
-    }
-  })
-
-  app.get('/movies/genre/description/:about', (req, res) => {
-    const {genreName} = req.params;
-    const about = movies.find( movie => movie.genre.description === about);
-
-    if(about) {
-      res.status(200).json(about);
-    } else {
-      res.status(400).send('description not found in database')
-    }
-  })
-
-  app.get('/movies/pictures/:poster', (req, res) => {                  
-    res.sendFile('pictures/:poster', { root: __dirname });
-  })
-  
-
-
-  app.get('/movies/director/:directorName', (req, res) => {
-    const {directorName} = req.params;
-    const director = movies.find( movie => movie.director.name === directorName);
-
-    if(director) {
-      res.status(200).json(director);
-    } else {
-      res.status(400).send('Sorry that film director is not in our database')
     }
   })
 
@@ -323,10 +284,34 @@ app.delete('/users/:id', (req,res) => {
     }
   })
 
+  app.get('/movies/genre/:genreName', (req, res) => {
+    const {genreName} = req.params;
+    const genre = movies.find( movie => movie.genre.name === genreName);
+
+    if(genre) {
+      res.status(200).json(genre);
+    } else {
+      res.status(400).send('category not found in database')
+    }
+  }) 
+
+  app.get('/movies/director/:directorName', (req, res) => {
+    const {directorName} = req.params;
+    const director = movies.find( movie => movie.director.name === directorName);
+
+    if(directorName) {
+      res.status(200).json(directorName);
+    } else {
+      res.status(400).send('Sorry that film director is not in our database')
+    }
+  })
+
+
   app.get('/movies/about_api/documentation', (req, res) => {                  
     res.sendFile('public/documentation.html', { root: __dirname });
   })
-  
+
+
   let logwebpage = (req, res, next) => {
     console.log(req.url);
     next();
