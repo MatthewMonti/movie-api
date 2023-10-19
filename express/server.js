@@ -33,14 +33,18 @@ let users = [
     "Password": "Magicdog#1",
     "Email": "lauramonti@comcast.net",
     "Birthday": "1956-02-10",
-    "Favorite-Film":"Elemental"
+    "Favorite-Film":[
+      "Barbie",
+      "Elemental"
+    ]
   },
   {
     "UserName": "Matt",
     "Password": "Cometdog#1",
     "Email": "mattbmonti@outlook.com",
     "Birthday": "1993-09-09",
-    "Favorite-Film": "Indiana Jones and the Temple of Doom"
+    "Favorite-Film": 
+    "Indiana Jones and the Temple of Doom"
   },
   {
     "UserName": "Michelle",
@@ -70,6 +74,13 @@ let movies = [
   {
     "Title": "All Quiet on the Western Front",
     "ReleaseYear":"2022",
+    "Actors": [
+      "Felix Kammerer", 
+      "Albrecht Schuch",
+      "Aaron Hilmer", 
+      "Daniel Brühl",
+      "Devid Striesow"
+    ],
     "Rated":"R",
     "Rating":"90%",
     "Description": "The story follows teenagers Paul Baumer and his friends Albert and Muller, who voluntarily enlist in the German army, riding a wave of patriotic fervor that quickly dissipates once they face the brutal realities of life on the front. Paul's preconceptions about the enemy and the rights and wrongs of the conflict soon crumble. However, amid the countdown to armistice, Paul must carry on fighting until the end, with no purpose other than to satisfy the top brass' desire to end the war on a German offensive.",
@@ -88,6 +99,13 @@ let movies = [
   {
     "Title": "Barbie",
     "ReleaseYear":"2023",
+    "Actors": [
+      "Margot Robbie", 
+      "Ryan Gosling",
+      "Issa Rae", 
+      "Kate McKinnon",
+      "Emma Mackey"
+  ],
     "Rated": "PG-13",
     "Rating": "80%",
     "Description": "Barbie suffers a crisis that leads her to question her world and her existence.",
@@ -106,6 +124,11 @@ let movies = [
   {
     "Title": "Castle in the Sky",
     "ReleaseYear":"1986",
+    "Actors": [
+      "Mayumi Tanaka", 
+      "Keiko Yokozawa",
+      "Kotoe Hatsui", 
+    ],
     "Rated": "PG",
     "Rating": "96%",
     "Description": "A young boy and a girl with a magic crystal must race against pirates and foreign agents in a search for a legendary floating castle.",
@@ -124,6 +147,12 @@ let movies = [
   {
     "Title": "Elemental",
     "ReleaseYear":"2023",
+    "Actors": [
+      "Leah Lewis", 
+      "Mamoudou Athie",
+      "Ronnie del Carmen", 
+      "Matthew Yang King"
+    ],
     "Rated": "PG",
     "Rating": "74%",
     "Description": "Disney and Pixar's Elemental, an all-new, original feature film set in Element City, where fire-, water-, land- and air-residents live together. The story introduces Ember, a tough, quick-witted and fiery young woman, whose friendship with a fun, sappy, go-with-the-flow guy named Wade challenges her beliefs about the world they live in.",
@@ -142,6 +171,12 @@ let movies = [
   {
     "Title": "Guardians of the Galaxy Vol.3",
     "ReleaseYear":"2023",
+    "Actors": [
+      "Chris Pratt", 
+      "Zoe Saldana",
+      "Dave Bautista", 
+      "Karen Gillan"
+  ],
     "Rated": "PG-13",
     "Rating": "82%",
     "Description": "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe",
@@ -160,6 +195,12 @@ let movies = [
   {
     "Title": "Indiana Jones and the Temple of Doom",
     "ReleaseYear":"1984",
+    "Actors": [
+      "Harrison Ford", 
+      "Kate Capshaw",
+      "Ke Huy Quan", 
+      "Amrish Puri"
+    ],
     "Rated":"PG",
     "Rating":"77%",
     "Description": "In 1935, Indiana Jones is tasked by Indian villagers with reclaiming a rock stolen from them by a secret cult beneath the catacombs of an ancient palace.",
@@ -178,6 +219,12 @@ let movies = [
   {
     "Title": "Insidious Last Key",
     "ReleaseYear":"2018",
+    "Actors": [
+      "Harrison Ford", 
+      "Kate Capshaw",
+      "Ke Huy Quan", 
+      "Amrish Puri"
+  ],
     "Rated":"PG-13",
     "Rating": "33%",
     "Description": "Parapsychologist Dr. Elise Rainier faces her most fearsome and personal haounting yet, as she is drawn back to her ghostly childhood home where the terror began.",
@@ -196,6 +243,12 @@ let movies = [
   {
     "Title": "John Wick - Chapter 4",
     "ReleaseYear":"2023",
+    "Actors": [
+      "Keanu Reeves", 
+      "Laurence Fishburne",
+      "Lance Reddick", 
+      "Clancy Brown"
+  ],
     "Rated": "R",
     "Rating": "94%",
     "Description": "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
@@ -214,6 +267,12 @@ let movies = [
   {
     "Title": "Raiders of the Lost Ark",
     "ReleaseYear":"1981",
+    "Actors": [
+      "Harrison Ford", 
+      "Karen Allen",
+      "Paul Freeman", 
+      "John Rhys-Davies"
+    ],
     "Rated": "PG",
     "Rating": "93%",
     "Description": "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.",
@@ -232,6 +291,12 @@ let movies = [
   {
     "Title": "Rebel Moon: Part One – A Child of Fire",
     "ReleaseYear":"2023",
+    "Actors": [
+      "Sofia Boutella", 
+      "Cary Elwes",
+      "Charlie Hunnam", 
+      "Anthony Hopkins"
+    ],
     "Rated": "PG-13",
     "Rating":"100%",
     "Description": "When a peaceful colony on the edge of a galaxy finds itself threatened by the armies of a tyrannical ruling force, Kora (Sofia Boutella), a mysterious stranger living among the villagers, becomes their best hope for survival. Tasked with finding trained fighters who will unite with her in making an impossible stand against the Mother World, Kora assembles a small band of warriors -- outsiders, insurgents, peasants and orphans of war from different worlds who share a common need for redemption and revenge. As the shadow of an entire Realm bears down on the unlikeliest of moons, a battle over the fate of a galaxy is waged, and in the process, a new army of heroes is formed.",
@@ -250,6 +315,12 @@ let movies = [
   {
     "Title": "The Covenant",
     "ReleaseYear":"2023",
+    "Actors": [
+      "Jake Gyllenhaai", 
+      "Dar Salim",
+      "Jason Wong", 
+      "Rhys Yates"
+    ],
     "Rated": "R",
     "Rating": "83%",
     "Description": "During the war in Afghanistan, a local interpreter risks his own life to carry an injured sergeant across miles of grueling terrain.",
@@ -268,6 +339,20 @@ let movies = [
   },
   {
     "Title": "12 Angry Men",
+    "Actors": [
+      "Ed Begley",
+      "E.G Marshall",
+      "Edward Binns",
+      "George Voskovec",
+      "Henry Fonda",
+      "Jack Klugman",
+      "Jack Warden",
+      "John Fiedler",
+      "Joseph Sweeney",
+      "Lee J. Cobb",
+      "Martin Balsam", 
+      "Robert Webber",
+    ],
     "ReleaseYear":"1957", 
     "Rated": "NA",
     "Rating": "100%",
@@ -287,6 +372,14 @@ let movies = [
   {
     "Title": "Witness for the Prosecution",
     "ReleaseYear":"1957",
+    "Actors": [
+      "Tyrone Power",
+      "Marlene Dietrich",
+      "Charles Laughton",
+      "Elsa Lanchester",
+      "James Williams"
+    ],
+
     "Rated": "NR",
     "Rating":"100",
     "Description": "A courtroom drama about a young man on trial for a wealthy widow's murder after he suspiciously profits from her will.",
