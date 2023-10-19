@@ -43,8 +43,10 @@ let users = [
     "Password": "Cometdog#1",
     "Email": "mattbmonti@outlook.com",
     "Birthday": "1993-09-09",
-    "Favorite-Film": 
-    "Indiana Jones and the Temple of Doom"
+    "Favorite-Film": [
+    "Indiana Jones and the Temple of Doom",
+    "Raiders of the Lost Ark"
+    ],
   },
   {
     "UserName": "Michelle",
@@ -65,9 +67,11 @@ let users = [
     "Password": "WhiteSox#6",
     "Email": "ralphfran@yahoo.com",
     "Birthday": "1958-10-04",
-    "Favorite-Film": "12 Angry Men"
+    "Favorite-Film": [
+      "12 Angry Men",
+      "Witness for the Prosecution"
+    ]
   }
-
 ]
 
 let movies = [
