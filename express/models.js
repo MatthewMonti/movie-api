@@ -24,8 +24,20 @@ let userSchema = mongoose.Schema({
   "Favorite-Film": {type: mongoose.Schema.ObjectId, ref:'Movie'}
 });
 
-let Movie = mongoose.model('Movie', movieSchema);
-let User = mongoose.model('User', userSchema);
+
+
+function getUserwithFavFilm(){
+  return User.findOne({ title: title })
+    .populate('posts').exec((err, posts) => {
+      console.log("User selected" + posts);
+    })
+}
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+
+
 
 module.exports.Movie = Movie;
 module.exports.User = User; 

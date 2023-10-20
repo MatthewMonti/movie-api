@@ -1,3 +1,8 @@
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+const Movies = Models.Movie;
+const Users = Models.User;
+
 const express = require('express'),
 bodyParser = require('body-parser'),
 methodOverride = require('method-override');
@@ -549,6 +554,9 @@ app.delete('/users/:id', (req,res) => {
   app.use(logwebpage);
   app.use(requestTime);
   
+  let Movie = mongoose.model('Movie', movieSchema);
+  let User = mongoose.model('User', userSchema);
+
 
    // listen for requests
     app.listen(8080, () => {
