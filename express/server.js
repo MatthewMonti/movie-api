@@ -553,9 +553,6 @@ app.delete('/users/:id', (req,res) => {
 
   app.use(logwebpage);
   app.use(requestTime);
-  
-  let Movie = mongoose.model('Movie', movieSchema);
-  let User = mongoose.model('User', userSchema);
 
 
    // listen for requests

@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+let Movie = mongoose.model('Movie', movieSchema);
+let User = mongoose.model('User', userSchema);
+
+
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
   ReleaseYear: {type: Integer, required: true},
@@ -34,9 +38,6 @@ function getUserwithFavFilm(){
 }
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
-
-
-
 
 
 module.exports.Movie = Movie;
