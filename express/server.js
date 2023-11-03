@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
-const Models = require('./models.js');
-const Movies = Models.Movie;
-const Users = Models.User;
-
+const Models = require('./model.js');
 const express = require('express'),
 bodyParser = require('body-parser'),
 methodOverride = require('method-override');
@@ -14,6 +11,17 @@ const app = express();
 app.use(morgan('common'));
 
 
+const Movies = Models.Movie;
+const Users = Models.User;
+
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB')
+.then(() => console.log('Mongoose Connected'))
+.catch((err) => {console.error(err); });
+
+
+
+
 
 app.use(bodyParser.json());
 app.use(methodOverride());
@@ -23,61 +31,6 @@ app.use(bodyParser.urlencoded({
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
-
-
-let users = [
-  {
-    "UserName": "Brian",
-    "Password": "MoneyWallet#1",
-    "Email": "brianmonti@comcast.net",
-    "Birthday": "1956-07-14",
-    "Favorite-Film":"Raiders of the Lost Ark"
-  },
-  {
-    "UserName": "Laura",
-    "Password": "Magicdog#1",
-    "Email": "lauramonti@comcast.net",
-    "Birthday": "1956-02-10",
-    "Favorite-Film":[
-      "Barbie",
-      "Elemental"
-    ]
-  },
-  {
-    "UserName": "Matt",
-    "Password": "Cometdog#1",
-    "Email": "mattbmonti@outlook.com",
-    "Birthday": "1993-09-09",
-    "Favorite-Film": [
-    "Indiana Jones and the Temple of Doom",
-    "Raiders of the Lost Ark"
-    ],
-  },
-  {
-    "UserName": "Michelle",
-    "Password": "DanceConnect#123",
-    "Email": "michellemonti@comcast.net",
-    "Birthday": "1996-05-07",
-    "Favorite-Film":"Barbie"
-  },
-  {
-    "UserName": "Ralph Francesconi",
-    "Password": "BankRobberCentral",
-    "Email": "ralphfran@yahoo.com",
-    "Birthday": "1996-08-28",
-    "Favorite-Film": "John Wick Chapter 4"
-  },
-  {
-    "UserName": "Ted Korczyk",
-    "Password": "WhiteSox#6",
-    "Email": "ralphfran@yahoo.com",
-    "Birthday": "1958-10-04",
-    "Favorite-Film": [
-      "12 Angry Men",
-      "Witness for the Prosecution"
-    ]
-  }
-]
 
 let movies = [
   {
@@ -407,6 +360,142 @@ let movies = [
 }
 ];
 
+app.get('/', (req, res) => {
+  res.send('Welcome to my Cinema database and food database');
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
+  res.send(responseText);
+  res.populate('FavoriteMovies');
+  this.img = document.createElement("img");
+  this.img.src = "express/pictures/film-reel.jpg";
+  src = getElementById("film-reel");
+  src.appendChild(this.img)
+})
+
+app.get('/movies/', (req, res) => {
+  res.json(movies);
+})
+
+
+app.get('/movies/:Title', (req, res) => {
+    const {Title} = req.params;
+    const movie = movies.find( movie => movie.Title === Title);
+
+    if(movie) {
+      res.status(200).json(movie);
+    } else {
+      res.status(400).send('Film title not found in database')
+  }
+})
+
+app.get('/movies/rating/:percentage', (req, res) => {
+  const {percentage} = req.params;
+  const rating = movies.find(movie => movie.Rating === percentage);
+
+  if(rating) {
+    res.status(200).json(rating);
+  } else {
+    res.status(400).send('Sorry there is no film matching that rating')
+  }
+})
+
+app.get('/movies/genre/:genreName', (req, res) => {
+  const {genreName} = req.params;
+  const genre = movies.find( movie => movie.genre.name === genreName);
+
+  if(genre) {
+    res.status(200).json(genre);
+  } else {
+    res.status(400).send('category not found in database')
+  }
+}) 
+
+app.get('/movies/director/:directorName', (req, res) => {
+  const {directorName} = req.params;
+  const director = movies.find( movie => movie.director.name === directorName);
+
+  if(directorName) {
+    res.status(200).json(directorName);
+  } else {
+    res.status(400).send('Sorry that film director is not in our database')
+  }
+})
+
+
+app.get('/movies/about_api/documentation', (req, res) => {                  
+  res.sendFile('public/documentation.html', { root: __dirname });
+})
+
+let users = [
+  {
+    "UserName": "Brian",
+    "Password": "MoneyWallet#1",
+    "Email": "brianmonti@comcast.net",
+    "Birthday": "1956-07-14",
+    "Favorite-Film":"Raiders of the Lost Ark"
+  },
+  {
+    "UserName": "Laura",
+    "Password": "Magicdog#1",
+    "Email": "lauramonti@comcast.net",
+    "Birthday": "1956-02-10",
+    "Favorite-Film":[
+      "Barbie",
+      "Elemental"
+    ]
+  },
+  {
+    "UserName": "Matt",
+    "Password": "Cometdog#1",
+    "Email": "mattbmonti@outlook.com",
+    "Birthday": "1993-09-09",
+    "Favorite-Film": [
+    "Indiana Jones and the Temple of Doom",
+    "Raiders of the Lost Ark"
+    ],
+  },
+  {
+    "UserName": "Michelle",
+    "Password": "DanceConnect#123",
+    "Email": "michellemonti@comcast.net",
+    "Birthday": "1996-05-07",
+    "Favorite-Film":"Barbie"
+  },
+  {
+    "UserName": "Ralph Francesconi",
+    "Password": "BankRobberCentral",
+    "Email": "ralphfran@yahoo.com",
+    "Birthday": "1996-08-28",
+    "Favorite-Film": "John Wick Chapter 4"
+  },
+  {
+    "UserName": "Ted Korczyk",
+    "Password": "WhiteSox#6",
+    "Email": "ralphfran@yahoo.com",
+    "Birthday": "1958-10-04",
+    "Favorite-Film": [
+      "12 Angry Men",
+      "Witness for the Prosecution"
+    ]
+  }
+];
+
+app.post('/create-user', async (req, res) => {
+  const isnewUser = await uuidser.isThisEmailInUser(email);
+  if (!isnewUser)
+    return res.json({
+      success: false,
+      message: 'This email is already is in use, try sign-in',
+    })
+  const user = await User({
+    fullname: 'John Doe',
+    email: email,
+    password: '1234'
+  });
+  await user.save();
+  req.json(user)
+});
+
 
 app.post('/users', (req,res) => {
   const newUser = req.body;
@@ -416,7 +505,7 @@ app.post('/users', (req,res) => {
     users.push(newUser);
     res.status(201).json(newUser);
   } else {
-    res.status(400).send('Users need names')
+    res.status(400).send('User needs a name')
   }
 })
 
@@ -473,74 +562,6 @@ app.delete('/users/:id', (req,res) => {
   }
 })
 
-
-
-  app.get('/', (req, res) => {
-    res.send('Welcome to my Cinema database and food database');
-    responseText += '<small>Requested at: ' + 
-    req.requestTime + '</small>';
-    res.send(responseText);
-    this.img = document.createElement("img");
-    this.img.src = "express/pictures/film-reel.jpg";
-    src = getElementById("film-reel");
-    src.appendChild(this.img)
-  })
-
-  app.get('/movies/', (req, res) => {
-    res.json(movies);
-  })
-
-
-  app.get('/movies/:Title', (req, res) => {
-      const {Title} = req.params;
-      const movie = movies.find( movie => movie.Title === Title);
-
-      if(movie) {
-        res.status(200).json(movie);
-      } else {
-        res.status(400).send('Film title not found in database')
-    }
-  })
-
-  app.get('/movies/rating/:percentage', (req, res) => {
-    const {percentage} = req.params;
-    const rating = movies.find(movie => movie.rating === percentage);
-
-    if(rating) {
-      res.status(200).json(rating);
-    } else {
-      res.status(400).send('Sorry there is no film matching that rating')
-    }
-  })
-
-  app.get('/movies/genre/:genreName', (req, res) => {
-    const {genreName} = req.params;
-    const genre = movies.find( movie => movie.genre.name === genreName);
-
-    if(genre) {
-      res.status(200).json(genre);
-    } else {
-      res.status(400).send('category not found in database')
-    }
-  }) 
-
-  app.get('/movies/director/:directorName', (req, res) => {
-    const {directorName} = req.params;
-    const director = movies.find( movie => movie.director.name === directorName);
-
-    if(directorName) {
-      res.status(200).json(directorName);
-    } else {
-      res.status(400).send('Sorry that film director is not in our database')
-    }
-  })
-
-
-  app.get('/movies/about_api/documentation', (req, res) => {                  
-    res.sendFile('public/documentation.html', { root: __dirname });
-  })
-
-
   let logwebpage = (req, res, next) => {
     console.log(req.url);
     next();
@@ -559,3 +580,4 @@ app.delete('/users/:id', (req,res) => {
     app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
   });
+
