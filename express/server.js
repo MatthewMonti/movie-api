@@ -315,7 +315,7 @@ let movies = [
       "Martin Balsam", 
       "Robert Webber",
     ],
-    "ReleaseYear":"1957", 
+    "ReleaseYear":1957, 
     "Rated": "NA",
     "Rating": "100%",
     "Description": "Angry Men is a 1957 American legal drama film directed by Sidney Lumet, adapted from a 1954 teleplay of the same name by Reginald Rose. The film tells the story of a jury of 12 men as they deliberate the conviction or acquittal of a teenager charged with murder on the basis of reasonable doubt; disagreement and conflict among them force the jurors to question their morals and values.",
@@ -333,7 +333,7 @@ let movies = [
   },
   {
     "Title": "Witness for the Prosecution",
-    "ReleaseYear":"1957",
+    "ReleaseYear": "1957",
     "Actors": [
       "Tyrone Power",
       "Marlene Dietrich",
@@ -343,7 +343,7 @@ let movies = [
     ],
 
     "Rated": "NR",
-    "Rating":"100",
+    "Rating":"100%",
     "Description": "A courtroom drama about a young man on trial for a wealthy widow's murder after he suspiciously profits from her will.",
     "Genre": {
     "Name": "Drama",
@@ -376,32 +376,53 @@ app.get('/movies/', (req, res) => {
   res.json(movies);
 })
 
+app.get('/movies/:title', async (req, res) => {
+  await Movies.findOne({ Title: req.params.title })
+  .then((title) => {
+    res.json(title);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+app.get('/movies/:releaseyear', async (req, res) => {
+  await Movies.find({ ReleaseYear: req.params.ReleaseYear })
+  .then((releaseyear) => {
+    res.json(releaseyear);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
 
-app.get('/movies/:Title', (req, res) => {
-    const {Title} = req.params;
-    const movie = movies.find( movie => movie.Title === Title);
+app.get('/movies/:rating', async (req, res) => {
+  await Movies.find({ Rating: req.params.percentage })
+  .then((rating) => {
+    res.json(rating);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+ 
 
-    if(movie) {
-      res.status(200).json(movie);
-    } else {
-      res.status(400).send('Film title not found in database')
-  }
-})
-
-app.get('/movies/rating/:percentage', (req, res) => {
-  const {percentage} = req.params;
-  const rating = movies.find(movie => movie.Rating === percentage);
-
-  if(rating) {
-    res.status(200).json(rating);
-  } else {
-    res.status(400).send('Sorry there is no film matching that rating')
-  }
-})
+app.get('/movies/:title', async (req, res) => {
+  await Movies.findOne({ Title: req.params.title })
+  .then((title) => {
+    res.json(title);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
 
 app.get('/movies/genre/:genreName', (req, res) => {
   const {genreName} = req.params;
-  const genre = movies.find( movie => movie.genre.name === genreName);
+  const genre = movies.find( movies => movies.Genre.Name === genreName);
 
   if(genre) {
     res.status(200).json(genre);
@@ -412,7 +433,7 @@ app.get('/movies/genre/:genreName', (req, res) => {
 
 app.get('/movies/director/:directorName', (req, res) => {
   const {directorName} = req.params;
-  const director = movies.find( movie => movie.director.name === directorName);
+  const director = movies.find( movie => movie.director.Name === directorName);
 
   if(directorName) {
     res.status(200).json(directorName);
@@ -479,6 +500,22 @@ let users = [
     ]
   }
 ];
+
+app.get('/users', async (req, res) => {
+  Users.find().then(users => res.json(users));
+});
+
+// Get a user by username
+app.get('/users/:UserName', async (req, res) => {
+  await Users.findOne({ UserName: req.params.UserName })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 
 app.post('/create-user', async (req, res) => {
   const isnewUser = await uuidser.isThisEmailInUser(email);

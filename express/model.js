@@ -5,7 +5,7 @@ let movieSchema = mongoose.Schema({
   Description: {type: String, required:true},
   ReleaseYear: {type: Number, required: true},
   Actors:[String],
-  Rating: {type: String, required:true},
+  Rating: {type: Number, required:true},
   Genre: {
     Name: {type: String, required: true},
     Description: {type: String, required: true}
@@ -51,7 +51,7 @@ let userSchema = mongoose.Schema({
 });
 
 let Movie = mongoose.model('Movie', movieSchema);
-module.exports.Movie = Movie;
+  module.exports.Movie = Movie;
 let User = mongoose.model('User', userSchema);
   module.exports.User = User;
 
