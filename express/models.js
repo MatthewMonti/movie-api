@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
   Description: {type: String, required:true},
-  ReleaseYear: {type: Number, required: true},
-  Actors:[String],
-  Rating: {type: Number, required:true},
+  ReleaseYear: {type: String, required: true},
+  Rated: {type: String, required: true},
+  Rating: {type: String, required:true},
   Genre: {
     Name: {type: String, required: true},
     Description: {type: String, required: true}
@@ -50,14 +50,6 @@ let userSchema = mongoose.Schema({
     }
 });
 
-let Movie = mongoose.model('Movie', movieSchema);
-  module.exports.Movie = Movie;
-let User = mongoose.model('User', userSchema);
-  module.exports.User = User;
-
-  
-
-
 userSchema.statics.isThisEmailInUse = async function(email) {
   if(!email) throw new Error('Invalid Email')
   try {
@@ -73,11 +65,22 @@ userSchema.statics.isThisEmailInUse = async function(email) {
   }
 
 function getUserwithFavFilm(){
-    return user.findOne({ title: title })
+    return User.findOne({ title: title })
       .populate('posts').exec((err, posts) => {
         console.log("User selected" + posts);
       })
   }
+
+
+let Movie = mongoose.model('Movie', movieSchema);
+let User = mongoose.model('User', userSchema);
+
+module.exports.Movie = Movie;
+module.exports.User = User;
+
+  
+
+
 
   
   
