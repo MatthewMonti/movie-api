@@ -2,14 +2,15 @@ const mongoose = require('mongoose');
 
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
-  Description: {type: String, required:true},
+  Description: {type: String, required: true},
   ReleaseYear: {type: String, required: true},
-  Rated: {type: String, required: true},
-  Rating: {type: String, required:true},
   Genre: {
     Name: {type: String, required: true},
     Description: {type: String, required: true}
   },
+  Rated: {type: String, required: true},
+  Rating: {type: String, required:true},
+  Actors: [String],
   Director: {
     Name: {type: String, required:true},
     Bio: {type: String, required:true},
@@ -30,24 +31,8 @@ let userSchema = mongoose.Schema({
       lowercase: true,
       minlength: 10,
     },
-    Birthday: {
-      type: Date, 
-      required: true,
-      min: '1923-01-01',
-      max: '2014-01-01'
-    },
-    FavoriteMovies: [{
-      type: mongoose.Schema.Types.ObjectId, ref: 'Movie' 
-    }],
-    createdAt: {
-      type: Date,
-      immutable:  true,
-      default: new Date()
-    },
-    updatedAt: {
-      type: Date,
-      default: () => Date.now(),
-    }
+    Birthday: {type: Date, required: true},
+    Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
 });
 
 userSchema.statics.isThisEmailInUse = async function(email) {

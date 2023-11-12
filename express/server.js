@@ -7,7 +7,6 @@ mongoose.connect('mongodb://localhost:27017/myFlixDB')
 .catch((err) => {console.error(err); });
 const express = require('express'),
 bodyParser = require('body-parser'),
-methodOverride = require('method-override');
 morgan = require('morgan');
 uuid = require('uuid');
 fs = require('fs');
@@ -16,7 +15,6 @@ const app = express();
 app.use(morgan('common'));
 
 app.use(bodyParser.json());
-app.use(methodOverride());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -30,11 +28,6 @@ app.get('/', (req, res) => {
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
   res.send(responseText);
-  res.populate('FavoriteMovies');
-  this.img = document.createElement("img");
-  this.img.src = "express/pictures/film-reel.jpg";
-  src = getElementById("film-reel");
-  src.appendChild(this.img)
 })
 
 app.get('/movies/', async (req, res) => {
