@@ -13,11 +13,8 @@ fs = require('fs');
 path = require('path');
 const app = express();
 app.use(morgan('common'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
@@ -27,7 +24,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to my Cinema database');
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
-  res.send(responseText);
 })
 
 app.get('/movies/', async (req, res) => {
