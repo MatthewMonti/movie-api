@@ -32,7 +32,7 @@ let userSchema = mongoose.Schema({
       minlength: 10,
     },
     Birthday: {type: Date, required: true},
-    Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
+    Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie.Title' }]
 });
 
 userSchema.statics.isThisEmailInUse = async function(email) {
@@ -49,19 +49,12 @@ userSchema.statics.isThisEmailInUse = async function(email) {
   }
   }
 
-function getUserwithFavFilm(){
-    return User.findOne({ title: title })
-      .populate('posts').exec((err, posts) => {
-        console.log("User selected" + posts);
-      })
-  }
-
-
 let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;
+
 
   
 
