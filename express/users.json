@@ -21,7 +21,7 @@ let users = [
     "Password": "Cometdog#1",
     "Email": "mattbmonti@outlook.com",
     "Birthday": "1993-09-09",
-    "Favorite-Film": [
+    "Favorite": [
       "Indiana Jones and the Temple of Doom",
       "Raiders of the Lost Ark"
     ],

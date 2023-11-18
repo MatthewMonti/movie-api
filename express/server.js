@@ -113,6 +113,7 @@ app.get("/movies/director/:name", (req, res) => {
   });
 });
 
+
 //API DOCUMENTATION WORKS
 app.get('/movies/about_api/documentation', (req, res) => {                  
   res.sendFile('public/documentation.html', { root: __dirname });
@@ -192,25 +193,15 @@ app.put('/users/:Username', async (req, res) => {
   });
 });
 
-// Add a movie to a user's list of favorites - WORKS
-app.post('/users/:Username/movies/:MovieID', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params.MovieID }
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((updatedUser) => {
-    res.json(updatedUser);
-  })
-  .catch((err) => {
-    console.error(error);
-    res.status(500).send('Error: ' + error);
-  });
-});
+
+
 
 
 // Delete a user by username
+// had to change findOneAndRemove to find worked in put NOT in delete 
+// tutor advice NOTED
 app.delete('/users/:Username', async (req, res) => {
-  await Users.findOneAndRemove({ Username: req.params.Username })
+  await Users.find({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.Username + ' was not found');
@@ -223,9 +214,6 @@ app.delete('/users/:Username', async (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-
-
-
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);

@@ -32,8 +32,10 @@ let userSchema = mongoose.Schema({
       minlength: 10,
     },
     Birthday: {type: Date, required: true},
-    Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie.Title' }]
+    Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie.Title' }],
+    Picture: [{type: mongoose.Schema.Types.String, ref: ""}]
 });
+
 
 userSchema.statics.isThisEmailInUse = async function(email) {
   if(!email) throw new Error('Invalid Email')
