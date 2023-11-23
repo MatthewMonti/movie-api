@@ -15,12 +15,18 @@ const app = express();
 app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+let auth = require('./auth.js')(app);
+const passport = require('passport');
+require('./passport.js');
+
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
 
-app.get('/', async (req, res) => {
+app.get('/', passport.authenticate('jwt', 
+{session: false}), async (req, res) => {
   res.send('Welcome to my Cinema database');
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
@@ -29,111 +35,122 @@ app.get('/', async (req, res) => {
 
 
 //MOVIES LIST WORKS
-app.get('/movies/', async (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), 
+async (req, res) => {
   await Movies.find()
-  .then((movies) => {
-    res.json(movies);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
-
-//TITLE SEARCH WORKS
-app.get('/movies/title/:title', async (req, res) => {
-  await Movies.findOne({ Title: req.params.title })
-  .then((title) => {
-    res.json(title);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
-
-//RELEASE YEAR WORkS
-app.get('/movies/releaseyear/:releaseyear', async (req, res) => {
-  await Movies.find({ ReleaseYear: req.params.releaseyear })
-  .then((releaseyear) => {
-    res.json(releaseyear);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
-
-//RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
-app.get('/movies/rated/:rated', async (req, res) => {
-  await Movies.find({ Rated: req.params.rated })
-  .then((rated) => {
-    res.json(rated);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
-
-//Quality of FILMS WORKS
-app.get('/movies/rating/:rating', async (req, res) => {
-  await Movies.find({ Rating: req.params.rating })
-  .then((rating) => {
-    res.json(rating);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
- 
-//GENRE SEARCH FOR MOVIE
-app.get('/movies/genre/:genreName', async (req, res) => {
- await Movies.find({'Genre.Name': req.params.genreName})
     .then((movies) => {
-      res.status(200).json(movies);
+      res.status(201).json(movies);
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
     });
 });
 
 
+//TITLE SEARCH WORKS
+app.get('/movies/title/:title', passport.authenticate('jwt', 
+{ session: false}), async (req, res) => {
+  await Movies.findOne({ Title: req.params.title })
+  .then((title) => {
+    res.status(201).json(title);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+
+//RELEASE YEAR WORkS
+app.get('/movies/releaseyear/:releaseyear', passport.authenticate('jwt', 
+{session: false}), async (req, res) => {
+  await Movies.find({ ReleaseYear: req.params.releaseyear })
+  .then((releaseyear) => {
+    res.status(201).json(releaseyear);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+
+//RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
+app.get('/movies/rated/:rated', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
+  await Movies.find({ Rated: req.params.rated })
+  .then((rated) => {
+    res.status(201).json(rated);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+
+//Quality of FILMS WORKS
+app.get('/movies/rating/:rating', passport.authenticate ('jwt', 
+{session: false}), async (req, res) => {
+  await Movies.find({ Rating: req.params.rating })
+  .then((rating) => {
+    res.status(201).json(rating);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+ 
+//GENRE SEARCH FOR MOVIE
+app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
+  await Movies.find({'Genre.Name': req.params.genreName})
+  .then((movies) => {
+    res.status(201).json(movies);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send("Error: " + error);
+  });
+});
+
+
 ///DIRECTOR SEARCH WORKS
-app.get("/movies/director/:name", (req, res) => {
+app.get("/movies/director/:name", passport.authenticate ('jwt', 
+{session: false}), async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
-    res.json(movies);
+    res.status(201).json(movies);
   })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
   });
 });
 
 
 //API DOCUMENTATION WORKS
-app.get('/movies/about_api/documentation', (req, res) => {                  
+app.get('/movies/about_api/documentation', passport.authenticate ('jwt',
+  {session: false}), async  (req, res) => {                  
   res.sendFile('public/documentation.html', { root: __dirname });
 })
 
 
 // USERS ARE DISPLAYED WORKS
-app.get('/users', async (req, res) => {
-  Users.find().then(users => res.json(users));
+app.get('/users', passport.authenticate ('jwt', 
+  {session: false}), async (req, res) => {
+  Users.find().then(users => res.status(201).json(users));
 });
 
 // Get a user by username WORKS
-app.get('/users/:Username', async (req, res) => {
+app.get('/users/:Username', passport.authenticate ('jwt', 
+  {session: false}), async (req, res) => {
   await Users.findOne({ Username: req.params.Username })
     .then((user) => {
-      res.json(user);
+      res.status(201).json(user);
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
     });
 });
 
@@ -143,7 +160,7 @@ app.post('/users', async (req, res) => {
   await Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
-        return res.status(400).send(req.body.Username + 'already exists');
+        return res.status(400).send(req.body.Username + ' already exists');
       } else {
         Users
           .create({
@@ -173,7 +190,7 @@ app.post('/users', async (req, res) => {
 //EMAIL
 //BIRTHDAY 
 //FAVORITE MOVIE
-app.put('/users/:Username', async (req, res) => {
+app.put('/users/:Username',  passport.authenticate('jwt', { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
@@ -185,7 +202,7 @@ app.put('/users/:Username', async (req, res) => {
   },
   { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    res.json(updatedUser);
+    res.status(201).json(updatedUser);
   })
   .catch((error) => {
     console.error(error);
