@@ -306,3 +306,8 @@
 ::1 - - [23/Nov/2023:15:27:53 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.35.0"
 ::1 - - [23/Nov/2023:15:27:55 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.35.0"
 ::1 - - [23/Nov/2023:15:27:59 +0000] "GET /movies HTTP/1.1" 201 19877 "-" "PostmanRuntime/7.35.0"
+::1 - - [23/Nov/2023:15:39:11 +0000] "GET /movies HTTP/1.1" 201 19877 "-" "PostmanRuntime/7.35.0"
+::1 - - [23/Nov/2023:15:43:07 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.35.0"
+::1 - - [23/Nov/2023:16:01:23 +0000] "GET / HTTP/1.1" 401 - "-" "PostmanRuntime/7.35.0"
+::1 - - [23/Nov/2023:16:01:24 +0000] "GET / HTTP/1.1" 401 - "-" "PostmanRuntime/7.35.0"
+::1 - - [23/Nov/2023:16:02:23 +0000] "POST /users/ HTTP/1.1" 201 198 "-" "PostmanRuntime/7.35.0"

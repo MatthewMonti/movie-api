@@ -22,15 +22,16 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
-    Username: {type: String},
-    Password: { type: String},
+    Username: {type: String, required: true},
+    Password: { type: String, required: true},
     Email: {email: "TEST@test.com",
       type: String,
       unique: true,
       lowercase: true,
       minlength: 10,
+      required: true
     },
-    Birthday: {type: Date},
+    Birthday: {type: Date, required: true},
     Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie.Title' }],
     Picture: [{type: mongoose.Schema.Types.String, ref: ""}]
 });
