@@ -298,9 +298,10 @@ app.delete('/users/:Username', async (req, res) => {
   app.use(logwebpage);
   app.use(requestTime);
 
-
-   // listen for requests
-    app.listen(8080, () => {
-    console.log('Your app is listening on port 8080.');
+//PORT NO LONGER DEFAULT 8080 FOR PEOPLE 
+//USING APP CHANGE WHEN NEEDED
+  const port = process.env.PORT || 8080;
+  app.listen(port, '0.0.0.0',() => {
+   console.log('Listening on Port ' + port);
   });
-
+  
