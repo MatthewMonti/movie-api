@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseDateFormat = require('mongoose-date-format');
 const bcrypt = require('bcrypt');
 
 let movieSchema = mongoose.Schema({
@@ -15,12 +16,17 @@ let movieSchema = mongoose.Schema({
   Director: {
     Name: {type: String, required:true},
     Bio: {type: String, required:true},
-    Birth: {type: Date, required:true},
-    Death: {type: Date}
+    Birth: {type: Date, default: new Date(), required:true},
+    Death: {type: Date, default: new Date()}
   },
   ImagePath: {type: String},
   Featured: {type: Boolean},
 });
+
+movieSchema.plugin(mongooseDateFormat);  
+return mongoose.model('Movie', movieSchema);
+
+
 
 let userSchema = mongoose.Schema({
     Username: {
@@ -28,7 +34,6 @@ let userSchema = mongoose.Schema({
       unique: true,
       lowercase: true,
       required: true},
-      integer:limit(0-9),
     Password: { type: String, required: true},
     Email: {email: "TEST@test.com",
       type: String,
@@ -37,15 +42,15 @@ let userSchema = mongoose.Schema({
       match: /.+\@.+\..+/,
       lowercase: true,
       minlength: 10,
-      required: true,
-      integer:limit(0-9),
+      required: true
     },
     Birthday: {type: Date, required: true},
     Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie.Title' }],
     Picture: [{type: mongoose.Schema.Types.String, ref: ""}]
 });
 
-
+userSchema.plugin(mongooseDateFormat);  
+return mongoose.model('User', userSchema);
 
 userSchema.statics.hashPassword = (password) => {
   return bcrypt.hashSync(password, 10);
