@@ -1,17 +1,29 @@
 const mongoose = require('mongoose');
 const mongooseDateFormat = require('mongoose-date-format');
+const integerValidator = require('mongoose-integer');
 const bcrypt = require('bcrypt');
 
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
   Description: {type: String, required: true},
-  ReleaseYear: {type: String, required: true},
+  ReleaseYear: {
+    type: String, 
+    required: true,
+    integer: true
+  },
   Genre: {
     Name: {type: String, required: true},
     Description: {type: String, required: true}
   },
-  Rated: {type: String, required: true},
-  Rating: {type: String, required:true},
+  Rated: {
+    type: String, 
+    required: true,
+    integer:true
+  },
+  Rating: {
+    type: String, 
+    required:true,
+    integer: true},
   Actors: [String],
   Director: {
     Name: {type: String, required:true},
@@ -24,8 +36,14 @@ let movieSchema = mongoose.Schema({
 });
 
 movieSchema.plugin(mongooseDateFormat);  
+
+
+movieSchema.plugin(integerValidator);
+
 return mongoose.model('Movie', movieSchema);
 
+let Movie = mongoose.model('Movie', movieSchema);
+module.exports.Movie = Movie;
 
 
 let userSchema = mongoose.Schema({
@@ -52,6 +70,8 @@ let userSchema = mongoose.Schema({
 userSchema.plugin(mongooseDateFormat);  
 return mongoose.model('User', userSchema);
 
+userSchema.plugin(integerValidator);
+
 userSchema.statics.hashPassword = (password) => {
   return bcrypt.hashSync(password, 10);
 };
@@ -74,13 +94,7 @@ userSchema.statics.isThisEmailInUse = async function(email) {
     return false
   }
   }
-
-
-
-let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
-
-module.exports.Movie = Movie;
 module.exports.User = User;
 
 
