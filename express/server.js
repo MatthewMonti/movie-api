@@ -17,12 +17,23 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 let auth = require('./auth.js')(app);
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
 const passport = require('passport');
 require('./passport.js');
-
-
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
+const {check,validationResult} = require('express-validator');
 
 
 app.get('/', passport.authenticate('jwt', 
@@ -157,6 +168,8 @@ app.get('/users/:Username', passport.authenticate ('jwt',
 
 //Add a user - WQRKS
 app.post('/users', async (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.Password);
+  
   await Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -165,7 +178,7 @@ app.post('/users', async (req, res) => {
         Users
           .create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
             Favorite: req.body.Favorite
