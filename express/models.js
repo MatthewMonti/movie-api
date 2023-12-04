@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
@@ -22,19 +23,37 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
-    Username: {type: String, required: true},
-    Password: { type: String, required: true},
-    Email: {email: "TEST@test.com",
+    Username: {
       type: String,
       unique: true,
       lowercase: true,
+      required: true},
+      integer:limit(0-9),
+    Password: { type: String, required: true},
+    Email: {email: "TEST@test.com",
+      type: String,
+      required: true,
+      unique: true,
+      match: /.+\@.+\..+/,
+      lowercase: true,
       minlength: 10,
-      required: true
+      required: true,
+      integer:limit(0-9),
     },
     Birthday: {type: Date, required: true},
     Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie.Title' }],
     Picture: [{type: mongoose.Schema.Types.String, ref: ""}]
 });
+
+
+
+userSchema.statics.hashPassword = (password) => {
+  return bcrypt.hashSync(password, 10);
+};
+
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.Password);
+};
 
 
 userSchema.statics.isThisEmailInUse = async function(email) {
@@ -50,6 +69,8 @@ userSchema.statics.isThisEmailInUse = async function(email) {
     return false
   }
   }
+
+
 
 let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
