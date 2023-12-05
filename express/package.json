@@ -22,6 +22,6 @@
   "scripts": {
     "devStart": "nodemon server.js",
     "test": "echo \"Error: no test specificed\" && exit 1",
-    "start": "nodeindex.js"
+    "start": "node server.js"
   }
 }
