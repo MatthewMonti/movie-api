@@ -1,6 +1,5 @@
 let movies = [
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef35a"),
       Title: 'All Quiet on the Western Front',
       ReleaseYear: '2022',
       Actors: [
@@ -22,11 +21,10 @@ let movies = [
         Bio: 'Edward Berger was born in 1970 in Wolfsburg, Lower Saxony, Germany. He is adirector and writer, known for All Quiet on the Western Front (2022), Jack (2014) and Deutschland 83 (2015). He is married to Nele Mueller-Stofen.',
         Birth: '1970-01-01'
       },
-      ImagePath: 'express/pictures/All Quiet on the Western Front.jpg',
+      ImagePath: 'All Quiet on the Western Front.jpg',
       Featured: false
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef35b"),
       Title: 'Barbie',
       ReleaseYear: '2023',
       Actors: [
@@ -48,11 +46,10 @@ let movies = [
         Bio: 'Greta Gerwig, in full Greta Celeste Gerwig, (born August 4, 1983, Sacramento, California, U.S), American actress, writer, and director who was known for the radiant artlessness of her performances in small independent movies before embarking on a successful career as a filmmaker.',
         Birth: '1983-08-04'
       },
-      ImagePath: 'express/pictures/Barbie.jpg',
+      ImagePath: 'Barbie.jpg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef35c"),
       Title: 'Castle in the Sky',
       ReleaseYear: '1986',
       Actors: [ 'Mayumi Tanaka', 'Keiko Yokozawa', 'Kotoe Hatsui' ],
@@ -68,11 +65,10 @@ let movies = [
         Bio: 'Hayao Miyazaki is a Japanese animator, filmmaker, and manga artist. A co-founder of Studio Ghibli, he has attained international acclaim as a masterful storyteller and creator of Japanese animated feature films, and is widely regarded as one of the most accomplished filmmakers in the history of animation.',
         Birth: '1941-01-05'
       },
-      ImagePath: 'express/pictures/Castle in the Sky.jpeg',
+      ImagePath: 'Castle in the Sky.jpeg',
       Featured: false
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef35d"),
       Title: 'Elemental',
       ReleaseYear: '2023',
       Actors: [
@@ -93,11 +89,10 @@ let movies = [
         Bio: 'Peter Sohnn is an American animator, filmmaker, and voice actor, best known for his work at Pixar Animation Studios. He directed the short film Partly Cloudy 2009 and the feature films The Good Dinosaur 2015 and Elemental 2023. He has also been the voice of Emile in Ratatouille (2007), Squishy in Monsters University 2013, and Sox in Lightyear 2022',
         Birth: '1977-10-18'
       },
-      ImagePath: 'express/pictures/Elemental.jpg',
+      ImagePath: 'Elemental.jpg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef35e"),
       Title: 'Guardians of the Galaxy Vol.3',
       ReleaseYear: '2023',
       Actors: [ 'Chris Pratt', 'Zoe Saldana', 'Dave Bautista', 'Karen Gillan' ],
@@ -113,11 +108,10 @@ let movies = [
         Bio: 'James Francis Gunn Jr. is an American filmmaker and studio executive. He began his career as a screenwriter in the mid-1990s, starting at Troma Entertainment with Tromeo and Juliet 1997. He then began working as a director, starting with the horror-comedy film Slither 2006, and moving to the superhero genre with Super 2010, Guardians of the Galaxy 2014, Guardians of the Galaxy Vol. 2 2017, The Suicide Squad 2021, and Guardians of the Galaxy Vol. 3 2023. In 2022, Warner Bros. Discovery hired Gunn and Peter Safran to become co-chairmen and co-CEOs of DC Studios.',
         Birth: '1966-08-05'
       },
-      ImagePath: 'express/pictures/Guardian of the Galaxy Vol.3.png',
+      ImagePath: 'Guardian of the Galaxy Vol.3.png',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef35f"),
       Title: 'Indiana Jones and the Temple of Doom',
       ReleaseYear: '1984',
       Actors: [ 'Harrison Ford', 'Kate Capshaw', 'Ke Huy Quan', 'Amrish Puri' ],
@@ -133,11 +127,10 @@ let movies = [
         Bio: 'Steven Spielburg is an American film director, producer and screenwriter. A major figure of the New Hollywood era and pioneer of the modern blockbuster, he is the most commercially successful director in history. He is the recipient of many accolades, including three Academy Awards, two BAFTA Awards, and four Directors Guild of America Awards, as well as the AFI Life Achievement Award in 1995, the Kennedy Center Honor in 2006, the Cecil B. DeMille Award in 2009 and the Presidential Medal of Freedom in 2015. Seven of his films have been inducted into the National Film Registry by the Library of Congress as culturally, historically or aesthetically significant',
         Birth: '1946-12-18'
       },
-      ImagePath: 'express/pictures/Temple of Doom.jpg',
+      ImagePath: 'Temple of Doom.jpg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef360"),
       Title: 'Insidious Last Key',
       ReleaseYear: '2018',
       Actors: [ 'Kate Capshaw', 'Ke Huy Quan', 'Amrish Puri' ],
@@ -153,11 +146,10 @@ let movies = [
         Bio: 'Adam Robitel is an American film director, producer, screenwriter, and actor. He is best known for directing horror films, such as The Taking of Deborah Logan 2014, Insidious: The Last Key 2018, Escape Room 2019 and its sequel Escape Room: Tournament of Champions 2021. He also co-wrote Paranormal Activity: The Ghost Dimension 2015.',
         Birth: '1978-05-26'
       },
-      ImagePath: 'express/pictures/Insidous Last key.jpeg',
+      ImagePath: 'Insidous Last key.jpeg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef361"),
       Title: 'John Wick - Chapter 4',
       ReleaseYear: '2023',
       Actors: [
@@ -178,11 +170,10 @@ let movies = [
         Bio: 'Chad Stahelski is an American stuntman, actor, and film director. He was born on September 20, 1968 in the United States13. He is best known for directing the John Wick film series12. He has also worked as a stuntman, stunt coordinator, and second unit director on several films.',
         Birth: '1968-09-20'
       },
-      ImagePath: 'express/pictures/John Wick - Chapter 4.jpg',
+      ImagePath: 'John Wick - Chapter 4.jpg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef362"),
       Title: 'Raiders of the Lost Ark',
       ReleaseYear: '1981',
       Actors: [
@@ -203,11 +194,10 @@ let movies = [
         Bio: 'Steven Spielburg is an American film director, producer and screenwriter. A major figure of the New Hollywood era and pioneer of the modern blockbuster, he is the most commercially successful director in history. He is the recipient of many accolades, including three Academy Awards, two BAFTA Awards, and four Directors Guild of America Awards, as well as the AFI Life Achievement Award in 1995, the Kennedy Center Honor in 2006, the Cecil B. DeMille Award in 2009 and the Presidential Medal of Freedom in 2015. Seven of his films have been inducted into the National Film Registry by the Library of Congress as culturally, historically or aesthetically significant',
         Birth: '1946-12-18'
       },
-      ImagePath: 'express/pictures/Raiders of the Lost Ark.jpg',
+      ImagePath: 'Raiders of the Lost Ark.jpg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef363"),
       Title: 'Rebel Moon: Part One – A Child of Fire',
       ReleaseYear: '2023',
       Actors: [
@@ -225,14 +215,13 @@ let movies = [
       },
       Director: {
         Name: 'Zack Snyder',
-        Bio: "Snyder is known for his highly stylized Spartan epic, 300 (2007), a box-office smash based on the graphic novel by Frank Miller. Snyder then went to make Watchmen (2009), the ground-breaking comic book miniseries written by Alan Moore. Looking to work on something fraught with less potential for controversy, he helmed the CGI family fantasy Legend of the Guardians: The Owls of Ga'Hoole (2010), then wrote, produced and directed the wildly self-indulgent genre mash-up spectacle Sucker Punch (2011), about a young girl (Emily Browning) who escapes the real world horrors of a mental asylum by retreating into her own fantasies. Resuscitating the Superman franchise with the highly-anticipated Man of Steel (2013) was merely one more make-or-break challenge for the director. Accused of favoring style over substance by his detractors, Snyder unapologetically offered up his films to the fans as pure popcorn entertainment.",
+        Bio: "Zach Snyder is known for his highly stylized Spartan epic, 300 (2007), a box-office smash based on the graphic novel by Frank Miller. Snyder then went to make Watchmen (2009), the ground-breaking comic book miniseries written by Alan Moore. Looking to work on something fraught with less potential for controversy, he helmed the CGI family fantasy Legend of the Guardians: The Owls of Ga'Hoole (2010), then wrote, produced and directed the wildly self-indulgent genre mash-up spectacle Sucker Punch (2011), about a young girl (Emily Browning) who escapes the real world horrors of a mental asylum by retreating into her own fantasies. Resuscitating the Superman franchise with the highly-anticipated Man of Steel (2013) was merely one more make-or-break challenge for the director. Accused of favoring style over substance by his detractors, Snyder unapologetically offered up his films to the fans as pure popcorn entertainment.",
         Birth: '1966-03-01'
       },
-      ImagePath: 'express/pictures/Rebel-Moon.webp',
+      ImagePath: 'Rebel-Moon.webp',
       Featured: false
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef364"),
       Title: 'The Covenant',
       ReleaseYear: '2023',
       Actors: [ 'Jake Gyllenhaai', 'Dar Salim', 'Jason Wong', 'Rhys Yates' ],
@@ -248,11 +237,10 @@ let movies = [
         Bio: 'Guy Ritchie is a British film director, writer, producer, and businessman12345. He is known for his trademark crime thrillers and suspense films, such as Lock, Stock and Two Smoking Barrels and Snatch1234. Ritchie left school at age 15 and worked entry-level jobs in the film industry before going on to direct television commercials2. He has also directed the Sherlock Holmes films starring Robert Downey Jr.24. Ritchie is occasionally an actor, pub landlord, and businessman',
         Birth: '1968-09-10'
       },
-      ImagePath: 'express/pictures/The Covenant.jpeg',
+      ImagePath: 'The Covenant.jpeg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef365"),
       Title: '12 Angry Men',
       Actors: [
         'Ed Begley',
@@ -282,11 +270,10 @@ let movies = [
         Birth: '1924-06-25',
         Death: '2011-04-09'
       },
-      ImagePath: 'express/pictures/12 Angry Men.jpeg',
+      ImagePath: '12 Angry Men.jpeg',
       Featured: true
     },
     {
-      _id: ObjectId("6554f9f8347e6af3dbdef366"),
       Title: 'Witness for the Prosecution',
       ReleaseYear: '1957',
       Actors: [
@@ -308,7 +295,7 @@ let movies = [
           Birth: '1906-06-22',
           Death: '2002-03-27'
         },
-        ImagePath: 'express/pictures/Witness for the Prosecution.jpeg',
+        ImagePath: 'Witness for the Prosecution.jpeg',
         Featured: true
       }
     }
