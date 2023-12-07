@@ -36,8 +36,7 @@ app.use(morgan('combined', {stream:accessLogStream}));
 const {check,validationResult} = require('express-validator');
 
 
-app.get('/', passport.authenticate('jwt', 
-{session: false}), async (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Welcome to my Cinema database');
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
