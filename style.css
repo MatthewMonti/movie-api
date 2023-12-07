@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "movie-font";
+    src: url(adventure-font/AdventureSubtitlesBold-K8mX.ttf);
+  }
+  h1,p { 
+  font-family: "movie-font";
+  text-align:center;
+  }
+  
+  h2,thead, tbody{
+    font-family:"movie-font";    
+  }
+  
+  img,image{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 20px;
+  }
+  
+  html{
+    background-color:bisque
+  }
+
+film-reel {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}

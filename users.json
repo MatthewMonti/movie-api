@@ -1,0 +1,112 @@
+let users = [
+  {
+    "Username": "Brian",
+    "Password": "MoneyWallet#1",
+    "Email": "brianmonti@comcast.net",
+    "Birthday": "1956-07-14",
+    "Favorite": ["Raiders of the Lost Ark"]
+  },
+  {
+    "Username": "Laura",
+    "Password": "Magicdog#1",
+    "Email": "lauramonti@comcast.net",
+    "Birthday": "1956-02-10",
+    "Favorite":[
+      "Barbie",
+      "Elemental"
+    ]
+  },
+  {
+    "Username": "Matt",
+    "Password": "Cometdog#1",
+    "Email": "mattbmonti@outlook.com",
+    "Birthday": "1993-09-09",
+    "Favorite": [
+      "Indiana Jones and the Temple of Doom",
+      "Raiders of the Lost Ark"
+    ]
+  },
+  {
+    "Username": "Michelle",
+    "Password": "DanceConnect#123",
+    "Email": "michellemonti@comcast.net",
+    "Birthday": "1996-05-07",
+    "Favorite": ["Barbie"]
+  },
+  {
+    "Username": "Ralph Francesconi",
+    "Password": "BankRobberCentral",
+    "Email": "ralphfran@yahoo.com",
+    "Birthday": "1996-08-28",
+    "Favorite": ["John Wick - Chapter 4"]
+  },
+  {
+    "Username": "Ted Korczyk",
+    "Password": "WhiteSox#6",
+    "Email": "tedk@yahoo.com",
+    "Birthday": "1958-10-04",
+    "Favorite": [
+      "12 Angry Men",
+      "Witness for the Prosecution"
+    ]
+  },
+  {
+    "Username": "Thadeous Korczyk",
+    "Password": "WhiteSox#6",
+    "Email": "thadeouskorczyk@yahoo.com",
+    "Birthday": "1925-10-30",
+    "Favorite": [
+      "12 Angry Men",
+      "Witness for the Prosecution",
+      "The Alamo"
+    ]
+  },
+  {
+    "Username": "Alfreda Korczyk",
+    "Password": "DisneyFan#1",
+    "Email": "alfredakorczyk@gmail.com",
+    "Birthday": "1929-02-15",
+    "Favorite": [
+      "Snow White and the Seven Dwarfs"
+    ]
+  },
+  {
+    "Username": "Bob Stevenson",
+    "Password": "AirForce#1",
+    "Email": "sciencerules@gmail.com",
+    "Birthday": "1984-10-01",
+    "Favorite": [
+      "John Wick Chapter 4"
+    ]
+  },
+  {
+    "Username": "thegreatepapyrus",
+    "Password": "spagetti",
+    "Email": "the_great_papyrus@gmail.com",
+    "Birthday": "1956-02-14",
+    "Favorite": [
+      "12 Angry Men"
+    ]
+  },
+  {
+    "Username": "Abraham Lincoln",
+    "Password": "SlaveryEvil#1",
+    "Email": "abrahamlincoln@gmail.com",
+    "Birthday": "1934-05-15",
+    "Favorite": [
+      "12 Angry Men"
+    ]
+  },
+  {
+    "Username": "Albert Einstien",
+    "Password": "Science#1",
+    "Email": "einstien_albert@gmail.com",
+    "Birthday": "1984-10-01",
+    "Favorite": [
+      "John Wick Chapter 4"
+    ]
+  }
+]
+
+
+
