@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://https://mattmyflixdb-5a9ddca1adfe.herokuapp.com/')
+mongoose.connect('mongodb://https://matt-myflixdb-16b9ec7c23cd.herokuapp.com/')
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
 const express = require('express'),
