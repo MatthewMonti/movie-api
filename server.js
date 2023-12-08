@@ -166,7 +166,7 @@ app.get('/users/:Username', passport.authenticate ('jwt',
 
 
 //Add a user - WQRKS
-app.post('/users', async (req, res) => {
+app.post('/users',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -179,10 +179,11 @@ app.post('/users', async (req, res) => {
     check('Email', 'Email does not appear to be valid').isEmail(),
     check('Featured', 'Feature in Movie Theater statement true or false not NULL').isBoolean(),
 ], async(req, res) => {
+
 //check the validation object for errors
   let errors = validationResult(req);
-}
-if (!error.isEmpty()) {
+  
+  if (!errors.isEmpty()) {
   return res.status(422).json({errors: errors.array});
 }
 
