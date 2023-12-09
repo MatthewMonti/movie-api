@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://matt-myflixdb-16b9ec7c23cd.herokuapp.com',
-{ useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://matt-myflixdb-16b9ec7c23cd.herokuapp.com')
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
 mongoose.connect( process.env.JB007, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -203,7 +202,7 @@ let hashedPassword = Users.hashPassword(req.body.Password);
             Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
-            Favorite: req.body.Favorite
+            Favorite: req.body.Favorite,
           })
           .then((user) =>{res.status(201).json(user) })
         .catch((error) => {
