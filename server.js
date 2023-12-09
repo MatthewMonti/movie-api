@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://https://git.heroku.com/matt-myflixdb.git')
+mongoose.connect('mongodb://https://git.heroku.com/matt-myflixdb.git',
+{ useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
 mongoose.connect( process.env.JB007, { useNewUrlParser: true, useUnifiedTopology: true });
