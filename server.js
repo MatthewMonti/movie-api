@@ -5,6 +5,7 @@ const Users = Models.User;
 mongoose.connect('mongodb://https://matt-myflixdb-16b9ec7c23cd.herokuapp.com/')
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
+mongoose.connect( process.env.JB007, { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
