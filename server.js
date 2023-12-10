@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://https://matt-myflixdb-16b9ec7c23cd.herokuapp.com',
+mongoose.connect("mongodb://https://git.heroku.com/shielded-basin-79557.git",
 { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
