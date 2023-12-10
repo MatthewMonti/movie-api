@@ -1,4 +1,4 @@
-let users = [
+[
   {
     "Username": "Brian",
     "Password": "MoneyWallet#1",
