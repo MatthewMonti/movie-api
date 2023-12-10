@@ -298,8 +298,8 @@ app.delete('/users/:Username', async (req, res) => {
 
 //PORT NO LONGER DEFAULT 8080 FOR PEOPLE 
 //USING APP CHANGE WHEN NEEDED
-  const port = process.env.PORT;
-  app.listen(port, '0.0.0.0',() => {
-   console.log('Listening on Port ' + port);
-  });
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
+});
   
