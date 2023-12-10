@@ -4,9 +4,6 @@ const Movies = Models.Movie;
 const Users = Models.User;
 mongoose.connect('mongodb://https://matt-myflixdb-16b9ec7c23cd.herokuapp.com',
 { useNewUrlParser: true, useUnifiedTopology: true });
-
-mongoose.connect( process.env.JB007, 
-  { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
@@ -301,7 +298,7 @@ app.delete('/users/:Username', async (req, res) => {
 
 //PORT NO LONGER DEFAULT 8080 FOR PEOPLE 
 //USING APP CHANGE WHEN NEEDED
-  const port = process.env.PORT || 8080;
+  const port = process.env.PORT;
   app.listen(port, '0.0.0.0',() => {
    console.log('Listening on Port ' + port);
   });
