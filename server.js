@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://matt-myflixdb-16b9ec7c23cd.herokuapp.com')
-.then(() => console.log('Mongoose Connected'))
-.catch((err) => {console.error(err); });
-mongoose.connect( process.env.JB007, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://https://matt-myflixdb-16b9ec7c23cd.herokuapp.com',
+{ useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect( process.env.JB007, 
+  { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
@@ -35,8 +36,7 @@ require('./passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 const {check,validationResult} = require('express-validator');
-
-
+require('dotenv').config();
 app.get('/', async (req, res) => {
   res.send('Welcome to my Cinema database');
   req.responseText += '<small>Requested at: ' + 
