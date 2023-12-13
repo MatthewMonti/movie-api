@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Models = require('./models.js');
+const Models = require('models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://https://shielded-basin-79557-5783b225f808.herokuapp.com/', 
+mongoose.connect('mongodb+srv://Brian:cBi4UBy6mfRK3NK4@cluster0.vz9ijr2.mongodb.net/?retryWrites=true&w=majority/myFlixDB',
 { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
@@ -15,7 +15,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
-let auth = require('./auth.js')(app);
+let auth = require('auth.js')(app);
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 app.use(cors({
@@ -202,10 +202,10 @@ let hashedPassword = Users.hashPassword(req.body.Password);
             Favorite: req.body.Favorite,
           })
           .then((user) =>{res.status(201).json(user) })
-        .catch((error) => {
+          .catch((error) => {
           console.error(error);
           res.status(500).send('Error: ' + error);
-        })
+        });
       }
     })
     .catch((error) => {
