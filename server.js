@@ -28,8 +28,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-const passport = require('passport');
-require('./passport.js');
+const passport = require('passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 const {check,validationResult} = require('express-validator');
