@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  
+  <title>Myflix Application</title>
+  <h2>Objective</h2>
+  <p>This application helps to sort through different genres of films and directors, and let you save your most charished film to your account.</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>
+          User Logic
+        </th>
+        <th>
+          URL
+        </th>
+        <th>
+          HTTP Method
+        </th>
+        <th>
+          Query Parameters
+        </th>
+        <th>
+          Data Format
+        </th>
+        <th>
+          Response to format
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Film by title</td>
+        <td>/movies/title/:title</td>
+        <td>GET</td>
+        <td>:title</td>
+        <td>String</td>
+        <td>A JSON object of a single film</td>
+      </tr>
+      <tr>
+        <td>Copy Film Rating from Rotten Tomatoes</td>
+        <td>/movies/rating/:rating</td>
+        <td>GET</td>
+        <td>:rating</td>
+        <td>String</td>
+        <td>A JSON object for a film rating</td>
+      </tr>
+      <tr>
+        <td>Genre of film by title</td>
+        <td>/movies/genres/:genreName</td>
+        <td>GET</td>
+        <td>:genreName</td>
+        <td>String</td>
+        <td>A JSON object of a specific genre</td>
+      </tr>
+      <tr>
+        <td>Film by Director</td>
+        <td>/movies/directors/:name</td>
+        <td>GET</td>
+        <td>:directorName</td>
+        <td>String</td>
+        <td>A JSON object of a specific film director</td>
+      </tr>ß
+      <tr>
+        <td>user is created</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>String</td>
+        <td>A JSON object of a new user, structured like: {"Username": "",
+        "id": "", "favoriteMovie":""}
+        </td>
+        <td>
+          A JSON object of the new user added, structured like: {"Username": "","id": "", "favoriteMovie":""}
+        </td>
+      </tr>
+      <td>user change username</td>
+      <td>/user/:id </td>
+      <td>PUT</td>
+      <td>:id</td>
+      <td>String</td>
+      <td>A JSON object of the user</td>
+      </tr>
+      <tr>
+        <td>User to add film to favorites</td>
+        <td>/users/:id/:movieTitle</td>
+        <td>POST</td>
+        <td>:id,:movieTitle</td>
+        <td>String</td>
+        <td>Text to indicate "saved" to user's list</td>
+      </tr>
+      <tr>
+        <td>User can remove from favorites</td>
+        <td>/users/:id/:movieTitle</td>
+        <td>DELETE</td>
+        <td>:id,:movieTitle</td>
+        <td>String</td>
+        <td>Text "remove" from user's list</td>
+      </tr>
+      <tr>
+        <td>Allows user to delect account</td>
+        <td>/users/:id</td>
+        <td>DELETE</td>
+        <td>:id</td>
+        <td>String</td>
+        <td>Text confirming user account delected</td>
+      </tr>
+    </tbody>
+  </table>
+</html>
+
+<script type="module" src="/server.js"></script>
