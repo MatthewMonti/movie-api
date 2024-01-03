@@ -1,10 +1,10 @@
-let users = [
+[
   {
     "Username": "Brian",
     "Password": "MoneyWallet#1",
     "Email": "brianmonti@comcast.net",
     "Birthday": "1956-07-14",
-    "Favorite": ["Raiders of the Lost Ark"],
+    "Favorite": ["Raiders of the Lost Ark"]
   },
   {
     "Username": "Laura",
@@ -24,14 +24,14 @@ let users = [
     "Favorite": [
       "Indiana Jones and the Temple of Doom",
       "Raiders of the Lost Ark"
-    ],
+    ]
   },
   {
     "Username": "Michelle",
     "Password": "DanceConnect#123",
     "Email": "michellemonti@comcast.net",
     "Birthday": "1996-05-07",
-    "Favorite": ["Barbie"],
+    "Favorite": ["Barbie"]
   },
   {
     "Username": "Ralph",

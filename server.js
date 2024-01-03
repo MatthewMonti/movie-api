@@ -1,10 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://localhost:27017/myFlixDB')
-.then(() => console.log('Mongoose Connected'))
-.catch((err) => {console.error(err); });
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
@@ -16,7 +14,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'https://mattmoviedatabase-221aec62abb6.herokuapp.com/'];
+let allowedOrigins = ['https://localhost:8080', 'https://mattmoviedatabase-221aec62abb6.herokuapp.com/'];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
@@ -306,4 +304,6 @@ app.delete('/users/:Username', passport.authenticate ('jwt',
    app.listen(port, '0.0.0.0',() => {
     console.log('Listening on Port ' + port);
    });
+
+
 

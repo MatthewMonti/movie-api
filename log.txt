@@ -287,3 +287,6 @@
 127.0.0.1 - - [01/Jan/2024:21:18:42 +0000] "POST /users HTTP/1.1" 422 127 "-" "PostmanRuntime/7.36.0"
 127.0.0.1 - - [01/Jan/2024:21:18:59 +0000] "POST /users HTTP/1.1" 500 135 "-" "PostmanRuntime/7.36.0"
 127.0.0.1 - - [01/Jan/2024:21:19:57 +0000] "POST /users HTTP/1.1" 201 271 "-" "PostmanRuntime/7.36.0"
+127.0.0.1 - - [03/Jan/2024:03:45:26 +0000] "POST / HTTP/1.1" 404 140 "-" "PostmanRuntime/7.36.0"
+127.0.0.1 - - [03/Jan/2024:03:45:32 +0000] "GET / HTTP/1.1" 200 29 "-" "PostmanRuntime/7.36.0"
+127.0.0.1 - - [03/Jan/2024:03:45:39 +0000] "GET / HTTP/1.1" 200 29 "-" "PostmanRuntime/7.36.0"
