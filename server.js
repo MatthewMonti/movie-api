@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = process.env.CONNECTION_URI;
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
@@ -14,7 +14,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['https://localhost:8080', 'https://mattmoviedatabase-221aec62abb6.herokuapp.com/'];
+let allowedOrigins = ['https://localhost:8080' || 'https://mattmoviedatabase-221aec62abb6.herokuapp.com/'];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
@@ -170,7 +170,7 @@ app.post('/users',
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
+    check('Username', 'Username is required at least 5 letters').isLength({min: 3}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
@@ -197,6 +197,7 @@ app.post('/users',
               Email: req.body.Email,
               Birthday: req.body.Birthday,
               Favorite: req.body.Favorite,
+              Picture: req.body.Picture
             })
             .then((user) => { res.status(201).json(user) })
             .catch((error) => {
@@ -225,7 +226,7 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username is required').isLength({min: 3}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
