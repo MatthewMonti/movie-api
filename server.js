@@ -14,7 +14,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['https:www.localhost:8080','https://movies-flex-6e317721b427.herokuapp.com'];
+let allowedOrigins = ['https://www.localhost:8080','https://movies-flex-6e317721b427.herokuapp.com'];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
