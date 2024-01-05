@@ -14,7 +14,8 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'https://movies-flex-6e317721b427.herokuapp.com'];
+let allowedOrigins = ['https://localhost:8080', 'https://movies-flex-6e317721b427.herokuapp.com'];
+const { check, validationResult } = require('express-validator');
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -26,10 +27,17 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport.js');
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
+app.use(morgan('combined', {stream:accessLogStream}));
 
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Welcome to my Cinema database');
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
 });
 
 
@@ -128,7 +136,8 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 
 
 //API DOCUMENTATION WORKS
-app.get('/movies/about_api/documentation', async (req, res) => {             
+app.get('/movies/about_api/documentation', passport.authenticate ('jwt',
+ {session: false}), async (req, res) => {             
   res.status(200).sendFile('public/documentation.html', { root: __dirname });
 })
 
@@ -161,7 +170,7 @@ app.post('/users',
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required at least 5 letters').isLength({min: 3}),
+    check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
@@ -217,7 +226,7 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required').isLength({min: 3}),
+    check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
