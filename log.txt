@@ -290,3 +290,6 @@
 127.0.0.1 - - [03/Jan/2024:03:45:26 +0000] "POST / HTTP/1.1" 404 140 "-" "PostmanRuntime/7.36.0"
 127.0.0.1 - - [03/Jan/2024:03:45:32 +0000] "GET / HTTP/1.1" 200 29 "-" "PostmanRuntime/7.36.0"
 127.0.0.1 - - [03/Jan/2024:03:45:39 +0000] "GET / HTTP/1.1" 200 29 "-" "PostmanRuntime/7.36.0"
+127.0.0.1 - - [05/Jan/2024:23:19:01 +0000] "GET / HTTP/1.1" 200 29 "-" "PostmanRuntime/7.36.0"
+127.0.0.1 - - [05/Jan/2024:23:19:21 +0000] "GET /login?Username=Brian&Password=MoneyWallet%231 HTTP/1.1" 404 144 "-" "PostmanRuntime/7.36.0"
+127.0.0.1 - - [05/Jan/2024:23:19:23 +0000] "GET /login?Username=Brian&Password=MoneyWallet%231 HTTP/1.1" 404 144 "-" "PostmanRuntime/7.36.0"
