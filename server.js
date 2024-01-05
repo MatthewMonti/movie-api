@@ -14,8 +14,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['http://www.localhost:8080','http://movies-flex-6e317721b427.herokuapp.com'];
-const { check, validationResult } = require('express-validator');
+let allowedOrigins = ['http://localhost:8080', 'https://movies-flex-6e317721b427.herokuapp.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -27,11 +26,6 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport.js');
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
-app.use(morgan('combined', {stream:accessLogStream}));
 
 
 app.get('/', (req, res) => {
