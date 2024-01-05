@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-const uri = process.env.CONNECTION_URI || 'mongodb://localhost:27017/myFlixDB'
-mongoose.connect(uri);
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
