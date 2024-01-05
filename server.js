@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI);
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
@@ -34,10 +34,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 app.use(morgan('combined', {stream:accessLogStream}));
 
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to my Cinema database');
-  req.responseText += '<small>Requested at: ' + 
-  req.requestTime + '</small>';
 });
 
 
