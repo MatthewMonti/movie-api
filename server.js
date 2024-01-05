@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect(process.env.CONNECTION_URI);
+mongoose.connect('mongodb://process.env.CONNECTION_URI');
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
