@@ -57,7 +57,7 @@ app.get('/movies', passport.authenticate('jwt',
 
 //TITLE SEARCH WORKS
 app.get('/movies/title/:title', passport.authenticate ('jwt',
-{ sesssion: false }), async (req, res) => {
+{ session: false }), async (req, res) => {
   await Movies.findOne({ Title: req.params.title })
   .then((title) => {
     res.status(200).json(title);
