@@ -2,7 +2,12 @@ const mongoose = require("mongoose");
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb+srv://Matthew:Railroad@cluster0.vz9ijr2.mongodb.net/myFlixDB?retryWrites=true&w=majority');
+//BELOW URL from ATLAS WORKS COMMENTED OUT SHOWS USERS AND LOGIN END POINTS WORK
+//mongoose.connect('mongodb+srv://Matthew:Railroad@cluster0.vz9ijr2.mongodb.net/myFlixDB?retryWrites=true&w=majority');
+
+//BELOW IS ENV VAR NEVER WORKED 
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
