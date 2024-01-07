@@ -2,7 +2,7 @@
     font-family: "movie-font";
     src: url(adventure-font/AdventureSubtitlesBold-K8mX.ttf);
   }
-  h1,p { 
+  h1,p,title { 
   font-family: "movie-font";
   text-align:center;
   }
@@ -11,20 +11,13 @@
     font-family:"movie-font";    
   }
   
-  img,image{
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-    border-radius: 20px;
-  }
-  
   html{
     background-color:bisque
   }
 
-film-reel {
+  .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 20px;
-}
+    width: 50%;
+  }
