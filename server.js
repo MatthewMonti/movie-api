@@ -37,7 +37,7 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 
 app.get('/', async (req, res) => {
-  res.send('Welcome to my Cinema database');
+  res.status(200).sendFile('./index.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
@@ -59,7 +59,7 @@ app.get('/movies', passport.authenticate('jwt',
 
 //TITLE SEARCH WORKS
 app.get('/movies/title/:title', passport.authenticate ('jwt',
-{ sesssion: false }), async (req, res) => {
+{session: false }), async (req, res) => {
   await Movies.findOne({ Title: req.params.title })
   .then((title) => {
     res.status(200).json(title);
@@ -140,7 +140,7 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 //API DOCUMENTATION WORKS
 app.get('/movies/about_api/documentation', passport.authenticate ('jwt',
  {session: false}), async (req, res) => {             
-  res.status(200).sendFile('public/documentation.html', { root: __dirname });
+  res.status(200).sendFile('./documentation.html', { root: __dirname });
 })
 
 
@@ -264,7 +264,7 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   });
 });
 
-//ADD FAVORITE MOVIES
+//ADD FAVORITE MOVIES= NOT WORKING
 app.post('/users/:Username/:Favorite', passport.authenticate ('jwt',
 {session: false})
  , async (req, res) => {
@@ -291,7 +291,7 @@ res.status(500).send('Error: ' + error);
 });
 });
 
-//CHANGE FAVORITE MOVIES
+//CHANGE FAVORITE MOVIES - NOT WORK
 app.put ('/users/:Username/:Favorite', passport.authenticate ('jwt',
 {session: false})
  , async (req, res) => {
@@ -328,11 +328,6 @@ app.delete('/users/:Username/:Favorite', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.find({ Username: req.params.Username })
     .then((user) => {
-      if (!user) {
-        res.status(400).send(req.params.Username + ' was not found');
-      } else {
-        res.status(200).send(req.params.Username + ' was deleted.');
-      }
       if (!Favorite) {
         res.status(400).send(req.params.Favorite + ' does not exist');
       } else {
@@ -385,4 +380,3 @@ app.delete('/users/:Username', passport.authenticate ('jwt',
    app.listen(port, '0.0.0.0',() => {
     console.log('Listening on Port ' + port);
    });
-
