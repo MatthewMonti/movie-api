@@ -163,7 +163,6 @@ app.get('/users/:Username', passport.authenticate ('jwt',
     });
 });
 
-
 //Add a user - WQRKS
 app.post('/users',
   // Validation logic here for request
@@ -213,6 +212,7 @@ app.post('/users',
         res.status(500).send('Error: ' + error);
       });
   });
+
 
 
 /// USER CAN UPDATE FOLLOWING - WORKS
