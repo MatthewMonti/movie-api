@@ -197,8 +197,7 @@ app.post('/users',
               Password: hashedPassword,
               Email: req.body.Email,
               Birthday: req.body.Birthday,
-              Favorite: req.body.Favorite,
-              Picture: req.body.Picture
+              Favorite: req.body.Favorite
             })
             .then((user) => { res.status(201).json(user) })
             .catch((error) => {
