@@ -1,8 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/myFlixDB')
+.then(() => console.log('Mongoose Connected'))
+.catch((err) => {console.error(err); });
 const express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan');
@@ -14,7 +16,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['https://localhost:8080', 'https://movies-flex-6e317721b427.herokuapp.com'];
+let allowedOrigins = ['http://localhost:8080', 'https://mattmoviedatabase-221aec62abb6.herokuapp.com/'];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
@@ -35,13 +37,12 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 
 app.get('/', async (req, res) => {
-  res.status(200).sendFile('./index.html', { root: __dirname });
+  res.send('Welcome to my Cinema database');
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
 });
 
-//API DOCUMENTATION WORKS
-app.get('/about_app/', async (req, res) => {             
-  res.status(200).sendFile('./documentation.html', { root: __dirname })
-});
+
 
 //MOVIES LIST WORKS
 app.get('/movies', passport.authenticate('jwt', 
@@ -58,7 +59,7 @@ app.get('/movies', passport.authenticate('jwt',
 
 //TITLE SEARCH WORKS
 app.get('/movies/title/:title', passport.authenticate ('jwt',
-{ session: false }), async (req, res) => {
+{ sesssion: false }), async (req, res) => {
   await Movies.findOne({ Title: req.params.title })
   .then((title) => {
     res.status(200).json(title);
@@ -137,8 +138,9 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 
 
 //API DOCUMENTATION WORKS
-app.get('/about_app/documentation', async (req, res) => {             
-  res.status(200).sendFile('./documentation.html', { root: __dirname });
+app.get('/movies/about_api/documentation', passport.authenticate ('jwt',
+ {session: false}), async (req, res) => {             
+  res.status(200).sendFile('public/documentation.html', { root: __dirname });
 })
 
 
@@ -229,7 +231,7 @@ app.put('/users/:Username', passport.authenticate ('jwt',
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Email', 'Email does not appear to be valid').isEmail()
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -243,10 +245,11 @@ app.put('/users/:Username', passport.authenticate ('jwt',
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
-  await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday,
       Favorite: req.body.Favorite
@@ -256,85 +259,11 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
   })
-
-  let hashedPassword = Users.hashPassword(req.body.Password);
-  await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
-    .then((user) => {
-      if (user) {
-        //If the user is found, send a response that it already exists
-        return res.status(400).send(req.body.Username + ' already exists');
-      } else {
-        Users
-          .create({
-            Username: req.body.Username,
-            Password: hashedPassword,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday,
-            Favorite: req.body.Favorite,
-            Picture: req.body.Picture
-          })
-          .then((user) => { res.status(201).json(user) })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-          });
-      }
-    })
   .catch((error) => {
     console.error(error);
     res.status(500).send('Error: ' + error);
   });
 });
-
-
-app.put('/users/Username/:favorites', passport.authenticate ('jwt',
-{session: false})
- , async (req, res) => {
-    // CONDITION ENDS
-  await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
-    {
-      Favorite: req.body.Favorite
-    }
-  },
-  { new: true }) // This line makes sure that the updated document is returned
-  .then((updatedUser) => {
-    res.json(updatedUser);
-    return res.status(400).send(req.body.Favorite + ' updated');
-    
-  })
-  .catch((error) => {
-    console.error(error);
-    res.status(500).send('Error: ' + error);
-    return res.status(400).send(req.body.Favorite + ' already exists');
-  });
-});
-
-//ADD FAVORITE MOVIES
-app.post('/users/Username/:favorites', passport.authenticate ('jwt',
-{session: false})
- , async (req, res) => {
-    // CONDITION ENDS
-  await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
-    {
-      Favorite: req.body.Favorite
-    }
-  },
-  { new: true }) // This line makes sure that the updated document is returned
-  .then((updatedUser) => {
-    res.json(updatedUser);
-    return res.status(400).send(req.body.Favorite + ' film added');
-  })
-  .catch((error) => {
-    console.error(error);
-    res.status(500).send('Error: ' + error);
-    return res.status(400).send(req.body.Favorite + ' already exists');
-  });
-});
-
-
-
-
-
 
 
 
@@ -378,6 +307,4 @@ app.delete('/users/:Username', passport.authenticate ('jwt',
    app.listen(port, '0.0.0.0',() => {
     console.log('Listening on Port ' + port);
    });
-
-
 
