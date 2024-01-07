@@ -36,11 +36,13 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 app.get('/', async (req, res) => {
   res.status(200).sendFile('./index.html', { root: __dirname });
+  res.status(200).sendFile('./css/styles.css')
 });
 
 //API DOCUMENTATION WORKS
 app.get('/about_app/documentation', async (req, res) => {             
   res.status(200).sendFile('./documentation.html', { root: __dirname });
+  res.status(200).sendFile('./css/styles.css')
 })
 
 //MOVIES LIST WORKS
@@ -49,6 +51,7 @@ app.get('/movies', passport.authenticate('jwt',
   await Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
+      res.status(200).sendFile('./css/styles.css')
     })
     .catch((error) => {
       console.error(error);
@@ -62,6 +65,7 @@ app.get('/movies/title/:title', passport.authenticate ('jwt',
   await Movies.findOne({ Title: req.params.title })
   .then((title) => {
     res.status(200).json(title);
+    res.status(200).sendFile('./css/styles.css')
   })
   .catch((err) => {
     console.error(err);
@@ -75,6 +79,7 @@ app.get('/movies/release/:releaseyear', passport.authenticate ('jwt',
   await Movies.find({ ReleaseYear: req.params.releaseyear })
   .then((releaseyear) => {
     res.status(200).json(releaseyear);
+    res.status(200).sendFile('./css/styles.css')
   })
   .catch((err) => {
     console.error(err);
@@ -88,6 +93,7 @@ app.get('/movies/rated/:rated', passport.authenticate ('jwt',
   await Movies.find({ Rated: req.params.rated })
   .then((rated) => {
     res.status(200).json(rated);
+    res.status(200).sendFile('./css/styles.css')
   })
   .catch((err) => {
     console.error(err);
@@ -101,6 +107,7 @@ app.get('/movies/rating/:rating', passport.authenticate ('jwt',
   await Movies.find({ Rating: req.params.rating })
   .then((rating) => {
     res.status(200).json(rating);
+    res.status(200).sendFile('./css/styles.css')
   })
   .catch((err) => {
     console.error(err);
@@ -114,6 +121,7 @@ app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
  await Movies.find({'Genre.Name': req.params.genreName})
     .then((movies) => {
       res.status(200).json(movies);
+      res.status(200).sendFile('./css/styles.css')
     })
     .catch((err) => {
       console.error(err);
@@ -128,6 +136,7 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     res.status(200).json(movies);
+    res.status(200).sendFile('./css/styles.css')
   })
   .catch((err) => {
     console.error(err);
@@ -139,6 +148,7 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 //API DOCUMENTATION WORKS
 app.get('/about_app/documentation', async (req, res) => {             
   res.status(200).sendFile('./documentation.html', { root: __dirname });
+  res.status(200).sendFile('./css/styles.css')
 })
 
 
@@ -146,6 +156,7 @@ app.get('/about_app/documentation', async (req, res) => {
 app.get('/users', passport.authenticate ('jwt', 
   {session: false}), async (req, res) => {
   Users.find().then(users => res.status(200).json(users));
+  res.status(200).sendFile('./css/styles.css')
 });
 
 // Get a user by username WORKS
@@ -154,6 +165,7 @@ app.get('/users/:Username', passport.authenticate ('jwt',
   await Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.status(200).json(user);
+      res.status(200).sendFile('./css/styles.css')
     })
     .catch((err) => {
       console.error(err);
@@ -175,6 +187,7 @@ app.post('/users',
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
   ], async (req, res) => {
+    res.status(200).sendFile('./css/styles.css')
 
   // check the validation object for errors
     let errors = validationResult(req);
@@ -199,7 +212,8 @@ app.post('/users',
               Favorite: req.body.Favorite,
               Picture: req.body.Picture
             })
-            .then((user) => { res.status(201).json(user) })
+            .then((user) => { res.status(201).json(user)
+              res.status(200).sendFile('./css/styles.css') })
             .catch((error) => {
               console.error(error);
               res.status(500).send('Error: ' + error);
@@ -229,7 +243,8 @@ app.put('/users/:Username', passport.authenticate ('jwt',
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
+    check('Email', 'Email does not appear to be valid').isEmail(),
+    res.status(200).sendFile('./css/styles.css')
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -255,6 +270,7 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     res.json(updatedUser);
+    res.status(200).sendFile('./css/styles.css')
   })
   .catch((error) => {
     console.error(error);
@@ -277,6 +293,7 @@ app.delete('/users/:Username', passport.authenticate ('jwt',
         res.status(400).send(req.params.Username + ' was not found');
       } else {
         res.status(200).send(req.params.Username + ' was deleted.');
+        res.status(200).sendFile('./css/styles.css')
       }
     })
     .catch((err) => {
