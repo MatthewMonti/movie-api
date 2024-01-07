@@ -44,68 +44,70 @@
       <td>Login to User and Movie database Access</td>
       <td>/login</td>
       <td>POST</td>
-      <td>Parameters</td>
-      <td>Username and Password</td>
-      <td>Session Token Created after authication</td>
+      <td>JSON object Username and Password</td>
+      <td>User created or Username already exist </td>
       <tr>
         <td>Full Movie List A-Z</td>
         <td>/movies</td>
         <td>GET</td>
         <td>/movies</td>
-        <td>Login Token Auth + String</td>
-        <td>List of Movies A-Z</td>
+        <td>Login with Params Username & Password</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type String /movies to see movie db</td>
+        <td>See a List of Movies A-Z</td>
       </tr>
       <tr>
         <td>Film by Title</td>
         <td>/movies/title/:title</td>
         <td>GET</td>
         <td>:title</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object of a single film</td>
+        <td>Login with Params Username & Password</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type Movie Name after /title/ see movie info</td>
       </tr>
       <tr>
         <td>Film by Release Year</td>
         <td>/movies/release/:releaseyear</td>
         <td>GET</td>
         <td>:releaseyear</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object with matching release date</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type release year after /releaseyear/ movies with date displayed</td>
       </tr>
       <tr>
         <td>Age Appropriate films</td>
         <td>/movies/rated/:rated</td>
         <td>GET</td>
         <td>:rated</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object with films matching age of audience</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type age rated after /rated/ movies that are age appropriate listed</td>
       </tr>
       <tr>
         <td>Rotten Tomatoes Ratting of Film</td>
         <td>/movies/rating/:rating</td>
         <td>GET</td>
         <td>:rating</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object of films matching that rating</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type rating after /rating/ movies with that rating displayed</td>
       </tr>
       <tr>
         <td>Genre of film by category</td>
         <td>/movies/genres/:genreName</td>
         <td>GET</td>
         <td>:genreName</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object of specific films matching category</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type category after /rating/ movies with that category displayed</td>
       </tr>
       <tr>
         <td>Film by Director</td>
         <td>/movies/directors/:name</td>
         <td>GET</td>
         <td>:name</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object of films made by specific director</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type director name after /director/ movies with that director displayed</td>
       </tr>
       <tr>
         <td>User Guide of APP</td>
-        <td>/about_app/documentation</td>
+        <td>/about_app/</td>
         <td>GET</td>
         <td>/documentation</td>
         <td>String</td>
@@ -115,9 +117,8 @@
         <td>User see all users</td>
         <td>/users</td>
         <td>GET</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object of login in user, structured like: {"Username": "",
-        "Password": "", then after login token created where all users displayed }
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type /users/ ALL Users displayed</td>
         </td>
       </tr>
       <tr>
@@ -125,36 +126,49 @@
         <td>/users/:Username</td>
         <td>GET</td>
         <td>:Username</td>
-        <td>Login Token Auth + String</td>
-        <td>A JSON object of login in user, structured like: {"Username": "",
-        "Password": "", then after login token created where user look up by Username}
-        </td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type Username after /users/ info about that user displayed</td>
       </tr>
       <tr>
-        <td>User is created</td>
+        <td>User Registration</td>
         <td>/users</td>
         <td>POST</td>
-        <td>Login -> Session Token -> Body Raw JSON String</td>
         <td>A JSON object of a new user, structured like: {"Username": "",
         "Password": "", "Email": ""}
         </td>
         <td>
-          A JSON object of the new user added, structured like: {"Username": "","Password": "", "Email":""}
+         Display New User info or message already exists
         </td>
       </tr>
       <td>User change information</td>
       <td>/users/:Username </td>
       <td>PUT</td>
       <td>:Username</td>
-      <td>Login -> Session Token -> Body Raw JSON String</td>
-      <td>A JSON object where the user info edited</td>
+      <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+      <td>type Username after /users/ update user info displayed</td>
+      <td>The user can also update favorite movies</td>
+      </tr>
+      <tr>
+        <td>User can post Favorite Movie</td>
+        <td>/users/:Username/:favorites</td>
+        <td>POST</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type username and favorite movie after /users/ new fav film displayed</td>
+      </tr>
+      <tr>
+        <tr>
+          <td>User can put Favorite Movie</td>
+          <td>/users/:Username/:favorites</td>
+          <td>PUT</td>
+          <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+          <td>type username and favorite movie after /users/ updated fav film displayed</td>
       </tr>
       <tr>
         <td>Allows user to delect account</td>
         <td>/users/:Username</td>
         <td>DELETE</td>
         <td>:Username</td>
-        <td>JSON Raw String</td>
+        <td>String with Username Deleted</td>
         <td>Text confirming user account delected</td>
       </tr>
     </tbody>
