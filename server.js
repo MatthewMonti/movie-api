@@ -38,7 +38,10 @@ app.get('/', async (req, res) => {
   res.status(200).sendFile('./index.html', { root: __dirname });
 });
 
-
+//API DOCUMENTATION WORKS
+app.get('/about_app/documentation', async (req, res) => {             
+  res.status(200).sendFile('./documentation.html', { root: __dirname });
+})
 
 //MOVIES LIST WORKS
 app.get('/movies', passport.authenticate('jwt', 
@@ -46,7 +49,6 @@ app.get('/movies', passport.authenticate('jwt',
   await Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
-      <link rel="stylesheet" type="text/css" href="./style.css"/>
     })
     .catch((error) => {
       console.error(error);
