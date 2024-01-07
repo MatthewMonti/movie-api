@@ -264,7 +264,86 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   });
 });
 
+//ADD FAVORITE MOVIES
+app.post('/users/:Username/:Favorite', passport.authenticate ('jwt',
+{session: false})
+ , async (req, res) => {
+    // CONDITION ENDS
+    await Users.findOne({ Username: req.body.Username })  .then((user) => {
+      if (!user) {
+        //If the User not found send error message 
+        return res.status(404).send(req.body.Username + ' no such user in database');
+      } else {
+        Users
+          .create({
+      Favorite: req.body.Favorite
+    })
+    .then((user) => { res.status(201).json(user) })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+}
+})
+.catch((error) => {
+console.error(error);
+res.status(500).send('Error: ' + error);
+});
+});
 
+//CHANGE FAVORITE MOVIES
+app.put ('/users/:Username/:Favorite', passport.authenticate ('jwt',
+{session: false})
+ , async (req, res) => {
+    // CONDITION ENDS
+    await Users.findOne({ Username: req.body.Username })  .then((user) => {
+      if (!user) {
+        //If the User not found send error message 
+        return res.status(404).send(req.body.Username + ' no such user in database');
+      } 
+      if (!Favorite) {
+        //No Such Film in past selected as Favorite
+        return res.status(404).send(req.body.Favorite + ' no such movie saved as Favorite')
+      }
+      else {
+        $set: ({
+      Favorite: req.body.Favorite
+    })
+    .then((user) => { res.status(201).json(user) })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+}
+})
+.catch((error) => {
+console.error(error);
+res.status(500).send('Error: ' + error);
+});
+});
+
+
+//DELETE FAVORITE MOVIES
+app.delete('/users/:Username/:Favorite', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
+  await Users.find({ Username: req.params.Username })
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted.');
+      }
+      if (!Favorite) {
+        res.status(400).send(req.params.Favorite + ' does not exist');
+      } else {
+          res.status(200).send(req.params.Favorite + ' was deleted');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 
 
 
