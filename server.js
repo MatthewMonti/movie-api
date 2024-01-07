@@ -60,7 +60,6 @@ app.get('/movies/title/:title', passport.authenticate ('jwt',
   await Movies.findOne({ Title: req.params.title })
   .then((title) => {
     res.status(200).json(title);
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
   })
   .catch((err) => {
     console.error(err);
@@ -74,7 +73,6 @@ app.get('/movies/release/:releaseyear', passport.authenticate ('jwt',
   await Movies.find({ ReleaseYear: req.params.releaseyear })
   .then((releaseyear) => {
     res.status(200).json(releaseyear);
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
   })
   .catch((err) => {
     console.error(err);
@@ -88,7 +86,6 @@ app.get('/movies/rated/:rated', passport.authenticate ('jwt',
   await Movies.find({ Rated: req.params.rated })
   .then((rated) => {
     res.status(200).json(rated);
-  <link rel="stylesheet" type="text/css" href="./style.css"/>
   })
   .catch((err) => {
     console.error(err);
@@ -102,7 +99,6 @@ app.get('/movies/rating/:rating', passport.authenticate ('jwt',
   await Movies.find({ Rating: req.params.rating })
   .then((rating) => {
     res.status(200).json(rating);
-  <link rel="stylesheet" type="text/css" href="./style.css"/>
   })
   .catch((err) => {
     console.error(err);
@@ -116,7 +112,6 @@ app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
  await Movies.find({'Genre.Name': req.params.genreName})
     .then((movies) => {
       res.status(200).json(movies);
-      <link rel="stylesheet" type="text/css" href="./style.css"/>
     })
     .catch((err) => {
       console.error(err);
@@ -131,7 +126,6 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     res.status(200).json(movies);
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
   })
   .catch((err) => {
     console.error(err);
