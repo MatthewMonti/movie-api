@@ -138,8 +138,7 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 
 
 //API DOCUMENTATION WORKS
-app.get('/movies/about_api/documentation', passport.authenticate ('jwt',
- {session: false}), async (req, res) => {             
+app.get('/movies/about_api/documentation', async (req, res) => {             
   res.status(200).sendFile('./documentation.html', { root: __dirname });
 })
 
