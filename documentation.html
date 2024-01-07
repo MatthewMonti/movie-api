@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  
+  <title>Myflix Application</title>
+  <h2>Objective</h2>
+  <p>This application helps you sort through movie database and save your most charished film.</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>
+          User Logic
+        </th>
+        <th>
+          URL
+        </th>
+        <th>
+          HTTP Method
+        </th>
+        <th>
+          Query Parameters
+        </th>
+        <th>
+          Data Format
+        </th>
+        <th>
+          Response to format
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Welcome Message</td>
+        <td>/</td>
+        <td>GET</td>
+        <td>/</td>
+        <td>String</td>
+        <td>Welcome Message HTML with Image</td>
+      </tr>
+      <td>Login to User and Movie database Access</td>
+      <td>/login</td>
+      <td>POST</td>
+      <td>Parameters</td>
+      <td>Username and Password</td>
+      <td>Session Token Created after authication</td>
+      <tr>
+        <td>Full Movie List A-Z</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>/movies</td>
+        <td>Login Token Auth + String</td>
+        <td>List of Movies A-Z</td>
+      </tr>
+      <tr>
+        <td>Film by Title</td>
+        <td>/movies/title/:title</td>
+        <td>GET</td>
+        <td>:title</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object of a single film</td>
+      </tr>
+      <tr>
+        <td>Film by Release Year</td>
+        <td>/movies/release/:releaseyear</td>
+        <td>GET</td>
+        <td>:releaseyear</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object with matching release date</td>
+      </tr>
+      <tr>
+        <td>Age Appropriate films</td>
+        <td>/movies/rated/:rated</td>
+        <td>GET</td>
+        <td>:rated</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object with films matching age of audience</td>
+      </tr>
+      <tr>
+        <td>Rotten Tomatoes Ratting of Film</td>
+        <td>/movies/rating/:rating</td>
+        <td>GET</td>
+        <td>:rating</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object of films matching that rating</td>
+      </tr>
+      <tr>
+        <td>Genre of film by category</td>
+        <td>/movies/genres/:genreName</td>
+        <td>GET</td>
+        <td>:genreName</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object of specific films matching category</td>
+      </tr>
+      <tr>
+        <td>Film by Director</td>
+        <td>/movies/directors/:name</td>
+        <td>GET</td>
+        <td>:name</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object of films made by specific director</td>
+      </tr>
+      <tr>
+        <td>User Guide of APP</td>
+        <td>/about_app/documentation</td>
+        <td>GET</td>
+        <td>/documentation</td>
+        <td>String</td>
+        <td>A webpage on how to use app</td>
+      </tr>
+      <tr>
+        <td>User see all users</td>
+        <td>/users</td>
+        <td>GET</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object of login in user, structured like: {"Username": "",
+        "Password": "", then after login token created where all users displayed }
+        </td>
+      </tr>
+      <tr>
+        <td>User access to other User Account info</td>
+        <td>/users/:Username</td>
+        <td>GET</td>
+        <td>:Username</td>
+        <td>Login Token Auth + String</td>
+        <td>A JSON object of login in user, structured like: {"Username": "",
+        "Password": "", then after login token created where user look up by Username}
+        </td>
+      </tr>
+      <tr>
+        <td>User is created</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>Login -> Session Token -> Body Raw JSON String</td>
+        <td>A JSON object of a new user, structured like: {"Username": "",
+        "Password": "", "Email": ""}
+        </td>
+        <td>
+          A JSON object of the new user added, structured like: {"Username": "","Password": "", "Email":""}
+        </td>
+      </tr>
+      <td>User change information</td>
+      <td>/users/:Username </td>
+      <td>PUT</td>
+      <td>:Username</td>
+      <td>Login -> Session Token -> Body Raw JSON String</td>
+      <td>A JSON object where the user info edited</td>
+      </tr>
+      <tr>
+        <td>Allows user to delect account</td>
+        <td>/users/:Username</td>
+        <td>DELETE</td>
+        <td>:Username</td>
+        <td>JSON Raw String</td>
+        <td>Text confirming user account delected</td>
+      </tr>
+    </tbody>
+  </table>
+</html>
+
+<script type="module" src="/server.js"></script>
