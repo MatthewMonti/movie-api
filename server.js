@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
 });
 
 //API DOCUMENTATION WORKS
-app.get('/about_app/documentation', async (req, res) => {             
+app.get('/about_app/', async (req, res) => {             
   res.status(200).sendFile('./documentation.html', { root: __dirname })
 });
 
@@ -261,6 +261,56 @@ app.put('/users/:Username', passport.authenticate ('jwt',
     res.status(500).send('Error: ' + error);
   });
 });
+
+
+app.put('/users/Username/:favorites', passport.authenticate ('jwt',
+{session: false})
+ , async (req, res) => {
+    // CONDITION ENDS
+  await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+    {
+      Favorite: req.body.Favorite
+    }
+  },
+  { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+    return res.status(400).send(req.body.Favorite + ' updated');
+    
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+    return res.status(400).send(req.body.Favorite + ' already exists');
+  });
+});
+
+//ADD FAVORITE MOVIES
+app.post('/users/Username/:favorites', passport.authenticate ('jwt',
+{session: false})
+ , async (req, res) => {
+    // CONDITION ENDS
+  await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+    {
+      Favorite: req.body.Favorite
+    }
+  },
+  { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+    return res.status(400).send(req.body.Favorite + ' film added');
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+    return res.status(400).send(req.body.Favorite + ' already exists');
+  });
+});
+
+
+
+
+
 
 
 
