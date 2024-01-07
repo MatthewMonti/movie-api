@@ -109,7 +109,6 @@
         <td>User Guide of APP</td>
         <td>/about_app/</td>
         <td>GET</td>
-        <td>/documentation</td>
         <td>String</td>
         <td>A webpage on how to use app</td>
       </tr>
@@ -150,19 +149,26 @@
       </tr>
       <tr>
         <td>User can post Favorite Movie</td>
-        <td>/users/:Username/:favorites</td>
+        <td>/users/:Username/:Favorite</td>
         <td>POST</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
         <td>type username and favorite movie after /users/ new fav film displayed</td>
       </tr>
       <tr>
-        <tr>
+      <tr>
           <td>User can put Favorite Movie</td>
-          <td>/users/:Username/:favorites</td>
+          <td>/users/:Username/:Favorite</td>
           <td>PUT</td>
           <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
           <td>type username and favorite movie after /users/ updated fav film displayed</td>
       </tr>
+      <tr>
+        <td>User can delete Favorite Movie</td>
+        <td>/users/:Username/:Favorite</td>
+        <td>DELETE</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
+        <td>type username and favorite movie after /users/ deleted fav film displayed</td>
+    </tr>
       <tr>
         <td>Allows user to delect account</td>
         <td>/users/:Username</td>
