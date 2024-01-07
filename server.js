@@ -35,7 +35,7 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 
 app.get('/', async (req, res) => {
-  res.status(200).sendFile('index.html', { root: __dirname });
+  res.status(200).sendFile('./index.html', { root: __dirname });
 });
 
 
@@ -136,7 +136,7 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 
 //API DOCUMENTATION WORKS
 app.get('/about_app/documentation', async (req, res) => {             
-  res.status(200).sendFile('public/documentation.html', { root: __dirname });
+  res.status(200).sendFile('./documentation.html', { root: __dirname });
 })
 
 
