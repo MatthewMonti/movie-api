@@ -42,6 +42,10 @@ app.get('/', async (req, res) => {
   req.requestTime + '</small>';
 });
 
+//API DOCUMENTATION WORKS
+app.get('/about_api/documentation', async (req, res) => {             
+  res.status(200).sendFile('./documentation.html', { root: __dirname });
+})
 
 
 //MOVIES LIST WORKS
@@ -137,12 +141,6 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 });
 
 
-//API DOCUMENTATION WORKS
-app.get('/about_api/documentation', async (req, res) => {             
-  res.status(200).sendFile('./documentation.html', { root: __dirname });
-})
-
-
 // USERS ARE DISPLAYED WORKS
 app.get('/users', passport.authenticate ('jwt', 
   {session: false}), async (req, res) => {
@@ -150,7 +148,7 @@ app.get('/users', passport.authenticate ('jwt',
 });
 
 // Get a user by username WORKS
-app.get('/users/:Username', passport.authenticate ('jwt', 
+app.get('/user/:Username', passport.authenticate ('jwt', 
   {session: false}), async (req, res) => {
   await Users.findOne({ Username: req.params.Username })
     .then((user) => {
@@ -218,7 +216,7 @@ app.post('/user',
 //EMAIL
 //BIRTHDAY 
 //FAVORITE MOVIE
-app.put('/users/:Username', passport.authenticate ('jwt',
+app.put('/user/:Username', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
@@ -265,7 +263,7 @@ app.put('/users/:Username', passport.authenticate ('jwt',
 
 
 //Add a Favorite Film
-app.post('/users/:Username', async (req, res) => {
+app.post('/user/:Username', async (req, res) => {
   await Users.findOne({Favorite: req.body.Favorite })
     .then((user) => {
       if (user) {
@@ -290,7 +288,7 @@ app.post('/users/:Username', async (req, res) => {
 
 
 //Change user fav films
-app.put('/users/:Username/:Favorite', async (req, res) => {
+app.put('/user/:Username/:Favorite', async (req, res) => {
   await Users.findOne({ Favorite: req.body.Favorite })
     .then((user) => {
       if (user) {
@@ -314,7 +312,7 @@ app.put('/users/:Username/:Favorite', async (req, res) => {
 });
 
 // Delete a Favorite by name
-app.delete('/users/:Username/:Favorite', async (req, res) => {
+app.delete('/user/:Username/:Favorite', async (req, res) => {
   await Users.findOneAndRemove({ Favorite: req.params.Favorite })
     .then((user) => {
       if (!user) {
@@ -330,7 +328,7 @@ app.delete('/users/:Username/:Favorite', async (req, res) => {
 });
 
 // Delete a user by username
-app.delete('/users/:Username', async (req, res) => {
+app.delete('/user/:Username', async (req, res) => {
   await Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
