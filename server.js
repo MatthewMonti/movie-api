@@ -35,7 +35,7 @@ require('./passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-
+//WELCOME MESSAGE WORKS
 app.get('/', async (req, res) => {
   res.status(200).sendFile('./index.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
@@ -162,8 +162,8 @@ app.get('/users/:Username', passport.authenticate ('jwt',
     });
 });
 
-//Add a user - WQRKS
-app.post('/users',
+//Add a user - WORKS
+app.post('/user',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -263,74 +263,64 @@ app.put('/users/:Username', passport.authenticate ('jwt',
   });
 });
 
-//ADD FAVORITE MOVIES= NOT WORKING
-app.post('/users/:Username/:Favorite', passport.authenticate ('jwt',
-{session: false})
- , async (req, res) => {
-    // CONDITION ENDS
-    await Users.findOne({ Username: req.body.Username })  .then((user) => {
-      if (!user) {
-        //If the User not found send error message 
-        return res.status(404).send(req.body.Username + ' no such user in database');
+
+//Add a Favorite Film
+app.post('/users/:Username', async (req, res) => {
+  await Users.findOne({Favorite: req.body.Favorite })
+    .then((user) => {
+      if (user) {
+        return res.status(400).send(req.body.Favorite + ' already exists');
       } else {
         Users
           .create({
-      Favorite: req.body.Favorite
-    })
-    .then((user) => { res.status(201).json(user) })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
-}
-})
-.catch((error) => {
-console.error(error);
-res.status(500).send('Error: ' + error);
-});
-});
-
-//CHANGE FAVORITE MOVIES - NOT WORK
-app.put ('/users/:Username/:Favorite', passport.authenticate ('jwt',
-{session: false})
- , async (req, res) => {
-    // CONDITION ENDS
-    await Users.findOne({ Username: req.body.Username })  .then((user) => {
-      if (!user) {
-        //If the User not found send error message 
-        return res.status(404).send(req.body.Username + ' no such user in database');
-      } 
-      if (!Favorite) {
-        //No Such Film in past selected as Favorite
-        return res.status(404).send(req.body.Favorite + ' no such movie saved as Favorite')
+            Favorite: req.body.Favorite
+          })
+          .then((user) =>{res.status(201).json(user) })
+        .catch((error) => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+        })
       }
-      else {
-        $set: ({
-      Favorite: req.body.Favorite
     })
-    .then((user) => { res.status(201).json(user) })
     .catch((error) => {
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-}
-})
-.catch((error) => {
-console.error(error);
-res.status(500).send('Error: ' + error);
-});
 });
 
 
-//DELETE FAVORITE MOVIES
-app.delete('/users/:Username/:Favorite', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
-  await Users.find({ Username: req.params.Username })
+//Change user fav films
+app.put('/users/:Username/:Favorite', async (req, res) => {
+  await Users.findOne({ Favorite: req.body.Favorite })
     .then((user) => {
-      if (!Favorite) {
-        res.status(400).send(req.params.Favorite + ' does not exist');
+      if (user) {
+        return res.status(400).send(req.body.Favorite + ' already exists');
       } else {
-          res.status(200).send(req.params.Favorite + ' was deleted');
+        Users
+          $set({
+            Favorite: req.body.Favorite
+          })
+          .then((user) =>{res.status(201).json(user) })
+        .catch((error) => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+        })
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
+
+// Delete a Favorite by name
+app.delete('/users/:Username/:Favorite', async (req, res) => {
+  await Users.findOneAndRemove({ Favorite: req.params.Favorite })
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Favorite + ' was not inputed into system');
+      } else {
+        res.status(200).send(req.params.Favorite + ' was deleted.');
       }
     })
     .catch((err) => {
@@ -339,14 +329,9 @@ app.delete('/users/:Username/:Favorite', passport.authenticate ('jwt',
     });
 });
 
-
-
 // Delete a user by username
-// had to change findOneAndRemove to find worked in put NOT in delete 
-// tutor advice NOTED
-app.delete('/users/:Username', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
-  await Users.find({ Username: req.params.Username })
+app.delete('/users/:Username', async (req, res) => {
+  await Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.Username + ' was not found');
@@ -359,7 +344,6 @@ app.delete('/users/:Username', passport.authenticate ('jwt',
       res.status(500).send('Error: ' + err);
     });
 });
-
   let logwebpage = (req, res, next) => {
     console.log(req.url);
     next();
