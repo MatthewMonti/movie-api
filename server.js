@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb://localhost:27017/myFlixDB')
+mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
 const express = require('express'),
@@ -16,7 +16,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'https://mattmoviedatabase-221aec62abb6.herokuapp.com/'];
+let allowedOrigins = ['http://localhost:8080', 'https://movies-flex-6e317721b427.herokuapp.com'];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
