@@ -313,7 +313,7 @@ app.put('/user/:Username/:Favorite', async (req, res) => {
 
 // Delete a Favorite by name
 app.delete('/user/:Username/:Favorite', async (req, res) => {
-  await Users.findOneAndRemove({ Favorite: req.params.Favorite })
+  await Users.findOneAndDelete({ Favorite: req.params.Favorite })
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.Favorite + ' was not inputed into system');
