@@ -45,7 +45,7 @@ app.get('/', async (req, res) => {
 //API DOCUMENTATION WORKS
 app.get('/about_api/documentation', async (req, res) => {             
   res.status(200).sendFile('./documentation.html', { root: __dirname });
-})
+});
 
 
 //MOVIES LIST WORKS
