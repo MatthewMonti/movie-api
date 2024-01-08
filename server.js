@@ -141,7 +141,7 @@ app.get("/movies/director/:name", passport.authenticate ('jwt',
 });
 
 
-// USERS ARE DISPLAYED WORKS
+// USERS ARE DISPLAYED WORKS - ONE USERS LOOKS AT ALL USERS SECURITY ISSUE?
 app.get('/users', passport.authenticate ('jwt', 
   {session: false}), async (req, res) => {
   Users.find().then(users => res.status(200).json(users));
@@ -263,7 +263,7 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 
 
 //Add a Favorite Film
-app.post('/user/:Username', async (req, res) => {
+app.post('/user/:Username/:Favorite', async (req, res) => {
   await Users.findOne({Favorite: req.body.Favorite })
     .then((user) => {
       if (user) {
