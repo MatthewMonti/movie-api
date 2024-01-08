@@ -336,7 +336,7 @@ app.delete('/user/:Username/:Favorite', passport.authenticate ('jwt',
 //findOneAndRemove NOT VALID FUNCTION
 //FindOneAndDelete VALID FUNCTION
 //6x Mongoose -> 10.2.5 (current version code made)
-app.delete('/users/:Username', passport.authenticate ('jwt',
+app.delete('/user/:Username', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndDelete({ Username: req.params.Username })
     .then((user) => {
