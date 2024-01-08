@@ -1,6 +1,5 @@
 [
     {
-      "_id": "1",
       "Title": "All Quiet on the Western Front",
       "ReleaseYear": "2022",
       "Actors": [
@@ -26,7 +25,6 @@
       "Featured": false
     },
     {
-      "_id": "2",
       "Title": "Barbie",
       "ReleaseYear": "2023",
       "Actors": [
@@ -52,7 +50,6 @@
       "Featured": true
     },
     {
-      "_id": "3",
       "Title": "Castle in the Sky",
       "ReleaseYear": "1986",
       "Actors": [ "Mayumi Tanaka", "Keiko Yokozawa", "Kotoe Hatsui"],
@@ -72,7 +69,6 @@
       "Featured": false
     },
     {
-      "_id": "4",
       "Title": "Elemental",
       "ReleaseYear": "2023",
       "Actors": [
@@ -97,7 +93,6 @@
       "Featured": true
     },
     {
-      "_id": "5",
       "Title": "Guardians of the Galaxy Vol.3",
       "ReleaseYear": "2023",
       "Actors": [ "Chris Pratt", "Zoe Saldana", "Dave Bautista", "Karen Gillan" ],
@@ -117,7 +112,6 @@
       "Featured": true
     },
     {
-      "_id": "6",
       "Title": "Indiana Jones and the Temple of Doom",
       "ReleaseYear": "1984",
       "Actors": [ "Harrison Ford", "Kate Capshaw", "Ke Huy Quan", "Amrish Puri"
@@ -138,7 +132,6 @@
       "Featured": true
     },
     {
-      "_id": "7",
       "Title": "Insidious Last Key",
       "ReleaseYear": "2018",
       "Actors": [ "Kate Capshaw", "Ke Huy Quan", "Amrish Puri" ],
@@ -158,7 +151,6 @@
       "Featured": true
     },
     {
-      "_id": "8",
       "Title": "John Wick - Chapter 4",
       "ReleaseYear": "2023",
       "Actors": [
@@ -183,7 +175,6 @@
       "Featured": true
     },
     {
-      "_id": "9",
       "Title": "Raiders of the Lost Ark",
       "ReleaseYear": "1981",
       "Actors": [
@@ -208,7 +199,6 @@
       "Featured": true
     },
     {
-      "_id": "10",
       "Title": "Rebel Moon: Part One – A Child of Fire",
       "ReleaseYear": "2023",
       "Actors": [
@@ -233,7 +223,6 @@
       "Featured": false
     },
     {
-      "_id": "11",
       "Title": "The Covenant",
       "ReleaseYear": "2023",
       "Actors": [ "Jake Gyllenhaai", "Dar Salim", "Jason Wong", "Rhys Yates" ],
@@ -253,7 +242,6 @@
       "Featured": true
     },
     {
-      "_id": "12",
       "Title": "12 Angry Men",
       "Actors": [
         "Ed Begley",
@@ -287,7 +275,6 @@
       "Featured": true
     },
     {
-      "_id": "13",
       "Title": "Witness for the Prosecution",
       "ReleaseYear": "1957",
       "Actors": [
