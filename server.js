@@ -248,7 +248,7 @@ app.put('/user/:Username', passport.authenticate ('jwt',
       Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday,
-      Favorite: req.boy.Favorite
+      Favorite: req.body.Favorite
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
