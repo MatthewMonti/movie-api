@@ -194,6 +194,7 @@ app.post('/user',
               Password: hashedPassword,
               Email: req.body.Email,
               Birthday: req.body.Birthday,
+              Favorite: req.boy.Favorite
             })
             .then((user) => { res.status(201).json(user) })
             .catch((error) => {
@@ -246,7 +247,8 @@ app.put('/user/:Username', passport.authenticate ('jwt',
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Birthday: req.body.Birthday
+      Birthday: req.body.Birthday,
+      Favorite: req.boy.Favorite
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
@@ -260,7 +262,7 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
+app.post('/user/:Username/movies/:Title', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { Favorite: req.params.Title }
@@ -277,7 +279,7 @@ app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 
 
 //Change user fav films
-app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
+app.put('/user/:Username/movies/:Title', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
      $set: { Favorite: req.params.Title }
@@ -293,7 +295,7 @@ app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 });
 
 // Delete a Favorite by name
-app.delete('user/:Username/movies/:MovieID', passport.authenticate ('jwt',
+app.delete('user/:Username/movies/:Title', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndDelete({Username: req.params.Username }, {
     $pull: { Favorite: req.params.Title }
