@@ -328,7 +328,7 @@ app.delete('/user/:Username/:Favorite', async (req, res) => {
 });
 
 // Delete a user by username
-app.delete('/user/:Username', async (req, res) => {
+app.delete('/users/:Username', async (req, res) => {
   await Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
@@ -342,6 +342,7 @@ app.delete('/user/:Username', async (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
+
   let logwebpage = (req, res, next) => {
     console.log(req.url);
     next();
