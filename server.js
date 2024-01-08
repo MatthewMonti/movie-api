@@ -262,7 +262,7 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 });
 
 
-//Add a Favorite Film
+//Add a Favorite Film - BROKEN
 app.post('/user/:Username/:Favorite', async (req, res) => {
   await Users.findOne({Favorite: req.body.Favorite })
     .then((user) => {
