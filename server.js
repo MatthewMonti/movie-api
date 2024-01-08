@@ -194,7 +194,6 @@ app.post('/user',
               Password: hashedPassword,
               Email: req.body.Email,
               Birthday: req.body.Birthday,
-              Favorite: req.body.Favorite
             })
             .then((user) => { res.status(201).json(user) })
             .catch((error) => {
@@ -247,8 +246,7 @@ app.put('/user/:Username', passport.authenticate ('jwt',
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Birthday: req.body.Birthday,
-      Favorite: req.body.Favorite
+      Birthday: req.body.Birthday
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
@@ -261,76 +259,57 @@ app.put('/user/:Username', passport.authenticate ('jwt',
   });
 });
 
-
-//Add a Favorite Film - BROKEN
-app.post('/user/:Username/:Favorite', passport.authenticate ('jwt',
+// Add a movie to a user's list of favorites
+app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
-  await Users.findOne({Favorite: req.body.Favorite })
-    .then((user) => {
-      if (user) {
-        return res.status(400).send(req.body.Favorite + ' already exists');
-      } else {
-        Users
-          .create({
-            Favorite: req.body.Favorite
-          })
-          .then((user) =>{res.status(201).json(user) })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send('Error: ' + error);
-        })
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $push: { Favorite: req.params.MovieID }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 
 //Change user fav films
-app.put('/user/:Username/:Favorite', passport.authenticate ('jwt',
+app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
-  await Users.findOneAndUpdate({ Favorite: req.body.Favorite })
-    .then((user) => {
-      if (user) {
-        return res.status(400).send(req.body.Favorite + ' already exists');
-      } else {
-        Users
-          $set({
-            Favorite: req.body.Favorite
-          })
-          .then((user) =>{res.status(201).json(user) })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send('Error: ' + error);
-        })
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $set: { Favorite: req.params.MovieID }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // Delete a Favorite by name
-app.delete('/user/:Username/:Favorite', passport.authenticate ('jwt',
+app.delete('user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
-  await Users.findOneAndDelete({ Favorite: req.params.Favorite })
-    .then((user) => {
-      if (!user) {
-        res.status(400).send(req.params.Favorite + ' was not inputed into system');
-      } else {
-        res.status(200).send(req.params.Favorite + ' was deleted.');
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
+  await Users.findOneAndDelete({Username: req.params.Username }, {
+    $pull: { Favorite: req.params.MovieID }
+  },
+  { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
-// Delete a user by username
+
+// Delete a user by username - WORKS
 //Mongoose Verion 5 2.8 of CareerFoundry is DATED
 // https://www.appsloveworld.com/mongodb/100/185/mongodb-findoneanddelete-is-not-a-function-error
 //findOneAndRemove NOT VALID FUNCTION
