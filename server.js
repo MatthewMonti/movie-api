@@ -263,7 +263,7 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params.MovieID }
+     $push: { Favorite: req.params.Title }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -280,7 +280,7 @@ app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $set: { Favorite: req.params.MovieID }
+     $set: { Favorite: req.params.Title }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -296,7 +296,7 @@ app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 app.delete('user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndDelete({Username: req.params.Username }, {
-    $pull: { Favorite: req.params.MovieID }
+    $pull: { Favorite: req.params.Title }
   },
   { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
