@@ -289,7 +289,7 @@ app.post('/user/:Username/:Favorite', async (req, res) => {
 
 //Change user fav films
 app.put('/user/:Username/:Favorite', async (req, res) => {
-  await Users.findOne({ Favorite: req.body.Favorite })
+  await Users.findOneAndUpdate({ Favorite: req.body.Favorite })
     .then((user) => {
       if (user) {
         return res.status(400).send(req.body.Favorite + ' already exists');
@@ -328,6 +328,11 @@ app.delete('/user/:Username/:Favorite', async (req, res) => {
 });
 
 // Delete a user by username
+//Mongoose Verion 5 2.8 of CareerFoundry is DATED
+// https://www.appsloveworld.com/mongodb/100/185/mongodb-findoneanddelete-is-not-a-function-error
+//findOneAndRemove NOT VALID FUNCTION
+//FindOneAndDelete VALID FUNCTION
+//6x Mongoose -> 10.2.5 (current version code made)
 app.delete('/users/:Username', async (req, res) => {
   await Users.findOneAndDelete({ Username: req.params.Username })
     .then((user) => {
