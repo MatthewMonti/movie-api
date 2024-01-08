@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true }) ||
 mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
@@ -265,14 +267,14 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params.Title }
+     $push: { Favorite: req.params.MovieID }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (!updatedUser) {
-      res.status(400).send(req.params.Title + ' Title was already in profile');
+      res.status(400).send(req.params.Favorite + ' was already in profile');
     } else {
-      res.status(200).send(req.params.Title + ' title has been added.');
+      res.status(200).send(req.params.Favorite + ' has been added.');
     }
     res.json(updatedUser);
   })
@@ -287,14 +289,14 @@ app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $set: { Favorite: req.params.Title }
+     $set: { Favorite: req.params.MovieID }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (!updatedUser) {
-      res.status(400).send(req.params.Title + ' Title was already in profile');
+      res.status(400).send(req.params.Favorite + ' was already in profile');
     } else {
-      res.status(200).send(req.params.Title + ' title was changed.');
+      res.status(200).send(req.params.Favorite + ' was changed.');
     }
     res.json(updatedUser);
   })
@@ -308,14 +310,14 @@ app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 app.delete('user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndDelete({Username: req.params.Username }, {
-    $pull: { Favorite: req.params.Title }
+    $pull: { Favorite: req.params.MovieID }
   },
   { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (!updatedUser) {
-      res.status(400).send(req.params.Title + ' Title was already in profile');
+      res.status(400).send(req.params.Favorite + ' was already in profile');
     } else {
-      res.status(200).send(req.params.Title + ' title was deleted.');
+      res.status(200).send(req.params.Favorite + ' was deleted.');
     }
     res.json(updatedUser);
   })
