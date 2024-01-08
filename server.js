@@ -263,7 +263,8 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 
 
 //Add a Favorite Film - BROKEN
-app.post('/user/:Username/:Favorite', async (req, res) => {
+app.post('/user/:Username/:Favorite', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
   await Users.findOne({Favorite: req.body.Favorite })
     .then((user) => {
       if (user) {
@@ -288,7 +289,8 @@ app.post('/user/:Username/:Favorite', async (req, res) => {
 
 
 //Change user fav films
-app.put('/user/:Username/:Favorite', async (req, res) => {
+app.put('/user/:Username/:Favorite', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
   await Users.findOneAndUpdate({ Favorite: req.body.Favorite })
     .then((user) => {
       if (user) {
@@ -312,7 +314,8 @@ app.put('/user/:Username/:Favorite', async (req, res) => {
 });
 
 // Delete a Favorite by name
-app.delete('/user/:Username/:Favorite', async (req, res) => {
+app.delete('/user/:Username/:Favorite', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
   await Users.findOneAndDelete({ Favorite: req.params.Favorite })
     .then((user) => {
       if (!user) {
@@ -333,7 +336,8 @@ app.delete('/user/:Username/:Favorite', async (req, res) => {
 //findOneAndRemove NOT VALID FUNCTION
 //FindOneAndDelete VALID FUNCTION
 //6x Mongoose -> 10.2.5 (current version code made)
-app.delete('/users/:Username', async (req, res) => {
+app.delete('/users/:Username', passport.authenticate ('jwt',
+{session: false}), async (req, res) => {
   await Users.findOneAndDelete({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
