@@ -4,50 +4,41 @@
     "Password": "MoneyWallet#1",
     "Email": "brianmonti@comcast.net",
     "Birthday": "1956-07-14",
-    "Favorite": ["Raiders of the Lost Ark"]
+    "Favorite": []
   },
   {
     "Username": "Laura",
     "Password": "Magicdog#1",
     "Email": "lauramonti@comcast.net",
     "Birthday": "1956-02-10",
-    "Favorite":[
-      "Barbie",
-      "Elemental"
-    ]
+    "Favorite":[]
   },
   {
     "Username": "Matthew",
     "Password": "Cometdog#1945",
     "Email": "mattbmonti@aol.com",
     "Birthday": "1993-09-09",
-    "Favorite": [
-      "Indiana Jones and the Temple of Doom",
-      "Raiders of the Lost Ark"
-    ]
+    "Favorite": []
   },
   {
     "Username": "Michelle",
     "Password": "DanceConnect#123",
     "Email": "michellemonti@comcast.net",
     "Birthday": "1996-05-07",
-    "Favorite": ["Barbie"]
+    "Favorite": []
   },
   {
     "Username": "Ralph",
     "Password": "BankRobberCentral",
     "Email": "ralphfran@yahoo.com",
     "Birthday": "1996-08-28",
-    "Favorite": ["John Wick - Chapter 4"]
+    "Favorite": []
   },
   {
     "Username": "Thadeous",
     "Password": "WhiteSox#6",
     "Email": "thadeouskorczyk@yahoo.com",
     "Birthday": "1958-10-04",
-    "Favorite": [
-      "12 Angry Men",
-      "Witness for the Prosecutionl"
-    ]
+    "Favorite": []
   }
 ]

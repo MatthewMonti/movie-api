@@ -116,11 +116,11 @@ app.get('/movies/rating/:rating', passport.authenticate ('jwt',
 });
  
 //GENRE SEARCH FOR MOVIE
-app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
+app.get('/movies/genre/:genre', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
  await Movies.find({'Genre.Name': req.params.genreName})
-    .then((movies) => {
-      res.status(200).json(movies);
+    .then((genre) => {
+      res.status(200).json(genre);
     })
     .catch((err) => {
       console.error(err);
@@ -130,11 +130,11 @@ app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
 
 
 ///DIRECTOR SEARCH WORKS
-app.get("/movies/director/:name", passport.authenticate ('jwt', 
+app.get("/movies/director/:director", passport.authenticate ('jwt', 
 {session: false}), async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
-  .then((movies) => {
-    res.status(200).json(movies);
+  .then((director) => {
+    res.status(200).json(director);
   })
   .catch((err) => {
     console.error(err);
@@ -150,8 +150,7 @@ app.get('/users', passport.authenticate ('jwt',
 });
 
 // Get a user by username WORKS
-app.get('/user/:Username', passport.authenticate ('jwt', 
-  {session: false}), async (req, res) => {
+app.get('/users/:Username', async (req, res) => {
   await Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.status(200).json(user);
@@ -163,7 +162,7 @@ app.get('/user/:Username', passport.authenticate ('jwt',
 });
 
 //Add a user - WORKS
-app.post('/user',
+app.post('/users',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -196,7 +195,6 @@ app.post('/user',
               Password: hashedPassword,
               Email: req.body.Email,
               Birthday: req.body.Birthday,
-              Favorite: req.body.Favorite
             })
             .then((user) => { res.status(201).json(user) })
             .catch((error) => {
@@ -218,7 +216,7 @@ app.post('/user',
 //EMAIL
 //BIRTHDAY 
 //FAVORITE MOVIE
-app.put('/user/:Username', passport.authenticate ('jwt',
+app.put('/users/:Username', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
@@ -250,7 +248,6 @@ app.put('/user/:Username', passport.authenticate ('jwt',
       Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday,
-      Favorite: req.body.Favorite
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
@@ -264,18 +261,12 @@ app.put('/user/:Username', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
+app.post('/users/:Username/movies/:MovieID', async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params.MovieID }
+     $push: { FavoriteMovies: req.params.MovieID }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser) {
-      res.status(400).send(req.params.Favorite + ' was already in profile');
-    } else {
-      res.status(200).send(req.params.Favorite + ' has been added.');
-    }
     res.json(updatedUser);
   })
   .catch((err) => {
@@ -283,49 +274,7 @@ app.post('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
     res.status(500).send('Error: ' + err);
   });
 });
-
-
-//Change user fav films
-app.put('/user/:Username/movies/:MovieID', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $set: { Favorite: req.params.MovieID }
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((updatedUser) => {
-    if (!updatedUser) {
-      res.status(400).send(req.params.Favorite + ' was already in profile');
-    } else {
-      res.status(200).send(req.params.Favorite + ' was changed.');
-    }
-    res.json(updatedUser);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
-
-// Delete a Favorite by name
-app.delete('user/:Username/movies/:MovieID', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
-  await Users.findOneAndDelete({Username: req.params.Username }, {
-    $pull: { Favorite: req.params.MovieID }
-  },
-  { new: true }) // This line makes sure that the updated document is returned
-  .then((updatedUser) => {
-    if (!updatedUser) {
-      res.status(400).send(req.params.Favorite + ' was already in profile');
-    } else {
-      res.status(200).send(req.params.Favorite + ' was deleted.');
-    }
-    res.json(updatedUser);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
+   
 
 
 // Delete a user by username - WORKS
@@ -334,7 +283,7 @@ app.delete('user/:Username/movies/:MovieID', passport.authenticate ('jwt',
 //findOneAndRemove NOT VALID FUNCTION
 //FindOneAndDelete VALID FUNCTION
 //6x Mongoose -> 10.2.5 (current version code made)
-app.delete('/user/:Username', passport.authenticate ('jwt',
+app.delete('/users/:Username', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndDelete({ Username: req.params.Username })
     .then((user) => {
