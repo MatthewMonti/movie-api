@@ -41,19 +41,27 @@
         <td>String</td>
         <td>Welcome Message HTML with Image</td>
       </tr>
+      <tr>
         <td>Login to User and Movie database Access</td>
         <td>/login</td>
         <td>POST</td>
         <td>JSON object Username and Password</td>
         <td>User created or Username already exist </td>
-      <tr>
       </tr>
+      <tr>
         <td>Favorite Movie Added</td>
         <td>/users/:Username/movies/:MovieID'</td>
         <td>POST</td>
         <td>JSON object Password with string of ObjectID of Movie</td>
         <td>Favorite movie displayed with User information </td>
+      </tr>
       <tr>
+        <td>Favorite Movie Deleted</td>
+        <td>/users/:Username/movies/:MovieID'</td>
+        <td>DELETE</td>
+        <td>JSON object Password with string of ObjectID of Movie</td>
+        <td>Favorite movie removed displayed with User information </td>
+      </tr>
       <tr>
         <td>User Guide of APP</td>
         <td>/about_app/</td>

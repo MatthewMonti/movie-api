@@ -276,6 +276,23 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt',
     res.status(500).send('Error: ' + err);
   });
 });
+
+
+// DELETE movie to a user's list of favorites
+app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $pull: { Favorite: req.params.MovieID }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
    
 
 
