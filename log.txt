@@ -480,3 +480,5 @@
 127.0.0.1 - - [18/Jan/2024:17:17:53 +0000] "POST /users/Brian/movies/65a845b55927d6f08db8dcab HTTP/1.1" 200 246 "-" "PostmanRuntime/7.36.1"
 127.0.0.1 - - [18/Jan/2024:17:18:31 +0000] "POST /users/Brian/movies/65a845b55927d6f08db8dca2 HTTP/1.1" 200 273 "-" "PostmanRuntime/7.36.1"
 127.0.0.1 - - [18/Jan/2024:17:18:59 +0000] "DELETE /users/Brian/movies/65a845b55927d6f08db8dca2 HTTP/1.1" 200 246 "-" "PostmanRuntime/7.36.1"
+127.0.0.1 - - [18/Jan/2024:18:19:57 +0000] "POST /users/login?Username=Brian&Password=MoneyWallet%231 HTTP/1.1" 404 151 "-" "PostmanRuntime/7.36.1"
+127.0.0.1 - - [18/Jan/2024:18:20:06 +0000] "POST /user/login?Username=Brian&Password=MoneyWallet%231 HTTP/1.1" 404 150 "-" "PostmanRuntime/7.36.1"

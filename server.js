@@ -44,7 +44,7 @@ app.get('/', async (req, res) => {
 });
 
 //API DOCUMENTATION WORKS
-app.get('/about_api/documentation', async (req, res) => {             
+app.get('/about_api/', async (req, res) => {             
   res.status(200).sendFile('./documentation.html', { root: __dirname });
 });
 
@@ -117,27 +117,27 @@ app.get('/movies/rating/:rating', passport.authenticate ('jwt',
 //GENRE SEARCH FOR MOVIE
 app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
- await Movies.find({Genre: req.params.genreName})
-    .then((genre) => {
-      res.status(200).json(genre);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
+  await Movies.find({'Genre.Name': req.params.genreName})
+  .then((movies) => {
+    res.status(201).json(movies);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send("Error: " + error);
+  });
 });
 
 
 ///DIRECTOR SEARCH WORKS
 app.get("/movies/director/:name", passport.authenticate ('jwt', 
 {session: false}), async (req, res) => {
-  Movies.find({Director: req.params.name })
-  .then((director) => {
-    res.status(200).json(director);
+  Movies.find({'Director.Name': req.params.name })
+  .then((movies) => {
+    res.status(201).json(movies);
   })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
   });
 });
 
