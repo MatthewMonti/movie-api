@@ -115,9 +115,9 @@ app.get('/movies/rating/:rating', passport.authenticate ('jwt',
 });
  
 //GENRE SEARCH FOR MOVIE
-app.get('/movies/genre/:genre', passport.authenticate ('jwt',
+app.get('/movies/genre/:genreName', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
- await Movies.find({'Genre.Name': req.params.genreName})
+ await Movies.find({Genre: req.params.genreName})
     .then((genre) => {
       res.status(200).json(genre);
     })
@@ -129,9 +129,9 @@ app.get('/movies/genre/:genre', passport.authenticate ('jwt',
 
 
 ///DIRECTOR SEARCH WORKS
-app.get("/movies/director/:director", passport.authenticate ('jwt', 
+app.get("/movies/director/:name", passport.authenticate ('jwt', 
 {session: false}), async (req, res) => {
-  Movies.find({'Director.Name': req.params.name })
+  Movies.find({Director: req.params.name })
   .then((director) => {
     res.status(200).json(director);
   })
