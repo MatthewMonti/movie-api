@@ -25,9 +25,6 @@
           Query Parameters
         </th>
         <th>
-          Data Format
-        </th>
-        <th>
           Response to format
         </th>
       </tr>
@@ -38,7 +35,6 @@
         <td>/</td>
         <td>GET</td>
         <td>/</td>
-        <td>String</td>
         <td>Welcome Message HTML with Image</td>
       </tr>
       <tr>
@@ -75,7 +71,6 @@
         <td>/movies</td>
         <td>Login with Params Username & Password</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>type String /movies to see movie db</td>
         <td>See a List of Movies A-Z</td>
       </tr>
       <tr>
@@ -171,25 +166,17 @@
       </tr>
       <tr>
       <tr>
-          <td>User can put Favorite Movie</td>
-          <td>/users/:Username/movies/:MovieID</td>
-          <td>PUT</td>
-          <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-          <td>type username and favorite movie after /users/ updated fav film displayed</td>
-      </tr>
-      <tr>
         <td>User can delete Favorite Movie</td>
         <td>/users/:Username/movies/:MovieID</td>
         <td>DELETE</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>type username and favorite movie after /users/ deleted fav film displayed</td>
+        <td>type username and favorite movie after /users/ removed fav film displayed</td>
     </tr>
       <tr>
         <td>Allows user to delect account</td>
         <td>/users/:Username</td>
         <td>DELETE</td>
         <td>:Username</td>
-        <td>String with Username Deleted</td>
         <td>Text confirming user account delected</td>
       </tr>
     </tbody>

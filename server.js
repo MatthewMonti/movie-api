@@ -215,7 +215,6 @@ app.post('/users',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-//FAVORITE MOVIE
 app.put('/users/:Username', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
