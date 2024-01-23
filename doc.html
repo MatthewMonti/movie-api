@@ -12,117 +12,123 @@
     <thead>
       <tr>
         <th>Usage of Command</th>
-        <th>URL to input that command</th>
+        <th>URL command</th>
         <th>Method of data extraction</th>
-        <th>Data Format for inputing new info in database</th>
-        <th>Data after inputed</th>
+        <th>Data instructions </th>
+        <th>If code requires JSON object</th>
+        <th>JSON FORMAT</th>
         <th>Display message along with outcome of data change</th>
       </tr>
     </thead>
     <tbody>
+
       <tr>
         <td>Welcome Message</td>
         <td>/</td>
         <td>GET</td>
+        <td>NONE</td>
+        <td>NO</td>
+        <td>NOT NEEDED</td>
         <td>Welcome Message in index.html</td>
       </tr>
+
       <tr>
         <td>User Guide of APP</td>
         <td>/about_app/</td>
         <td>GET</td>
+        <td>NONE</td>
+        <td>NO</td>
+        <td>NOT NEEDED</td>
         <td>A webpage on how to use app</td>
       </tr>
+
       <tr>
         <td>ADD Film to Database</td>
         <td>/movies</td>
         <td>POST</td>
         <td>No Need to Login help grow database</td>
         <td>JSON object format for adding a New Movie</td>
-        <td>
-          {
-          '_id': #,
-          'Title': 'Some Movie,
-          'Release': "####",
-          'Actors': '["Name",'Name2', etc....]',
-          'Rated': 'PG-##,
-          'Rating': '0 - 100 RATING'
-          'Description': 'string with upper and lower case',
-          'Genre.Name': 'CATEGORY Upper and lower case',
-          'Genre.Description':'DESCRIPTION upper and lower case',
-          'Email': 'TEST@test.com',
-          'Director.Name':'Mr. Tester,
-          'Director.Bio': 'BIO upper and lower case',
-          'Director.Birth': '####-##-##',
-          'Director'.Death: '####-##-##'(NOT REQUIRED)
-          'ImagePath': 'imageURL in quotes' (NOT REQUIRED),
-          'Featured': BOOLEAN - TRUE OR FALSE
-          }
-        </td>
+        <td>{
+         '_id': #,
+        'Title': 'Some Movie,
+        'Release': "####",
+        'Actors': '["Name", etc....]',
+        'Rated': 'PG-##,
+        'Rating': '0 - 100 RATING',
+        Description': 'string with upper and lower case',
+        'Genre.Name': 'CATEGORY Upper and lower case',
+        'Genre.Description':'DESCRIPTION upper and lower case',
+        'Email': 'TEST@test.com',
+        'Director.Name':'Mr. Tester,
+        'Director.Bio': 'BIO upper and lower case',
+        'Director.Birth': '####-##-##',
+        'Director'.Death: '####-##-##'(NOT REQUIRED),
+        'ImagePath': 'imageURL in quotes' (NOT REQUIRED),
+        'Featured': BOOLEAN - TRUE OR FALSE,
+        }</td>
+        <td>Display of Movie Info along with confirmation message</td>
       </tr>
+
       <tr>
         <td>UPDATE Film in Database</td>
         <td>/movies</td>
         <td>PUT</td>
         <td>No Need to Login help grow database</td>
         <td>JSON object format for adding a New Movie</td>
-        <td>
-          {
-          '_id': #,
-          'Title': 'Some Movie,
-          'Release': "####",
-          'Actors': '["Name",'Name2', etc....]',
-          'Rated': 'PG-##,
-          'Rating': '0 - 100 RATING'
-          'Description': 'string with upper and lower case',
-          'Genre.Name': 'CATEGORY Upper and lower case',
-          'Genre.Description':'DESCRIPTION upper and lower case',
-          'Email': 'TEST@test.com',
-          'Director.Name':'Mr. Tester,
-          'Director.Bio': 'BIO upper and lower case',
-          'Director.Birth': '####-##-##',
-          'Director'.Death: '####-##-##'(NOT REQUIRED)
-          'ImagePath': 'imageURL in quotes' (NOT REQUIRED),
-          'Featured': BOOLEAN - TRUE OR FALSE
-          }
-        </td>
+        <td>{
+        '_id': #,
+        'Title': 'Some Movie,
+        'Release': "####",
+        'Actors': '["Name",'Name2', etc....]',
+        'Rated': 'PG-##,
+        'Rating': '0 - 100 RATING'
+        'Description': 'string with upper and lower case',
+        'Genre.Name': 'CATEGORY Upper and lower case',
+        'Genre.Description':'DESCRIPTION upper and lower case',
+        'Email': 'TEST@test.com',
+        'Director.Name':'Mr. Tester,
+        'Director.Bio': 'BIO upper and lower case',
+        'Director.Birth': '####-##-##',
+        'Director'.Death: '####-##-##'(NOT REQUIRED)
+        'ImagePath': 'imageURL in quotes' (NOT REQUIRED),
+        'Featured': BOOLEAN - TRUE OR FALSE
+        }</td>
+        <td>UPDATE MOVIE AND MESSAGE CONFIRMATION DISPLAYED</td>
       </tr>
+
       <tr>
         <td>Login to User and Movie database Access</td>
         <td>/login</td>
         <td>POST</td>
-        <td>Go to Postman body tab and set to Raw Data JSON</td>
-        <td>Below is default object JSON for logging in</td>
-        <td>After Property Keys replace the ALL CAPS Words with your User and password</td>
-        <td>{"Username": "USERNAME"</td>
-        <td>"Password": "PASSPORT"}</td>
+        <td>Go to Postman body tab and set to Raw Data JSON
+          Create a properly formated JSON formate by 
+          using formated property keys to replace ALL CAPS Words with your User info</td>
+        <td>JSON Object created for User to Login</td>
+        <td>{"Username": "NAME"
+        "Password": "Password"}</td>
+        <td>User Info display along with created sessions authorization token</td>
       </tr>
       <tr>
         <td>Favorite Movie Added</td>
-        <td>/users/:Username/movies/:MovieID'</td>
+        <td>/users/:Username/movies/:id'</td>
         <td>POST</td>
-        <td>Follow the instructions of LOGIN ENDPOINT</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>With authication then do add favorite movie URL</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>In Postman body tab set raw JSON</td>
-        <td>Default formate of json object</td>
-        <td>Create object with default property key</td>
-        <td>In ALL CAPITAL value should be replace with name of film</td>
+        <td>Follow the instructions of LOGIN ENDPOINT
+        and Copy Bearer Token created while logging (User info). Put token into authenticate bearer token.
+        With authication change URL to add favorite movie.Remember copy 1x for full access to all endpoints. 
+        User properly formated Property to and replace value key In ALL CAPs</td>
+        <td>JSON Object created adding new film</td>
         <td>{"Favorite": "FILM"}</td>
-        <td>Message that film has been added </td>
+        <td>Film info displayed along with Message that film has been added </td>
       </tr>
       <tr>
         <td>Favorite Movie Deleted</td>
-        <td>/users/:Username/movies/:MovieID'</td>
+        <td>/users/:Username/movies/:id'</td>
         <td>DELETE</td>
-        <td>Follow the instructions of LOGIN ENDPOINT</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>With authication then do Movie URL</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>In Postman body tab set raw JSON</td>
-        <td>Default formate of json object</td>
-        <td>Create object with default property key</td>
-        <td>In ALL CAPITAL value place name of film</td>
+        <td>Follow the instructions of LOGIN ENDPOINT
+        Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        With authication then change URL to Movie URL. 1X to access all endpoints
+        In Postman body tab set raw JSON</td>
+        <td>create JSON object with movie to delete</td>
         <td>{"Favorite": "FILM"}</td>
         <td>User message that film deleted</td>
       </tr>
@@ -131,135 +137,160 @@
         <td>Full Movie List A-Z</td>
         <td>/movies</td>
         <td>GET</td>
-        <td>Follow the instructions of LOGIN ENDPOINT</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>With authication then do Movie URL</td>
-        <td>Only need to copy token authication once to access all database queries</td>
+        <td>Follow the instructions of LOGIN ENDPOINT
+        Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        With authication then do Movie URL
+        Only need to copy token authication once to access all database queries</td>
         <td>See a List of Movies A-Z</td>
+        <td>JSON NOT REQUIRED</td>
+        <td>List of ALL films in database displayed</td>
       </tr>
       <tr>
         <td>Film by Title</td>
         <td>/movies/title/:title</td>
         <td>GET</td>
-        <td>Follow instruction of LOGIN ENDPOINT</td>
-        <td>Copy Bearer Token created from logging into the user account</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>With authication then do Title URL</td>
+        <td>Follow instruction of LOGIN ENDPOINT
+        Copy Bearer Token created from logging into the user account
+        Only need to copy token authication once to access all database queries
+        With authication then do Title URL</td>
+        <td>No JSON</td>
+        <td>NA</td>
+        <td>See one movie by Title</td>
       </tr>
       <tr>
         <td>Film by Release Year</td>
         <td>/movies/release/:releaseyear</td>
         <td>GET</td>
-        <td>Follow the instructions of LOGIN ENDPOINT</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>With authication then do release year URL</td>
+        <td>Follow the instructions of LOGIN ENDPOINT 
+        Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        With authication then do release year URL</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
+        <td>A list of films by release year displayed</td>
       </tr>
       <tr>
         <td>Age Appropriate films</td>
         <td>/movies/rated/:rated</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>type age rated after /rated/ movies that are age appropriate listed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        type age rated after /rated/ movies that are age appropriate listed</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
+        <td>Films filter by age appropreiate</td>
       </tr>
       <tr>
         <td>Rotten Tomatoes Ratting of Film</td>
         <td>/movies/rating/:rating</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>type rating after /rating/ movies with that rating displayed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        type rating after /rating/ movies with that rating displayed</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
+        <td>List of films filter by Rotten Tomatoes Percentage</td>
       </tr>
       <tr>
         <td>Genre of film by category</td>
         <td>/movies/genres/:genreName</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>type category after /rating/ movies with that category displayed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        type category after /rating/ movies with that category displayed</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
+        <td>Films filtered by category are displayed</td>
       </tr>
       <tr>
         <td>Film by Director</td>
         <td>/movies/directors/:name</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>type director name after /director/ movies with that director displayed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        type director name after /director/ movies with that director displayed</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
+        <td>List of films filtered by director name</td>
       </tr>
       <tr>
         <td>User see all users</td>
         <td>/users</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>type /users/ ALL Users displayed</td>
-        </td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
+        <td>Full list of registered users</td>
       </tr>
       <tr>
         <td>User access to other User Account info</td>
         <td>/users/:Username</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>type Username after /users/ info about that user displayed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        type Username after /users/ info about that user displayed</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td> 
+        <td>Info about that user is displayed</td>
       </tr>
       <tr>
         <td>User Registration</td>
         <td>/users</td>
         <td>POST</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>Only need to copy token authication once to access all database queries</td>
-        <td>Follow format below to Create User in body of raw JSON </td>
-        <td>NOTE THAT DATE IS DECENDING ORDER TIME LARGE TO SMALL</td>
-        <td>{"Username": "USERNAME",
-             "Password": "PASSWORD", 
-             "Email": "EMAIL",
-             "Birthday": "####-##-##"
-            }
-        </td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+        Only need to copy token authication once to access all database queries
+        Follow format below to Create User in body of raw JSON 
+        NOTE THAT DATE IS DECENDING ORDER TIME LARGE TO SMALL</td>
+        <td>Create an JSON object for adding users</td>
         <td>
-         Display New User info or message already exists
-        </td>
+        {"Username": "USERNAME",
+        "Password": "PASSWORD",
+        "Email": "EMAIL",
+        "Birthday": "####-##-##",
+        }</td>
+        <td> Display New User info or message already exists</td>
       </tr>
       <td>User change information</td>
       <td>/users/:Username </td>
       <td>PUT</td>
-      <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-      <td>type Username after /users/ update user info displayed</td>
-      <td>NOTE THAT DATE IS DECENDING ORDER TIME LARGE TO SMALL</td>
+      <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+      type Username after /users/ update user info displayed
+      >NOTE THAT DATE IS DECENDING ORDER TIME LARGE TO SMALL</td>
       <td>Follow formate to UPDATE USER</td>
       <td>{"Username": "USERNAME",
-        "Password": "PASSWORD", 
-        "Email": "EMAIL",
-        "Birthday": "####-##-##"
-       }
-       </td>
-       <td>
-        Display UPDATED User information
-       </td>
-      </td>
-
+      "Password": "PASSWORD",
+      "Email": "EMAIL",
+      "Birthday": "####-##-##",
+      }</td>
+       <td>Display UPDATED User information</td>
       </tr>
       <tr>
         <td>User can post Favorite Movie</td>
-        <td>/users/:Username/movies/:MovieID'</td>
+        <td>/users/:Username/movies/:id'</td>
         <td>POST</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>type username and favorite movie after /users/ new fav film displayed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before post put JSON object of movie to add.
+        <td>JSON film to delete a film</td>
+        <td>{"Favorite": "Favorite Film"}</td>
+        <td>Message that film has been added</td>
       </tr>
       <tr>
       <tr>
         <td>User can delete Favorite Movie</td>
         <td>/users/:Username/movies/:MovieID</td>
         <td>DELETE</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token</td>
-        <td>type username and favorite movie after /users/ removed fav film displayed</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before delete put JSON object of movie to delete.
+          <td>JSON film to add film</td>
+          <td>{"Favorite": "Favorite Film"}</td>
+          <td>Message that film has been added</td>
     </tr>
       <tr>
         <td>Allows user to delect account</td>
         <td>/users/:Username</td>
         <td>DELETE</td>
+        <td>JSON object to delete film</td>
+        <td>NO JSON OBJECT</td>
+        <td>NA</td>
         <td>Text confirming user account delected</td>
       </tr>
     </tbody>
