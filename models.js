@@ -3,20 +3,33 @@ const bcrypt = require('bcrypt');
 
 
 let movieSchema = mongoose.Schema({
-  Title: {type: String, required: true},
-  Description: {type: String, required: true},
-  ReleaseYear: {type: String, required: true},
+  _id: {type: Number, required:[true, "ID is a number only"]},
+  Title: {type: String, required: [true, "Title Required"]},
+  Description: {type: String, required: [true, "Description is Required Field"]},
+  Release: {type: String, required: [true, "Release Year of movie is required"]},
   Genre: {
-    Name: {type: String, required: true},
-    Description: {type: String, required: true}
+    Name: {
+      type: String,
+      required: [true, "Category of Film is Required"]
+    },
+    Description: {type: String, required: [true, "movie description is Required"]}
   },
-  Rated: {type: String, required: true},
-  Rating: {type: String, required:true},
+  Rated: {
+    type: String, 
+    required: [true,
+    "Film needs to have parental guide rating"]
+  },
+  Rating: {
+    type: String, 
+    required:true,
+    min:[0, 'Please enter valid rating no less then 0'],
+    max:[100, 'Please enter valid rating no more than 100'],
+  },
   Actors: [String],
   Director: {
-    Name: {type: String, required:true},
-    Bio: {type: String, required:true},
-    Birth: {type: Date, required:true},
+    Name: {type: String, required:[true, 'Name of Director Required']},
+    Bio: {type: String, required:[true, 'Bio info on director required']},
+    Birth: {type: Date, required:[true, 'Birth date of director required']},
     Death: {type: Date}
   },
   ImagePath: {type: String},
@@ -24,8 +37,9 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
-    Username: {type: String, required: true},
-    Password: { type: String, required: true},
+    _id: {type: Number, required: true},
+    Username: {type: String, required: [true, 'Username required'] },
+    Password: { type: String, required: [true, 'Password required to have account active']},
     Email: {email: "TEST@test.com",
       type: String,
       required: true,
@@ -38,7 +52,7 @@ let userSchema = mongoose.Schema({
         message: 'Invalid email address format',
       },
     },
-    Birthday: {type: Date, required: true},
+    Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
     Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
 });
 
