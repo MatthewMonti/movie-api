@@ -39,7 +39,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 app.use(morgan('combined', {stream:accessLogStream}));
 
 //WELCOME MESSAGE WORKS
-app.get('/api/', async (req, res) => {
+app.get('/', async (req, res) => {
   res.status(200).sendFile('./index.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
@@ -69,10 +69,10 @@ app.get('/api/movies/Title/:title', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Movies.find({ Title: req.params.title })
   .then((title) => {
-    if (!title) {
-      res.status(400).send(req.params.title + " either spelling error or we don't serve that audience");
+    if (title.length == 0) {
+      res.status(400).send(req.params.title + ' not in database');
     } else {
-      res.status(200).json(title)
+      res.status(200).json(releaseyear)
     }
   })
   .catch((err) => {
@@ -81,141 +81,12 @@ app.get('/api/movies/Title/:title', passport.authenticate ('jwt',
   });
 });
 
-//ADD FILM NOT WORKING
-app.post('/api/movies',
-  [
-    check('_id', 'ID has to be a number').isNumeric(),
-    check('Title', 'Is a String').isString(),
-    check('Release', 'Year most be a string').isString(),
-    check('Actors', 'Must be a string').isString && isArray,
-    check('Rated', 'Must be a string').isString,
-    check('Rating', 'Must be a string').isString,
-    check('Description', 'Description is a string required').isString(),
-    check('Genre.Name', 'Genre name must be a string').isString(),
-    check('Genre.Description', 'Description must be a string').isString(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Director.Name', 'Director Name most be a string').isString(),
-    check('Director.Bio', 'Director Description is a string').isString(),
-    check('Director.Birth', 'Director birth must have a date').isDate(),
-    check('ImagePath', "imagepath must be a string formate").isString(),
-    check('Featured', 'only true or false film in movie theater').isBoolean()
-  ], async (req, res) => {
-
-  // check the validation object for errors
-    let errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-    await Movies.findOneAndUpdate({ _id: req.body.id }, {
-      $set: {
-        _id: req.body._id,
-        Title: req.body.Title,
-        ReleaseYear: req.body.ReleaseYear,
-        Actors: req.body.Actors,
-        Rated: req.body.Rated,
-        Rating: req.body.Rating,
-        Description: req.body.Description,
-        'Genre.Category': req.body.Cateogory,
-        'Genre.Description': req.body.Descritpion,
-        'Director.Name': req.body.Name,
-        'Director.Bio': req.body.Bio,
-        'Director.Birth': req.body.Birth,
-        ImagePath: req.body.ImagePath,
-        Featured: req.body.Featured
-      }
-    },
-    { new: true }) // This line makes sure that the updated document is returned
-  .then((updatedUser) => {
-    res.json(updatedUser);
-    if (!updatedUser) {
-      res.status(400).send(req.params._id + ' user has nothing to update');
-    } else {
-      res.status(200).send(req.params._id + ' account has been updated.');
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-    res.status(500).send('Error: ' + error);
-  });
-});
-
-            
-
-
-//ADD FILM NOT WORKING
-app.put('/api/movies',
-  [
-    check('_id', 'ID has to be a number').isNumeric(),
-    check('Title', 'Is a String').isString(),
-    check('Release', 'Year most be a string').isString(),
-    check('Actors', 'Must be a string').isString && isArray,
-    check('Rated', 'Must be a string').isString,
-    check('Rating', 'Must be a string').isString,
-    check('Description', 'Description is a string required').isString(),
-    check('Genre.Name', 'Genre name must be a string').isString(),
-    check('Genre.Description', 'Description must be a string').isString(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Director.Name', 'Director Name most be a string').isString(),
-    check('Director.Bio', 'Director Description is a string').isString(),
-    check('Director.Birth', 'Director birth must have a date').isDate(),
-    check('ImagePath', "imagepath must be a string formate").isString(),
-    check('Featured', 'only true or false film in movie theater').isBoolean()
-  ], async (req, res) => {
-
-  // check the validation object for errors
-    let errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-    await Movies.findOne({ _id: req.body.id }) // Search to see if a user with the requested username already exists
-      .then((movie) => {
-        if (movie) {
-          //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.id + ' already exists');
-        } else {
-          Movies
-            .create({
-              _id: req.body._id,
-              Title: req.body.Title,
-              ReleaseYear: req.body.ReleaseYear,
-              Actors: req.body.Actors,
-              Rated: req.body.Rated,
-              Rating: req.body.Rating,
-              Description: req.body.Description,
-              'Genre.Category': req.body.Cateogory,
-              'Genre.Description': req.body.Descritpion,
-              'Director.Name': req.body.Name,
-              'Director.Bio': req.body.Bio,
-              'Director.Birth': req.body.Birth,
-              ImagePath: req.body.ImagePath,
-              Featured: req.body.Featured
-            })
-            .then((movie) => { 
-              res.status(500).send(req.body.id + ' film added to database');
-            })
-            .catch((error) => {
-              console.error(error);
-              res.status(500).send('Error: ' + error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  });
-
-
-
-
 //RELEASE YEAR WORkS - ERROR NOT WORKING
 app.get('/api/movies/Release/:releaseyear', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Movies.find({ Release: req.params.releaseyear })
   .then((releaseyear) => {
-    if (!releaseyear) {
+    if (releaseyear.length == 0) {
       res.status(400).send(req.params.releaseyear + ' not in database');
     } else {
       res.status(200).json(releaseyear)
@@ -233,10 +104,10 @@ app.get('/api/movies/Rated/:rated', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Movies.find({ Rated: req.params.rated })
   .then((rated) => {
-    if (!rated) {
-      res.status(400).send(req.params.rated + " either spelling error or we don't serve that audience");
+    if (rated.length == 0) {
+      res.status(400).send(req.params.rated + ' not in database');
     } else {
-      res.status(200).json(rated)
+      res.status(200).json(releaseyear)
     }
   })
   .catch((err) => {
@@ -248,9 +119,13 @@ app.get('/api/movies/Rated/:rated', passport.authenticate ('jwt',
 //Quality of FILMS WORKS
 app.get('/api/movies/Rating/:rating', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
-  await Movies.findOne({ Rating: req.params.rating })
+  await Movies.find({ Rating: req.params.rating })
   .then((rating) => {
-    res.status(200).json(rating);
+    if (rating.length == 0) {
+      res.status(400).send(req.params.rating + ' not database');
+    } else {
+      res.status(200).json(releaseyear)
+    }
   })
   .catch((error) => {
     console.error(error);
@@ -263,7 +138,11 @@ app.get('/api/movies/Genre/:genreName', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
-    res.status(201).json(movies);
+    if (movies.length == 0) {
+      res.status(400).send(req.params.genreName + ' not database');
+    } else {
+      res.status(200).json(releaseyear)
+    }
   })
   .catch((error) => {
     console.error(error);
@@ -277,7 +156,11 @@ app.get("/api/movies/Director/:name", passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
-    res.status(201).json(movies);
+    if (movies.length == 0) {
+      res.status(400).send(req.params.name + ' not database');
+    } else {
+      res.status(200).json(movies)
+    }
   })
   .catch((error) => {
     console.error(error);
@@ -295,13 +178,13 @@ app.get('/api/users', passport.authenticate ('jwt',
 // Get a user by username WORKS - ERORR WORKS
 app.get('api/users/:Username', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOne({ Username: req.params.Username })
+  await Users.find({ Username: req.params.Username })
     .then((user) => {
-               if (!user) {
-                res.status(400).send(req.params.Username + ' account does not exist');
-              } else {
-                res.status(200).json(user);
-              }
+      if (user.length == 0) {
+        res.status(400).send(req.params.Username + ' not database');
+      } else {
+        res.status(200).json(user)
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -423,10 +306,10 @@ app.post('/api/users/:Username/movies/:id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser) {
-      res.status(400).send(req.params._id + ' was not found');
+    if (updatedUser.length == 0) {
+      res.status(400).send(req.params.Username + ' not in database');
     } else {
-      res.status(200).send(req.params.Favorite + ' added to favorites.');
+      res.status(200).json(releaseyear)
     }
   })
   .catch((err) => {
@@ -444,13 +327,13 @@ app.delete('/api/users/:Username/movies/:id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser) {
-      res.status(400).send(req.params.Favorite + ' was not found');
+    if (updatedUser.length == 0) {
+      res.status(400).send(req.params.Favorite + ' not in database');
     } else {
-      res.status(200).send(req.params.Favorite + ' deleted from favorites.');
+      res.status(200).json(releaseyear)
     }
   })
-  .catch((err) => {
+    .catch((err) => {
     console.error(err);
     res.status(500).send('Error: ' + err);
   });
