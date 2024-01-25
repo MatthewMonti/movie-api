@@ -167,22 +167,6 @@ app.get('/api/users', passport.authenticate ('jwt',
   Users.find().then(users => res.status(200).json(users));
 });
 
-// Get a user by username WORKS - ERORR WORKS
-app.get('api/users/:Username', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.find({ Username: req.body.Username })
-    .then((user) => {
-      if (user.length == 0) {
-        res.status(400).send(req.body.Username + ' not database');
-      } else {
-        res.status(200).json(user)
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
 
 //Add a user - WORKS error works
 app.post('/api/users',
@@ -290,7 +274,7 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/:Username/:id', passport.authenticate('jwt', 
+app.post('/api/:Username/Favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.body.Username }, {
      $push: { Favorite: req.body.id }
@@ -311,7 +295,7 @@ app.post('/api/:Username/:id', passport.authenticate('jwt',
 
 
 // DELETE movie to a user's list of favorites
-app.delete('/api/:Username/:id', passport.authenticate('jwt', 
+app.delete('/api/:Username/Favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({Username: req.body.Username }, {
      $pull: { Favorite: req.body.id }
@@ -338,7 +322,7 @@ app.delete('/api/:Username/:id', passport.authenticate('jwt',
 //findOneAndRemove NOT VALID FUNCTION
 //FindOneAndDelete VALID FUNCTION
 //6x Mongoose -> 10.2.5 (current version code made)
-app.delete('/api/users/:name', passport.authenticate ('jwt',
+app.delete('/api/users/', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
   await Users.findOneAndDelete({ Username: req.body.name})
     .then((user) => {
