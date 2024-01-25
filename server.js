@@ -170,10 +170,10 @@ app.get('/api/users', passport.authenticate ('jwt',
 // Get a user by username WORKS - ERORR WORKS
 app.get('api/users/:Username', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.find({ Username: req.params.Username })
+  await Users.find({ Username: req.body.Username })
     .then((user) => {
       if (user.length == 0) {
-        res.status(400).send(req.params.Username + ' not database');
+        res.status(400).send(req.body.Username + ' not database');
       } else {
         res.status(200).json(user)
       }
@@ -261,12 +261,12 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user.Username !== req.params.Username){
+      if(req.user.Username !== req.body.Username){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+    await Users.findOneAndUpdate({ Username: req.body.Username }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -278,9 +278,9 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.params.Username + ' user has nothing to update');
+      res.status(400).send(req.body.Username + ' user has nothing to update');
     } else {
-      res.status(200).send(req.params.Username + ' account has been updated.');
+      res.status(200).send(req.body.Username + ' account has been updated.');
     }
   })
   .catch((error) => {
@@ -292,13 +292,13 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
 // Add a movie to a user's list of favorites
 app.post('/api/:Username/:id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params.id }
+  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+     $push: { Favorite: req.body.id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (updatedUser.length == 0) {
-      res.status(400).send(req.params.id + ' not in database');
+      res.status(400).send(req.body.id + ' not in database');
     } else {
       res.status(200).json(releaseyear)
     }
@@ -313,13 +313,13 @@ app.post('/api/:Username/:id', passport.authenticate('jwt',
 // DELETE movie to a user's list of favorites
 app.delete('/api/:Username/:id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({Username: req.params.Username }, {
-     $pull: { Favorite: req.params.id }
+  await Users.findOneAndUpdate({Username: req.body.Username }, {
+     $pull: { Favorite: req.body.id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (updatedUser.length == 0) {
-      res.status(400).send(req.params.Favorite + ' not in database');
+      res.status(400).send(req.body.Favorite + ' not in database');
     } else {
       res.status(200).json(releaseyear)
     }
@@ -340,12 +340,12 @@ app.delete('/api/:Username/:id', passport.authenticate('jwt',
 //6x Mongoose -> 10.2.5 (current version code made)
 app.delete('/api/users/:name', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
-  await Users.findOneAndDelete({ Username: req.params.name})
+  await Users.findOneAndDelete({ Username: req.body.name})
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.name + ' was not found');
+        res.status(400).send(req.body.name + ' was not found');
       } else {
-        res.status(200).send(req.params.name + ' was deleted.');
+        res.status(200).send(req.body.name + ' was deleted.');
       }
     })
     .catch((err) => {
