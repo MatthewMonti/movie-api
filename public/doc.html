@@ -27,20 +27,20 @@
         <td>GET</td>
         <td>NONE</td>
         <td>NA</td>
-        <td>Welcome Message in index.html</td>
+        <td>Welcome Message</td>
       </tr>
 
       <tr>
         <td>User Guide of APP</td>
-        <td>/about_app/</td>
+        <td>/api/about_app/</td>
         <td>GET</td>
         <td>NONE</td>
         <td>NA</td>
-        <td>A webpage on how to use app</td>
+        <td>A webpage on how to use the app</td>
       </tr>
       <tr>
         <td>Favorite Movie Deleted</td>
-        <td>/users/:Username/movies/:id'</td>
+        <td>/api/users/:Username/movies/:id'</td>
         <td>DELETE</td>
         <td>Follow the instructions of LOGIN ENDPOINT
         Login and Copy Bearer Token (User info) to Authenticate Bearer Token
@@ -52,7 +52,7 @@
 
       <tr>
         <td>Full Movie List A-Z</td>
-        <td>/movies</td>
+        <td>/api//movies</td>
         <td>GET</td>
         <td>Follow the instructions of LOGIN ENDPOINT
         Login and Copy Bearer Token (User info) to Authenticate Bearer Token
@@ -63,7 +63,7 @@
       </tr>
       <tr>
         <td>Film by Title</td>
-        <td>/movies/title/:title</td>
+        <td>/api/movies/title/:title</td>
         <td>GET</td>
         <td>Follow instruction of LOGIN ENDPOINT
         Copy Bearer Token created from logging into the user account
@@ -74,7 +74,7 @@
       </tr>
       <tr>
         <td>Film by Release Year</td>
-        <td>/movies/release/:releaseyear</td>
+        <td>/api/movies/release/:releaseyear</td>
         <td>GET</td>
         <td>Follow the instructions of LOGIN ENDPOINT 
         Login and Copy Bearer Token (User info) to Authenticate Bearer Token
@@ -85,7 +85,7 @@
       </tr>
       <tr>
         <td>Age Appropriate films</td>
-        <td>/movies/rated/:rated</td>
+        <td>/api/movies/rated/:rated</td>
         <td>GET</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries
@@ -95,7 +95,7 @@
       </tr>
       <tr>
         <td>Rotten Tomatoes Ratting of Film</td>
-        <td>/movies/rating/:rating</td>
+        <td>/api/movies/rating/:rating</td>
         <td>GET</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries
@@ -105,7 +105,7 @@
       </tr>
       <tr>
         <td>Genre of film by category</td>
-        <td>/movies/genres/:genreName</td>
+        <td>/api/movies/genres/:genreName</td>
         <td>GET</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries
@@ -115,7 +115,7 @@
       </tr>
       <tr>
         <td>Film by Director</td>
-        <td>/movies/directors/:name</td>
+        <td>/api/movies/directors/:name</td>
         <td>GET</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries
@@ -125,7 +125,7 @@
       </tr>
       <tr>
         <td>User see all users</td>
-        <td>/users</td>
+        <td>/api/users</td>
         <td>GET</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries</td>
@@ -134,7 +134,7 @@
       </tr>
       <tr>
         <td>User access to other User Account info</td>
-        <td>/users/:Username</td>
+        <td>/api/users/:Username</td>
         <td>GET</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries
@@ -144,7 +144,7 @@
       </tr>
       <tr>
         <td>User Registration</td>
-        <td>/users</td>
+        <td>/api/users</td>
         <td>POST</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
         Only need to copy token authication once to access all database queries
@@ -159,7 +159,7 @@
         <td> Display New User info or message already exists</td>
       </tr>
       <td>User change information</td>
-      <td>/users/:Username </td>
+      <td>/api/users/:Username </td>
       <td>PUT</td>
       <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
       type Username after /users/ update user info displayed
@@ -173,7 +173,7 @@
       </tr>
       <tr>
         <td>User can post Favorite Movie</td>
-        <td>/users/:Username/movies/:id'</td>
+        <td>/api/users/:Username/movies/:id'</td>
         <td>POST</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before post put JSON object of movie to add.</td>
         <td>{"Favorite": "Favorite Film"}</td>
@@ -182,7 +182,7 @@
       <tr>
       <tr>
         <td>User can delete Favorite Movie</td>
-        <td>/users/:Username/movies/:MovieID</td>
+        <td>/api/users/:Username/movies/:MovieID</td>
         <td>DELETE</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before delete put JSON object of movie to delete.</td>
           <td>{"Favorite": "Favorite Film"}</td>
@@ -190,7 +190,7 @@
     </tr>
       <tr>
         <td>Allows user to delect account</td>
-        <td>/users/:Username</td>
+        <td>/api/users/:Username</td>
         <td>DELETE</td>
         <td>JSON object to delete film</td>
         <td>NA</td>
