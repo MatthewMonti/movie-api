@@ -14,5 +14,24 @@ table {
     text-align: left;
   }
   th {
-    background-color: #f2f2f2;
+    background-color: #c2c2c2;
+    font-family: "custombold";
+    color:red;
   }   
+
+  td{
+    color:blue;
+    font-family: "customregular"; 
+  }
+
+
+
+  @font-face {
+    font-family: "custombold";
+    src: url('/adventure-font/AdventureSubtitlesBold-K8mX.ttf');
+  }
+
+  @font-face{
+    font-family: "customregular";
+    src:url('/adventure-font/Adventure-YGZ2.ttf');
+    }
