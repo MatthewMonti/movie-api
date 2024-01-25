@@ -213,7 +213,7 @@ app.post('/api/users',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOne({ _id: req.body.Username }) // Search to see if a user with the requested username already exists
+    await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
@@ -247,7 +247,7 @@ app.post('/api/users',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('api/users/', passport.authenticate ('jwt',
+app.put('api/users/:Username', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
@@ -268,14 +268,13 @@ app.put('api/users/', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user._id !== req.params._id){
+      if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({ _id: req.params.id }, { $set:
+    await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
-      _id: req.body.id,
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
@@ -286,9 +285,9 @@ app.put('api/users/', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.params._id + ' user has nothing to update');
+      res.status(400).send(req.params.Username + ' user has nothing to update');
     } else {
-      res.status(200).send(req.params._id + ' account has been updated.');
+      res.status(200).send(req.params.Username + ' account has been updated.');
     }
   })
   .catch((error) => {
@@ -298,15 +297,15 @@ app.put('api/users/', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/users/:Username/movies/:id', passport.authenticate('jwt', 
+app.post('/api/:Username/:id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params._id }
+     $push: { Favorite: req.params.id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (updatedUser.length == 0) {
-      res.status(400).send(req.params.Username + ' not in database');
+      res.status(400).send(req.params.id + ' not in database');
     } else {
       res.status(200).json(releaseyear)
     }
@@ -319,10 +318,10 @@ app.post('/api/users/:Username/movies/:id', passport.authenticate('jwt',
 
 
 // DELETE movie to a user's list of favorites
-app.delete('/api/users/:Username/movies/:id', passport.authenticate('jwt', 
+app.delete('/api/:Username/:id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ _id: req.params.id }, {
-     $pull: { Favorite: req.params.Favorite }
+  await Users.findOneAndUpdate({Username: req.params.Username }, {
+     $pull: { Favorite: req.params.id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -346,14 +345,14 @@ app.delete('/api/users/:Username/movies/:id', passport.authenticate('jwt',
 //findOneAndRemove NOT VALID FUNCTION
 //FindOneAndDelete VALID FUNCTION
 //6x Mongoose -> 10.2.5 (current version code made)
-app.delete('/api/users/:id', passport.authenticate ('jwt',
+app.delete('/api/users/:name', passport.authenticate ('jwt',
 {session: false}), async (req, res) => {
-  await Users.findOneAndDelete({ _id: req.params.id })
+  await Users.findOneAndDelete({ Username: req.params.name})
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.id + ' was not found');
+        res.status(400).send(req.params.name + ' was not found');
       } else {
-        res.status(200).send(req.params.id + ' was deleted.');
+        res.status(200).send(req.params.name + ' was deleted.');
       }
     })
     .catch((err) => {
