@@ -274,69 +274,98 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/:Username/Favorite', passport.authenticate('jwt', 
+app.post('/api/Favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.body.Username }, {
-     $push: { Favorite: req.body.id }
-   },
-   { new: true }) // This line makes sure that the updated document is returned
+  await Users.findOneAndUpdate({ Favorite: req.body.Favorite }, { $push:
+    {
+      Favorite: req.body.Favorite,
+    }
+  },
+  { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (updatedUser.length == 0) {
-      res.status(400).send(req.body.id + ' not in database');
+    res.json(updatedUser);
+    if (!updatedUser) {
+      res.status(400).send(req.body.Favorite + ' film already in account');
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).send(req.body.Favorite + ' favorite film added.');
     }
   })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
   });
 });
 
-
-// DELETE movie to a user's list of favorites
-app.delete('/api/:Username/Favorite', passport.authenticate('jwt', 
+app.delete('/api/Favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({Username: req.body.Username }, {
-     $pull: { Favorite: req.body.id }
-   },
-   { new: true }) // This line makes sure that the updated document is returned
+  await Users.findOneAndUpdate({ Favorite: req.body.Favorite }, { 
+    $pull:{Favorite: req.body.Favorite},
+  },
+  { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (updatedUser.length == 0) {
-      res.status(400).send(req.body.Favorite + ' not in database');
+    res.json(updatedUser);
+    if (!updatedUser) {
+      res.status(400).send(req.body.Favorite + ' film already in account');
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).send(req.body.Favorite + ' favorite film added.');
     }
   })
-    .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
   });
 });
-   
 
+//Add a user - WORKS error works
+app.delete('/api/users',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], async (req, res) => {
 
-// Delete a user by username - WORKS
-//Mongoose Verion 5 2.8 of CareerFoundry is DATED
-// https://www.appsloveworld.com/mongodb/100/185/mongodb-findoneanddelete-is-not-a-function-error
-//findOneAndRemove NOT VALID FUNCTION
-//FindOneAndDelete VALID FUNCTION
-//6x Mongoose -> 10.2.5 (current version code made)
-app.delete('/api/users/', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
-  await Users.findOneAndDelete({ Username: req.body.name})
-    .then((user) => {
-      if (!user) {
-        res.status(400).send(req.body.name + ' was not found');
-      } else {
-        res.status(200).send(req.body.name + ' was deleted.');
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (!user) {
+          //If the user is NOT found, send a response that non existent account
+          return res.status(400).send(req.body.Username + ' non-existent accounts');
+        } else {
+          Users
+            .delete({
+              Username: req.body.Username,
+              Password: req.body.Password,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday,
+            })
+            .then((user) => { 
+              res.status(500).send(req.body.Username + ' account been deleted');
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  });
+
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
