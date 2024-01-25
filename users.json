@@ -1,6 +1,5 @@
 [
   {
-    "_id": 1,
     "Username": "Brian",
     "Password": "MoneyWallet#1",
     "Email": "brianmonti@comcast.net",
@@ -8,7 +7,6 @@
     "Favorite": []
   },
   {
-    "_id": 2,
     "Username": "Laura",
     "Password": "Magicdog#1",
     "Email": "lauramonti@comcast.net",
@@ -16,7 +14,6 @@
     "Favorite":[]
   },
   {
-    "_id": 3,
     "Username": "Matthew",
     "Password": "Cometdog#1945",
     "Email": "mattbmonti@aol.com",
@@ -24,7 +21,6 @@
     "Favorite": []
   },
   {
-    "_id": 4,
     "Username": "Michelle",
     "Password": "DanceConnect#123",
     "Email": "michellemonti@comcast.net",
@@ -32,7 +28,6 @@
     "Favorite": []
   },
   {
-    "_id": 5,
     "Username": "Ralph",
     "Password": "BankRobberCentral",
     "Email": "ralphfran@yahoo.com",
@@ -40,7 +35,6 @@
     "Favorite": []
   },
   {
-    "_id": 6,
     "Username": "Thadeous",
     "Password": "WhiteSox#6",
     "Email": "thadeouskorczyk@yahoo.com",

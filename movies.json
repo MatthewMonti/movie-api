@@ -1,6 +1,5 @@
 [
     {
-      "_id": 1,
       "Title": "All Quiet on the Western Front",
       "Release": "2022",
       "Actors": [
@@ -26,7 +25,6 @@
       "Featured": false
     },
     {
-      "_id": 2,
       "Title": "Barbie",
       "Release": "2023",
       "Actors": [
@@ -52,7 +50,6 @@
       "Featured": true
     },
     {
-      "_id": 3,
       "Title": "Castle in the Sky",
       "Release": "1986",
       "Actors": [ "Mayumi Tanaka", "Keiko Yokozawa", "Kotoe Hatsui"],
@@ -72,7 +69,6 @@
       "Featured": false
     },
     {
-      "_id": 4,
       "Title": "Elemental",
       "Release": "2023",
       "Actors": [
@@ -97,7 +93,6 @@
       "Featured": true
     },
     {
-      "_id": 5,
       "Title": "Guardians of the Galaxy Vol.3",
       "Release": "2023",
       "Actors": [ "Chris Pratt", "Zoe Saldana", "Dave Bautista", "Karen Gillan" ],
@@ -117,7 +112,6 @@
       "Featured": true
     },
     {
-      "_id": 6,
       "Title": "Indiana Jones and the Temple of Doom",
       "Release": "1984",
       "Actors": [ "Harrison Ford", "Kate Capshaw", "Ke Huy Quan", "Amrish Puri"
@@ -138,7 +132,6 @@
       "Featured": true
     },
     {
-      "_id": 7,
       "Title": "Insidious Last Key",
       "Release": "2018",
       "Actors": [ "Kate Capshaw", "Ke Huy Quan", "Amrish Puri" ],
@@ -158,7 +151,6 @@
       "Featured": true
     },
     {
-      "_id": 8,
       "Title": "John Wick - Chapter 4",
       "Release": "2023",
       "Actors": [
@@ -183,7 +175,6 @@
       "Featured": true
     },
     {
-      "_id": 9,
       "Title": "Raiders of the Lost Ark",
       "Release": "1981",
       "Actors": [
@@ -208,7 +199,6 @@
       "Featured": true
     },
     {
-      "_id": 10,
       "Title": "Rebel Moon: Part One – A Child of Fire",
       "Release": "2023",
       "Actors": [
@@ -233,7 +223,6 @@
       "Featured": false
     },
     {
-      "_id": 11,
       "Title": "The Covenant",
       "Release": "2023",
       "Actors": [ "Jake Gyllenhaai", "Dar Salim", "Jason Wong", "Rhys Yates" ],
@@ -253,7 +242,6 @@
       "Featured": true
     },
     {
-      "_id": 12,
       "Title": "12 Angry Men",
       "Actors": [
         "Ed Begley",
@@ -287,7 +275,6 @@
       "Featured": true
     },
     {
-      "_id": 13,
       "Title": "Witness for the Prosecution",
       "Release": "1957",
       "Actors": [
@@ -302,7 +289,8 @@
       "Description": "A courtroom drama about a young man on trial for a wealthy widow's murder after he suspiciously profits from her will.",
       "Genre": {
         "Name": "Drama",
-        "Description": "In film and television, drama is a category or genre of narrative fiction or semi-fiction intended to be more serious than humorous in tone. The drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre,[2] such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama. These terms tend to indicate a particular setting or subject matter, or they combine a drama's otherwise serious tone with elements that encourage a broader range of moods. To these ends, a primary element in a drama is the occurrence of conflict—emotional, social, or otherwise—and its resolution in the course of the storyline.",
+        "Description": "In film and television, drama is a category or genre of narrative fiction or semi-fiction intended to be more serious than humorous in tone. The drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre,[2] such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama. These terms tend to indicate a particular setting or subject matter, or they combine a drama's otherwise serious tone with elements that encourage a broader range of moods. To these ends, a primary element in a drama is the occurrence of conflict—emotional, social, or otherwise—and its resolution in the course of the storyline."
+      },
         "Director": {
           "Name": "Billy Wildere",
           "Bio": "American motion-picture scenarist, director, and producer known for films that humorously treat subjects of controversy and offer biting indictments of hypocrisy in American life. His work often focused on subjects that had previously been considered unacceptable screen material, including alcoholism (The Lost Weekend, 1945), prisoner-of-war camps (Stalag 17, 1953), and prostitution (Irma La Douce, 1963). A number of his films, such as Sunset Boulevard (1950) and The Apartment (1960), weighed the emptiness of modern life.",
@@ -311,13 +299,19 @@
         },
         "ImagePath": "express/pictures/Witness for the Prosecution.jpeg",
        "Featured": true
-      }
-    },
-    {
-      "_id": 14, 
+      },
+      {
       "Title": "Home Alone 2",
       "Release": "1992",
-      "Actors": ["Macaulay Culkin","Daniel Stern", "Joe Pesci", "John Heard", "Deven Ratray", "Devin Ratray", "Tim Curry"],
+      "Actors": [
+        "Macaulay Culkin",
+        "Daniel Stern", 
+        "Joe Pesci", 
+        "John Heard", 
+        "Deven Ratray", 
+        "Devin Ratray", 
+        "Tim Curry"
+      ],
       "Rated": "PG",
       "Rating": "62",
       "Description": "After snarky youth Kevin McCallister (Macaulay Culkin) loses track of his father at the airport, he mistakenly gets on a plane headed for New York City -- while the rest of the McCallisters fly to Florida. Now alone in the Big Apple, Kevin cons his way into a room at the Plaza Hotel and begins his usual antics. But when Kevin discovers that the Sticky Bandits (Joe Pesci, Daniel Stern) are on the loose, he struggles to stop them from robbing an elderly man's toy store just before Christmas.",
@@ -332,8 +326,7 @@
       },
       "ImagePath": "express/pictures/Home_Alone2.jpg",
       "Featured": true
-  
-  }
-  ]
+    }
+]
 
   
