@@ -43,10 +43,12 @@ app.get('/', async (req, res) => {
   req.requestTime + '</small>';
 });
 
-
-//API DOCUMENTATION WORKS
-// access documentation.html using express.static
-app.use("/documentation", express.static("public"));
+//WELCOME MESSAGE WORKS
+app.get('/about_api', async (req, res) => {
+  res.status(200).sendFile('./public/doc.html')
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
+});
 
 //MOVIES LIST WORKS
 app.get('/api/movies', passport.authenticate('jwt', 
