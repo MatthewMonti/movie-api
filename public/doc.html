@@ -143,7 +143,7 @@
       </tr>
       <tr>
         <td>User can add Favorite Movie</td>
-        <td>/api/users/:Username/movies/:id'</td>
+        <td>/api/:Username/:id'</td>
         <td>POST</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before post put JSON object of movie to add.</td>
         <td>{"Favorite": "Favorite Film"}</td>
@@ -152,7 +152,7 @@
       <tr>
       <tr>
         <td>User can delete Favorite Movie</td>
-        <td>/api/users/:Username/movies/:MovieID</td>
+        <td>/api/:Username/:id</td>
         <td>DELETE</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before delete put JSON object of movie to delete.</td>
           <td>{"Favorite": "Favorite Film"}</td>
@@ -160,7 +160,7 @@
     </tr>
       <tr>
         <td>Allows user to delect account</td>
-        <td>/api/users/:Username</td>
+        <td>/api/users/:id</td>
         <td>DELETE</td>
         <td>Follow the instructions of LOGIN ENDPOINT
           Login and Copy Bearer Token (User info) to Authenticate Bearer Token
