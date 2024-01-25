@@ -20,7 +20,6 @@
       </tr>
     </thead>
     <tbody>
-
       <tr>
         <td>Welcome Message</td>
         <td>/</td>
@@ -29,7 +28,6 @@
         <td>NA</td>
         <td>Welcome Message</td>
       </tr>
-
       <tr>
         <td>User Guide of APP</td>
         <td>/api/about_app/</td>
@@ -113,6 +111,19 @@
         "Birthday": "####-##-##",
         }</td>
         <td> Display New User info or message already exists</td>
+      </tr>
+      <tr>
+        <td>Logging into Your Account</td>
+        <td>/api/login/</td>
+        <td>POST</td>
+        <td>API platform select body raw JSON then in body fill info in formate below</td>
+        <td> 
+          {
+          "Username": "Brian",
+          "Password": "MoneyWallet#1"
+        }
+      </td>
+        <td>User information display with CREATED token property used for authorizing User changes</td>
       </tr>
         <td>User change information</td>
         <td>/api/users/</td>
