@@ -180,7 +180,7 @@ app.post('/api/users',
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
-  ], passport.authenticate('jwt', {session: false}), async (req, res) => {
+  ], async (req, res) => {
 
   // check the validation object for errors
     let errors = validationResult(req);
@@ -236,7 +236,7 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
-  ], async (req, res) => {
+  ], passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
     let errors = validationResult(req);
@@ -262,9 +262,9 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.body.Username + ' user has nothing to update');
+      res.status(400).send(req.param.Username + ' user has nothing to update');
     } else {
-      res.status(200).send(req.body.Username + ' account has been updated.');
+      res.status(200).send(req.param.Username + ' account has been updated.');
     }
   })
   .catch((error) => {
