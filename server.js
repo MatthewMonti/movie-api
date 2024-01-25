@@ -192,7 +192,7 @@ app.get('api/users/:Username', passport.authenticate('jwt',
 });
 
 //Add a user - WORKS error works
-app.post('api/users',
+app.post('/api/users',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
