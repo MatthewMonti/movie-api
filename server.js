@@ -39,7 +39,6 @@ app.use(morgan('combined', {stream:accessLogStream}));
 //WELCOME MESSAGE WORKS
 app.get('/', async (req, res) => {
   res.status(200).sendFile('./index.html', { root: __dirname }),
-  res.status(200).sendFile('./film-reel.jpg', {root: __dirname}),
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
