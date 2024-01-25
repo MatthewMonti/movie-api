@@ -45,10 +45,8 @@ app.get('/', async (req, res) => {
 
 
 //API DOCUMENTATION WORKS
-app.get('/api/about_api/', async (req, res) => {             
-  res.status(200).sendFile('./doc.html', { root: __dirname });
-});
-
+// access documentation.html using express.static
+app.use("/documentation", express.static("public"));
 
 //MOVIES LIST WORKS
 app.get('/api/movies', passport.authenticate('jwt', 
