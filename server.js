@@ -213,11 +213,11 @@ app.post('/api/users',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOne({ _id: req.body.id }) // Search to see if a user with the requested username already exists
+    await Users.findOne({ _id: req.body.Username }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.id + ' already exists');
+          return res.status(400).send(req.body.Username + ' already exists');
         } else {
           Users
             .create({
@@ -227,7 +227,7 @@ app.post('/api/users',
               Birthday: req.body.Birthday,
             })
             .then((user) => { 
-              res.status(500).send(req.body.id + ' account been created');
+              res.status(500).send(req.body.Username + ' account been created');
             })
             .catch((error) => {
               console.error(error);
