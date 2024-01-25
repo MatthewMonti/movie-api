@@ -45,7 +45,7 @@ app.get('/', async (req, res) => {
 
 //WELCOME MESSAGE WORKS
 app.get('/about_api', async (req, res) => {
-  res.status(200).sendFile('./public/doc.html')
+  res.status(200).sendFile('./public/doc.html'),
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
