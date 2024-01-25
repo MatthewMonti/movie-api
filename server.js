@@ -63,8 +63,7 @@ app.get('/api/movies', async (req, res) => {
 });
 
 //TITLE SEARCH WORKS - ERROR WORKS
-app.get('/api/movies/Title/:title', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
+app.get('/api/movies/Title/:title', async (req, res) => {
   await Movies.find({ Title: req.params.title })
   .then((title) => {
     if (title.length == 0) {
@@ -80,8 +79,7 @@ app.get('/api/movies/Title/:title', passport.authenticate ('jwt',
 });
 
 //RELEASE YEAR WORkS - ERROR NOT WORKING
-app.get('/api/movies/Release/:releaseyear', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
+app.get('/api/movies/Release/:releaseyear', async (req, res) => {
   await Movies.find({ Release: req.params.releaseyear })
   .then((releaseyear) => {
     if (releaseyear.length == 0) {
@@ -98,8 +96,7 @@ app.get('/api/movies/Release/:releaseyear', passport.authenticate ('jwt',
 
 
 //RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
-app.get('/api/movies/Rated/:rated', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
+app.get('/api/movies/Rated/:rated', async (req, res) => {
   await Movies.find({ Rated: req.params.rated })
   .then((rated) => {
     if (rated.length == 0) {
@@ -115,8 +112,7 @@ app.get('/api/movies/Rated/:rated', passport.authenticate ('jwt',
 });
 
 //Quality of FILMS WORKS
-app.get('/api/movies/Rating/:rating', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
+app.get('/api/movies/Rating/:rating', async (req, res) => {
   await Movies.find({ Rating: req.params.rating })
   .then((rating) => {
     if (rating.length == 0) {
@@ -132,8 +128,7 @@ app.get('/api/movies/Rating/:rating', passport.authenticate ('jwt',
 });
  
 //GENRE SEARCH FOR MOVIE
-app.get('/api/movies/Genre/:genreName', passport.authenticate ('jwt',
-{session: false}), async (req, res) => {
+app.get('/api/movies/Genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
@@ -150,8 +145,7 @@ app.get('/api/movies/Genre/:genreName', passport.authenticate ('jwt',
 
 
 ///DIRECTOR SEARCH WORKS
-app.get("/api/movies/Director/:name", passport.authenticate ('jwt', 
-{session: false}), async (req, res) => {
+app.get("/api/movies/Director/:name", async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     if (movies.length == 0) {
@@ -202,7 +196,7 @@ app.post('/api/users',
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
-  ], async (req, res) => {
+  ], passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
     let errors = validationResult(req);
