@@ -97,29 +97,15 @@
         <td>User see all users</td>
         <td>/api/users</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token Only need to copy token authication once to access all database queries</td>
         <td>NA</td>
         <td>Full list of registered users</td>
-      </tr>
-      <tr>
-        <td>User access to other User Account info</td>
-        <td>/api/users/:Username</td>
-        <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        type Username after /users/ info about that user displayed</td>
-        <td>NA</td> 
-        <td>Info about that user is displayed</td>
       </tr>
       <tr>
         <td>User Registration</td>
         <td>/api/users</td>
         <td>POST</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        Follow format below to Create User in body of raw JSON 
-        NOTE THAT DATE IS DECENDING ORDER TIME LARGE TO SMALL</td>
+        <td> Follow the format below to Create User in body of raw JSON NOTE date is in decending order from large to small time block</td>
         <td>
         {"Username": "USERNAME",
         "Password": "PASSWORD",
@@ -128,44 +114,44 @@
         }</td>
         <td> Display New User info or message already exists</td>
       </tr>
-      <td>User change information</td>
-      <td>/api/users/:Username </td>
-      <td>PUT</td>
-      <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-      type Username after /users/ update user info displayed
-      >NOTE THAT DATE IS DECENDING ORDER TIME LARGE TO SMALL</td>
-      <td>{"Username": "USERNAME",
-      "Password": "PASSWORD",
-      "Email": "EMAIL",
-      "Birthday": "####-##-##",
-      }</td>
+        <td>User change information</td>
+        <td>/api/users/</td>
+        <td>PUT</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token type Username after /users/ update user info displayed NOTE - date is in decending order from large to small time block</td>
+        <td>
+        {
+        "Username": "USERNAME",
+        "Password": "PASSWORD",
+        "Email": "EMAIL",
+        "Birthday": "####-##-##",
+        }
+      </td>
        <td>Display UPDATED User information</td>
       </tr>
       <tr>
         <td>User can add Favorite Movie</td>
-        <td>/api/:Username/:id'</td>
+        <td>/api/:Username/Favorite</td>
         <td>POST</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before post put JSON object of movie to add.</td>
-        <td>{"Favorite": "Favorite Film"}</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before submitting put JSON object of favorite movie you want to POST.</td>
+        <td>{"Favorite": "id"}</td>
         <td>Message that film has been added</td>
       </tr>
       <tr>
       <tr>
         <td>User can delete Favorite Movie</td>
-        <td>/api/:Username/:id</td>
+        <td>/api/:Username/Favorite</td>
         <td>DELETE</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before delete put JSON object of movie to delete.</td>
-          <td>{"Favorite": "Favorite Film"}</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before submitting put JSON object of favorite film you want to DELETE.</td>
+          <td>{"Favorite": "id"}</td>
           <td>Message that film has been added</td>
     </tr>
       <tr>
         <td>Allows user to delect account</td>
-        <td>/api/users/:id</td>
+        <td>/api/users/</td>
         <td>DELETE</td>
         <td>Follow the instructions of LOGIN ENDPOINT
           Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-          With authication then change URL to delete user URL. 1X to access all endpoints
-          In Postman body tab set raw JSON</td>
+          With authication then change URL to delete user URL. Before submitting create a JSON body of movie to delete as seen in example below</td>
         <td>{"Username": "Name of Users"}</td>
         <td>Text confirming user account delected</td>
       </tr>
