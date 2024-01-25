@@ -277,12 +277,12 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
 app.post('/api/:Username/Favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.body.Username }, {
-     $push: { Favorite: req.body.id }
+     $push: { Favorite: req.params.id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
     if (updatedUser.length == 0) {
-      res.status(400).send(req.body.id + ' not in database');
+      res.status(400).send(req.params.id + ' not in database');
     } else {
       res.status(200).json(releaseyear)
     }
