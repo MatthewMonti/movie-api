@@ -39,6 +39,21 @@ app.use(morgan('combined', {stream:accessLogStream}));
 //WELCOME MESSAGE WORKS
 app.get('/', async (req, res) => {
   res.status(200).sendFile('./index.html', { root: __dirname });
+  res.status(200).sendFile("./movie-api/film-feel.jpg"),
+  res.status(200).sendFile("movie-api/film-feel.jpg")
+  res.status(200).snedFile("movie-api/film-feel.jpg"),
+  res.status(200).sendFile("/movie-api/film-feel.jpg"),
+  res.status(200).sendFile("./film-feel.jpg"),
+  res.status(200).sendFile("/film-feel.jpg")
+  res.status(200).sendFile(".film-feel.jpg"),
+  res.status(200).sendFile("film-feel.jpg"),
+  res.status(200).sendFile("pictures/film-reel.jpg"),
+  res.status(200).sendFile("./pictures/film-reel.jpg"),
+  res.status(200).sendFile("/pictutes/film-reel.jpg"),
+  res.status(200).sendFile("pictures/film-reel.jpg"),
+  res.status(200).sendFile("./movie-api/pictures/film-reel.jpg"),
+  res.status(200).sendFile("/movie-api/pictures/film-reel.jpg"), 
+  res.status(200).sendFile("movie-api/pictures/film-reel.jpg") 
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
