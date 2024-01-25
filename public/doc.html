@@ -39,36 +39,17 @@
         <td>A webpage on how to use the app</td>
       </tr>
       <tr>
-        <td>Favorite Movie Deleted</td>
-        <td>/api/users/:Username/movies/:id'</td>
-        <td>DELETE</td>
-        <td>Follow the instructions of LOGIN ENDPOINT
-        Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        With authication then change URL to Movie URL. 1X to access all endpoints
-        In Postman body tab set raw JSON</td>
-        <td>{"Favorite": "FILM"}</td>
-        <td>User message that film deleted</td>
-      </tr>
-
-      <tr>
         <td>Full Movie List A-Z</td>
         <td>/api//movies</td>
         <td>GET</td>
-        <td>Follow the instructions of LOGIN ENDPOINT
-        Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        With authication then do Movie URL
-        Only need to copy token authication once to access all database queries</td>
+        <td>NONE</td>
         <td>See a List of Movies A-Z</td>
-        <td>List of ALL films in database displayed</td>
       </tr>
       <tr>
         <td>Film by Title</td>
         <td>/api/movies/title/:title</td>
         <td>GET</td>
-        <td>Follow instruction of LOGIN ENDPOINT
-        Copy Bearer Token created from logging into the user account
-        Only need to copy token authication once to access all database queries
-        With authication then do Title URL</td>
+        <td>NONE</td>
         <td>NA</td>
         <td>See one movie by Title</td>
       </tr>
@@ -76,10 +57,7 @@
         <td>Film by Release Year</td>
         <td>/api/movies/release/:releaseyear</td>
         <td>GET</td>
-        <td>Follow the instructions of LOGIN ENDPOINT 
-        Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        With authication then do release year URL</td>
+        <td>NONE</td>
         <td>NA</td>
         <td>A list of films by release year displayed</td>
       </tr>
@@ -87,9 +65,7 @@
         <td>Age Appropriate films</td>
         <td>/api/movies/rated/:rated</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        type age rated after /rated/ movies that are age appropriate listed</td>
+        <td>NONE</td>
         <td>NA</td>
         <td>Films filter by age appropreiate</td>
       </tr>
@@ -97,9 +73,7 @@
         <td>Rotten Tomatoes Ratting of Film</td>
         <td>/api/movies/rating/:rating</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        type rating after /rating/ movies with that rating displayed</td>
+        <td>NONE</td>
         <td>NA</td>
         <td>List of films filter by Rotten Tomatoes Percentage</td>
       </tr>
@@ -107,9 +81,7 @@
         <td>Genre of film by category</td>
         <td>/api/movies/genres/:genreName</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        type category after /rating/ movies with that category displayed</td>
+        <td>NONE</td>
         <td>NA</td>
         <td>Films filtered by category are displayed</td>
       </tr>
@@ -117,9 +89,7 @@
         <td>Film by Director</td>
         <td>/api/movies/directors/:name</td>
         <td>GET</td>
-        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token
-        Only need to copy token authication once to access all database queries
-        type director name after /director/ movies with that director displayed</td>
+        <td>NONE</td>
         <td>NA</td>
         <td>List of films filtered by director name</td>
       </tr>
@@ -172,7 +142,7 @@
        <td>Display UPDATED User information</td>
       </tr>
       <tr>
-        <td>User can post Favorite Movie</td>
+        <td>User can add Favorite Movie</td>
         <td>/api/users/:Username/movies/:id'</td>
         <td>POST</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before post put JSON object of movie to add.</td>
@@ -192,8 +162,11 @@
         <td>Allows user to delect account</td>
         <td>/api/users/:Username</td>
         <td>DELETE</td>
-        <td>JSON object to delete film</td>
-        <td>NA</td>
+        <td>Follow the instructions of LOGIN ENDPOINT
+          Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+          With authication then change URL to delete user URL. 1X to access all endpoints
+          In Postman body tab set raw JSON</td>
+        <td>{"Username": "Name of Users"}</td>
         <td>Text confirming user account delected</td>
       </tr>
     </tbody>
