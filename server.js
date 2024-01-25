@@ -46,6 +46,7 @@ app.get('/', async (req, res) => {
 //API DOCUMENTATION WORKS
 app.get('/api/about_api/', async (req, res) => {             
   res.status(200).sendFile('./doc.html', { root: __dirname });
+  res.sendFile('./film-reel.jpg')
 });
 
 
