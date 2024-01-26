@@ -275,8 +275,8 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
 
 // Add a movie to a user's list of favorites
 app.post('/api/Favorite', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.body.Username }, {
-     $push: { FavoriteMovies: req.body.MovieID }
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $push: { Favorite: req.body._id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -289,9 +289,9 @@ app.post('/api/Favorite', async (req, res) => {
 });
 
 // Add a movie to a user's list of favorites
-app.delete('/api/Favorite', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.body.Username }, {
-     $pull: { FavoriteMovies: req.body.MovieID }
+app.delete('/api/:Username/Favorite', async (req, res) => {
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $pull: { Favorite: req.body._id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -304,7 +304,7 @@ app.delete('/api/Favorite', async (req, res) => {
 });
 
 // Delete a user by username
-app.delete('/api/users/', passport.authenticate('jwt', 
+app.delete('/api/users', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndRemove({ Username: req.body.Username })
     .then((user) => {
@@ -319,6 +319,7 @@ app.delete('/api/users/', passport.authenticate('jwt',
       res.status(500).send('Error: ' + err);
     });
 });
+
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
