@@ -224,7 +224,7 @@ app.post('/api/users',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('api/users/:Username', passport.authenticate ('jwt',
+app.put('api/users/:account', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
@@ -245,12 +245,12 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user.Username !== req.body.Username){
+      if(req.user._id !== req.body._id){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({ Username: req.body.Username }, { $set:
+    await Users.findOneAndUpdate({ _id: req.body._id }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -262,9 +262,9 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.param.Username + ' user has nothing to update');
+      res.status(400).send(req.param._id + ' user has nothing to update');
     } else {
-      res.status(200).send(req.param.Username + ' account has been updated.');
+      res.status(200).send(req.param._id + ' account has been updated.');
     }
   })
   .catch((error) => {
@@ -274,9 +274,9 @@ app.put('api/users/:Username', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/Favorite', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.body._id }
+app.post('/api/Favorite/:account/:film_id', async (req, res) => {
+  await Users.findOneAndUpdate({ _id: req.params.account }, {
+     $push: { Favorite: req.params.film_id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -289,9 +289,9 @@ app.post('/api/Favorite', async (req, res) => {
 });
 
 // Add a movie to a user's list of favorites
-app.delete('/api/:Username/Favorite', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $pull: { Favorite: req.body._id }
+app.delete('/api/:account/:film_id', async (req, res) => {
+  await Users.findOneAndUpdate({_id: req.params.account }, {
+     $pull: { Favorite: params.film_id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -304,14 +304,14 @@ app.delete('/api/:Username/Favorite', async (req, res) => {
 });
 
 // Delete a user by username
-app.delete('/api/users', passport.authenticate('jwt', 
+app.delete('/api/users/:account', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndRemove({ Username: req.params.Username })
+  await Users.findOneAndRemove({ _id: req.params.account })
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.Username + ' was not found');
+        res.status(400).send(req.params._id + ' was not found');
       } else {
-        res.status(200).send(req.params.Username + ' was deleted.');
+        res.status(200).send(req.params._id + ' was deleted.');
       }
     })
     .catch((err) => {
