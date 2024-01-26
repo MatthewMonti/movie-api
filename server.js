@@ -51,7 +51,8 @@ app.get('/api/about_api', async (req, res) => {
 });
 
 //MOVIES LIST WORKS
-app.get('/api/movies', async (req, res) => {
+app.get('/api/movies', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
@@ -63,7 +64,8 @@ app.get('/api/movies', async (req, res) => {
 });
 
 //TITLE SEARCH WORKS - ERROR WORKS
-app.get('/api/movies/Title/:title', async (req, res) => {
+app.get('/api/movies/Title/:title', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Movies.find({ Title: req.params.title })
   .then((title) => {
     if (title.length == 0) {
@@ -274,7 +276,7 @@ app.put('api/users/:account', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/Favorite/:film_id', passport.authenticate('jwt', 
+app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ _id: req.params.account }, {
      $push: { Favorite: req.params.film_id }
@@ -290,7 +292,7 @@ app.post('/api/Favorite/:film_id', passport.authenticate('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.delete('/api/Favorite/:film_id', passport.authenticate('jwt', 
+app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({_id: req.params.account }, {
      $pull: { Favorite: params.film_id }
