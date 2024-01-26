@@ -15,7 +15,7 @@
         <th>URL command</th>
         <th>Method of data extraction</th>
         <th>Data instructions </th>
-        <th>JSON FORMAT</th>
+        <th>JSON OBJECT FORMAT</th>
         <th>Display message along with outcome of data change</th>
       </tr>
     </thead>
@@ -38,16 +38,16 @@
       </tr>
       <tr>
         <td>Full Movie List A-Z</td>
-        <td>/api//movies</td>
+        <td>/api/movies</td>
         <td>GET</td>
-        <td>NONE</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to view films in database</td>
         <td>See a List of Movies A-Z</td>
       </tr>
       <tr>
         <td>Film by Title</td>
         <td>/api/movies/title/:title</td>
         <td>GET</td>
-        <td>NONE</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to view films by title</td>
         <td>NA</td>
         <td>See one movie by Title</td>
       </tr>
@@ -116,14 +116,14 @@
         <td>Logging into Your Account</td>
         <td>/api/login/</td>
         <td>POST</td>
-        <td>API platform select body raw JSON then in body fill info in formate below</td>
+        <td>API platform select body raw JSON then in body fill info in format below</td>
         <td> 
           {
           "Username": "Brian",
           "Password": "MoneyWallet#1"
         }
       </td>
-        <td>User information display with CREATED token property used for authorizing User changes</td>
+        <td>User information displayed along with created token property used for authorizing User changes</td>
       </tr>
         <td>User change information</td>
         <td>/api/users/</td>
@@ -141,8 +141,8 @@
       </tr>
       <tr>
         <td>User can add Favorite Movie</td>
-        <td>/api/:Username/Favorite</td>
-        <td>POST</td>
+        <td>/api/:Username/Favorite/:film_id</td>
+        <td>POST</td>å
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before submitting put JSON object of favorite movie you want to POST.</td>
         <td>{"Favorite": "id"}</td>
         <td>Message that film has been added</td>
@@ -150,7 +150,7 @@
       <tr>
       <tr>
         <td>User can delete Favorite Movie</td>
-        <td>/api/:Username/Favorite</td>
+        <td>/api/:Username/Favorite/:film_id</td>
         <td>DELETE</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to add fav movie URL before submitting put JSON object of favorite film you want to DELETE.</td>
           <td>{"Favorite": "id"}</td>
