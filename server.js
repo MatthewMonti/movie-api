@@ -274,7 +274,8 @@ app.put('api/users/:account', passport.authenticate ('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/Favorite/:film_id', async (req, res) => {
+app.post('/api/Favorite/:film_id', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ _id: req.params.account }, {
      $push: { Favorite: req.params.film_id }
    },
@@ -289,7 +290,8 @@ app.post('/api/Favorite/:film_id', async (req, res) => {
 });
 
 // Add a movie to a user's list of favorites
-app.delete('/api/Favorite/:film_id', async (req, res) => {
+app.delete('/api/Favorite/:film_id', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Users.findOneAndUpdate({_id: req.params.account }, {
      $pull: { Favorite: params.film_id }
    },
