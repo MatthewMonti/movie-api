@@ -306,7 +306,7 @@ app.delete('/api/:Username/Favorite', async (req, res) => {
 // Delete a user by username
 app.delete('/api/users', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndRemove({ Username: req.body.Username })
+  await Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.Username + ' was not found');
