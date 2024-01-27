@@ -282,10 +282,10 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser === 1) {
-      res.status(400).send(req.body.Favorite + ' already in account.');
-    } else {
+    if (updatedUser == 1) {
       res.status(200).send(req.body.Favorite + ' favorite film adding.');
+    } else {
+      res.status(400).send(req.body.Favorite + ' already in account.');
     }
   })
   .catch((err) => {
@@ -302,10 +302,10 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser === 1) {
-      res.status(400).send(req.body.Favorite + ' no film match to delete.');
-    } else {
+    if (updatedUser == 1) {
       res.status(200).send(req.body.Favorite + ' favorite film deleted.');
+    } else {
+      res.status(400).send(req.body.Favorite + ' no film match to delete.');
     }
   })
   .catch((err) => {
