@@ -315,7 +315,7 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 });
 
 // Delete a user by username
-app.delete('/api/users/:account', passport.authenticate('jwt', 
+app.delete('/api/users/:_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndRemove({_id: req.params._id})
     .then((user) => {
