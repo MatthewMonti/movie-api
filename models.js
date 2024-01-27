@@ -52,7 +52,7 @@ let userSchema = mongoose.Schema({
       },
     },
     Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
-    Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
+    Favorite: [{ type: mongoose.Schema.Types.ObjectId, required:[true], ref: 'Movie' }]
 });
 
 userSchema.statics.hashPassword = (password) => {
