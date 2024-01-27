@@ -278,14 +278,14 @@ app.put('api/users/:account', passport.authenticate ('jwt',
 app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ _id: req.params.account }, {
-     $push: { Favorite: req.params.film_id }
+     $push: { Favorite: req.params.film_id, ref:'Movie' }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (updatedUser >= 1) {
-      res.status(400).send(req.params.film_id + ' film already added to account.');
+    if (!updatedUser.length <= 1) {
+      res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
-      res.status(200).send(req.params.film_id + ' favorite film being added to account.');
+      res.status(200).send(req.params.film_id + ' film id being added to favorites.');
     }
   })
   .catch((err) => {
@@ -302,10 +302,10 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (updatedUser == 0) {
-      res.status(400).send(req.params.film_id + ' no film match to delete.');
+    if (updatedUser.length == 0) {
+      res.status(400).send(req.params.film_id + ' favorite film id either mistype or already deleted.');
     } else {
-      res.status(200).send(req.params.film_id + ' favorite film deleted.');
+      res.status(200).send(req.params.film_id + ' favorite film id deleted.');
     }
   })
   .catch((err) => {
