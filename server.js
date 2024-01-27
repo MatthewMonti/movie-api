@@ -29,7 +29,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-let auth = require('./auth')(app);
+let auth = require('./auth.js')(app);
 const passport = require('passport');
 const { isArray } = require('lodash');
 require('./passport.js');
@@ -51,11 +51,10 @@ app.get('/api/about_api', async (req, res) => {
 });
 
 //MOVIES LIST WORKS
-app.get('/api/movies', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
+app.get('/api/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
-      res.status(200).json(movies);
+      res.status(201).json(movies);
     })
     .catch((error) => {
       console.error(error);
@@ -104,7 +103,7 @@ app.get('/api/movies/Rated/:rated', async (req, res) => {
     if (rated.length == 0) {
       res.status(400).send(req.params.rated + ' not in database');
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).json(rated)
     }
   })
   .catch((err) => {
@@ -120,7 +119,7 @@ app.get('/api/movies/Rating/:rating', async (req, res) => {
     if (rating.length == 0) {
       res.status(400).send(req.params.rating + ' not database');
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).json(rating)
     }
   })
   .catch((error) => {
@@ -136,7 +135,7 @@ app.get('/api/movies/Genre/:genreName', async (req, res) => {
     if (movies.length == 0) {
       res.status(400).send(req.params.genreName + ' not database');
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).json(movies)
     }
   })
   .catch((error) => {
@@ -291,7 +290,7 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
   });
 });
 
-// Add a movie to a user's list of favorites
+// Delete a movie to a user's list of favorites
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({_id: req.params.account }, {
