@@ -317,7 +317,8 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 // Delete a user by username
 app.delete('/api/users/:_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndRemove({_id: req.params._id})
+  await Users.findOneAndRemove({_id: req.params._id},
+  { new: true }) // This line makes sure that the updated document is returned
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params._id + ' user was not in our records. ');
