@@ -68,7 +68,7 @@ app.get('/api/movies/Title/:title', passport.authenticate('jwt',
   await Movies.find({ Title: req.params.title })
   .then((title) => {
     if (title.length == 0) {
-      res.status(400).send(req.params.title + ' not in database.');
+      res.status(400).send(req.params.title + ' movie title not in database.');
     } else {
       res.status(200).json(releaseyear)
     }
@@ -84,7 +84,7 @@ app.get('/api/movies/Release/:releaseyear', async (req, res) => {
   await Movies.find({ Release: req.params.releaseyear })
   .then((releaseyear) => {
     if (releaseyear.length == 0) {
-      res.status(400).send(req.params.releaseyear + ' not in database.');
+      res.status(400).send(req.params.releaseyear + " don't have films with that release date.");
     } else {
       res.status(200).json(releaseyear)
     }
@@ -101,7 +101,7 @@ app.get('/api/movies/Rated/:rated', async (req, res) => {
   await Movies.find({ Rated: req.params.rated })
   .then((rated) => {
     if (rated.length == 0) {
-      res.status(400).send(req.params.rated + ' not in database.');
+      res.status(400).send(req.params.rated + ' that demographic not recorded in database.');
     } else {
       res.status(200).json(rated)
     }
@@ -117,7 +117,7 @@ app.get('/api/movies/Rating/:rating', async (req, res) => {
   await Movies.find({ Rating: req.params.rating })
   .then((rating) => {
     if (rating.length == 0) {
-      res.status(400).send(req.params.rating + ' not database.');
+      res.status(400).send(req.params.rating + ' rotten tomatoes percentage is either not in range 0-100 or no film currently matches that percentage in our database');
     } else {
       res.status(200).json(rating)
     }
@@ -133,7 +133,7 @@ app.get('/api/movies/Genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.genreName + ' not database.');
+      res.status(400).send(req.params.genreName + ' category not in our database.');
     } else {
       res.status(200).json(movies)
     }
@@ -150,7 +150,7 @@ app.get("/api/movies/Director/:name", async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.name + ' not database.');
+      res.status(400).send(req.params.name + ' is a director not yet added to database please try someone else.');
     } else {
       res.status(200).json(movies)
     }
@@ -195,7 +195,7 @@ app.post('/api/users',
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.Username + ' already exists');
+          return res.status(400).send(req.body.Username + ' user is already in our records please try another user');
         } else {
           Users
             .create({
@@ -265,7 +265,7 @@ app.put('api/users/:account', passport.authenticate ('jwt',
     if (!updatedUser) {
       res.status(400).send(req.param._id + ' user has nothing to update.');
     } else {
-      res.status(200).send(req.param._id + ' account has been updated.');
+      res.status(200).send(req.param._id + ' user information has been updated.');
     }
   })
   .catch((error) => {
@@ -282,10 +282,10 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser == 1) {
-      res.status(400).send(req.params.film_id + ' already in account.');
+    if (updatedUser >= 1) {
+      res.status(400).send(req.params.film_id + ' film already added to account.');
     } else {
-      res.status(200).send(req.params.film_id + ' favorite film adding.');
+      res.status(200).send(req.params.film_id + ' favorite film being added to account.');
     }
   })
   .catch((err) => {
@@ -320,9 +320,9 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
   await Users.findOneAndRemove({ _id: req.params.account })
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params._id + ' was not found. ');
+        res.status(400).send(req.params.account + ' user was not in our records. ');
       } else {
-        res.status(200).send(req.params._id + ' was deleted.');
+        res.status(200).send(req.params.account + ' user was removed from out records.');
       }
     })
     .catch((err) => {
