@@ -68,7 +68,7 @@ app.get('/api/movies/Title/:title', passport.authenticate('jwt',
   await Movies.find({ Title: req.params.title })
   .then((title) => {
     if (title.length == 0) {
-      res.status(400).send(req.params.title + ' not in database');
+      res.status(400).send(req.params.title + ' not in database.');
     } else {
       res.status(200).json(releaseyear)
     }
@@ -84,7 +84,7 @@ app.get('/api/movies/Release/:releaseyear', async (req, res) => {
   await Movies.find({ Release: req.params.releaseyear })
   .then((releaseyear) => {
     if (releaseyear.length == 0) {
-      res.status(400).send(req.params.releaseyear + ' not in database');
+      res.status(400).send(req.params.releaseyear + ' not in database.');
     } else {
       res.status(200).json(releaseyear)
     }
@@ -101,7 +101,7 @@ app.get('/api/movies/Rated/:rated', async (req, res) => {
   await Movies.find({ Rated: req.params.rated })
   .then((rated) => {
     if (rated.length == 0) {
-      res.status(400).send(req.params.rated + ' not in database');
+      res.status(400).send(req.params.rated + ' not in database.');
     } else {
       res.status(200).json(rated)
     }
@@ -117,7 +117,7 @@ app.get('/api/movies/Rating/:rating', async (req, res) => {
   await Movies.find({ Rating: req.params.rating })
   .then((rating) => {
     if (rating.length == 0) {
-      res.status(400).send(req.params.rating + ' not database');
+      res.status(400).send(req.params.rating + ' not database.');
     } else {
       res.status(200).json(rating)
     }
@@ -133,7 +133,7 @@ app.get('/api/movies/Genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.genreName + ' not database');
+      res.status(400).send(req.params.genreName + ' not database.');
     } else {
       res.status(200).json(movies)
     }
@@ -150,7 +150,7 @@ app.get("/api/movies/Director/:name", async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.name + ' not database');
+      res.status(400).send(req.params.name + ' not database.');
     } else {
       res.status(200).json(movies)
     }
@@ -263,7 +263,7 @@ app.put('api/users/:account', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.param._id + ' user has nothing to update');
+      res.status(400).send(req.param._id + ' user has nothing to update.');
     } else {
       res.status(200).send(req.param._id + ' account has been updated.');
     }
@@ -282,7 +282,11 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    res.json(updatedUser);
+    if (!updatedUser == 0) {
+      res.status(400).send(req.body.Favorite + ' already in account.');
+    } else {
+      res.status(200).send(req.body.Favorite + ' favorite film added.');
+    }
   })
   .catch((err) => {
     console.error(err);
@@ -294,11 +298,15 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({_id: req.params.account }, {
-     $pull: { Favorite: params.film_id }
+     $pull: { Favorite: req.params.film_id }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    res.json(updatedUser);
+    if (!updatedUser == 0) {
+      res.status(400).send(req.body.Favorite + ' no film match to delete.');
+    } else {
+      res.status(200).send(req.body.Favorite + ' favorite film deleted.');
+    }
   })
   .catch((err) => {
     console.error(err);
@@ -312,7 +320,7 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
   await Users.findOneAndRemove({ _id: req.params.account })
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params._id + ' was not found');
+        res.status(400).send(req.params._id + ' was not found. ');
       } else {
         res.status(200).send(req.params._id + ' was deleted.');
       }
