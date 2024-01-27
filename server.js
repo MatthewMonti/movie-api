@@ -282,7 +282,7 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (!updatedUser.length <= 1) {
+    if (updatedUser.length === 1) {
       res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
       res.status(200).send(req.params.film_id + ' film id being added to favorites.');
@@ -302,7 +302,7 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
-    if (updatedUser.length == 0) {
+    if (!updatedUser.length === 1) {
       res.status(400).send(req.params.film_id + ' favorite film id either mistype or already deleted.');
     } else {
       res.status(200).send(req.params.film_id + ' favorite film id deleted.');
@@ -317,7 +317,8 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 // Delete a user by username
 app.delete('/api/users/:account', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndRemove({ _id: req.params.account })
+  await Users.findOneAndRemove({ _id: req.params.account },
+    { new: true }) // This line makes sure that the updated document is returned
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.account + ' user was not in our records. ');
