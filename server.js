@@ -239,7 +239,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user.Username !== req.body.Username){
+      if(req.user._id !== req.params.identity){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
@@ -267,7 +267,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
   });
 });
 
-// Delete a user by username
+// Delete a user by username - WORKS
 app.delete('/api/user/:identity', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity})
@@ -292,7 +292,7 @@ app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((film_id) => {
-    if (film_id.length > 1) {
+    if (film_id.length == 1) {
       res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
       res.status(200).send(req.params.film_id + ' film id being added to favorites.');
@@ -307,7 +307,7 @@ app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndDelete({_id: req.params.identity}, {
+  await Users.findByIdAndUpdate({_id: req.params.identity}, {
      $deleteToSet: {Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
