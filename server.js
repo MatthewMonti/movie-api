@@ -239,7 +239,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user._id !== req.params.identity){
+      if(req.user.Username !== req.body.Username){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
@@ -268,7 +268,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
 });
 
 // Delete a user by username
-app.delete('/api/user/:identity/film_id', passport.authenticate('jwt', 
+app.delete('/api/user/:identity', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity})
     .then((identity) => {
