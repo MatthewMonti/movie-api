@@ -37,21 +37,21 @@ require('./passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-//WELCOME MESSAGE 
+//WELCOME MESSAGE - WORKS
 app.get('/', async (req, res) => {
   res.status(200).send("Welcome to myFlix Movie Database"),
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
 
-//WELCOME MESSAGE 
+//WELCOME MESSAGE - WORKS
 app.get('/api/about', async (req, res) => {
   res.status(200).sendFile('./public/doc.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
 
-//MOVIES LIST 
+//MOVIES LIST - WORKS
 app.get('/api/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
@@ -184,11 +184,11 @@ app.post('/api/users',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+    await Users.findbyId({ _id: req.body.identity }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.Username + ' user is already in our records please try another user');
+          return res.status(400).send(req.body.identity + ' user is already in our records please try another user');
         } else {
           Users
             .create({
@@ -214,7 +214,7 @@ app.post('/api/users',
 
 
 
-/// USER CAN UPDATE FOLLOWING - WORKS
+/// USER CAN UPDATE FOLLOWING - NOT
 // USER NAME
 //EMAIL
 //BIRTHDAY 
@@ -256,9 +256,9 @@ app.put('api/users/:identity', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.param._id + ' user has nothing to update.');
+      res.status(400).send(req.param.identity + ' user has nothing to update.');
     } else {
-      res.status(200).send(req.param._id + ' user information has been updated.');
+      res.status(200).send(req.param.identity+ ' user information has been updated.');
     }
   })
   .catch((error) => {
@@ -267,15 +267,15 @@ app.put('api/users/:identity', passport.authenticate ('jwt',
   });
 });
 
-// Delete a user by username
+// Delete a user by User Account = WORKS
 app.delete('/api/user/:identity', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity})
     .then((identity) => {
       if (identity.length == 0) {
-        res.status(400).send(req.params._id + ' user was not in our records. ');
+        res.status(400).send(req.params.identity + ' user was not in our records. ');
       } else {
-        res.status(200).send(req.params._id + ' user was removed from our records.');
+        res.status(200).send(req.params.identity + ' user was removed from our records.');
       }
     })
     .catch((err) => {
@@ -285,7 +285,7 @@ app.delete('/api/user/:identity', passport.authenticate('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/user/:identity/:film_id', passport.authenticate('jwt', 
+app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndUpdate({ _id: req.params.identity }, {
      $addToSet: { Favorite: req.params.film_id}
@@ -305,7 +305,7 @@ app.post('/api/user/:identity/:film_id', passport.authenticate('jwt',
 });
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/user/:identity/:film_id', passport.authenticate('jwt', 
+app.delete('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity}, {
      $deleteToSet: {Favorite: req.params.film_id}
