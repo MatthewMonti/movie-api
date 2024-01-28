@@ -218,8 +218,7 @@ app.post('/api/user',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('api/user/:identity', passport.authenticate ('jwt',
-{session: false}), 
+app.put('api/user/:identity', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -239,9 +238,9 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user._id !== req.params.identity){
-        return res.status(400).send('Permission denied');
-    }
+      // if(req.user._id !== req.params.identity){
+        // return res.status(400).send('Permission denied');
+    // }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findByIdAndUpdate({_id: req.body.identity }, { $set:
@@ -258,7 +257,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
     if (!updatedUser) {
       res.status(400).send(req.param.identity + ' user has nothing to update.');
     } else {
-      res.status(200).send(req.param.identity+ ' user information has been updated.');
+      res.status(200).send(req.param.identity + ' user information has been updated.');
     }
   })
   .catch((error) => {
@@ -272,7 +271,7 @@ app.delete('/api/user/:identity', passport.authenticate('jwt',
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity})
     .then((identity) => {
-      if (identity.length == 0) {
+      if (identity.length === 0) {
         res.status(400).send(req.params.identity + ' user was not in our records. ');
       } else {
         res.status(200).send(req.params.identity + ' user was removed from our records.');
@@ -292,7 +291,7 @@ app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((film_id) => {
-    if (film_id.length == 1) {
+    if (!film_id.length === 0) {
       res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
       res.status(200).send(req.params.film_id + ' film id being added to favorites.');
@@ -312,7 +311,7 @@ app.delete('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((film_id) => {
-    if (film_id.length == 0) {
+    if (film_id.length === 0) {
       res.status(400).send(req.params.film_id + ' favorite film id either mistype or already deleted.');
     } else {
       res.status(200).send(req.params.film_id + ' favorite film id deleted.');
