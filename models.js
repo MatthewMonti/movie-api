@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { ObjectId } = require('mongodb');
 
 
 let movieSchema = mongoose.Schema({
@@ -52,7 +51,7 @@ let userSchema = mongoose.Schema({
       },
     },
     Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
-    Favorite: [{ type: mongoose.Schema.Types.ObjectId, required:[true], ref: 'Movie' }]
+    Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
 });
 
 userSchema.statics.hashPassword = (password) => {
@@ -87,11 +86,3 @@ let User = mongoose.model('User', userSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;
-
-
-  
-
-
-
-  
-  
