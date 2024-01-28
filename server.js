@@ -296,7 +296,7 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
 app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneandUpdate({ _id: req.params.account }, {
-     $set: { Favorite: req.params.film_id, ref:'Movie' }
+     $push: { Favorite: req.params.film_id, ref:'Movie' }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
@@ -316,7 +316,7 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.Model.findOneandDelete({_id: req.params.account}, {
-     $set: {Favorite: req.params.film_id, ref:'Movie'}
+     $pull: {Favorite: req.params.film_id, ref:'Movie'}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
