@@ -4,7 +4,7 @@ const { ObjectId } = require('mongodb');
 
 
 let movieSchema = mongoose.Schema({
-  Title: {type: String, required: [true, "Title Required"]},
+  Title: {type: String, required: [true, "Title Required"], unique: true,},
   Description: {type: String, required: [true, "Description is Required Field"]},
   Release: {type: String, required: [true, "Release Year of movie is required"]},
   Genre: {
@@ -37,8 +37,8 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
-    Username: {type: String, required: [true, 'Username required'] },
-    Password: { type: String, required: [true, 'Password required to have account active']},
+    Username: {type: String, required: [true, 'Username required'], unique: true, },
+    Password: { type: String, required: [true, 'Password required to have account active'], unique: true,},
     Email: {email: "TEST@test.com",
       type: String,
       required: true,
