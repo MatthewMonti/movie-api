@@ -170,10 +170,10 @@ app.post('/api/user',
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required at least 5 letters').isunique({max:1}).isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isunique({max:1}).isAlphanumeric(),
-    check('Password', 'Password is required').isunique({max:1}).not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isunique({max:1}).isEmail()
+    check('Username', 'Username is required at least 5 letters').isLength({min: 5}).isunique(),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isunique().isAlphanumeric(),
+    check('Password', 'Password is required').isunique().not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isunique().isEmail()
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -226,10 +226,10 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required').isunique({max:1}).isLength({min: 5}),
+    check('Username', 'Username is required').isunique().isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isunique({max:1}).isAlphanumeric(),
-    check('Password', 'Password is required').isunique({max:1}).not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isunique({max:1}).isEmail()
+    check('Password', 'Password is required').isunique().not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isunique().isEmail()
   ], passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
