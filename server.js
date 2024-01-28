@@ -268,7 +268,7 @@ app.put('api/users/:identity', passport.authenticate ('jwt',
 });
 
 // Delete a user by username
-app.delete('/api/user/:identity/film_id', passport.authenticate('jwt', 
+app.delete('/api/user/:identity', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity})
     .then((identity) => {
@@ -305,7 +305,7 @@ app.post('/api/user/:identity/:film_id', passport.authenticate('jwt',
 });
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/user/:identity/Favorite/:film_id', passport.authenticate('jwt', 
+app.delete('/api/user/:identity/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity}, {
      $deleteToSet: {Favorite: req.params.film_id}
