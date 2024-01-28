@@ -37,21 +37,21 @@ require('./passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-//WELCOME MESSAGE WORKS
+//WELCOME MESSAGE 
 app.get('/', async (req, res) => {
   res.status(200).send("Welcome to myFlix Movie Database"),
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
 
-//WELCOME MESSAGE WORKS
-app.get('/api/about_api', async (req, res) => {
+//WELCOME MESSAGE 
+app.get('/api/about', async (req, res) => {
   res.status(200).sendFile('./public/doc.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
 
-//MOVIES LIST WORKS
+//MOVIES LIST 
 app.get('/api/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
@@ -63,15 +63,15 @@ app.get('/api/movies', passport.authenticate('jwt', { session: false }), async (
     });
 });
 
-//TITLE SEARCH WORKS - ERROR WORKS
-app.get('/api/movies/Title/:title', passport.authenticate('jwt', 
+//TITLE SEARCH 
+app.get('/api/movies/title/:label', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Movies.find({ Title: req.params.title })
-  .then((title) => {
-    if (title.length == 0) {
-      res.status(400).send(req.params.title + ' movie title not in database.');
+  await Movies.find({ Title: req.params.label })
+  .then((label) => {
+    if (label.length == 0) {
+      res.status(400).send(req.params.label + ' movie title not in database.');
     } else {
-      res.status(200).json(title)
+      res.status(200).json(label)
     }
   })
   .catch((err) => {
@@ -80,14 +80,14 @@ app.get('/api/movies/Title/:title', passport.authenticate('jwt',
   });
 });
 
-//RELEASE YEAR WORkS - ERROR NOT WORKING
-app.get('/api/movies/Release/:releaseyear', async (req, res) => {
-  await Movies.find({ Release: req.params.releaseyear })
-  .then((releaseyear) => {
-    if (releaseyear.length == 0) {
-      res.status(400).send(req.params.releaseyear + " don't have films with that release date.");
+//RELEASE YEAR 
+app.get('/api/movies/release/:year', async (req, res) => {
+  await Movies.find({ Release: req.params.year})
+  .then((year) => {
+    if (year.length == 0) {
+      res.status(400).send(req.params.year + " film year does not have any movies yet or invalid year");
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).json(year)
     }
   })
   .catch((err) => {
@@ -98,13 +98,13 @@ app.get('/api/movies/Release/:releaseyear', async (req, res) => {
 
 
 //RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
-app.get('/api/movies/Rated/:rated', async (req, res) => {
-  await Movies.find({ Rated: req.params.rated })
-  .then((rated) => {
-    if (rated.length == 0) {
-      res.status(400).send(req.params.rated + ' that demographic not recorded in database.');
+app.get('/api/movies/rated/:audience', async (req, res) => {
+  await Movies.find({ Rated: req.params.audience })
+  .then((audience) => {
+    if (audience.length == 0) {
+      res.status(400).send(req.params.audience + ' demographic is either not serviced by database or is invalid entry.');
     } else {
-      res.status(200).json(rated)
+      res.status(200).json(audience)
     }
   })
   .catch((err) => {
@@ -114,13 +114,13 @@ app.get('/api/movies/Rated/:rated', async (req, res) => {
 });
 
 //Quality of FILMS WORKS
-app.get('/api/movies/Rating/:rating', async (req, res) => {
-  await Movies.find({ Rating: req.params.rating })
-  .then((rating) => {
-    if (rating.length == 0) {
-      res.status(400).send(req.params.rating + ' rotten tomatoes percentage is either not in range 0-100 or no film currently matches that percentage in our database');
+app.get('/api/movies/rating/:percentage', async (req, res) => {
+  await Movies.find({ Rating: req.params.percentage })
+  .then((percentage) => {
+    if (!percentage) {
+      res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage ourside the range of (0-100)');
     } else {
-      res.status(200).json(rating)
+      res.status(200).json(percentage)
     }
   })
   .catch((error) => {
@@ -130,11 +130,11 @@ app.get('/api/movies/Rating/:rating', async (req, res) => {
 });
  
 //GENRE SEARCH FOR MOVIE
-app.get('/api/movies/Genre/:genreName', async (req, res) => {
+app.get('/api/movies/genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.genreName + ' category not in our database.');
+      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future.');
     } else {
       res.status(200).json(movies)
     }
@@ -147,7 +147,7 @@ app.get('/api/movies/Genre/:genreName', async (req, res) => {
 
 
 ///DIRECTOR SEARCH WORKS
-app.get("/api/movies/Director/:name", async (req, res) => {
+app.get("/api/movies/director/:name", async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     if (movies.length == 0) {
@@ -161,14 +161,6 @@ app.get("/api/movies/Director/:name", async (req, res) => {
     res.status(500).send('Error: ' + error);
   });
 });
-
-
-// USERS ARE DISPLAYED WORKS - ONE USERS LOOKS AT ALL USERS SECURITY ISSUE?
-app.get('/api/users', passport.authenticate ('jwt', 
-  {session: false}), async (req, res) => {
-  Users.find().then(users => res.status(200).json(users));
-});
-
 
 //Add a user - WORKS error works
 app.post('/api/users',
@@ -206,7 +198,7 @@ app.post('/api/users',
               Birthday: req.body.Birthday,
             })
             .then((user) => { 
-              res.status(500).send(req.body.Username + ' account been created');
+              res.status(201).json(user)
             })
             .catch((error) => {
               console.error(error);
@@ -226,7 +218,7 @@ app.post('/api/users',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('api/users/:edit_acct', passport.authenticate ('jwt',
+app.put('api/users/:identity', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
@@ -252,7 +244,7 @@ app.put('api/users/:edit_acct', passport.authenticate ('jwt',
     }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({ _id: req.body._id }, { $set:
+    await Users.findByIdAndUpdate({ _id: req.body.identity }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -276,11 +268,11 @@ app.put('api/users/:edit_acct', passport.authenticate ('jwt',
 });
 
 // Delete a user by username
-app.delete('/api/users/:account', passport.authenticate('jwt', 
+app.delete('/api/user/:identity/film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndDelete({_id: req.params.account})
-    .then((account) => {
-      if (account.length == 0) {
+  await Users.findByIdAndDelete({_id: req.params.identity})
+    .then((identity) => {
+      if (identity.length == 0) {
         res.status(400).send(req.params._id + ' user was not in our records. ');
       } else {
         res.status(200).send(req.params._id + ' user was removed from our records.');
@@ -293,9 +285,9 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
+app.post('/api/user/:identity/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.params.account }, {
+  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
      $addToSet: { Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
@@ -313,9 +305,9 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 });
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
+app.delete('/api/user/:identity/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndDelete({_id: req.params.account}, {
+  await Users.findByIdAndDelete({_id: req.params.identity}, {
      $deleteToSet: {Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
