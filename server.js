@@ -85,7 +85,7 @@ app.get('/api/movies/release/:year', async (req, res) => {
   await Movies.find({ Release: req.params.year})
   .then((year) => {
     if (year.length == 0) {
-      res.status(400).send(req.params.year + " film year does not have any movies yet or invalid year");
+      res.status(400).send(req.params.year + " film production year filter movies that show we don't any films match criteria please check date");
     } else {
       res.status(200).json(year)
     }
@@ -102,7 +102,7 @@ app.get('/api/movies/rated/:audience', async (req, res) => {
   await Movies.find({ Rated: req.params.audience })
   .then((audience) => {
     if (audience.length == 0) {
-      res.status(400).send(req.params.audience + ' demographic is either not serviced by database or is invalid entry.');
+      res.status(400).send(req.params.audience + ' demographic is either not serviced by our database or is mistype.');
     } else {
       res.status(200).json(audience)
     }
@@ -117,8 +117,8 @@ app.get('/api/movies/rated/:audience', async (req, res) => {
 app.get('/api/movies/rating/:percentage', async (req, res) => {
   await Movies.find({ Rating: req.params.percentage })
   .then((percentage) => {
-    if (!percentage.length == 0) {
-      res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage ourside the range of (0-100)');
+    if (percentage.length == 0) {
+      res.status(400).send(req.params.percentage + ' rotten tomatoes percentage criteria could not match a film or is a mistype percentage (0-100)');
     } else {
       res.status(200).json(percentage)
     }
@@ -134,7 +134,7 @@ app.get('/api/movies/genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future and remember 1st letter must be capital.');
+      res.status(400).send(req.params.genreName + ' category not in our database or forgot to capitalize 1st letter of genre name.');
     } else {
       res.status(200).json(movies)
     }
@@ -151,7 +151,7 @@ app.get("/api/movies/director/:name", async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.name + ' is a director not yet added to database please try someone else.');
+      res.status(400).send(req.params.name + ' is a director not yet added to database please search someone else.');
     } else {
       res.status(200).json(movies)
     }
@@ -184,11 +184,11 @@ app.post('/api/user',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findbyId({ _id: req.body.identity }) // Search to see if a user with the requested username already exists
+    await Users.findbyId({ Username: req.body.name }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.identity + ' user is already in our records please try another user');
+          return res.status(400).send(req.body.name + ' user is already in our records please try another user');
         } else {
           Users
             .create({
