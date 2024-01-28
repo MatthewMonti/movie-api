@@ -32,6 +32,7 @@ app.use(cors({
 let auth = require('./auth.js')(app);
 const passport = require('passport');
 const { isArray } = require('lodash');
+const { ObjectId } = require('mongodb');
 require('./passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
@@ -274,15 +275,32 @@ app.put('api/users/:account', passport.authenticate ('jwt',
   });
 });
 
+// Delete a user by username
+app.delete('/api/users/:account', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndRemove({_id: req.params.account})
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.account + ' user was not in our records. ');
+      } else {
+        res.status(200).send(req.params.account + ' user was removed from out records.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
 // Add a movie to a user's list of favorites
 app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ _id: req.params.account }, {
-     $push: { Favorite: req.params.film_id, ref:'Movie' }
+     $set: { Favorite: req.params.film_id, ref:'Movie' }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
-    if (Favorite.indexOf(film_id) === -1) {
+    if (!Favorite) {
       res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
       res.status(200).send(req.params.film_id + ' film id being added to favorites.');
@@ -298,11 +316,11 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({_id: req.params.account}, {
-     $pull: {Favorite: req.params.film_id}
+     $set: {Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
-    if (Favorite.indexOf(film_id) === -1) {
+    if (!Favorite) {
       res.status(400).send(req.params.film_id + ' favorite film id either mistype or already deleted.');
     } else {
       res.status(200).send(req.params.film_id + ' favorite film id deleted.');
@@ -313,26 +331,6 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
     res.status(500).send('Error: ' + err);
   });
 });
-
-// Delete a user by username
-app.delete('/api/users/:_id', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findOneAndRemove({_id: req.params._id})
-    .then((user) => {
-      if (!user) {
-        res.status(400).send(req.params._id + ' user was not in our records. ');
-      } else {
-        res.status(200).send(req.params._id + ' user was removed from out records.');
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-
-
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
