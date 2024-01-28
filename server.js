@@ -281,9 +281,9 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
   await Users.findByIdAndDelete({_id: req.params.account})
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.Username + ' user was not in our records. ');
+        res.status(400).send(req.params._id + ' user was not in our records. ');
       } else {
-        res.status(200).send(req.params.Username + ' user was removed from our records.');
+        res.status(200).send(req.params._id + ' user was removed from our records.');
       }
     })
     .catch((err) => {
@@ -295,7 +295,7 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
 // Add a movie to a user's list of favorites
 app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ _id: req.params.account }, {
+  await Users.findById({ _id: req.params.account }, {
      $set: { Favorite: req.params.film_id, ref:'Movie' }
    },
    { new: true }) // This line makes sure that the updated document is returned
@@ -315,7 +315,7 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({_id: req.params.account}, {
+  await Users.Model.findById({_id: req.params.account}, {
      $set: {Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
