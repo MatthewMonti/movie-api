@@ -300,7 +300,7 @@ app.post('/api/:account/:Username/Favorite/:film_id', passport.authenticate('jwt
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
-    if (Favorite <= 1) {
+    if (!Favorite) {
       res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
       res.status(200).send(req.params.film_id + ' film id being added to favorites.');
@@ -320,7 +320,7 @@ app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
-    if (Favorite == 0) {
+    if (!Favorite) {
       res.status(400).send(req.params.film_id + ' favorite film id either mistype or already deleted.');
     } else {
       res.status(200).send(req.params.film_id + ' favorite film id deleted.');
