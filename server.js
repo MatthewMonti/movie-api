@@ -239,7 +239,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user._id !== req.body._id){
+      if(req.user._id !== req.params._id){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
