@@ -71,7 +71,7 @@ app.get('/api/movies/Title/:title', passport.authenticate('jwt',
     if (title.length == 0) {
       res.status(400).send(req.params.title + ' movie title not in database.');
     } else {
-      res.status(200).json(releaseyear)
+      res.status(200).json(title)
     }
   })
   .catch((err) => {
@@ -226,7 +226,7 @@ app.post('/api/users',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('api/users/:account', passport.authenticate ('jwt',
+app.put('api/users/:edit_acct', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
@@ -278,7 +278,7 @@ app.put('api/users/:account', passport.authenticate ('jwt',
 // Delete a user by username
 app.delete('/api/users/:account', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndRemove({_id: req.params.account})
+  await Users.findByIdAndDelete({_id: req.params.account})
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.account + ' user was not in our records. ');
