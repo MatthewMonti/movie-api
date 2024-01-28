@@ -293,10 +293,10 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/:account/:Username/Favorite/:film_id', passport.authenticate('jwt', 
+app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndUpdate({ _id: req.params.account }, {
-     $push: { Favorite: req.params.film_id, ref:'Movie' }
+     $push: { Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
@@ -316,7 +316,7 @@ app.post('/api/:account/:Username/Favorite/:film_id', passport.authenticate('jwt
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.Model.findByIdAndDelete({_id: req.params.account}, {
-     $pull: {Favorite: req.params.film_id, ref:'Movie'}
+     $pull: {Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
