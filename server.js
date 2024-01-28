@@ -238,12 +238,12 @@ app.put('api/user/:identity',
       return res.status(422).json({ errors: errors.array() });
     }
       //CONDITION TO CHECK ADDED HERE
-       if(req.user._id !== req.params.identity){
+       if(req.user._id !== req.params._id){
          return res.status(400).send('Permission denied');
        }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findByIdAndUpdate({_id: req.body.identity }, { $set:
+    await Users.findByIdAndUpdate({_id: req.params._id }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -255,9 +255,9 @@ app.put('api/user/:identity',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.param.identity + ' user has nothing to update.');
+      res.status(400).send(req.param._id + ' user has nothing to update.');
     } else {
-      res.status(200).send(req.param.identity + ' user information has been updated.');
+      res.status(200).send(req.param._id + ' user information has been updated.');
     }
   })
   .catch((error) => {
