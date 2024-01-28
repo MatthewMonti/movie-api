@@ -244,7 +244,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
     }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findByIdAndUpdate({ _id: req.body.identity }, { $set:
+    await Users.findByIdAndUpdate({_id: req.body.identity }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
