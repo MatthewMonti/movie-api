@@ -184,7 +184,7 @@ app.post('/api/user',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findbyId({ Username: req.body.name }) // Search to see if a user with the requested username already exists
+    await Users.findbyOne({ Username: req.body.name }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
