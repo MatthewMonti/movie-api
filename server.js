@@ -281,9 +281,9 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
   await Users.findByIdAndDelete({_id: req.params.account})
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.account + ' user was not in our records. ');
+        res.status(400).send(req.params.Username + ' user was not in our records. ');
       } else {
-        res.status(200).send(req.params.account + ' user was removed from out records.');
+        res.status(200).send(req.params.Username + ' user was removed from our records.');
       }
     })
     .catch((err) => {
