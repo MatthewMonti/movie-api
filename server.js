@@ -296,11 +296,11 @@ app.delete('/api/users/:account', passport.authenticate('jwt',
 app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndUpdate({ _id: req.params.account }, {
-     $push: { Favorite: req.params.film_id}
+     $addtoSet: { Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((user) => {
-    if (Favorite.includes(ObjectId)) {
+    if (!user) {
       res.status(400).send(req.params.film_id + ' film id already added to account.');
     } else {
       res.status(200).send(req.params.film_id + ' film id being added to favorites.');
@@ -316,11 +316,11 @@ app.post('/api/:account/Favorite/:film_id', passport.authenticate('jwt',
 app.delete('/api/:account/Favorite/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.account}, {
-     $pull: {Favorite: req.params.film_id}
+     $deletetoSet: {Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((Favorite) => {
-    if (Favorite.includes(ObjectId)) {
+    if (!Favorite) {
       res.status(400).send(req.params.film_id + ' favorite film id either mistype or already deleted.');
     } else {
       res.status(200).send(req.params.film_id + ' favorite film id deleted.');
