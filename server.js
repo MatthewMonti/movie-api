@@ -63,13 +63,13 @@ app.get('/api/movies', passport.authenticate('jwt', { session: false }), async (
     });
 });
 
-//TITLE SEARCH 
+//TITLE SEARCH = 
 app.get('/api/movies/title/:label', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Movies.find({ Title: req.params.label })
   .then((label) => {
     if (label.length == 0) {
-      res.status(400).send(req.params.label + ' movie title not in database.');
+      res.status(400).send(req.params.label + ' movie title not in database and remember 1st letter most be capital.');
     } else {
       res.status(200).json(label)
     }
@@ -80,7 +80,7 @@ app.get('/api/movies/title/:label', passport.authenticate('jwt',
   });
 });
 
-//RELEASE YEAR 
+//RELEASE YEAR = WORKS
 app.get('/api/movies/release/:year', async (req, res) => {
   await Movies.find({ Release: req.params.year})
   .then((year) => {
@@ -97,7 +97,7 @@ app.get('/api/movies/release/:year', async (req, res) => {
 });
 
 
-//RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
+//RATED FOR FIND APPROPRIATE AUDIENCE = WORKS 
 app.get('/api/movies/rated/:audience', async (req, res) => {
   await Movies.find({ Rated: req.params.audience })
   .then((audience) => {
@@ -113,11 +113,11 @@ app.get('/api/movies/rated/:audience', async (req, res) => {
   });
 });
 
-//Quality of FILMS WORKS
+//Quality of FILMS 
 app.get('/api/movies/rating/:percentage', async (req, res) => {
   await Movies.find({ Rating: req.params.percentage })
   .then((percentage) => {
-    if (!percentage) {
+    if (!percentage.length == 0) {
       res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage ourside the range of (0-100)');
     } else {
       res.status(200).json(percentage)
@@ -129,12 +129,12 @@ app.get('/api/movies/rating/:percentage', async (req, res) => {
   });
 });
  
-//GENRE SEARCH FOR MOVIE
+//GENRE SEARCH FOR MOVIE 
 app.get('/api/movies/genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
-      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future.');
+      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future and remember 1st letter must be capital.');
     } else {
       res.status(200).json(movies)
     }
@@ -163,7 +163,7 @@ app.get("/api/movies/director/:name", async (req, res) => {
 });
 
 //Add a user - WORKS error works
-app.post('/api/users',
+app.post('/api/user',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -218,7 +218,7 @@ app.post('/api/users',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('api/users/:identity', passport.authenticate ('jwt',
+app.put('api/user/:identity', passport.authenticate ('jwt',
 {session: false}), 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
