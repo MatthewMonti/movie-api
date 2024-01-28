@@ -239,7 +239,7 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
       return res.status(422).json({ errors: errors.array() });
     }
       // CONDITION TO CHECK ADDED HERE
-      if(req.user._id !== req.params._id){
+      if(req.user._id !== req.params.identity){
         return res.status(400).send('Permission denied');
     }
     // CONDITION ENDS
@@ -256,9 +256,9 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
   .then((updatedUser) => {
     res.json(updatedUser);
     if (!updatedUser) {
-      res.status(400).send(req.param._id + ' user has nothing to update.');
+      res.status(400).send(req.param.identity + ' user has nothing to update.');
     } else {
-      res.status(200).send(req.param._id + ' user information has been updated.');
+      res.status(200).send(req.param.identity+ ' user information has been updated.');
     }
   })
   .catch((error) => {
@@ -268,14 +268,14 @@ app.put('api/user/:identity', passport.authenticate ('jwt',
 });
 
 // Delete a user by username
-app.delete('/api/user/favorite/:identity/film_id', passport.authenticate('jwt', 
+app.delete('/api/user/:identity/film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndDelete({_id: req.params.identity})
     .then((identity) => {
       if (identity.length == 0) {
-        res.status(400).send(req.params._id + ' user was not in our records. ');
+        res.status(400).send(req.params.identity + ' user was not in our records. ');
       } else {
-        res.status(200).send(req.params._id + ' user was removed from our records.');
+        res.status(200).send(req.params.identity + ' user was removed from our records.');
       }
     })
     .catch((err) => {
