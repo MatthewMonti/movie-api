@@ -239,6 +239,8 @@ app.put('/api/user/:_id',
     }
        //CONDITION TO CHECK ADDED HERE
         if(req.user._id !== req.params._id){
+          console.log(req.user.id),
+          console.log(req.params._id)
           return res.status(400).send('Permission denied');
         }
     // CONDITION ENDS
