@@ -238,7 +238,7 @@ app.put('/api/user/:id',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user._id !== req.params._id){
+       if(req.user._id !== req.params.id){
         console.log(req.user.id, "Request_random"),
         console.log(req.user._id, "Request_in_code")
         console.log(req.params._id, "URL id")
