@@ -245,7 +245,6 @@ app.put('/api/user/:id',
     let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findByIdAndUpdate({id: req.params.id }, { $set:
     {
-      id: req.body.id,
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
