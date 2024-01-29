@@ -92,19 +92,6 @@
         <td>List of films filtered by director name or error message</td>
       </tr>
       <tr>
-        <td>User Registration</td>
-        <td>/api/users</td>
-        <td>POST</td>
-        <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
-        <td>
-        {"Username": "USERNAME",
-        "Password": "PASSWORD",
-        "Email": "EMAIL",
-        "Birthday": "####-##-##",
-        }</td>
-        <td> Display New User info or message already exists if already added</td>
-      </tr>
-      <tr>
         <td>Logging into Your Account</td>
         <td>/api/user/login/</td>
         <td>POST</td>
@@ -114,11 +101,24 @@
           "Username": "Brian",
           "Password": "MoneyWallet#1"
         }
-      </td>
+        </td>
         <td>User information displayed along with created token property used for authorizing User to make certain changes on certain commands</td>
       </tr>
+      <tr>
+        <td>User Registration</td>
+        <td>/api/user</td>
+        <td>POST</td>
+        <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
+        <td>
+        {"Username": "USERNAME",
+        "Password": "PASSWORD",
+        "Email": "EMAIL",
+        "Birthday": "####-##-##",
+        }</td>
+        <td> Display New User info or message already exists if already added</td>     
+      </tr>
         <td>User account information changed</td>
-        <td>/api/user/:identity</td>
+        <td>/api/user/:id</td>
         <td>PUT</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate then put id in :idenitity of URL and then add info in JSON body formate below also NOTE - Date Large to Small time blocks</td>
         <td>
