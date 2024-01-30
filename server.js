@@ -238,7 +238,7 @@ app.put('/api/user/:id',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user_id !== req.params.id){
+       if(req.userid !== req.params.id){
         console.log(req.user.id, "Request_random"),
         console.log(req.user._id, "Request_in_code")
         console.log(req.params._id, "URL id")
@@ -249,6 +249,7 @@ app.put('/api/user/:id',
     let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findByIdAndUpdate({id: req.params.id }, { $set:
     {
+      id: req.body.id,
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
