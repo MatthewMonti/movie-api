@@ -294,7 +294,7 @@ app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt',
 app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndUpdate({ _id: req.params.identity }, {
-     $deleteToSet: { Favorite: req.params.remove}
+     $pull: { Favorite: req.params.remove}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((remove) => {
