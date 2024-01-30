@@ -218,7 +218,7 @@ app.post('/api/user',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/user/:id', 
+app.put('/api/user/:identity', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -238,16 +238,16 @@ app.put('/api/user/:id',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user.id !== req.params.id){
+       if(req.user._id !== req.params.identity){
         console.log(req.user.id, "Request_random"),
         console.log(req.user._id, "Request_in_code")
-        console.log(req.params._id, "URL id")
-        console.log(req.params.id, "URL id 2")
+        console.log(req.params.identity, "URL id")
+        console.log(req.params.identity, "URL id 2")
         return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findByIdAndUpdate({id: req.params.id }, { $set:
+    await Users.findByIdAndUpdate({_id: req.params.identity }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
