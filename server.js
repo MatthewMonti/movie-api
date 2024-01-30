@@ -293,8 +293,8 @@ app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({_id: req.params.identity}, {
-     $deleteToSet: {Favorite: req.params.film_id}
+  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
+     $deleteToSet: { Favorite: req.params.film_id}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((film_id) => {

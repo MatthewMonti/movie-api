@@ -44,6 +44,17 @@
         <td>See a List of Movies A-Z or error message</td>
       </tr>
       <tr>
+        <td>Logging into Your Account</td>
+        <td>/api/user/login/</td>
+        <td>POST</td>
+        <td>API platform select body raw JSON then in body fill info in format below</td>
+        <td> 
+          {
+          "Username": "Brian",
+          "Password": "MoneyWallet#1"
+        }
+      </td>
+      <tr>
         <td>Film Search by Title</td>
         <td>/api/movies/title/:label</td>
         <td>GET</td>
@@ -91,17 +102,7 @@
         <td>NA</td>
         <td>List of films filtered by director name or error message</td>
       </tr>
-      <tr>
-        <td>Logging into Your Account</td>
-        <td>/api/user/login/</td>
-        <td>POST</td>
-        <td>API platform select body raw JSON then in body fill info in format below</td>
-        <td> 
-          {
-          "Username": "Brian",
-          "Password": "MoneyWallet#1"
-        }
-        </td>
+      
         <td>User information displayed along with created token property used for authorizing User to make certain changes on certain commands</td>
       </tr>
       <tr>
