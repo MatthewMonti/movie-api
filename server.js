@@ -238,11 +238,10 @@ app.put('/api/user/:identity',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user._id !== req.params.identity){
+       if(req.user.id !== req.params.identity){
         console.log(req.user.id, "Request_random"),
         console.log(req.user._id, "Request_in_code")
         console.log(req.params.identity, "URL id")
-        console.log(req.params.identity, "URL id 2")
         return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
