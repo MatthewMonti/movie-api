@@ -117,7 +117,7 @@ app.get('/api/movies/rated/:audience', async (req, res) => {
 app.get('/api/movies/rating/:percentage', async (req, res) => {
   await Movies.find({ Rating: req.params.percentage })
   .then((percentage) => {
-    if (!percentage) {
+    if (percentage.length == 0) {
       res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage ourside the range of (0-100)');
     } else {
       res.status(200).json(percentage)
