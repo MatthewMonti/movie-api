@@ -275,14 +275,14 @@ app.delete('/api/user/:identity', passport.authenticate('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt', 
+app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndUpdate({ _id: req.params.identity }, {
-     $addToSet: { Favorite: req.params.film_id}
+     $addToSet: { Favorite: req.params.add}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((film_id) => {
-      res.status(200).send(req.params.film_id + ' film id being added to favorites.');
+      res.status(200).send(req.params.add + ' film id being added to favorites.');
   })
   .catch((err) => {
     console.error(err);
@@ -291,14 +291,14 @@ app.post('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt',
 });
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/user/favorite/:identity/:film_id', passport.authenticate('jwt', 
+app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findByIdAndUpdate({ _id: req.params.identity }, {
-     $deleteToSet: { Favorite: req.params.film_id}
+     $deleteToSet: { Favorite: req.params.remove}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((film_id) => {
-      res.status(200).send(req.params.film_id + ' favorite film id deleted.');
+      res.status(200).send(req.params.remove + ' favorite film id deleted.');
   })
   .catch((err) => {
     console.error(err);
