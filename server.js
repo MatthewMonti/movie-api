@@ -281,7 +281,7 @@ app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt',
      $addToSet: { Favorite: req.params.add}
    },
    { new: true }) // This line makes sure that the updated document is returned
-  .then((film_id) => {
+  .then((add) => {
       res.status(200).send(req.params.add + ' film id being added to favorites.');
   })
   .catch((err) => {
@@ -297,7 +297,7 @@ app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt',
      $deleteToSet: { Favorite: req.params.remove}
    },
    { new: true }) // This line makes sure that the updated document is returned
-  .then((film_id) => {
+  .then((remove) => {
       res.status(200).send(req.params.remove + ' favorite film id deleted.');
   })
   .catch((err) => {
