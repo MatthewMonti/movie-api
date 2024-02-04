@@ -1,1 +1,166 @@
-<!doctypehtml><html lang=en-US><meta charset=utf-8 content="width=device-width,initial-scale=1"name=viewport><link href=../css/styles.css rel=stylesheet><title>Myflix Application</title><h2>MyFlix App Purpose</h2><p>This application helps you sort through movie database and save your most charished film.<table><thead><tr><th>Usage of Command<th>URL command<th>Method of data extraction<th>Data instructions<th>JSON OBJECT FORMAT<th>Display message along with outcome of data change<tbody><tr><td>Welcome Message<td>/<td>GET<td>NONE<td>NA<td>Welcome Message<tr><td>User Guide of APP<td>/api/about<td>GET<td>NONE<td>NA<td>A webpage on how to use the app<tr><td>Full Movie List A-Z<td>/api/movies<td>GET<td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to view films in database<td>See a List of Movies A-Z or error message<tr><td>Logging into Your Account<td>/api/user/login/<td>POST<td>API platform select body raw JSON then in body fill info in format below<td>{ "Username": "Brian", "Password": "MoneyWallet#1" }<tr><td>Film Search by Title<td>/api/movies/title/:label<td>GET<td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to view films by title<td>NA<td>See one movie by Title or error message<tr><td>Film by Release Year<td>/api/movies/release/:year<td>GET<td>NONE<td>NA<td>A list of films by release film year displayed or error message given<tr><td>Films filtered by age appropriate audience<td>/api/movies/rated/:audience<td>GET<td>NONE<td>NA<td>Films filter by rating displayed or error message<tr><td>Rotten Tomatoes Percentage of Film<td>/api/movies/rating/:percentage<td>GET<td>NONE<td>NA<td>List of films filter by Rotten Tomatoes Percentage or error message<tr><td>Genre of film by category<td>/api/movies/genre/:genreName<td>GET<td>NONE<td>NA<td>Films filtered by category are displayed or error message<tr><td>Film by Director<td>/api/movies/director/:name<td>GET<td>NONE<td>NA<td>List of films filtered by director name or error message</tr><td>User information displayed along with created token property used for authorizing User to make certain changes on certain commands</td><tr><td>User Registration<td>/api/user<td>POST<td>Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block<td>{"Username": "USERNAME", "Password": "PASSWORD", "Email": "EMAIL", "Birthday": "####-##-##", }<td>Display New User info or message already exists if already added</tr><td>User account information changed<td>/api/user/:id<td>PUT<td>Login and Copy Bearer Token (User info) to Authenticate then put id in :idenitity of URL and then add info in JSON body formate below also NOTE - Date Large to Small time blocks<td>{ "Username": "USERNAME", "Password": "PASSWORD", "Email": "EMAIL", "Birthday": "####-##-##", }<td>Display UPDATED User information or message indicating info already updated</td><tr><td>Allows user to delete account<td>/api/user/:identity<td>DELETE<td>Follow the instructions of LOGIN ENDPOINT Login and Copy Bearer Token (User info) to Authenticate Bearer Token With authication then change URL to delete user URL with user id in :identity. Before submitting create a JSON body of movie to delete as seen in example below<td>{"Username": "Name of Users"}<td>Text confirming user account delected<tr><td>User can add Favorite Movie<td>/api/user/favorite/:identity/:add<td>POST<td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then POST.<td>NA<td>Message that film has been added or error message<tr><tr><td>User can delete Favorite Movie<td>/api/user/favorite/:identity/:remove<td>DELETE<td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then DELETE.<td>NA<td>Message that film has been added or error message</table><script src=./server.js type=module></script>
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  </head>
+  
+  <title>Myflix Application</title>
+  <h2>MyFlix App Purpose</h2>
+  <p>This application helps you sort through movie database and save your most charished film.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Usage of Command</th>
+        <th>URL command</th>
+        <th>Method of data extraction</th>
+        <th>Data instructions </th>
+        <th>JSON OBJECT FORMAT</th>
+        <th>Display message along with outcome of data change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Welcome Message</td>
+        <td>/</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>Welcome Message</td>
+      </tr>
+      <tr>
+        <td>User Guide of APP</td>
+        <td>/api/about</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>A webpage on how to use the app</td>
+      </tr>
+      <tr>
+        <td>Full Movie List A-Z</td>
+        <td>/api/movies</td>
+        <td>GET</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to view films in database</td>
+        <td>See a List of Movies A-Z or error message</td>
+      </tr>
+      <tr>
+        <td>Logging into Your Account</td>
+        <td>/api/user/login/</td>
+        <td>POST</td>
+        <td>API platform select body raw JSON then in body fill info in format below</td>
+        <td> 
+          {
+          "Username": "Brian",
+          "Password": "MoneyWallet#1"
+        }
+      </td>
+      <tr>
+        <td>Film Search by Title</td>
+        <td>/api/movies/title/:label</td>
+        <td>GET</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL to view films by title</td>
+        <td>NA</td>
+        <td>See one movie by Title or error message</td>
+      </tr>
+      <tr>
+        <td>Film by Release Year</td>
+        <td>/api/movies/release/:year</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>A list of films by release film year displayed or error message given</td>
+      </tr>
+      <tr>
+        <td>Films filtered by age appropriate audience</td>
+        <td>/api/movies/rated/:audience</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>Films filter by rating displayed or error message</td>
+      </tr>
+      <tr>
+        <td>Rotten Tomatoes Percentage of Film</td>
+        <td>/api/movies/rating/:percentage</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>List of films filter by Rotten Tomatoes Percentage or error message</td>
+      </tr>
+      <tr>
+        <td>Genre of film by category</td>
+        <td>/api/movies/genre/:genreName</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>Films filtered by category are displayed or error message</td>
+      </tr>
+      <tr>
+        <td>Film by Director</td>
+        <td>/api/movies/director/:name</td>
+        <td>GET</td>
+        <td>NONE</td>
+        <td>NA</td>
+        <td>List of films filtered by director name or error message</td>
+      </tr>
+      
+        <td>User information displayed along with created token property used for authorizing User to make certain changes on certain commands</td>
+      </tr>
+      <tr>
+        <td>User Registration</td>
+        <td>/api/user</td>
+        <td>POST</td>
+        <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
+        <td>
+        {"Username": "USERNAME",
+        "Password": "PASSWORD",
+        "Email": "EMAIL",
+        "Birthday": "####-##-##",
+        }</td>
+        <td> Display New User info or message already exists if already added</td>     
+      </tr>
+        <td>User account information changed</td>
+        <td>/api/user/:id</td>
+        <td>PUT</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate then put id in :idenitity of URL and then add info in JSON body formate below also NOTE - Date Large to Small time blocks</td>
+        <td>
+        {
+        "Username": "USERNAME",
+        "Password": "PASSWORD",
+        "Email": "EMAIL",
+        "Birthday": "####-##-##",
+        }
+      </td>
+       <td>Display UPDATED User information or message indicating info already updated</td>
+      </tr>
+      <tr>
+        <td>Allows user to delete account</td>
+        <td>/api/user/:identity</td>
+        <td>DELETE</td>
+        <td>Follow the instructions of LOGIN ENDPOINT
+          Login and Copy Bearer Token (User info) to Authenticate Bearer Token
+          With authication then change URL to delete user URL with user id in :identity. Before submitting create a JSON body of movie to delete as seen in example below</td>
+        <td>{"Username": "Name of Users"}</td>
+        <td>Text confirming user account delected</td>
+      </tr>
+      <tr>
+        <td>User can add Favorite Movie</td>
+        <td>/api/user/favorite/:identity/:add</td>
+        <td>POST</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then POST.</td>
+        <td>NA</td>
+        <td>Message that film has been added or error message</td>
+      </tr>
+      <tr>
+      <tr>
+        <td>User can delete Favorite Movie</td>
+        <td>/api/user/favorite/:identity/:remove</td>
+        <td>DELETE</td>
+        <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then DELETE.</td>
+          <td>NA</td>
+          <td>Message that film has been added or error message</td>
+      </tr>
+    </tbody>
+  </table>
+</html>
+
+<script type="module" src="./server.js"></script>
