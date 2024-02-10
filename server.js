@@ -1,1 +1,327 @@
-function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _regeneratorRuntime(){"use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime=function e(){return t};var e,t={},r=Object.prototype,n=r.hasOwnProperty,a=Object.defineProperty||function(e,t,r){e[t]=r.value},o="function"==typeof Symbol?Symbol:{},i=o.iterator||"@@iterator",s=o.asyncIterator||"@@asyncIterator",u=o.toStringTag||"@@toStringTag";function c(e,t,r){return Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}),e[t]}try{c({},"")}catch(p){c=function e(t,r,n){return t[r]=n}}function f(t,r,n,o){var i,s,u,c,p=Object.create((r&&r.prototype instanceof v?r:v).prototype);return a(p,"_invoke",{value:(i=t,s=n,u=new j(o||[]),c=l,function(t,r){if(c===h)throw Error("Generator is already running");if(c===m){if("throw"===t)throw r;return{value:e,done:!0}}for(u.method=t,u.arg=r;;){var n=u.delegate;if(n){var a=L(n,u);if(a){if(a===y)continue;return a}}if("next"===u.method)u.sent=u._sent=u.arg;else if("throw"===u.method){if(c===l)throw c=m,u.arg;u.dispatchException(u.arg)}else"return"===u.method&&u.abrupt("return",u.arg);c=h;var o=d(i,s,u);if("normal"===o.type){if(c=u.done?m:"suspendedYield",o.arg===y)continue;return{value:o.arg,done:u.done}}"throw"===o.type&&(c=m,u.method="throw",u.arg=o.arg)}})}),p}function d(e,t,r){try{return{type:"normal",arg:e.call(t,r)}}catch(n){return{type:"throw",arg:n}}}t.wrap=f;var l="suspendedStart",h="executing",m="completed",y={};function v(){}function g(){}function $(){}var w={};c(w,i,function(){return this});var x=Object.getPrototypeOf,b=x&&x(x(G([])));b&&b!==r&&n.call(b,i)&&(w=b);var E=$.prototype=v.prototype=Object.create(w);function R(e){["next","throw","return"].forEach(function(t){c(e,t,function(e){return this._invoke(t,e)})})}function k(e,t){var r;a(this,"_invoke",{value:function a(o,i){function s(){return new t(function(r,a){!function r(a,o,i,s){var u=d(e[a],e,o);if("throw"!==u.type){var c=u.arg,p=c.value;return p&&"object"==_typeof(p)&&n.call(p,"__await")?t.resolve(p.__await).then(function(e){r("next",e,i,s)},function(e){r("throw",e,i,s)}):t.resolve(p).then(function(e){c.value=e,i(c)},function(e){return r("throw",e,i,s)})}s(u.arg)}(o,i,r,a)})}return r=r?r.then(s,s):s()}})}function L(t,r){var n=r.method,a=t.iterator[n];if(a===e)return r.delegate=null,"throw"===n&&t.iterator.return&&(r.method="return",r.arg=e,L(t,r),"throw"===r.method)||"return"!==n&&(r.method="throw",r.arg=TypeError("The iterator does not provide a '"+n+"' method")),y;var o=d(a,t.iterator,r.arg);if("throw"===o.type)return r.method="throw",r.arg=o.arg,r.delegate=null,y;var i=o.arg;return i?i.done?(r[t.resultName]=i.value,r.next=t.nextLoc,"return"!==r.method&&(r.method="next",r.arg=e),r.delegate=null,y):i:(r.method="throw",r.arg=TypeError("iterator result is not an object"),r.delegate=null,y)}function T(e){var t={tryLoc:e[0]};1 in e&&(t.catchLoc=e[1]),2 in e&&(t.finallyLoc=e[2],t.afterLoc=e[3]),this.tryEntries.push(t)}function U(e){var t=e.completion||{};t.type="normal",delete t.arg,e.completion=t}function j(e){this.tryEntries=[{tryLoc:"root"}],e.forEach(T,this),this.reset(!0)}function G(t){if(t||""===t){var r=t[i];if(r)return r.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var a=-1,o=function r(){for(;++a<t.length;)if(n.call(t,a))return r.value=t[a],r.done=!1,r;return r.value=e,r.done=!0,r};return o.next=o}}throw TypeError(_typeof(t)+" is not iterable")}return g.prototype=$,a(E,"constructor",{value:$,configurable:!0}),a($,"constructor",{value:g,configurable:!0}),g.displayName=c($,u,"GeneratorFunction"),t.isGeneratorFunction=function(e){var t="function"==typeof e&&e.constructor;return!!t&&(t===g||"GeneratorFunction"===(t.displayName||t.name))},t.mark=function(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,$):(e.__proto__=$,c(e,u,"GeneratorFunction")),e.prototype=Object.create(E),e},t.awrap=function(e){return{__await:e}},R(k.prototype),c(k.prototype,s,function(){return this}),t.AsyncIterator=k,t.async=function(e,r,n,a,o){void 0===o&&(o=Promise);var i=new k(f(e,r,n,a),o);return t.isGeneratorFunction(r)?i:i.next().then(function(e){return e.done?e.value:i.next()})},R(E),c(E,u,"Generator"),c(E,i,function(){return this}),c(E,"toString",function(){return"[object Generator]"}),t.keys=function(e){var t=Object(e),r=[];for(var n in t)r.push(n);return r.reverse(),function e(){for(;r.length;){var n=r.pop();if(n in t)return e.value=n,e.done=!1,e}return e.done=!0,e}},t.values=G,j.prototype={constructor:j,reset:function t(r){if(this.prev=0,this.next=0,this.sent=this._sent=e,this.done=!1,this.delegate=null,this.method="next",this.arg=e,this.tryEntries.forEach(U),!r)for(var a in this)"t"===a.charAt(0)&&n.call(this,a)&&!isNaN(+a.slice(1))&&(this[a]=e)},stop:function e(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function t(r){if(this.done)throw r;var a=this;function o(t,n){return u.type="throw",u.arg=r,a.next=t,n&&(a.method="next",a.arg=e),!!n}for(var i=this.tryEntries.length-1;i>=0;--i){var s=this.tryEntries[i],u=s.completion;if("root"===s.tryLoc)return o("end");if(s.tryLoc<=this.prev){var c=n.call(s,"catchLoc"),p=n.call(s,"finallyLoc");if(c&&p){if(this.prev<s.catchLoc)return o(s.catchLoc,!0);if(this.prev<s.finallyLoc)return o(s.finallyLoc)}else if(c){if(this.prev<s.catchLoc)return o(s.catchLoc,!0)}else{if(!p)throw Error("try statement without catch or finally");if(this.prev<s.finallyLoc)return o(s.finallyLoc)}}}},abrupt:function e(t,r){for(var a=this.tryEntries.length-1;a>=0;--a){var o=this.tryEntries[a];if(o.tryLoc<=this.prev&&n.call(o,"finallyLoc")&&this.prev<o.finallyLoc){var i=o;break}}i&&("break"===t||"continue"===t)&&i.tryLoc<=r&&r<=i.finallyLoc&&(i=null);var s=i?i.completion:{};return s.type=t,s.arg=r,i?(this.method="next",this.next=i.finallyLoc,y):this.complete(s)},complete:function e(t,r){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&r&&(this.next=r),y},finish:function e(t){for(var r=this.tryEntries.length-1;r>=0;--r){var n=this.tryEntries[r];if(n.finallyLoc===t)return this.complete(n.completion,n.afterLoc),U(n),y}},catch:function e(t){for(var r=this.tryEntries.length-1;r>=0;--r){var n=this.tryEntries[r];if(n.tryLoc===t){var a=n.completion;if("throw"===a.type){var o=a.arg;U(n)}return o}}throw Error("illegal catch attempt")},delegateYield:function t(r,n,a){return this.delegate={iterator:G(r),resultName:n,nextLoc:a},"next"===this.method&&(this.arg=e),y}},t}function asyncGeneratorStep(e,t,r,n,a,o,i){try{var s=e[o](i),u=s.value}catch(c){r(c);return}s.done?t(u):Promise.resolve(u).then(n,a)}function _asyncToGenerator(e){return function(){var t=this,r=arguments;return new Promise(function(n,a){var o=e.apply(t,r);function i(e){asyncGeneratorStep(o,n,a,i,s,"next",e)}function s(e){asyncGeneratorStep(o,n,a,i,s,"throw",e)}i(void 0)})}}var mongoose=require("mongoose"),Models=require("./models.js"),Movies=Models.Movie,Users=Models.User;mongoose.connect(process.env.URL_ATLAS,{useNewUrlParser:!0,useUnifiedTopology:!0}).then(function(){return console.log("Mongoose Connected")}).catch(function(e){console.error(e)});var express=require("express"),bodyParser=require("body-parser"),morgan=require("morgan");uuid=require("uuid"),fs=require("fs"),path=require("path");var app=express();app.use(morgan("common")),app.use(express.json()),app.use(express.urlencoded({extended:!0}));var cors=require("cors"),allowedOrigins=["https://movies-flex-6e317721b427.herokuapp.com"],_require=require("express-validator"),check=_require.check,validationResult=_require.validationResult;app.use(cors({origin:function e(t,r){return t&&-1===allowedOrigins.indexOf(t)?r(Error("The CORS policy for this application doesn’t allow access from origin "+t),!1):r(null,!0)}}));var auth=require("./auth.js")(app),passport=require("passport"),_require2=require("lodash"),isArray=_require2.isArray,_require3=require("mongodb"),ObjectId=_require3.ObjectId;require("./passport.js");var accessLogStream=fs.createWriteStream(path.join(__dirname,"log.txt"),{flags:"a"});app.use(morgan("combined",{stream:accessLogStream})),app.get("/",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:r.status(200).send("Welcome to myFlix Movie Database"),t.responseText+="<small>Requested at: "+t.requestTime+"</small>";case 1:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/about",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:r.status(200).sendFile("./public/doc.html",{root:__dirname}),t.responseText+="<small>Requested at: "+t.requestTime+"</small>";case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies",passport.authenticate("jwt",{session:!1}),function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(t){for(;;)switch(t.prev=t.next){case 0:return t.next=2,Movies.find().then(function(e){r.status(201).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return t.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies/title/:label",passport.authenticate("jwt",{session:!1}),function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Movies.find({Title:t.params.label}).then(function(e){0==e.length?r.status(400).send(t.params.label+" movie title not in database."):r.status(200).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies/release/:year",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Movies.find({Release:t.params.year}).then(function(e){0==e.length?r.status(400).send(t.params.year+" film year does not have any movies yet or invalid year"):r.status(200).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies/rated/:audience",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Movies.find({Rated:t.params.audience}).then(function(e){0==e.length?r.status(400).send(t.params.audience+" demographic is either not serviced by database or is invalid entry."):r.status(200).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies/rating/:percentage",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Movies.find({Rating:t.params.percentage}).then(function(e){0==e.length?r.status(400).send(t.params.percentage+" rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage outside the range of (0-100)"):r.status(200).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies/genre/:genreName",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Movies.find({"Genre.Name":t.params.genreName}).then(function(e){0==e.length?r.status(400).send(t.params.genreName+" category not in our database sorry we consider more additions in the future."):r.status(200).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.get("/api/movies/director/:name",function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:Movies.find({"Director.Name":t.params.name}).then(function(e){0==e.length?r.status(400).send(t.params.name+" is a director not yet added to database please try someone else."):r.status(200).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 1:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.post("/api/user",[check("Username","Username is required at least 5 letters").isLength({min:5}),check("Username","Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),check("Password","Password is required").not().isEmpty(),check("Email","Email does not appear to be valid").isEmail()],function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){var n,a;return _regeneratorRuntime().wrap(function e(o){for(;;)switch(o.prev=o.next){case 0:if((n=validationResult(t)).isEmpty()){o.next=3;break}return o.abrupt("return",r.status(422).json({errors:n.array()}));case 3:return a=Users.hashPassword(t.body.Password),o.next=6,Users.findOne({Username:t.body.Username}).then(function(e){if(e)return r.status(400).send(t.body.Username+" user is already in our records please try another user");Users.create({Username:t.body.Username,Password:a,Email:t.body.Email,Birthday:t.body.Birthday}).then(function(e){r.status(201).json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)})}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 6:case"end":return o.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.put("/api/user/:identity",[check("Username","Username is required").isLength({min:5}),check("Username","Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),check("Password","Password is required").not().isEmpty(),check("Email","Email does not appear to be valid").isEmail()],passport.authenticate("jwt",{session:!1}),function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){var n,a;return _regeneratorRuntime().wrap(function e(o){for(;;)switch(o.prev=o.next){case 0:if((n=validationResult(t)).isEmpty()){o.next=3;break}return o.abrupt("return",r.status(422).json({errors:n.array()}));case 3:if(!(t.user.id!==t.params.identity)){o.next=5;break}return o.abrupt("return",r.status(400).send("Permission denied"));case 5:return a=Users.hashPassword(t.body.Password),o.next=8,Users.findByIdAndUpdate({_id:t.params.identity},{$set:{Username:t.body.Username,Password:a,Email:t.body.Email,Birthday:t.body.Birthday}},{new:!0}).then(function(e){r.json(e)}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 8:case"end":return o.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.delete("/api/user/:identity",passport.authenticate("jwt",{session:!1}),function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Users.findByIdAndDelete({_id:t.params.identity}).then(function(e){r.status(200).send(t.params.identity+" user was removed from our records.")}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.post("/api/user/favorite/:identity/:add",passport.authenticate("jwt",{session:!1}),function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Users.findByIdAndUpdate({_id:t.params.identity},{$addToSet:{Favorite:t.params.add}},{new:!0}).then(function(e){r.status(200).send(t.params.add+" film id being added to favorites.")}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}()),app.delete("/api/user/favorite/:identity/:remove",passport.authenticate("jwt",{session:!1}),function(){var e=_asyncToGenerator(_regeneratorRuntime().mark(function e(t,r){return _regeneratorRuntime().wrap(function e(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,Users.findByIdAndUpdate({_id:t.params.identity},{$pull:{Favorite:t.params.remove}},{new:!0}).then(function(e){r.status(200).send(t.params.remove+" favorite film id deleted.")}).catch(function(e){console.error(e),r.status(500).send("Error: "+e)});case 2:case"end":return n.stop()}},e)}));return function(t,r){return e.apply(this,arguments)}}());var logwebpage=function e(t,r,n){console.log(t.url),n()},requestTime=function e(t,r,n){t.requestTime=Date.now(),n()};app.use(logwebpage),app.use(requestTime);var port=process.env.PORT||8080;app.listen(port,"0.0.0.0",function(){console.log("Listening on Port "+port)});
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+const Movies = Models.Movie;
+const Users = Models.User;
+mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('Mongoose Connected'))
+.catch((err) => {console.error(err); });
+const express = require('express'),
+bodyParser = require('body-parser'),
+morgan = require('morgan');
+uuid = require('uuid');
+fs = require('fs');
+path = require('path');
+const app = express();
+app.use(morgan('common'));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+let cors = require('cors');
+let allowedOrigins = [ 'https://movies-flex-6e317721b427.herokuapp.com'];
+const { check, validationResult } = require('express-validator');
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+let auth = require('./auth.js')(app);
+const passport = require('passport');
+const { isArray } = require('lodash');
+const { ObjectId } = require('mongodb');
+require('./passport.js');
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
+app.use(morgan('combined', {stream:accessLogStream}));
+
+//WELCOME MESSAGE 
+app.get('/', async (req, res) => {
+  res.status(200).send("Welcome to myFlix Movie Database"),
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
+});
+
+//WELCOME MESSAGE 
+app.get('/api/about', async (req, res) => {
+  res.status(200).sendFile('./public/doc.html', { root: __dirname });
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
+});
+
+//MOVIES LIST 
+app.get('/api/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  await Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
+
+//TITLE SEARCH 
+app.get('/api/movies/title/:label', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Movies.find({ Title: req.params.label })
+  .then((label) => {
+    if (label.length == 0) {
+      res.status(400).send(req.params.label + ' movie title not in database.');
+    } else {
+      res.status(200).json(label)
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+//RELEASE YEAR 
+app.get('/api/movies/release/:year', async (req, res) => {
+  await Movies.find({ Release: req.params.year})
+  .then((year) => {
+    if (year.length == 0) {
+      res.status(400).send(req.params.year + " film year does not have any movies yet or invalid year");
+    } else {
+      res.status(200).json(year)
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+
+//RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
+app.get('/api/movies/rated/:audience', async (req, res) => {
+  await Movies.find({ Rated: req.params.audience })
+  .then((audience) => {
+    if (audience.length == 0) {
+      res.status(400).send(req.params.audience + ' demographic is either not serviced by database or is invalid entry.');
+    } else {
+      res.status(200).json(audience)
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+//Quality of FILMS WORKS
+app.get('/api/movies/rating/:percentage', async (req, res) => {
+  await Movies.find({ Rating: req.params.percentage })
+  .then((percentage) => {
+    if (percentage.length == 0) {
+      res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage outside the range of (0-100)');
+    } else {
+      res.status(200).json(percentage)
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+ 
+//GENRE SEARCH FOR MOVIE
+app.get('/api/movies/genre/:genreName', async (req, res) => {
+  await Movies.find({'Genre.Name': req.params.genreName})
+  .then((movies) => {
+    if (movies.length == 0) {
+      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future.');
+    } else {
+      res.status(200).json(movies)
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send("Error: " + error);
+  });
+});
+
+
+///DIRECTOR SEARCH WORKS
+app.get("/api/movies/director/:name", async (req, res) => {
+  Movies.find({'Director.Name': req.params.name })
+  .then((movies) => {
+    if (movies.length == 0) {
+      res.status(400).send(req.params.name + ' is a director not yet added to database please try someone else.');
+    } else {
+      res.status(200).json(movies)
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+
+//Add a user - WORKS error works
+app.post('/api/user',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], async (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + ' user is already in our records please try another user');
+        } else {
+          Users
+            .create({
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday,
+            })
+            .then((user) => { 
+              res.status(201).json(user)
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  });
+
+
+
+/// USER CAN UPDATE FOLLOWING - WORKS
+// USER NAME
+//EMAIL
+//BIRTHDAY 
+app.put('/api/user/:identity', 
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], passport.authenticate('jwt', {session: false}), async (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+       //CONDITION TO CHECK ADDED HERE
+       if(req.user.id !== req.params.identity){
+        return res.status(400).send('Permission denied');
+      }
+    // CONDITION ENDS
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findByIdAndUpdate({_id: req.params.identity }, { $set:
+    {
+      Username: req.body.Username,
+      Password: hashedPassword,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday,
+    }
+  },
+  { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+
+// Delete a user by username - WORKS
+app.delete('/api/user/:identity', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findByIdAndDelete({_id: req.params.identity})
+    .then((identity) => {
+        res.status(200).send(req.params.identity + ' user was removed from our records.');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+// Add a movie to a user's list of favorites
+app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
+     $addToSet: { Favorite: req.params.add}
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((add) => {
+      res.status(200).send(req.params.add + ' film id being added to favorites.');
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+// Delete a movie to a user's list of favorites
+app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
+     $pull: { Favorite: req.params.remove}
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((remove) => {
+      res.status(200).send(req.params.remove + ' favorite film id deleted.');
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+  let logwebpage = (req, res, next) => {
+    console.log(req.url);
+    next();
+  };
+
+  let requestTime = (req, res, next) => {
+    req.requestTime = Date.now();
+    next();
+  };
+
+  app.use(logwebpage);
+  app.use(requestTime);
+
+
+   // listen for requests
+   const port = process.env.PORT || 8080;
+   app.listen(port, '0.0.0.0',() => {
+    console.log('Listening on Port ' + port);
+   });

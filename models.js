@@ -1,1 +1,88 @@
-function _typeof(t){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function _regeneratorRuntime(){"use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime=function t(){return e};var t,e={},r=Object.prototype,n=r.hasOwnProperty,o=Object.defineProperty||function(t,e,r){t[e]=r.value},i="function"==typeof Symbol?Symbol:{},a=i.iterator||"@@iterator",u=i.asyncIterator||"@@asyncIterator",c=i.toStringTag||"@@toStringTag";function s(t,e,r){return Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{s({},"")}catch(h){s=function t(e,r,n){return e[r]=n}}function f(e,r,n,i){var a,u,c,s,h=Object.create((r&&r.prototype instanceof m?r:m).prototype);return o(h,"_invoke",{value:(a=e,u=n,c=new P(i||[]),s=p,function(e,r){if(s===y)throw Error("Generator is already running");if(s===d){if("throw"===e)throw r;return{value:t,done:!0}}for(c.method=e,c.arg=r;;){var n=c.delegate;if(n){var o=E(n,c);if(o){if(o===v)continue;return o}}if("next"===c.method)c.sent=c._sent=c.arg;else if("throw"===c.method){if(s===p)throw s=d,c.arg;c.dispatchException(c.arg)}else"return"===c.method&&c.abrupt("return",c.arg);s=y;var i=l(a,u,c);if("normal"===i.type){if(s=c.done?d:"suspendedYield",i.arg===v)continue;return{value:i.arg,done:c.done}}"throw"===i.type&&(s=d,c.method="throw",c.arg=i.arg)}})}),h}function l(t,e,r){try{return{type:"normal",arg:t.call(e,r)}}catch(n){return{type:"throw",arg:n}}}e.wrap=f;var p="suspendedStart",y="executing",d="completed",v={};function m(){}function g(){}function w(){}var $={};s($,a,function(){return this});var x=Object.getPrototypeOf,L=x&&x(x(R([])));L&&L!==r&&n.call(L,a)&&($=L);var b=w.prototype=m.prototype=Object.create($);function q(t){["next","throw","return"].forEach(function(e){s(t,e,function(t){return this._invoke(e,t)})})}function _(t,e){var r;o(this,"_invoke",{value:function o(i,a){function u(){return new e(function(r,o){!function r(o,i,a,u){var c=l(t[o],t,i);if("throw"!==c.type){var s=c.arg,h=s.value;return h&&"object"==_typeof(h)&&n.call(h,"__await")?e.resolve(h.__await).then(function(t){r("next",t,a,u)},function(t){r("throw",t,a,u)}):e.resolve(h).then(function(t){s.value=t,a(s)},function(t){return r("throw",t,a,u)})}u(c.arg)}(i,a,r,o)})}return r=r?r.then(u,u):u()}})}function E(e,r){var n=r.method,o=e.iterator[n];if(o===t)return r.delegate=null,"throw"===n&&e.iterator.return&&(r.method="return",r.arg=t,E(e,r),"throw"===r.method)||"return"!==n&&(r.method="throw",r.arg=TypeError("The iterator does not provide a '"+n+"' method")),v;var i=l(o,e.iterator,r.arg);if("throw"===i.type)return r.method="throw",r.arg=i.arg,r.delegate=null,v;var a=i.arg;return a?a.done?(r[e.resultName]=a.value,r.next=e.nextLoc,"return"!==r.method&&(r.method="next",r.arg=t),r.delegate=null,v):a:(r.method="throw",r.arg=TypeError("iterator result is not an object"),r.delegate=null,v)}function S(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function G(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function P(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(S,this),this.reset(!0)}function R(e){if(e||""===e){var r=e[a];if(r)return r.call(e);if("function"==typeof e.next)return e;if(!isNaN(e.length)){var o=-1,i=function r(){for(;++o<e.length;)if(n.call(e,o))return r.value=e[o],r.done=!1,r;return r.value=t,r.done=!0,r};return i.next=i}}throw TypeError(_typeof(e)+" is not iterable")}return g.prototype=w,o(b,"constructor",{value:w,configurable:!0}),o(w,"constructor",{value:g,configurable:!0}),g.displayName=s(w,c,"GeneratorFunction"),e.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===g||"GeneratorFunction"===(e.displayName||e.name))},e.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,w):(t.__proto__=w,s(t,c,"GeneratorFunction")),t.prototype=Object.create(b),t},e.awrap=function(t){return{__await:t}},q(_.prototype),s(_.prototype,u,function(){return this}),e.AsyncIterator=_,e.async=function(t,r,n,o,i){void 0===i&&(i=Promise);var a=new _(f(t,r,n,o),i);return e.isGeneratorFunction(r)?a:a.next().then(function(t){return t.done?t.value:a.next()})},q(b),s(b,c,"Generator"),s(b,a,function(){return this}),s(b,"toString",function(){return"[object Generator]"}),e.keys=function(t){var e=Object(t),r=[];for(var n in e)r.push(n);return r.reverse(),function t(){for(;r.length;){var n=r.pop();if(n in e)return t.value=n,t.done=!1,t}return t.done=!0,t}},e.values=R,P.prototype={constructor:P,reset:function e(r){if(this.prev=0,this.next=0,this.sent=this._sent=t,this.done=!1,this.delegate=null,this.method="next",this.arg=t,this.tryEntries.forEach(G),!r)for(var o in this)"t"===o.charAt(0)&&n.call(this,o)&&!isNaN(+o.slice(1))&&(this[o]=t)},stop:function t(){this.done=!0;var e=this.tryEntries[0].completion;if("throw"===e.type)throw e.arg;return this.rval},dispatchException:function e(r){if(this.done)throw r;var o=this;function i(e,n){return c.type="throw",c.arg=r,o.next=e,n&&(o.method="next",o.arg=t),!!n}for(var a=this.tryEntries.length-1;a>=0;--a){var u=this.tryEntries[a],c=u.completion;if("root"===u.tryLoc)return i("end");if(u.tryLoc<=this.prev){var s=n.call(u,"catchLoc"),h=n.call(u,"finallyLoc");if(s&&h){if(this.prev<u.catchLoc)return i(u.catchLoc,!0);if(this.prev<u.finallyLoc)return i(u.finallyLoc)}else if(s){if(this.prev<u.catchLoc)return i(u.catchLoc,!0)}else{if(!h)throw Error("try statement without catch or finally");if(this.prev<u.finallyLoc)return i(u.finallyLoc)}}}},abrupt:function t(e,r){for(var o=this.tryEntries.length-1;o>=0;--o){var i=this.tryEntries[o];if(i.tryLoc<=this.prev&&n.call(i,"finallyLoc")&&this.prev<i.finallyLoc){var a=i;break}}a&&("break"===e||"continue"===e)&&a.tryLoc<=r&&r<=a.finallyLoc&&(a=null);var u=a?a.completion:{};return u.type=e,u.arg=r,a?(this.method="next",this.next=a.finallyLoc,v):this.complete(u)},complete:function t(e,r){if("throw"===e.type)throw e.arg;return"break"===e.type||"continue"===e.type?this.next=e.arg:"return"===e.type?(this.rval=this.arg=e.arg,this.method="return",this.next="end"):"normal"===e.type&&r&&(this.next=r),v},finish:function t(e){for(var r=this.tryEntries.length-1;r>=0;--r){var n=this.tryEntries[r];if(n.finallyLoc===e)return this.complete(n.completion,n.afterLoc),G(n),v}},catch:function t(e){for(var r=this.tryEntries.length-1;r>=0;--r){var n=this.tryEntries[r];if(n.tryLoc===e){var o=n.completion;if("throw"===o.type){var i=o.arg;G(n)}return i}}throw Error("illegal catch attempt")},delegateYield:function e(r,n,o){return this.delegate={iterator:R(r),resultName:n,nextLoc:o},"next"===this.method&&(this.arg=t),v}},e}function asyncGeneratorStep(t,e,r,n,o,i,a){try{var u=t[i](a),c=u.value}catch(s){r(s);return}u.done?e(c):Promise.resolve(c).then(n,o)}function _asyncToGenerator(t){return function(){var e=this,r=arguments;return new Promise(function(n,o){var i=t.apply(e,r);function a(t){asyncGeneratorStep(i,n,o,a,u,"next",t)}function u(t){asyncGeneratorStep(i,n,o,a,u,"throw",t)}a(void 0)})}}var mongoose=require("mongoose"),bcrypt=require("bcrypt"),movieSchema=mongoose.Schema({Title:{type:String,required:[!0,"Title Required"]},Description:{type:String,required:[!0,"Description is Required Field"]},Release:{type:String,required:[!0,"Release Year of movie is required"]},Genre:{Name:{type:String,required:[!0,"Category of Film is Required"]},Description:{type:String,required:[!0,"movie description is Required"]}},Rated:{type:String,required:[!0,"Film needs to have parental guide rating"]},Rating:{type:String,required:!0,min:[0,"Please enter valid rating no less then 0"],max:[100,"Please enter valid rating no more than 100"]},Actors:[String],Director:{Name:{type:String,required:[!0,"Name of Director Required"]},Bio:{type:String,required:[!0,"Bio info on director required"]},Birth:{type:Date,required:[!0,"Birth date of director required"]},Death:{type:Date}},ImagePath:{type:String},Featured:{type:Boolean}}),userSchema=mongoose.Schema({Username:{type:String,required:[!0,"Username required"]},Password:{type:String,required:[!0,"Password required to have account active"]},Email:{email:"TEST@test.com",type:String,required:!0,unique:!0,lowercase:!0,validate:{validator:function t(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)},message:"Invalid email address format"}},Birthday:{type:Date,required:[!0,"Birth date required to have account active"]},Favorite:[{type:mongoose.Schema.Types.ObjectId,ref:"Movie"}]});userSchema.statics.hashPassword=function(t){return bcrypt.hashSync(t,10)},userSchema.methods.validatePassword=function(t){return bcrypt.compareSync(t,this.Password)},userSchema.statics.isThisEmailInUse=function(){var t=_asyncToGenerator(_regeneratorRuntime().mark(function t(e){var r;return _regeneratorRuntime().wrap(function t(n){for(;;)switch(n.prev=n.next){case 0:if(e){n.next=2;break}throw Error("Invalid Email");case 2:return n.prev=2,n.next=5,this.findOne({email:e});case 5:if(r=n.sent,!User){n.next=8;break}return n.abrupt("return",!1);case 8:return n.abrupt("return",!0);case 11:return n.prev=11,n.t0=n.catch(2),console.log("error inside isThisEmailInUse method",n.t0.message),n.abrupt("return",!1);case 15:case"end":return n.stop()}},t,this,[[2,11]])}));return function(e){return t.apply(this,arguments)}}();var Movie=mongoose.model("Movie",movieSchema),User=mongoose.model("User",userSchema);module.exports.Movie=Movie,module.exports.User=User;
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
+
+let movieSchema = mongoose.Schema({
+  Title: {type: String, required: [true, "Title Required"]},
+  Description: {type: String, required: [true, "Description is Required Field"]},
+  Release: {type: String, required: [true, "Release Year of movie is required"]},
+  Genre: {
+    Name: {
+      type: String,
+      required: [true, "Category of Film is Required"]
+    },
+    Description: {type: String, required: [true, "movie description is Required"]}
+  },
+  Rated: {
+    type: String, 
+    required: [true,
+    "Film needs to have parental guide rating"]
+  },
+  Rating: {
+    type: String, 
+    required:true,
+    min:[0, 'Please enter valid rating no less then 0'],
+    max:[100, 'Please enter valid rating no more than 100'],
+  },
+  Actors: [String],
+  Director: {
+    Name: {type: String, required:[true, 'Name of Director Required']},
+    Bio: {type: String, required:[true, 'Bio info on director required']},
+    Birth: {type: Date, required:[true, 'Birth date of director required']},
+    Death: {type: Date}
+  },
+  ImagePath: {type: String},
+  Featured: {type: Boolean},
+});
+
+let userSchema = mongoose.Schema({
+    Username: {type: String, required: [true, 'Username required'] },
+    Password: { type: String, required: [true, 'Password required to have account active']},
+    Email: {email: "TEST@test.com",
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      validate: {
+        validator: function (value) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        },
+        message: 'Invalid email address format',
+      },
+    },
+    Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
+    Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
+});
+
+userSchema.statics.hashPassword = (password) => {
+  return bcrypt.hashSync(password, 10);
+}
+
+userSchema.methods.validatePassword = function (password) {
+  return bcrypt.compareSync(password, this. Password);
+  //this password REFERING to user document 
+  //NOT userSchema METHODS
+  //=> OMITTED Instance methods 
+  //THIS PASSWORD refers to that ONE INDV. USER NOT MODEL
+};
+
+
+userSchema.statics.isThisEmailInUse = async function(email) {
+  if(!email) throw new Error('Invalid Email')
+  try {
+    const user = await this.findOne({email})
+    if(User) return false
+
+    return true;
+
+  } catch (error) {
+    console.log('error inside isThisEmailInUse method', error.message)
+    return false
+  }
+  }
+
+let Movie = mongoose.model('Movie', movieSchema);
+let User = mongoose.model('User', userSchema);
+
+module.exports.Movie = Movie;
+module.exports.User = User;
