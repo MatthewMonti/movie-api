@@ -52,7 +52,7 @@ app.get('/api/about', async (req, res) => {
 });
 
 //MOVIES LIST 
-app.get('/api/movies'), async (req, res) => {
+app.get('/api/movies', async (req, res) => {
   await Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
