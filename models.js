@@ -31,7 +31,7 @@ let movieSchema = mongoose.Schema({
     Birth: {type: Date, required:[true, 'Birth date of director required']},
     Death: {type: Date}
   },
-  ImagePath: {type: String},
+  Image: {type: String},
   Featured: {type: String},
 });
 
