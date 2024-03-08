@@ -46,7 +46,7 @@
       "Bio": "Greta Gerwig, in full Greta Celeste Gerwig, (born August 4, 1983, Sacramento, California, U.S), American actress, writer, and director who was known for the radiant artlessness of her performances in small independent movies before embarking on a successful career as a filmmaker.",
       "Birth": "1983-08-04"
     },
-    "ImagePath": "express/pictures/Barbie.jpg",
+    "Image": "https://m.media-amazon.com/images/I/71BgdzmFDAL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -65,7 +65,7 @@
       "Bio": "Hayao Miyazaki is a Japanese animator, filmmaker, and manga artist. A co-founder of Studio Ghibli, he has attained international acclaim as a masterful storyteller and creator of Japanese animated feature films, and is widely regarded as one of the most accomplished filmmakers in the history of animation.",
      "Birth": "1941-01-05"
     },
-    "ImagePath": "express/pictures/Castle in the Sky.jpeg",
+    "Image": "https://m.media-amazon.com/images/I/71HLiMMNe-L._AC_UF1000,1000_QL80_.jpg",
     "Featured": false
   },
   {
@@ -89,7 +89,7 @@
       "Bio": "Peter Sohnn is an American animator, filmmaker, and voice actor, best known for his work at Pixar Animation Studios. He directed the short film Partly Cloudy 2009 and the feature films The Good Dinosaur 2015 and Elemental 2023. He has also been the voice of Emile in Ratatouille (2007), Squishy in Monsters University 2013, and Sox in Lightyear 2022",
       "Birth": "1977-10-18"
     },
-    "ImagePath": "express/pictures/Elemental.jpg",
+    "Image": "https://m.media-amazon.com/images/I/71u8pWtiz0L._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -108,7 +108,7 @@
       "Bio": "James Francis Gunn Jr. is an American filmmaker and studio executive. He began his career as a screenwriter in the mid-1990s, starting at Troma Entertainment with Tromeo and Juliet 1997. He then began working as a director, starting with the horror-comedy film Slither 2006, and moving to the superhero genre with Super 2010, Guardians of the Galaxy 2014, Guardians of the Galaxy Vol. 2 2017, The Suicide Squad 2021, and Guardians of the Galaxy Vol. 3 2023. In 2022, Warner Bros. Discovery hired Gunn and Peter Safran to become co-chairmen and co-CEOs of DC Studios.",
       "Birth": "1966-08-05"
     },
-    "ImagePath": "express/pictures/Guardian of the Galaxy Vol.3.png",
+    "Image": "https://m.media-amazon.com/images/I/71OLMNKaKEL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -128,7 +128,7 @@
       "Bio": "Steven Spielburg is an American film director, producer and screenwriter. A major figure of the New Hollywood era and pioneer of the modern blockbuster, he is the most commercially successful director in history. He is the recipient of many accolades, including three Academy Awards, two BAFTA Awards, and four Directors Guild of America Awards, as well as the AFI Life Achievement Award in 1995, the Kennedy Center Honor in 2006, the Cecil B. DeMille Award in 2009 and the Presidential Medal of Freedom in 2015. Seven of his films have been inducted into the National Film Registry by the Library of Congress as culturally, historically or aesthetically significant",
       "Birth": "1946-12-18"
     },
-    "ImagePath": "express/pictures/Temple of Doom.jpg",
+    "Image": "https://m.media-amazon.com/images/I/61AbSnzGR+L._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -147,7 +147,7 @@
       "Bio": "Adam Robitel is an American film director, producer, screenwriter, and actor. He is best known for directing horror films, such as The Taking of Deborah Logan 2014, Insidious: The Last Key 2018, Escape Room 2019 and its sequel Escape Room: Tournament of Champions 2021. He also co-wrote Paranormal Activity: The Ghost Dimension 2015.",
       "Birth": "1978-05-26"
     },
-    "ImagePath": "express/pictures/Insidous Last key.jpeg",
+    "Image": "https://m.media-amazon.com/images/I/61F+vUcAuvL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -171,7 +171,7 @@
       "Bio": "Chad Stahelski is an American stuntman, actor, and film director. He was born on September 20, 1968 in the United States13. He is best known for directing the John Wick film series12. He has also worked as a stuntman, stunt coordinator, and second unit director on several films.",
       "Birth": "1968-09-20"
     },
-    "ImagePath": "express/pictures/John Wick - Chapter 4.jpg",
+    "Image": "https://m.media-amazon.com/images/I/61DhnZmO17L._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -195,7 +195,7 @@
       "Bio": "Steven Spielburg is an American film director, producer and screenwriter. A major figure of the New Hollywood era and pioneer of the modern blockbuster, he is the most commercially successful director in history. He is the recipient of many accolades, including three Academy Awards, two BAFTA Awards, and four Directors Guild of America Awards, as well as the AFI Life Achievement Award in 1995, the Kennedy Center Honor in 2006, the Cecil B. DeMille Award in 2009 and the Presidential Medal of Freedom in 2015. Seven of his films have been inducted into the National Film Registry by the Library of Congress as culturally, historically or aesthetically significant",
       "Birth": "1946-12-18"
     },
-    "ImagePath": "express/pictures/Raiders of the Lost Ark.jpg",
+    "Image": "https://m.media-amazon.com/images/I/71fRbA8AX4L._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -219,7 +219,7 @@
       "Bio": "Snyder is known for his highly stylized Spartan epic, 300 (2007), a box-office smash based on the graphic novel by Frank Miller. Snyder then went to make Watchmen (2009), the ground-breaking comic book miniseries written by Alan Moore. Looking to work on something fraught with less potential for controversy, he helmed the CGI family fantasy Legend of the Guardians: The Owls of Ga'Hoole (2010), then wrote, produced and directed the wildly self-indulgent genre mash-up spectacle Sucker Punch (2011), about a young girl (Emily Browning) who escapes the real world horrors of a mental asylum by retreating into her own fantasies. Resuscitating the Superman franchise with the highly-anticipated Man of Steel (2013) was merely one more make-or-break challenge for the director. Accused of favoring style over substance by his detractors, Snyder unapologetically offered up his films to the fans as pure popcorn entertainment.",
       "Birth": "1966-03-01"
     },
-    "ImagePath": "express/pictures/Rebel-Moon.webp",
+    "Image": "https://m.media-amazon.com/images/I/81VCu1mAEvL._AC_UF894,1000_QL80_.jpg",
     "Featured": false
   },
   {
@@ -238,7 +238,7 @@
       "Bio": "Guy Ritchie is a British film director, writer, producer, and businessman12345. He is known for his trademark crime thrillers and suspense films, such as Lock, Stock and Two Smoking Barrels and Snatch1234. Ritchie left school at age 15 and worked entry-level jobs in the film industry before going on to direct television commercials2. He has also directed the Sherlock Holmes films starring Robert Downey Jr.24. Ritchie is occasionally an actor, pub landlord, and businessman",
       "Birth": "1968-09-10"
     },
-    "ImagePath": "express/pictures/The Covenant.jpeg",
+    "Image": "https://m.media-amazon.com/images/I/71bIMJobeeL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -271,7 +271,7 @@
       "Birth": "1924-06-25",
       "Death": "2011-04-09"      
     },
-    "ImagePath": "express/pictures/12 Angry Men.jpeg",
+    "Image": "https://m.media-amazon.com/images/I/51BXcmhQxjL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   },
   {
@@ -297,7 +297,7 @@
         "Birth": "1906-06-22",
         "Death": "2002-03-27"
       },
-      "ImagePath": "express/pictures/Witness for the Prosecution.jpeg",
+      "Image": "https://m.media-amazon.com/images/I/71Y+fuZQFyL._AC_UF894,1000_QL80_.jpg",
      "Featured": true
     },
     {
@@ -324,7 +324,7 @@
         "Bio": "One of the more successful filmmakers to come from the Spielberg school of genre moviemaking, writer-director Chris Columbus emerged as a specialist in combining a sensitivity for young people's feelings with a rousing adventure yarn. Columbus entered Hollywood by way of screenwriting with his script for 'Gremlins' (1984) being shepherded by Spielberg, who soon became a mentor to the young scribe. After writing the scripts for 'The Goonies'(1985) and 'Young Sherlock Holmes' (1985), he made his directing debut with the mild family comedy 'Adventures in Babysitting' (1987). Columbus entered the realm of blockbuster filmmaker with 'Home Alone' (1990), arguably one of the most successful film comedies of all time. Following the sequel 'Home Alone 2: Lost in New York' (1992), he had another hit with the Robin Williams vehicle 'Mrs. Doubtfire' (1993), which placed Columbus at the top of Hollywood's list of commercial hitmakers. Despite his overwhelming commercial success, Columbus struggled to earn the respect of critics, many of whom complained that he tended to overly sentimentalize his work by finding simple happy solutions to complicated problems. He typified such criticisms with 'Bicentennial Man''' (1999), which descended into cheap sentiment after a promising start. Columbus next tackled the incredibly difficult task of bring 'Harry Potter and the Sorcerer's Stone' (2001) to life on the big screen. Faithfully adapting that novel and the sequel 'Harry Potter and the Chamber of Secrets' (2002), Columbus helped launch what became one of the most commercially successful franchises in cinema history. Though he faded to the background with 'Rent'' (2005) and 'Percy Jackson & the Olympians: The Lightning Thief' (2010), Columbus remained one of Hollywood's most bankable commercial directors.",
         "Birth": "1958-09-10"
     },
-    "ImagePath": "express/pictures/Home_Alone2.jpg",
+    "ImagePath": "https://m.media-amazon.com/images/I/71rwGIFczGL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
   }
 ]
