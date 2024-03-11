@@ -32,7 +32,7 @@ let movieSchema = mongoose.Schema({
     Death: {type: Date}
   },
   Image: {type: String},
-  Featured: {type: String},
+  Featured: {type: Boolean},
 });
 
 let userSchema = mongoose.Schema({
