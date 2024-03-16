@@ -112,6 +112,33 @@
     "Featured": true
   },
   {
+    "Title": "Home Alone 2",
+    "Release": "1992",
+    "Actors": [
+      "Macaulay Culkin",
+      "Daniel Stern", 
+      "Joe Pesci", 
+      "John Heard", 
+      "Deven Ratray", 
+      "Devin Ratray", 
+      "Tim Curry"
+    ],
+    "Rated": "PG",
+    "Rating": "62",
+    "Description": "After snarky youth Kevin McCallister (Macaulay Culkin) loses track of his father at the airport, he mistakenly gets on a plane headed for New York City -- while the rest of the McCallisters fly to Florida. Now alone in the Big Apple, Kevin cons his way into a room at the Plaza Hotel and begins his usual antics. But when Kevin discovers that the Sticky Bandits (Joe Pesci, Daniel Stern) are on the loose, he struggles to stop them from robbing an elderly man's toy store just before Christmas.",
+    "Genre": {
+        "Name": "Comedy",
+        "Description": "Comedy is a genre of film in which the main emphasis is on humor. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect"
+    },
+    "Director": {
+        "Name": "Chris Columbus",
+        "Bio": "One of the more successful filmmakers to come from the Spielberg school of genre moviemaking, writer-director Chris Columbus emerged as a specialist in combining a sensitivity for young people's feelings with a rousing adventure yarn. Columbus entered Hollywood by way of screenwriting with his script for 'Gremlins' (1984) being shepherded by Spielberg, who soon became a mentor to the young scribe. After writing the scripts for 'The Goonies'(1985) and 'Young Sherlock Holmes' (1985), he made his directing debut with the mild family comedy 'Adventures in Babysitting' (1987). Columbus entered the realm of blockbuster filmmaker with 'Home Alone' (1990), arguably one of the most successful film comedies of all time. Following the sequel 'Home Alone 2: Lost in New York' (1992), he had another hit with the Robin Williams vehicle 'Mrs. Doubtfire' (1993), which placed Columbus at the top of Hollywood's list of commercial hitmakers. Despite his overwhelming commercial success, Columbus struggled to earn the respect of critics, many of whom complained that he tended to overly sentimentalize his work by finding simple happy solutions to complicated problems. He typified such criticisms with 'Bicentennial Man''' (1999), which descended into cheap sentiment after a promising start. Columbus next tackled the incredibly difficult task of bring 'Harry Potter and the Sorcerer's Stone' (2001) to life on the big screen. Faithfully adapting that novel and the sequel 'Harry Potter and the Chamber of Secrets' (2002), Columbus helped launch what became one of the most commercially successful franchises in cinema history. Though he faded to the background with 'Rent'' (2005) and 'Percy Jackson & the Olympians: The Lightning Thief' (2010), Columbus remained one of Hollywood's most bankable commercial directors.",
+        "Birth": "1958-09-10"
+    },
+    "Image": "https://m.media-amazon.com/images/I/71rwGIFczGL._AC_UF894,1000_QL80_.jpg",
+    "Featured": true
+  },
+  {
     "Title": "Indiana Jones and the Temple of Doom",
     "Release": "1984",
     "Actors": [ "Harrison Ford", "Kate Capshaw", "Ke Huy Quan", "Amrish Puri"
@@ -299,33 +326,6 @@
       },
       "Image": "https://m.media-amazon.com/images/I/71Y+fuZQFyL._AC_UF894,1000_QL80_.jpg",
      "Featured": true
-    },
-    {
-    "Title": "Home Alone 2",
-    "Release": "1992",
-    "Actors": [
-      "Macaulay Culkin",
-      "Daniel Stern", 
-      "Joe Pesci", 
-      "John Heard", 
-      "Deven Ratray", 
-      "Devin Ratray", 
-      "Tim Curry"
-    ],
-    "Rated": "PG",
-    "Rating": "62",
-    "Description": "After snarky youth Kevin McCallister (Macaulay Culkin) loses track of his father at the airport, he mistakenly gets on a plane headed for New York City -- while the rest of the McCallisters fly to Florida. Now alone in the Big Apple, Kevin cons his way into a room at the Plaza Hotel and begins his usual antics. But when Kevin discovers that the Sticky Bandits (Joe Pesci, Daniel Stern) are on the loose, he struggles to stop them from robbing an elderly man's toy store just before Christmas.",
-    "Genre": {
-        "Name": "Comedy",
-        "Description": "Comedy is a genre of film in which the main emphasis is on humor. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect"
-    },
-    "Director": {
-        "Name": "Chris Columbus",
-        "Bio": "One of the more successful filmmakers to come from the Spielberg school of genre moviemaking, writer-director Chris Columbus emerged as a specialist in combining a sensitivity for young people's feelings with a rousing adventure yarn. Columbus entered Hollywood by way of screenwriting with his script for 'Gremlins' (1984) being shepherded by Spielberg, who soon became a mentor to the young scribe. After writing the scripts for 'The Goonies'(1985) and 'Young Sherlock Holmes' (1985), he made his directing debut with the mild family comedy 'Adventures in Babysitting' (1987). Columbus entered the realm of blockbuster filmmaker with 'Home Alone' (1990), arguably one of the most successful film comedies of all time. Following the sequel 'Home Alone 2: Lost in New York' (1992), he had another hit with the Robin Williams vehicle 'Mrs. Doubtfire' (1993), which placed Columbus at the top of Hollywood's list of commercial hitmakers. Despite his overwhelming commercial success, Columbus struggled to earn the respect of critics, many of whom complained that he tended to overly sentimentalize his work by finding simple happy solutions to complicated problems. He typified such criticisms with 'Bicentennial Man''' (1999), which descended into cheap sentiment after a promising start. Columbus next tackled the incredibly difficult task of bring 'Harry Potter and the Sorcerer's Stone' (2001) to life on the big screen. Faithfully adapting that novel and the sequel 'Harry Potter and the Chamber of Secrets' (2002), Columbus helped launch what became one of the most commercially successful franchises in cinema history. Though he faded to the background with 'Rent'' (2005) and 'Percy Jackson & the Olympians: The Lightning Thief' (2010), Columbus remained one of Hollywood's most bankable commercial directors.",
-        "Birth": "1958-09-10"
-    },
-    "Image": "https://m.media-amazon.com/images/I/71rwGIFczGL._AC_UF894,1000_QL80_.jpg",
-    "Featured": true
-  }
+    }
 ]
 
