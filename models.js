@@ -37,6 +37,12 @@ let movieSchema = mongoose.Schema({
       true, "Movie Poster is missing alert tech support"
     ]
   },
+  Contenturl: {
+    type:String,
+    required: [
+      true, "youtube video does not exsist"
+    ]
+  },
   Featured: {type: String},
 });
 
