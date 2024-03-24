@@ -22,6 +22,7 @@
       "Birth": "1970-01-01"
     },
     "Image": "https://m.media-amazon.com/images/M/MV5BMzM4ZDJhYjYtZGY5Ny00NTk0LWI4ZTYtNjczZDFiMGI2ZjEzXkEyXkFqcGdeQXVyNjc5NjEzNA@@._V1_FMjpg_UX1000_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/qFqgmaO15x4?si=g3wpvDQiz4P-7izL",
     "Featured": false
   },
   {
@@ -47,6 +48,7 @@
       "Birth": "1983-08-04"
     },
     "Image": "https://m.media-amazon.com/images/I/71BgdzmFDAL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/8zIf0XvoL9Y?si=cnJcV1XrsFMMsLFT",
     "Featured": true
   },
   {
@@ -66,6 +68,7 @@
      "Birth": "1941-01-05"
     },
     "Image": "https://m.media-amazon.com/images/I/71HLiMMNe-L._AC_UF1000,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/5lMRfLJGXSM?si=aSfy_EBzVFiFYdyu",
     "Featured": false
   },
   {
@@ -90,6 +93,7 @@
       "Birth": "1977-10-18"
     },
     "Image": "https://m.media-amazon.com/images/I/71u8pWtiz0L._AC_UF894,1000_QL80_.jpg",
+    "contentUrl":"https://www.youtube.com/embed/hXzcyx9V0xw?si=kyv7cW1fO_Ti-g_C",
     "Featured": true
   },
   {
@@ -109,6 +113,7 @@
       "Birth": "1966-08-05"
     },
     "Image": "https://m.media-amazon.com/images/I/71OLMNKaKEL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/u3V5KDHRQvk?si=hGkgxwJyUhWCMWxZ",
     "Featured": true
   },
   {
@@ -136,6 +141,7 @@
         "Birth": "1958-09-10"
     },
     "Image": "https://m.media-amazon.com/images/I/71rwGIFczGL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/g64dOUrwqrE?si=Z67RI0-5CRhG-CH2",
     "Featured": true
   },
   {
@@ -156,6 +162,7 @@
       "Birth": "1946-12-18"
     },
     "Image": "https://m.media-amazon.com/images/I/61AbSnzGR+L._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/NGsWgHNxK9c?si=gV19sOY92QUZRiVJ",
     "Featured": true
   },
   {
@@ -175,6 +182,7 @@
       "Birth": "1978-05-26"
     },
     "Image": "https://m.media-amazon.com/images/I/61F+vUcAuvL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/acQyrwQyCOk?si=_4R7jkmvp0QiES29",
     "Featured": true
   },
   {
@@ -199,6 +207,7 @@
       "Birth": "1968-09-20"
     },
     "Image": "https://m.media-amazon.com/images/I/61DhnZmO17L._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/qEVUtrk8_B4?si=C4YmKJsSNGjbb5Pe",
     "Featured": true
   },
   {
@@ -223,6 +232,7 @@
       "Birth": "1946-12-18"
     },
     "Image": "https://m.media-amazon.com/images/I/71fRbA8AX4L._AC_UF894,1000_QL80_.jpg",
+    "contentUrl":"https://www.youtube.com/embed/0xQSIdSRlAk?si=VjUFa9_UUsfyVb0u",
     "Featured": true
   },
   {
@@ -247,6 +257,7 @@
       "Birth": "1966-03-01"
     },
     "Image": "https://m.media-amazon.com/images/I/81VCu1mAEvL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/_rHLOXbFZtI?si=wL2UHn_ANIwbdt2o",
     "Featured": false
   },
   {
@@ -266,6 +277,7 @@
       "Birth": "1968-09-10"
     },
     "Image": "https://m.media-amazon.com/images/I/71bIMJobeeL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/02PPMPArNEQ?si=kv7YGswbnEGCP6Yc",
     "Featured": true
   },
   {
@@ -299,6 +311,7 @@
       "Death": "2011-04-09"      
     },
     "Image": "https://m.media-amazon.com/images/I/51BXcmhQxjL._AC_UF894,1000_QL80_.jpg",
+    "contentUrl": "https://www.youtube.com/embed/TEN-2uTi2c0?si=efK9BRwNk5qWC-GG",
     "Featured": true
   },
   {
@@ -325,7 +338,8 @@
         "Death": "2002-03-27"
       },
       "Image": "https://m.media-amazon.com/images/I/71Y+fuZQFyL._AC_UF894,1000_QL80_.jpg",
-     "Featured": true
+     "contentUrl": "https://www.youtube.com/embed/x_NKeisPXgI?si=iqrCyLdROIMuwpcP",
+      "Featured": true
     }
 ]
 
