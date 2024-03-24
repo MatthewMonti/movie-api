@@ -38,7 +38,7 @@ let movieSchema = mongoose.Schema({
     ]
   
   },
-  contentUrl: {
+  Contenturl: {
     type:String,
     required: [
       true, "YouTube video is not there alert tech support"
