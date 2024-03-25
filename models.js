@@ -31,8 +31,9 @@ let movieSchema = mongoose.Schema({
     Birth: {type: Date, required:[true, 'Birth date of director required']},
     Death: {type: Date}
   },
-  Image: {type: String},
+  Image: {type: String, required:[true, 'Poster Image file is missing']},
   Featured: {type: String},
+  url: {type: String, required: [true, 'unable to get movie']}
 });
 
 let userSchema = mongoose.Schema({
