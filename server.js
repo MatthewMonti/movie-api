@@ -16,7 +16,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['http://localhost:1234/api/user/login', 'https://movies-flex-6e317721b427.herokuapp.com'];
+let allowedOrigins = ['http://localhost:5353/api/user/login', 'https://movies-flex-6e317721b427.herokuapp.com'];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
