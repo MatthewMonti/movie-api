@@ -218,7 +218,7 @@ app.post('/api/user',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/user/:identity', 
+app.put('/api/user/:id', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -238,7 +238,7 @@ app.put('/api/user/:identity',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user._id !== req.params.identity){
+       if(req.user.id !== req.params.identity){
         return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
