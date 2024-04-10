@@ -262,9 +262,9 @@ app.put('/api/user/:identity',
 });
 
 // Delete a user by username - WORKS
-app.delete('/api/user/Username/:identity', passport.authenticate('jwt', 
+app.delete('/api/user/:identity', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndDelete({Username: req.params.identity})
+  await Users.findByIdAndDelete({_id: req.params.identity})
     .then((identity) => {
         res.status(200).send(req.params.identity + ' user was removed from our records.');
     })
