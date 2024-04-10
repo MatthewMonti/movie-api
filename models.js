@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 
 let movieSchema = mongoose.Schema({
+  id: {type: Objectid, required: [true, "id of film missing"]},
   Title: {type: String, required: [true, "Title Required"]},
   Description: {type: String, required: [true, "Description is Required Field"]},
   Release: {type: String, required: [true, "Release Year of movie is required"]},
@@ -37,6 +38,7 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
+    id: {type: Objectid, required: [true, "id of user missing"]},
     Username: {type: String, required: [true, 'Username required'] },
     Password: { type: String, required: [true, 'Password required to have account active']},
     Email: {email: "TEST@test.com",
