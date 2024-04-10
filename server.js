@@ -238,7 +238,7 @@ app.put('/api/user/:identity',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user.id !== req.params.identity){
+       if(req.user.Username !== req.params.identity){
         return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
