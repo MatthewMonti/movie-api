@@ -243,7 +243,7 @@ app.put('/api/user/:identity',
       }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findByIdAndUpdate({_id: req.params.identity }, { $set:
+    await Users.findOneAndUpdate({Username: req.params.identity }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -264,7 +264,7 @@ app.put('/api/user/:identity',
 // Delete a user by username - WORKS
 app.delete('/api/user/:identity', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndDelete({_id: req.params.identity})
+  await Users.findOneAndDelete({Username: req.params.identity})
     .then((identity) => {
         res.status(200).send(req.params.identity + ' user was removed from our records.');
     })
@@ -277,7 +277,7 @@ app.delete('/api/user/:identity', passport.authenticate('jwt',
 // Add a movie to a user's list of favorites
 app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
+  await Users.findOneAndUpdate({ Username: req.params.identity }, {
      $addToSet: { Favorite: req.params.add}
    },
    { new: true }) // This line makes sure that the updated document is returned
@@ -293,7 +293,7 @@ app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
+  await Users.findOneAndUpdate({ Username: req.params.identity }, {
      $pull: { Favorite: req.params.remove}
    },
    { new: true }) // This line makes sure that the updated document is returned
