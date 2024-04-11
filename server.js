@@ -238,12 +238,12 @@ app.put('/api/user/',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user.Username !== req.params.Username){
-        return res.status(400).send('Unauthorized user or user does not exsist');
+       if(req.user.Username !== req.body.Username){
+        return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({Username: req.params.Username }, { $set:
+    await Users.findOneAndUpdate({Username: req.body.Username }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -261,13 +261,12 @@ app.put('/api/user/',
   });
 });
 
-
 // Delete a user by username - WORKS
 app.delete('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndDelete({Username: req.params.Username})
-    .then((identity) => {
-        res.status(200).send(req.params.identity + ' user was removed from our records.');
+  await Users.findOneAndDelete({Username: req.body.Username})
+    .then((Username) => {
+        res.status(200).send(req.body.Username + ' user was removed from our records.');
     })
     .catch((err) => {
       console.error(err);
@@ -278,8 +277,8 @@ app.delete('/api/user/favorite', passport.authenticate('jwt',
 // Add a movie to a user's list of favorites
 app.post('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username}, {
-     $addToSet: { Favorite: req.params.add}
+  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+     $addToSet: { Favorite: req.body.Favorite}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((add) => {
@@ -294,12 +293,12 @@ app.post('/api/user/favorite', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $pull: { Favorite: req.params.remove}
+  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+     $pull: { Favorite: req.body.Favorite}
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((remove) => {
-      res.status(200).send(req.params.remove + ' favorite film id deleted.');
+      res.status(200).send(req.body.Favorite + ' favorite film id deleted.');
   })
   .catch((err) => {
     console.error(err);
