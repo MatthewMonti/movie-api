@@ -218,7 +218,7 @@ app.post('/api/user',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/user/:identity', 
+app.put('/api/user/', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -262,7 +262,7 @@ app.put('/api/user/:identity',
 });
 
 // Delete a user by username - WORKS
-app.delete('/api/user/:identity', passport.authenticate('jwt', 
+app.delete('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndDelete({Username: req.params.identity})
     .then((identity) => {
@@ -275,7 +275,7 @@ app.delete('/api/user/:identity', passport.authenticate('jwt',
 });
 
 // Add a movie to a user's list of favorites
-app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt', 
+app.post('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.identity }, {
      $addToSet: { Favorite: req.params.add}
