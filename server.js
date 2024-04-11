@@ -243,7 +243,7 @@ app.put('/api/user/',
       }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({Username: req.params.identity }, { $set:
+    await Users.findOneAndUpdate({Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -260,6 +260,7 @@ app.put('/api/user/',
     res.status(500).send('Error: ' + error);
   });
 });
+
 
 // Delete a user by username - WORKS
 app.delete('/api/user/favorite', passport.authenticate('jwt', 
