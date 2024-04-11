@@ -282,7 +282,7 @@ app.post('/api/user/favorite', passport.authenticate('jwt',
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((add) => {
-      res.status(200).send(req.params.add + ' film id being added to favorites.');
+      res.status(200).send(req.body.Favorite + ' film id being added to favorites.');
   })
   .catch((err) => {
     console.error(err);
