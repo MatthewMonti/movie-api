@@ -291,7 +291,7 @@ app.post('/api/user/favorite', passport.authenticate('jwt',
 });
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
+app.delete('/api/user/favorite/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.body.Username }, {
      $pull: { Favorite: req.body.Favorite}
