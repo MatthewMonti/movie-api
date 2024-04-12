@@ -22,7 +22,7 @@ module.exports = (router) => {
       if (error || !user) {
         return res.status(400).json({
           message: 'Username not in database',
-          user: user
+          username: username
         });
       }
 
