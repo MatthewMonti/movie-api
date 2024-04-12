@@ -21,17 +21,11 @@ module.exports = (router) => {
     passport.authenticate('local', { session: false }, (error, user, info) => {
       if (error || !user) {
         return res.status(400).json({
-          message: 'Username not in database try again',
+          message: 'that user information is not in the system',
           username: username
         });
       }
 
-      if (error || !password) {
-        return res.status(400).json({
-          message: 'password does not match user',
-          password: password
-        });
-      }
       req.login(user, { session: false }, (error) => {
         if (error) {
           res.send(error);
