@@ -164,21 +164,9 @@ app.get("/api/movies/director/:name", async (req, res) => {
 });
 
 //Get user information
-app.get('/api/users/:id', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await Users.findById(id);
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    return res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
-  }
+app.get('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // Get user information from the request object
+  res.json(req.user);
 });
 
 
