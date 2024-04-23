@@ -163,15 +163,12 @@ app.get("/api/movies/director/:name", async (req, res) => {
   });
 });
 
+
 //Get user information
 app.get('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
   // Get user information from the request object
   res.json(req.user);
 });
-
-
-
-
 //Add a user - WORKS error works
 app.post('/api/user',
   // Validation logic here for request
@@ -258,7 +255,6 @@ app.put('/api/user/',
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Birthday: req.body.Birthday,
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
@@ -272,7 +268,7 @@ app.put('/api/user/',
 });
 
 // Delete a user by username - WORKS
-app.delete('/api/user/favorite', passport.authenticate('jwt', 
+app.delete('/api/user/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndDelete({Username: req.body.Username})
     .then((Username) => {
