@@ -163,6 +163,22 @@ app.get("/api/movies/director/:name", async (req, res) => {
   });
 });
 
+//Get user information
+app.get('/api/users', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  Users.find({'User.Username': req.params.Username})
+  .then((users) => {
+    if (users.length == 0) {
+      res.status(400).send(req.params.Username + ' is not found in database');
+    } else {
+      res.status(200).json(users)
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send("Error: " + error);
+  });
+});
 //Add a user - WORKS error works
 app.post('/api/user',
   // Validation logic here for request
