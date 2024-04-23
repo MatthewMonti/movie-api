@@ -164,21 +164,26 @@ app.get("/api/movies/director/:name", async (req, res) => {
 });
 
 //Get user information
-app.get('/api/users/username/', passport.authenticate('jwt', 
+app.get('/api/users/:id', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  Users.find({'Username.Name': req.body.user})
-  .then((users) => {
-    if (users.length == 0) {
-      res.status(400).send(req.body.user + ' is not found in database');
-    } else {
-      res.status(200).json(users)
+  try {
+    const { id } = req.params;
+    const user = await Users.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
-  })
-  .catch((error) => {
+
+    return res.json(user);
+  } catch (error) {
     console.error(error);
-    res.status(500).send("Error: " + error);
-  });
+    res.status(500).json({ error: 'Server error' });
+  }
 });
+
+
+
+
 //Add a user - WORKS error works
 app.post('/api/user',
   // Validation logic here for request
