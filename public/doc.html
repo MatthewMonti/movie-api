@@ -54,6 +54,7 @@
           "Password": "MoneyWallet#1"
         }
       </td>
+      </tr>
       <tr>
         <td>Film Search by Title</td>
         <td>/api/movies/title/:label</td>
@@ -106,6 +107,20 @@
         <td>User information displayed along with created token property used for authorizing User to make certain changes on certain commands</td>
       </tr>
       <tr>
+        <td>User Information</td>
+        <td>/api/user/</td>
+        <td>GET</td>
+        <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
+        <td>
+        {"Username": "USERNAME",
+        "Password": "PASSWORD",
+        "Email": "EMAIL",
+        "Birthday": "####-##-##",
+        "Favorite": "Favorite"
+        }</td>
+        <td> Display New User info or message already exists if already added</td>     
+      </tr>
+      <tr>
         <td>User Registration</td>
         <td>/api/user</td>
         <td>POST</td>
@@ -115,6 +130,7 @@
         "Password": "PASSWORD",
         "Email": "EMAIL",
         "Birthday": "####-##-##",
+        "Favorite": "Favorite"
         }</td>
         <td> Display New User info or message already exists if already added</td>     
       </tr>
@@ -128,13 +144,14 @@
         "Password": "PASSWORD",
         "Email": "EMAIL",
         "Birthday": "####-##-##",
+        "Favorite": "Favorite"
         }
       </td>
        <td>Display UPDATED User information or message indicating info already updated</td>
       </tr>
       <tr>
         <td>Allows user to delete account</td>
-        <td>/api/user/:identity</td>
+        <td>/api/user/</td>
         <td>DELETE</td>
         <td>Follow the instructions of LOGIN ENDPOINT
           Login and Copy Bearer Token (User info) to Authenticate Bearer Token
@@ -150,6 +167,7 @@
         <td>NA</td>
         <td>Message that film has been added or error message</td>
       </tr>
+
       <tr>
       <tr>
         <td>User can delete Favorite Movie</td>
