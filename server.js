@@ -297,21 +297,62 @@ app.post('/api/user/favorite', passport.authenticate('jwt',
   });
 });
 
-// Delete a movie to a user's list of favorites
+
+//Add a user - WORKS error works
+app.post('/api/user/favorite',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Favorite', 'you forgot to fill out your favorite film!!').not().isEmpty()
+  ], async (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    await Users.findOne({ Favorite: req.body.Favorite }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + ' add another film that film already in records');
+        } else {
+          Users
+            .create({
+              Favorite: req.body.Favorite
+            })
+            .then((user) => { 
+              res.status(201).json(user)
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  });
+
+// Delete a user by username - WORKS
 app.delete('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.body.Username }, {
-     $pull: { Favorite: req.body.Favorite}
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((remove) => {
-      res.status(200).send(req.body.Favorite + ' favorite film id deleted.');
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
+  await Users.findOneAndDelete({Favorite: req.body.Favorite})
+    .then((Favorite) => {
+        res.status(200).send(req.body.Favorite + ' film was removed from our records.');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
+
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
