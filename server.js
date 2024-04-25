@@ -256,7 +256,6 @@ app.put('/api/update',
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Favorite: req.body, Favorite
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
