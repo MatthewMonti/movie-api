@@ -315,7 +315,7 @@ app.post('/api/user/favorite',
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    await Users.findOne({ Favorite: req.body.Favorite }) // Search to see if a user with the requested username already exists
+    await Users.findOne({ Favorite: [req.body.Favorite] }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
@@ -323,7 +323,7 @@ app.post('/api/user/favorite',
         } else {
           Users
             .create({
-              Favorite: req.body.Favorite
+              Favorite: [req.body.Favorite]
             })
             .then((user) => { 
               res.status(201).json(user)
