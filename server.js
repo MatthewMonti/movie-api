@@ -165,12 +165,12 @@ app.get("/api/movies/director/:name", async (req, res) => {
 
 
 //Get user information
-app.get('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/api/user/', passport.authenticate('jwt', { session: false }), (req, res) => {
   // Get user information from the request object
   res.json(req.user);
 });
 //Add a user - WORKS error works
-app.post('/api/user',
+app.post('/api/create/',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -180,7 +180,8 @@ app.post('/api/user',
     check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
+    check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Birthday', 'Age needed to find revlavent films').isBirthday()
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -225,7 +226,7 @@ app.post('/api/user',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/user/', 
+app.put('/api/update/', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -268,7 +269,7 @@ app.put('/api/user/',
 });
 
 // Delete a user by username - WORKS
-app.delete('/api/user/', passport.authenticate('jwt', 
+app.delete('/api/delete/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndDelete({Username: req.body.Username})
     .then((Username) => {

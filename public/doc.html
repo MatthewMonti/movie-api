@@ -122,7 +122,7 @@
       </tr>
       <tr>
         <td>User Registration</td>
-        <td>/api/user</td>
+        <td>/api/create</td>
         <td>POST</td>
         <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
         <td>
@@ -135,7 +135,7 @@
         <td> Display New User info or message already exists if already added</td>     
       </tr>
         <td>User account information changed</td>
-        <td>/api/user/:id</td>
+        <td>/api/update</td>
         <td>PUT</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate then put id in :idenitity of URL and then add info in JSON body formate below also NOTE - Date Large to Small time blocks</td>
         <td>
@@ -151,7 +151,7 @@
       </tr>
       <tr>
         <td>Allows user to delete account</td>
-        <td>/api/user/</td>
+        <td>/api/delete/</td>
         <td>DELETE</td>
         <td>Follow the instructions of LOGIN ENDPOINT
           Login and Copy Bearer Token (User info) to Authenticate Bearer Token
