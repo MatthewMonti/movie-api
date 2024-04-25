@@ -165,12 +165,12 @@ app.get("/api/movies/director/:name", async (req, res) => {
 
 
 //Get user information
-app.get('/api/user/', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
   // Get user information from the request object
   res.json(req.user);
 });
 //Add a user - WORKS error works
-app.post('/api/create/',
+app.post('/api/create',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -226,7 +226,7 @@ app.post('/api/create/',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/update/', 
+app.put('/api/update', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -269,7 +269,7 @@ app.put('/api/update/',
 });
 
 // Delete a user by username - WORKS
-app.delete('/api/delete/', passport.authenticate('jwt', 
+app.delete('/api/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndDelete({Username: req.body.Username})
     .then((Username) => {
@@ -298,7 +298,7 @@ app.post('/api/user/favorite', passport.authenticate('jwt',
 });
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/user/favorite/', passport.authenticate('jwt', 
+app.delete('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.body.Username }, {
      $pull: { Favorite: req.body.Favorite}
