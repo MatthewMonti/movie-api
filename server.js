@@ -223,38 +223,16 @@ app.post('/api/create',
 
 
   //Add FAVORITE
-app.post('/api/user/favorite'
-, async (req, res) => {
-
-// check the validation object for errors
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-
-  await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
-    .then((user) => {
-      if (user) {
-        //If the user is found, send a response that it already exists
-        return res.status(400).send(req.body.Username + ' user is already in our records please try another user');
-      } else {
-        Users
-          .create({
-            Favorite: req.body.Favorite,
-          })
-          .then((user) => { 
-            res.status(201).json(user)
-          })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-          });
-      }
+// Delete a user by favorite 
+app.post('/api/user/favorite', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndAdd({Favorite: req.body.Favorite})
+    .then((Favorite) => {
+        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
     })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
