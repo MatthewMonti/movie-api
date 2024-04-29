@@ -286,9 +286,9 @@ app.put('/api/update',
 
 
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/movies/:MovieID', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { Favorite: req.params.MovieID }
+app.post('/favorite/', async (req, res) => {
+  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+     $push: { Favorite: req.body.MovieID }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -302,9 +302,9 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
 
 
 // Delete a movie to a user's list of favorites
-app.delete('/users/:Username/movies/:MovieID', async (req, res) => {
-  await Users.findOneAndDelete({ Username: req.params.Username }, {
-     $pull: { Favorite: req.params.MovieID }
+app.delete('/favorite', async (req, res) => {
+  await Users.findOneAndDelete({ Username: req.body.Username }, {
+     $pull: { Favorite: req.body.MovieID }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
