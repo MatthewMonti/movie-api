@@ -287,7 +287,7 @@ app.put('/api/update',
 
 app.post('api/user/favorite',passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({Username: req.body.Username})
+  await Users.findbyIdAndAdd({_id: req.body.id})
   .then((Username) => {
       res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
   })
@@ -299,7 +299,7 @@ app.post('api/user/favorite',passport.authenticate('jwt',
 
 app.delete('api/user/favorite',passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndDelete({Username: req.body.Username})
+  await Users.findbyIdAndDelete({_id: req.body.id})
   .then((Username) => {
       res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
   })
