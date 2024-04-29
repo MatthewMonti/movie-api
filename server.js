@@ -282,31 +282,6 @@ app.delete('/api/delete', passport.authenticate('jwt',
 });
 
 
-// Add the favorite movie to the user's favoriteMovies array
-  Users.findByIdAndUpdate(Users.ObjectId, { $addToSet: { Favorite: Movies.ObjectId } }, { new: true })
-  .populate('Favorite') // Populate the favoriteMovies field with actual movie documents
-  .exec((err, updatedUser) => {
-    if (err) {
-      console.error('Error:', err);
-    } else {
-      console.log('Favorite movie added to user:', updatedUser);
-    }
-      mongoose.disconnect(); // Disconnect from MongoDB
-  });
-
-
-// Delete a movie to a user's list of favorites
-Users.findByIdAndDelete (Users.ObjectId, { $pull: { Favorite: Movies.ObjectId } }, { new: true })
-.populate('Favorite') // Populate the favoriteMovies field with actual movie documents
-.exec((err, updatedUser) => {
-  if (err) {
-    console.error('Error:', err);
-  } else {
-    console.log('Favorite movie added to user:', updatedUser);
-  }
-    mongoose.disconnect(); // Disconnect from MongoDB
-});
-
   let logwebpage = (req, res, next) => {
     console.log(req.url);
     next();
