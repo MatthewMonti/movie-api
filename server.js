@@ -282,36 +282,29 @@ app.delete('/api/delete', passport.authenticate('jwt',
 });
 
 
-// Add a movie to a user's list of favorites
-app.post('/api/user/favorite/', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Favorite: req.body.film }, {
-     $addToSet: { Favorite: req.body.add}
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((add) => {
-      res.status(200).send(req.params.add + ' film id being added to favorites.');
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
+// Add the favorite movie to the user's favoriteMovies array
+  Users.findByIdAndUpdate(Users.ObjectId, { $addToSet: { Favorite: Movies.ObjectId } }, { new: true })
+  .populate('Favorite') // Populate the favoriteMovies field with actual movie documents
+  .exec((err, updatedUser) => {
+    if (err) {
+      console.error('Error:', err);
+    } else {
+      console.log('Favorite movie added to user:', updatedUser);
+    }
+      mongoose.disconnect(); // Disconnect from MongoDB
   });
-});
+
 
 // Delete a movie to a user's list of favorites
-app.delete('/api/user/favorite/', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findOneAndDelete({ Favorite: req.body.film }, {
-     $pull: { Favorite: req.body.remove}
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((remove) => {
-      res.status(200).send(req.params.remove + ' favorite film id deleted.');
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
+Users.findByIdAndDelete (Users.ObjectId, { $pull: { Favorite: Movies.ObjectId } }, { new: true })
+.populate('Favorite') // Populate the favoriteMovies field with actual movie documents
+.exec((err, updatedUser) => {
+  if (err) {
+    console.error('Error:', err);
+  } else {
+    console.log('Favorite movie added to user:', updatedUser);
+  }
+    mongoose.disconnect(); // Disconnect from MongoDB
 });
 
   let logwebpage = (req, res, next) => {
