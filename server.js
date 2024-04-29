@@ -16,7 +16,7 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ['http://localhost:1234/api/user/login', 'https://movies-flex-6e317721b427.herokuapp.com'];
+let allowedOrigins = ["http://localhost:1234" || "https://movies-flex-6e317721b427.herokuapp.com"];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
@@ -52,7 +52,8 @@ app.get('/api/about', async (req, res) => {
 });
 
 //MOVIES LIST 
-app.get('/api/movies', async (req, res) => {
+app.get('/api/movies', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -162,8 +163,14 @@ app.get("/api/movies/director/:name", async (req, res) => {
   });
 });
 
+
+//Get user information
+app.get('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // Get user information from the request object
+  res.json(req.user);
+});
 //Add a user - WORKS error works
-app.post('/api/user',
+app.post('/api/create',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -173,7 +180,8 @@ app.post('/api/user',
     check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
+    check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Birthday', 'Age needed to find revlavent films').not().isEmpty()
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -214,11 +222,27 @@ app.post('/api/user',
 
 
 
+  //Add FAVORITE
+// Delete a user by favorite 
+app.post('/api/user/favorite', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndAdd({Favorite: req.body.Favorite})
+    .then((Favorite) => {
+        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+
+
 /// USER CAN UPDATE FOLLOWING - WORKS
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/user/:identity', 
+app.put('/api/update', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
@@ -238,17 +262,16 @@ app.put('/api/user/:identity',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user.id !== req.params.identity){
+       if(req.user.Username !== req.body.Username){
         return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findByIdAndUpdate({_id: req.params.identity }, { $set:
+    await Users.findOneAndUpdate({Username: req.body.Username }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Birthday: req.body.Birthday,
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
@@ -261,12 +284,13 @@ app.put('/api/user/:identity',
   });
 });
 
+
 // Delete a user by username - WORKS
-app.delete('/api/user/:identity', passport.authenticate('jwt', 
+app.delete('/api/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndDelete({_id: req.params.identity})
-    .then((identity) => {
-        res.status(200).send(req.params.identity + ' user was removed from our records.');
+  await Users.findOneAndDelete({Username: req.body.Username})
+    .then((Username) => {
+        res.status(200).send(req.body.Username + ' user was removed from our records.');
     })
     .catch((err) => {
       console.error(err);
@@ -274,36 +298,18 @@ app.delete('/api/user/:identity', passport.authenticate('jwt',
     });
 });
 
-// Add a movie to a user's list of favorites
-app.post('/api/user/favorite/:identity/:add', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
-     $addToSet: { Favorite: req.params.add}
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((add) => {
-      res.status(200).send(req.params.add + ' film id being added to favorites.');
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
-});
 
-// Delete a movie to a user's list of favorites
-app.delete('/api/user/favorite/:identity/:remove', passport.authenticate('jwt', 
+// Delete a user by favorite 
+app.delete('/api/user/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.params.identity }, {
-     $pull: { Favorite: req.params.remove}
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((remove) => {
-      res.status(200).send(req.params.remove + ' favorite film id deleted.');
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
+  await Users.findOneAndDelete({Favorite: req.body.Favorite})
+    .then((Favorite) => {
+        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
   let logwebpage = (req, res, next) => {
