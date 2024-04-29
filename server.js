@@ -285,32 +285,29 @@ app.put('/api/update',
 });
 
 
-// Delete a user by username - WORKS
-app.delete('/api/delete', passport.authenticate('jwt', 
+app.post('api/user/favorite',passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndUpdate({Username: req.body.Username})
+  .then((Username) => {
+      res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+})
+
+app.delete('api/user/favorite',passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndDelete({Username: req.body.Username})
-    .then((Username) => {
-        res.status(200).send(req.body.Username + ' user was removed from our records.');
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-
-// Delete a user by favorite 
-app.delete('/api/user/favorite', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findOneAndDelete({Favorite: req.body.Favorite})
-    .then((Favorite) => {
-        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
+  .then((Username) => {
+      res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+})
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
