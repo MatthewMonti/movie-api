@@ -285,29 +285,37 @@ app.put('/api/update',
 });
 
 
-app.post('api/user/favorite',passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findbyIdAndAdd({_id: req.body.id})
-  .then((Username) => {
-      res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
+// Add a movie to a user's list of favorites
+app.post('/users/:Username/movies/:MovieID', async (req, res) => {
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $push: { Favorite: req.params.MovieID }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
   })
   .catch((err) => {
     console.error(err);
     res.status(500).send('Error: ' + err);
   });
-})
+});
 
-app.delete('api/user/favorite',passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findbyIdAndDelete({_id: req.body.id})
-  .then((Username) => {
-      res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
+
+// Delete a movie to a user's list of favorites
+app.delete('/users/:Username/movies/:MovieID', async (req, res) => {
+  await Users.findOneAndDelete({ Username: req.params.Username }, {
+     $pull: { Favorite: req.params.MovieID }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
+    res.json(updatedUser);
   })
   .catch((err) => {
     console.error(err);
     res.status(500).send('Error: ' + err);
   });
-})
+});
+
 
   let logwebpage = (req, res, next) => {
     console.log(req.url);
