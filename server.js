@@ -132,7 +132,7 @@ app.get('/api/movies/rating/:percentage', async (req, res) => {
  
 //GENRE SEARCH FOR MOVIE
 app.get('/api/movies/genre/:genreName', async (req, res) => {
-  await Movies.find({'Genre.Name': req.params.genreName})
+  await Movies.find({'Genre.Name': req.params.genreName}) 
   .then((movies) => {
     if (movies.length == 0) {
       res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future.');
@@ -221,23 +221,6 @@ app.post('/api/create',
   });
 
 
-
-  //Add FAVORITE
-// Delete a user by favorite 
-app.post('/api/user/favorite', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findOneAndAdd({Favorite: req.body.Favorite})
-    .then((Favorite) => {
-        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-
-
 /// USER CAN UPDATE FOLLOWING - WORKS
 // USER NAME
 //EMAIL
@@ -299,17 +282,36 @@ app.delete('/api/delete', passport.authenticate('jwt',
 });
 
 
-// Delete a user by favorite 
-app.delete('/api/user/favorite', passport.authenticate('jwt', 
+// Add a movie to a user's list of favorites
+app.post('/api/user/favorite/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndDelete({Favorite: req.body.Favorite})
-    .then((Favorite) => {
-        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
+  await Users.findByIdAndUpdate({ _id: req.body.identity }, {
+     $addToSet: { Favorite: req.body.add}
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((add) => {
+      res.status(200).send(req.params.add + ' film id being added to favorites.');
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+// Delete a movie to a user's list of favorites
+app.delete('/api/user/favorite/', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findByIdAndUpdate({ _id: req.body.identity }, {
+     $pull: { Favorite: req.body.remove}
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((remove) => {
+      res.status(200).send(req.params.remove + ' favorite film id deleted.');
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
   let logwebpage = (req, res, next) => {
