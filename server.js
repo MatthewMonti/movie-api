@@ -285,7 +285,7 @@ app.delete('/api/delete', passport.authenticate('jwt',
 // Add a movie to a user's list of favorites
 app.post('/api/user/favorite/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.body.identity }, {
+  await Users.findOneAndUpdate({ Favorite: req.body.film }, {
      $addToSet: { Favorite: req.body.add}
    },
    { new: true }) // This line makes sure that the updated document is returned
@@ -301,7 +301,7 @@ app.post('/api/user/favorite/', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/api/user/favorite/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findByIdAndUpdate({ _id: req.body.identity }, {
+  await Users.findOneAndDelete({ Favorite: req.body.film }, {
      $pull: { Favorite: req.body.remove}
    },
    { new: true }) // This line makes sure that the updated document is returned
