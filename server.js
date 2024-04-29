@@ -221,23 +221,6 @@ app.post('/api/create',
   });
 
 
-
-  //Add FAVORITE
-// Delete a user by favorite 
-app.post('/api/user/favorite', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Users.findOneAndAdd({Favorite: req.body.Favorite})
-    .then((Favorite) => {
-        res.status(200).send(req.body.Favorite + ' film saved was removed from our records.');
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-
-
 /// USER CAN UPDATE FOLLOWING - WORKS
 // USER NAME
 //EMAIL
@@ -286,9 +269,10 @@ app.put('/api/update',
 
 
 // Add a movie to a user's list of favorites
-app.post('/favorite/', async (req, res) => {
+app.post('/favorite/', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.body.Username }, {
-     $push: { Favorite: req.body.MovieID }
+    $addToSet: { Favorite: req.body.MovieID }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
@@ -302,7 +286,8 @@ app.post('/favorite/', async (req, res) => {
 
 
 // Delete a movie to a user's list of favorites
-app.delete('/favorite', async (req, res) => {
+app.delete('/favorite', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   await Users.findOneAndDelete({ Username: req.body.Username }, {
      $pull: { Favorite: req.body.MovieID }
    },
