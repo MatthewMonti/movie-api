@@ -268,18 +268,21 @@ app.put('/api/update',
 });
 
 
-// Delete a movie to a user's list of favorites
+// Add a movie to a user's list of favorites
 app.post('/favorite', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
+  console.log("Tanking")
   await Users.findOneAndAdd({ Username: req.body.Username }, {
-     $push: { Favorite: req.body.Favorite }
+    $addToSet: { Favorite: req.body.Favorite }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
+    console.log("Cat")
     res.json(updatedUser);
   })
   .catch((err) => {
     console.error(err);
+    console.log("DOG")
     res.status(500).send('Error: ' + err);
   });
 });
