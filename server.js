@@ -291,17 +291,16 @@ app.post('/favorites', passport.authenticate('jwt',
 
 app.post('/favorites/check', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  const { username, movieTitle } = req.body;
 
   try {
     // Find the user by username
-    const user = await user.findOne({ username }).populate('favorites');
-    if (!user) {
+    await Users.findOne({ Username: req.body.Username}).populate('favorites');
+    if (!Users) {
       return res.status(404).json({ error: 'User not found' });
     }
 
     // Check if the movie is in the user's favorites
-    const isFavorite = user.favorites.some(movie => movie.title === movieTitle);
+    const isFavorite = Users.favorites.some(movie => movie.Title);
     res.json({ isFavorite });
   } catch (error) {
     console.error('Error checking favorite status:', error);
