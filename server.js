@@ -300,7 +300,7 @@ app.post('/favorites/check', passport.authenticate('jwt',
     }
 
     // Check if the movie is in the user's favorites
-    const isFavorite = Users.favorites.some(movie => movie.Title);
+    const isFavorite = Users.Favorite
     res.json({ isFavorite });
   } catch (error) {
     console.error('Error checking favorite status:', error);
