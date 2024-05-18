@@ -289,7 +289,8 @@ app.post('/favorites', passport.authenticate('jwt',
 
 
 
-app.post('/favorites/check', async (req, res) => {
+app.post('/favorites/check', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
   const { username, movieTitle } = req.body;
 
   try {
