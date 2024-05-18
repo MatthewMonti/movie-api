@@ -294,7 +294,7 @@ app.post('/favorites/check', async (req, res) => {
 
   try {
     // Find the user by username
-    const user = await User.findOne({ username }).populate('favorites');
+    const user = await user.findOne({ username }).populate('favorites');
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
