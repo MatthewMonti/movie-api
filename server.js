@@ -273,7 +273,7 @@ app.post('/favorite', passport.authenticate('jwt',
 { session: false }), async (req, res) => {
   console.log("Tanking")
   await Users.findOneAndUpdate({ Username: req.body.Username }, {
-    $addtoSet: { Favorite: req.body.Favorite }
+    $addToSet: { Favorite: req.body.Favorite }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {
