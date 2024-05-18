@@ -289,21 +289,23 @@ app.post('/favorites', passport.authenticate('jwt',
 
 
 
-// Add a movie to a user's list of favorites
-app.get('/favorites', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  console.log("Tanking")
-  await Users.findOne({ Favorite: req.body.Favorite },
-   { new: true }) // This line makes sure that the updated document is returned
-  .then((displayFav) => {
-    console.log("Cat")
-    res.json(displayFav);
-  })
-  .catch((err) => {
-    console.error(err);
-    console.log("DOG")
-    res.status(500).send('Error: ' + err);
-  });
+app.post('/favorites/check', async (req, res) => {
+  const { username, movieTitle } = req.body;
+
+  try {
+    // Find the user by username
+    const user = await User.findOne({ username }).populate('favorites');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the movie is in the user's favorites
+    const isFavorite = user.favorites.some(movie => movie.title === movieTitle);
+    res.json({ isFavorite });
+  } catch (error) {
+    console.error('Error checking favorite status:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 
