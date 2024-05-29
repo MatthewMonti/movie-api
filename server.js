@@ -45,14 +45,14 @@ app.get('/', async (req, res) => {
 });
 
 //WELCOME MESSAGE 
-app.get('/api/about', async (req, res) => {
+app.get('/about', async (req, res) => {
   res.status(200).sendFile('./public/doc.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
 
 //MOVIES LIST 
-app.get('/api/movies', passport.authenticate('jwt', 
+app.get('/movies', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
@@ -65,7 +65,7 @@ app.get('/api/movies', passport.authenticate('jwt',
 });
 
 //TITLE SEARCH 
-app.get('/api/movies/title/:label', passport.authenticate('jwt', 
+app.get('/movies/title/:label', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Movies.find({ Title: req.params.label })
   .then((label) => {
@@ -82,7 +82,7 @@ app.get('/api/movies/title/:label', passport.authenticate('jwt',
 });
 
 //RELEASE YEAR 
-app.get('/api/movies/release/:year', async (req, res) => {
+app.get('/movies/release/:year', async (req, res) => {
   await Movies.find({ Release: req.params.year})
   .then((year) => {
     if (year.length == 0) {
@@ -99,7 +99,7 @@ app.get('/api/movies/release/:year', async (req, res) => {
 
 
 //RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
-app.get('/api/movies/rated/:audience', async (req, res) => {
+app.get('/movies/rated/:audience', async (req, res) => {
   await Movies.find({ Rated: req.params.audience })
   .then((audience) => {
     if (audience.length == 0) {
@@ -115,7 +115,7 @@ app.get('/api/movies/rated/:audience', async (req, res) => {
 });
 
 //Quality of FILMS WORKS
-app.get('/api/movies/rating/:percentage', async (req, res) => {
+app.get('/movies/rating/:percentage', async (req, res) => {
   await Movies.find({ Rating: req.params.percentage })
   .then((percentage) => {
     if (percentage.length == 0) {
@@ -170,7 +170,7 @@ app.get('/user', passport.authenticate('jwt', { session: false }), (req, res) =>
   res.json(req.user);
 });
 //Add a user - WORKS error works
-app.post('/api/create',
+app.post('/create',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
