@@ -289,7 +289,7 @@ app.post('/favorites', passport.authenticate('jwt',
 
 
 
-app.post('/favorites/check', passport.authenticate('jwt', 
+app.get('/favorites/check', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
 
   try {
