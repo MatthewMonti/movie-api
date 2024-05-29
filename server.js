@@ -131,7 +131,7 @@ app.get('/api/movies/rating/:percentage', async (req, res) => {
 });
  
 //GENRE SEARCH FOR MOVIE
-app.get('/api/movies/genre/:genreName', async (req, res) => {
+app.get('/movies/genre/:genreName', async (req, res) => {
   await Movies.find({'Genre.Name': req.params.genreName})
   .then((movies) => {
     if (movies.length == 0) {
@@ -148,7 +148,7 @@ app.get('/api/movies/genre/:genreName', async (req, res) => {
 
 
 ///DIRECTOR SEARCH WORKS
-app.get("/api/movies/director/:name", async (req, res) => {
+app.get("/movies/director/:name", async (req, res) => {
   Movies.find({'Director.Name': req.params.name })
   .then((movies) => {
     if (movies.length == 0) {
@@ -165,7 +165,7 @@ app.get("/api/movies/director/:name", async (req, res) => {
 
 
 //Get user information
-app.get('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/user', passport.authenticate('jwt', { session: false }), (req, res) => {
   // Get user information from the request object
   res.json(req.user);
 });
@@ -225,7 +225,7 @@ app.post('/api/create',
 // USER NAME
 //EMAIL
 //BIRTHDAY 
-app.put('/api/update', 
+app.put('/update', 
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
