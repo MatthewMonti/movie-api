@@ -139,7 +139,9 @@
       "Bio": "Sergio Leone was an Italian filmmaker, credited as the pioneer of the spaghetti Western genre.[1][2] He is widely regarded as one of the most influential directors in the history of cinema. Leone's film-making style includes juxtaposing extreme close-up shots with lengthy long shots. His films include the Dollars Trilogy of Westerns featuring Clint Eastwood: A Fistful of Dollars (1964), For a Few Dollars More (1965), and The Good, the Bad and the Ugly (1966); and the Once Upon a Time films: Once Upon a Time in the West (1968), Duck, You Sucker! (1971), and Once Upon a Time in America (1984).",
       "Birth": "1929-01-03",
       "Death": "1989-04-30"
-    }
+    },
+    "Image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.etsystatic.com%2F23647903%2Fr%2Fil%2F29edad%2F2447535441%2Fil_1588xN.2447535441_92b7.jpg&f=1&nofb=1&ipt=871a73b07f54211a96ff7d72b49b30593eb1ae063cb0e89b25330609b14bce9e&ipo=images",
+    "url": "https://youtu.be/-X2DtiE7VLw"
   },
   {
     "Title": "Elemental",
@@ -185,6 +187,30 @@
     "Image": "https://m.media-amazon.com/images/I/71OLMNKaKEL._AC_UF894,1000_QL80_.jpg",
     "Featured": true,
     "url": "https://www.youtube.com/embed/u3V5KDHRQvk?si=hGkgxwJyUhWCMWxZ" 
+  },
+  {
+    "Title": "Home Alone",
+    "Release": "1990",
+    "Actors": [
+      "Macaulay Culkin",
+      "Joe Pesci",
+      "Daniel Stern"
+    ],
+    "Rated": "PG",
+    "Rating": "66",
+    "Description": "When bratty 8-year-old Kevin McCallister (Macaulay Culkin) acts out the night before a family trip to Paris, his mother (Catherine O'Hara) makes him sleep in the attic. After the McCallisters mistakenly leave for the airport without Kevin, he awakens to an empty house and assumes his wish to have no family has come true. But his excitement sours when he realizes that two con men (Joe Pesci, Daniel Stern) plan to rob the McCallister residence, and that he alone must protect the family home.",
+    "Genre": {
+        "Name": "Comedy",
+        "Description": "Comedy is a genre of film in which the main emphasis is on humor. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect"
+    },
+    "Director": {
+        "Name": "Chris Columbus",
+        "Bio": "One of the more successful filmmakers to come from the Spielberg school of genre moviemaking, writer-director Chris Columbus emerged as a specialist in combining a sensitivity for young people's feelings with a rousing adventure yarn. Columbus entered Hollywood by way of screenwriting with his script for 'Gremlins' (1984) being shepherded by Spielberg, who soon became a mentor to the young scribe. After writing the scripts for 'The Goonies'(1985) and 'Young Sherlock Holmes' (1985), he made his directing debut with the mild family comedy 'Adventures in Babysitting' (1987). Columbus entered the realm of blockbuster filmmaker with 'Home Alone' (1990), arguably one of the most successful film comedies of all time. Following the sequel 'Home Alone 2: Lost in New York' (1992), he had another hit with the Robin Williams vehicle 'Mrs. Doubtfire' (1993), which placed Columbus at the top of Hollywood's list of commercial hitmakers. Despite his overwhelming commercial success, Columbus struggled to earn the respect of critics, many of whom complained that he tended to overly sentimentalize his work by finding simple happy solutions to complicated problems. He typified such criticisms with 'Bicentennial Man''' (1999), which descended into cheap sentiment after a promising start. Columbus next tackled the incredibly difficult task of bring 'Harry Potter and the Sorcerer's Stone' (2001) to life on the big screen. Faithfully adapting that novel and the sequel 'Harry Potter and the Chamber of Secrets' (2002), Columbus helped launch what became one of the most commercially successful franchises in cinema history. Though he faded to the background with 'Rent'' (2005) and 'Percy Jackson & the Olympians: The Lightning Thief' (2010), Columbus remained one of Hollywood's most bankable commercial directors.",
+        "Birth": "1958-09-10"
+    },
+    "Image": "https://image.tmdb.org/t/p/original/fTpMEyjvtsI0kVGCVhkVSp0Wa22.jpg",
+    "Featured": true,
+    "url": "https://www.youtube.com/watch?v=jEDaVHmw7r4" 
   },
   {
     "Title": "Home Alone 2",
@@ -467,6 +493,29 @@
   "Featured": true,
   "url":"https://www.youtube.com/watch?v=0pdqf4P9MB8"
 },
+{
+  "Title": "Indiana Jones and the Last Crusade",
+  "Release": "1989",
+  "Actors": [
+  "Harrison Ford",
+  "Sean Connery",
+  "Alison Doody"
+  ],
+  "Rated": "PG-13",
+  "Rating": "84",
+  "Description": "An art collector appeals to Jones to embark on a search for the Holy Grail. He learns that another archaeologist has disappeared while searching for the precious goblet, and the missing man is his own father, Dr. Henry Jones. The artifact is much harder to find than they expected, and its powers are too much for those impure in heart.",
+  "Genre": {
+    "Name": "Adventure",
+    "Description":"Adventure fiction is a type of fiction that usually presents danger, or gives the reader a sense of excitement. Some adventure fiction also satisfies the literary definition of romance fiction."
+  },
+  "Director": {
+    "Name": "Steven Spielburg",
+    "Bio": "Steven Spielburg is an American film director, producer and screenwriter. A major figure of the New Hollywood era and pioneer of the modern blockbuster, he is the most commercially successful director in history. He is the recipient of many accolades, including three Academy Awards, two BAFTA Awards, and four Directors Guild of America Awards, as well as the AFI Life Achievement Award in 1995, the Kennedy Center Honor in 2006, the Cecil B. DeMille Award in 2009 and the Presidential Medal of Freedom in 2015. Seven of his films have been inducted into the National Film Registry by the Library of Congress as culturally, historically or aesthetically significant",
+    "Birth": "1946-12-18"
+  },
+  "Image": "https://www.vintagemovieposters.co.uk/wp-content/uploads/2021/06/IMG_2497-1383x2048.jpeg",
+  "url": "https://youtu.be/DKg36LBVgfg"
+},
   {
     "Title": "Raiders of the Lost Ark",
     "Release": "1981",
@@ -562,7 +611,32 @@
     "url": "https://www.youtube.com/embed/02PPMPArNEQ?si=kv7YGswbnEGCP6Yc"
   },
   {
+    "Title": "The Maltese Falcon",
+    "Release": "1941",
+    "Actors": [
+      "Humphrey Bogart",
+      "Mary Astor",
+      "Gladys George"
+    ],
+    "Rated": "PG",
+    "Rating": "99",
+    "Description": "In this noir classic, detective Sam Spade (Humphrey Bogart) gets more than he bargained for when he takes a case brought to him by a beautiful but secretive woman (Mary Astor). As soon as Miss Wonderly shows up, trouble follows as Sam's partner is murdered and Sam is accosted by a man (Peter Lorre) demanding he locate a valuable statuette. Sam, entangled in a dangerous web of crime and intrigue, soon realizes he must find the one thing they all seem to want: the bejeweled Maltese falcon.",
+    "Genre": {
+      "Name": "Mystery",
+      "Description": "Mystery -Film noir (/nwɑːr/; French: [film nwaʁ]) is a cinematic term used primarily to describe stylized Hollywood crime dramas, particularly those that emphasize cynical attitudes and motivations. The 1940s and 1950s are generally regarded as the classic period of American film noir. Film noir of this era is associated with a low-key, black-and-white visual style that has roots in German Expressionist cinematography. Many of the prototypical stories and attitudes expressed in classic noir derive from the hardboiled school of crime fiction that emerged in the United States during the Great Depression."
+    },
+    "Director": {
+      "Name" : "John Huston",
+      "Bio": "Huston led quite an adventurous life even before he began his Hollywood career, often recalling his days as a boxer, Mexican cavalry officer and avid horseback rider in many of his films. After a false start as a screenwriter in the early days of talkies, Huston re-emerged in the late-1930s as a successful contract writer who penned such hits as The Amazing Dr. Clitterhouse (1938), Sergeant York (1941) and High Sierra (1941). During this time, he developed a strong working collaboration with Humphrey Bogart, who became a major star following his turn in Huston's directorial debut, The Maltese Falcon (1941), one of the best film noirs ever made. The two had even greater success with The Treasure of Sierra Madre (1948), which earned Huston and his father, actor Walter Huston, Academy Awards. From there, the director entered into what became his most fruitful period, helming such long-held classics as The Asphalt Jungle (1950),The Red Badge of Courage (1951) and The African Queen (1952), which delivered Bogie his only Oscar. He also began acting later in his career, turning in an acclaimed supporting performance in The Cardinal (1963) while being best remembered for his portrayal of the vile Noah Cross in Chinatown (1974). In the last decade of his life, Huston returned to critical and box office prominence with Prizzi's Honor (1985), which earned daughter Anjelica an Academy Award, making the Hustons the first family to win Oscars in three successive generations. As for Huston himself, he left behind a compelling legacy that included an adventurous life and a career that cemented him as arguably the greatest director in Hollywood history.",
+      "Birth" : "1906-08-05",
+      "Death": "1987-08-28"
+    },
+    "Image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F2.bp.blogspot.com%2F-AOK-0Z7RFxo%2FUbf5n2cfl_I%2FAAAAAAAATNw%2FUYT6-3SlaMo%2Fs1600%2FPoster%2B-%2BMaltese%2BFalcon%2C%2BThe%2B(1941)_01.jpg&f=1&nofb=1&ipt=30615622088261b6430dda0179a0edb4d5f122c04c4f411d6a28635ef9c153e6&ipo=images",
+    "url": "https://www.youtube.com/watch?v=Yv-BPuqhW9U"
+  },
+  {
     "Title": "12 Angry Men",
+    "Release": "1957",
     "Actors": [
       "Ed Begley",
       "E.G Marshall",
@@ -577,7 +651,6 @@
       "Martin Balsam",
       "Robert Webber"
     ],
-    "Release": "1957",
     "Rated": "NA",
     "Rating": "100",
     "Description": "Angry Men is a 1957 American legal drama film directed by Sidney Lumet, adapted from a 1954 teleplay of the same name by Reginald Rose. The film tells the story of a jury of 12 men as they deliberate the conviction or acquittal of a teenager charged with murder on the basis of reasonable doubt; disagreement and conflict among them force the jurors to question their morals and values.",
