@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'https://movies-flex-6e317721b427.herokuapp.com', 'http://localhost:1124','https://reel-cinema.netlify.app'];
+let toggleState= false;
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
@@ -340,6 +341,26 @@ app.delete('/favorites', passport.authenticate('jwt',
     res.status(500).send('Error: ' + err);
   });
 });
+
+
+// Endpoint to retrieve toggle state
+app.get('/toggleState', (req, res) => {
+  res.json({ state: toggleState });
+});
+
+// Endpoint to save toggle state
+app.post('/saveToggleState', (req, res) => {
+  const newState = req.body.state;
+  toggleState = newState;
+  res.sendStatus(200);
+});
+
+
+
+
+
+
+
 
 
   let logwebpage = (req, res, next) => {
