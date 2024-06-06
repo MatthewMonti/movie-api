@@ -178,7 +178,6 @@ app.post('/create',
   //minimum value of 5 characters are only allowed
   [
     check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
     check('Birthday', 'Age needed to find revlavent films').not().isEmpty()
