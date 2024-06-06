@@ -16,7 +16,8 @@ app.use(morgan('common'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 let cors = require('cors');
-let allowedOrigins = ["http://localhost:1234" || "https://main--reel-cinema.netlify.app"];
+let allowedOrigins = ["http://localhost:1234" || "https://movies-flex-6e317721b427.herokuapp.com" || "https://main--reel-cinema.netlify.app"
+];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
