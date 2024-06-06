@@ -269,7 +269,7 @@ app.put('/update',
 
 
 // Delete a user by username - WORKS
-app.delete('/user/:identity', passport.authenticate('jwt', 
+app.delete('/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Users.findOneAndDelete({Username: req.body.Username})
     .then((Username) => {
