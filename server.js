@@ -268,6 +268,23 @@ app.put('/update',
 });
 
 
+// Delete a user by username - WORKS
+app.delete('/user/:identity', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndDelete({Username: req.body.Username})
+    .then((Username) => {
+        res.status(200).send(req.body.Username + ' user was removed from our records.');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+
+
+
+
 // Add a movie to a user's list of favorites
 app.post('/favorites', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
