@@ -23,7 +23,7 @@ let allowedOrigins = [
   'https://movies-flex-6e317721b427.herokuapp.com/delete',
   'https://movies-flex-6e317721b427.herokuapp.com/profile',
   'https://movies-flex-6e317721b427.herokuapp.com/favorites',
-  'http://localhost:1124',
+  'http://localhost:1234',
   'https://reel-cinema.netlify.app'];
 let toggleState= false;
 const { check, validationResult } = require('express-validator');
