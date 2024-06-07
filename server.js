@@ -23,6 +23,8 @@ let allowedOrigins = [
   'https://movies-flex-6e317721b427.herokuapp.com/delete',
   'https://movies-flex-6e317721b427.herokuapp.com/profile',
   'https://movies-flex-6e317721b427.herokuapp.com/favorites',
+  'https://movies-flex-6e317721b427.herokuapp.com/toggleState',
+  'https://movies-flex-6e317721b427.herokuapp.com/saveToggleState',
   'http://localhost:1234',
   'https://reel-cinema.netlify.app'];
 const { check, validationResult } = require('express-validator');
@@ -357,13 +359,13 @@ app.get('/toggleState', (req, res) => {
   res.json({ state: toggleState });
 });
 
+
 // Endpoint to save toggle state
 app.post('/saveToggleState', (req, res) => {
   const newState = req.body.state;
   toggleState = newState;
   res.status(200).json({ message: 'Toggle state saved successfully' });
 });
-
 
 
 
