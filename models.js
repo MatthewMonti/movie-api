@@ -52,7 +52,9 @@ let userSchema = mongoose.Schema({
       },
     },
     Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
-    Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie' }]
+    Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie' }],
+    toggleState: { type: Boolean, default: false }
+
 });
 
 userSchema.statics.hashPassword = (password) => {
@@ -72,7 +74,7 @@ userSchema.statics.isThisEmailInUse = async function(email) {
   if(!email) throw new Error('Invalid Email')
   try {
     const user = await this.findOne({email})
-    if(User) return false
+    if(user) return false
 
     return true;
 
