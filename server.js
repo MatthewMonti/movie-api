@@ -26,7 +26,15 @@ let allowedOrigins = [
   'https://movies-flex-6e317721b427.herokuapp.com/toggleState',
   'https://movies-flex-6e317721b427.herokuapp.com/saveToggleState',
   'http://localhost:1234',
-  'https://reel-cinema.netlify.app'];
+  'https://reel-cinema.netlify.app',
+  "https://reel-cinema.netlify.app/toggleState",
+  "https://reel-cinema.netlify.app/saveToggleState",
+  'https://reel-cinema.netlify.app/create', 
+  'https://reel-cinema.netlify.app//delete',
+  'https://reel-cinema.netlify.app//profile',
+  'https://reel-cinema.netlify.app/favorites',
+
+];
 const { check, validationResult } = require('express-validator');
 
 app.use(cors({
