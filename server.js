@@ -310,6 +310,28 @@ app.get('/favorites/check', passport.authenticate('jwt',
 });
 
 
+
+// Add a movie to a user's list of favorites
+app.post('/favorites', passport.authenticate('jwt', 
+  { session: false }), async (req, res) => {
+    console.log("Tanking")
+    await Users.findOneAndUpdate({ Username: req.body.Username }, {
+      $addToSet: { Favorite: req.body.Favorite }
+     },
+     { new: true }) // This line makes sure that the updated document is returned
+    .then((updatedUser) => {
+      console.log("Cat")
+      res.json(updatedUser);
+    })
+    .catch((err) => {
+      console.error(err);
+      console.log("DOG")
+      res.status(500).send('Error: ' + err);
+    });
+  });
+  
+
+
 // Delete a movie to a user's list of favorites
 app.delete('/favorites', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
