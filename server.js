@@ -366,7 +366,7 @@ let toggleState = false;
 app.get('/toggleState', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     // Logic to fetch toggle state from the database based on user ID
-    const userId = req.user.id; // Assuming the user ID is available in req.user.id
+    const userId = req.user._id; // Assuming the user ID is available in req.user.id
     const user = await Users.findById(userId);
     if (user) {
       const toggleState = user.toggleState; // Assuming toggleState is a property of the user
@@ -384,7 +384,7 @@ app.get('/toggleState', passport.authenticate('jwt', { session: false }), async 
 // Endpoint to save toggle state
 app.post('/saveToggleState', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
-    const userId = req.user.id; // Assuming the user ID is available in req.user.id
+    const userId = req.user._id; // Assuming the user ID is available in req.user.id
     const newState = req.body.state;
     // Update the user document with the new toggle state
     await Users.findByIdAndUpdate(userId, { toggleState: newState });
