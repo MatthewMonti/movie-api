@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang='en-US'>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' charset='utf-8'>
+    <link rel='stylesheet' type='text/css' href='../css/styles.css'>
   </head>
   
   <title>Myflix Application</title>
@@ -50,8 +50,8 @@
         <td>API platform select body raw JSON then in body fill info in format below</td>
         <td> 
           {
-          "Username": "Bob47",
-          "Password": "Statute of Liberty"
+          'Username': 'Bob47',
+          'Password': 'Statute of Liberty'
         }
       </td>
       <tr>
@@ -111,8 +111,8 @@
         <td>GET</td>
         <td> Follow the format below to Login and then use get endpoint to access user info</td>
         <td>
-        {"Username": "USERNAME",
-        "Password": "PASSWORD"
+        {'Username':'USERNAME',
+        'Password': 'PASSWORD'
         }</td>
         <td>User info or message with Username on Frontend</td>     
       </tr>
@@ -122,10 +122,10 @@
         <td>POST</td>
         <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
         <td>
-        {"Username": "USERNAME",
-        "Password": "PASSWORD",
-        "Email": "EMAIL",
-        "Birthday": "####-##-##",
+        {'Username': 'USERNAME',
+        'Password': 'PASSWORD',
+        'Email': 'EMAIL',
+        'Birthday': '####-##-##'',
         }</td>
         <td> Display New User info or message already exists if already added</td>     
       </tr>
@@ -135,9 +135,9 @@
         <td>Login and Copy Bearer Token (User info) to Authenticate then put id in :idenitity of URL and then add info in JSON body formate below also NOTE - Date Large to Small time blocks</td>
         <td>
         {
-        "Username": "USERNAME",
-        "Password": "PASSWORD",
-        "Email": "EMAIL",
+        'Username': 'USERNAME',
+        'Password': 'PASSWORD',
+        'Email': 'EMAIL',
         }
       </td>
        <td>Display UPDATED User information or message indicating info already updated</td>
@@ -149,7 +149,7 @@
         <td>Follow the instructions of LOGIN ENDPOINT
           Login and Copy Bearer Token (User info) to Authenticate Bearer Token
           With authication then change URL to delete user URL with user id in :identity. Before submitting create a JSON body of movie to delete as seen in example below</td>
-        <td>{"Username": "Name of Users"}</td>
+        <td>{'Username': 'Name of Users'}</td>
         <td>Text confirming user account delected</td>
       </tr>
       <tr>
@@ -159,8 +159,8 @@
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then POST.</td>
         <td>
           {
-          "Username": "USERNAME",
-          "Favorite": "FAVORITE"
+          'Username': 'USERNAME',
+          'Favorite': 'FAVORITE'
           }
         </td>
         <td>Message that film has been added or error message</td>
@@ -173,8 +173,8 @@
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then DELETE.</td>
         <td>
           {
-          "Username": "USERNAME",
-          "Favorite": "FAVORITE"
+          'Username': 'USERNAME',
+          'Favorite': 'FAVORITE'
           }
         </td>
           <td>Message that film has been added or error message</td>
@@ -186,8 +186,8 @@
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then DELETE.</td>
         <td>
           {
-          "Username": "USERNAME",
-          "Favorite": "FAVORITE"
+          'Username': 'USERNAME',
+          'Favorite': 'FAVORITE'
           }
         </td>
           <td>Message that film has been added or error message</td>
@@ -196,4 +196,4 @@
   </table>
 </html>
 
-<script type="module" src="./server.js"></script>
+<script type='module' src='./server.js'></script>

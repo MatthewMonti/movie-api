@@ -3,20 +3,20 @@ const bcrypt = require('bcrypt');
 
 
 let movieSchema = mongoose.Schema({
-  Title: {type: String, required: [true, "Title Required"]},
-  Description: {type: String, required: [true, "Description is Required Field"]},
-  Release: {type: String, required: [true, "Release Year of movie is required"]},
+  Title: {type: String, required: [true, 'Title Required']},
+  Description: {type: String, required: [true, 'Description is Required Field']},
+  Release: {type: String, required: [true, 'Release Year of movie is required']},
   Genre: {
     Name: {
       type: String,
-      required: [true, "Category of Film is Required"]
+      required: [true, 'Category of Film is Required']
     },
-    Description: {type: String, required: [true, "movie description is Required"]}
+    Description: {type: String, required: [true, 'movie description is Required']}
   },
   Rated: {
     type: String, 
     required: [true,
-    "Film needs to have parental guide rating"]
+    'Film needs to have parental guide rating']
   },
   Rating: {
     type: String, 
@@ -39,7 +39,7 @@ let movieSchema = mongoose.Schema({
 let userSchema = mongoose.Schema({
     Username: {type: String, required: [true, 'Username required'] },
     Password: { type: String, required: [true, 'Password required to have account active']},
-    Email: {email: "TEST@test.com",
+    Email: {email: 'TEST@test.com',
       type: String,
       required: true,
       unique: true,
