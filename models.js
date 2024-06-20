@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { lstatSync } = require('fs');
 
 
 let movieSchema = mongoose.Schema({
@@ -32,8 +33,9 @@ let movieSchema = mongoose.Schema({
     Death: {type: Date}
   },
   Image: {type: String, required:[true, 'Poster Image file is missing']},
-  Featured: {type: String},
-  url: {type: String, required: [true, 'unable to get movie']}
+  Featured: {type: Boolean},
+  url: {type: String, required: [true, 'unable to get movie']},
+  Favorited: {type: Boolean, default: lstatSync(`${User.Username}-${User.Favorite}`)}
 });
 
 let userSchema = mongoose.Schema({
@@ -53,7 +55,7 @@ let userSchema = mongoose.Schema({
     },
     Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
     Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie' }],
-    toggleState: { type: Boolean, default: false }
+    toggleState: { type: Boolean, default: lstatSync(`${User.Username}-${Movie.Title}`) }
 
 });
 
