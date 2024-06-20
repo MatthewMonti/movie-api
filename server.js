@@ -30,8 +30,8 @@ let allowedOrigins = [
   "https://reel-cinema.netlify.app/toggleState",
   "https://reel-cinema.netlify.app/saveToggleState",
   'https://reel-cinema.netlify.app/create', 
-  'https://reel-cinema.netlify.app//delete',
-  'https://reel-cinema.netlify.app//profile',
+  'https://reel-cinema.netlify.app/delete',
+  'https://reel-cinema.netlify.app/profile',
   'https://reel-cinema.netlify.app/favorites',
 
 ];
