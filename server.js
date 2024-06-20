@@ -300,18 +300,20 @@ app.delete('/delete', passport.authenticate('jwt',
 
 
 
-app.post('/favorites/check', passport.authenticate('jwt', 
-{ session: true }), async (req, res) => {
+app.post('/favorites/check', passport.authenticate('jwt', { session: false }), async (req, res) => {
+try {
+    const { Username, Favorite } = req.body;
 
-  try {
-    // Find the user by username
-    await Users.findOne({ Username: req.body.Username}).populate('favorites');
-    if (!Users) {
+    // Find the user by Username and populate favorites
+    const user = await Users.findOne({ Username }).populate('favorites');
+
+    if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
     // Check if the movie is in the user's favorites
-    const isFavorite = Users.Favorite
+    const isFavorite = user.favorites.some(movie => movie.Title === Favorite);
+
     res.json({ isFavorite });
   } catch (error) {
     console.error('Error checking favorite status:', error);
