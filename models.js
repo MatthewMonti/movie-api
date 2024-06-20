@@ -45,7 +45,7 @@ let userSchema = mongoose.Schema({
     }
   },
   Birthday: { type: Date, required: [true, 'Birthday is required'] },
-  Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie.Title' }],
+  Favorite: [{ type: mongoose.Schema.Types.String, ref: 'Movie' }],
   toggleState: { type: Boolean, default: false }
 });
 
