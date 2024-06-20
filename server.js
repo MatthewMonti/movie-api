@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 const cors = require('cors');
 let allowedOrigins = [
-  'http://localhost:8080', 
+  'localhost:8080', 
   'https://movies-flex-6e317721b427.herokuapp.com',
   'https://movies-flex-6e317721b427.herokuapp.com/create', 
   'https://movies-flex-6e317721b427.herokuapp.com/delete',
@@ -25,7 +25,7 @@ let allowedOrigins = [
   'https://movies-flex-6e317721b427.herokuapp.com/favorites',
   'https://movies-flex-6e317721b427.herokuapp.com/toggleState',
   'https://movies-flex-6e317721b427.herokuapp.com/saveToggleState',
-  'http://localhost:1234',
+  'localhost:1234',
   'https://reel-cinema.netlify.app',
   "https://reel-cinema.netlify.app/toggleState",
   "https://reel-cinema.netlify.app/saveToggleState",
