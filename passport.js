@@ -44,7 +44,7 @@ passport.use(
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'SpiritFilmAmerica1776'
+  secretOrKey: 'HurricanCO2Cool'
 }, async (jwtPayload, callback) => {
   return await Users.findById(jwtPayload._id)
     .then((user) => {
