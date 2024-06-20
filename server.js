@@ -301,7 +301,7 @@ app.delete('/delete', passport.authenticate('jwt',
 
 
 app.get('/favorites/check', passport.authenticate('jwt', 
-{ session: True }), async (req, res) => {
+{ session: true }), async (req, res) => {
 
   try {
     // Find the user by username
