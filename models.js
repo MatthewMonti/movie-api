@@ -26,7 +26,7 @@ let movieSchema = mongoose.Schema({
   Image: { type: String, required: [true, 'Poster image URL is required'] },
   Featured: { type: Boolean, default: false },
   url: { type: String, required: [true, 'Movie URL is required'] },
-  Favorited: { type: Boolean, default: false }
+  Saved: { type: Boolean, default: false }
 });
 
 let userSchema = mongoose.Schema({
@@ -45,7 +45,7 @@ let userSchema = mongoose.Schema({
     }
   },
   Birthday: { type: Date, required: [true, 'Birthday is required'] },
-  Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
+  Favorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie.Title' }],
   toggleState: { type: Boolean, default: false }
 });
 
