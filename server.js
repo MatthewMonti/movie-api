@@ -300,7 +300,7 @@ app.delete('/delete', passport.authenticate('jwt',
 
 
 
-app.get('/favorites/check', passport.authenticate('jwt', 
+app.post('/favorites/check', passport.authenticate('jwt', 
 { session: true }), async (req, res) => {
 
   try {
