@@ -359,6 +359,68 @@ app.delete('/favorites', passport.authenticate('jwt',
 });
 
 
+app.get('/search', (req, res) => {
+  const { query } = req.query;
+  if (!query) {
+    return res.status(400).json({ error: 'Query parameter is required' });
+  }
+
+  // Assuming you want to redirect or send a response with the constructed URL
+  const baseURL = 'https://movies-flex-6e317721b427.herokuapp.com';
+  const queryParams = { search: query };
+  
+  // Redirect to the constructed URL
+  res.redirect(fullURL);
+});
+
+
+
+
+// Endpoint to handle requests
+app.get('/search', (req, res) => {
+  const { query } = req.query;
+  if (!query) {
+    return res.status(400).json({ error: 'Query parameter is required' });
+  }
+
+  const baseURL = 'https://movies-flex-6e317721b427.herokuapp.com';
+  const queryParams = { search: query };
+
+  // Make GET request to external API
+  request({ url: baseURL, qs: queryParams }, (error, response, body) => {
+    if (error) {
+      console.error('Error fetching data:', error);
+      return res.status(500).json({ error: 'Failed to fetch data from API' });
+    }
+
+    if (response.statusCode !== 200) {
+      return res.status(response.statusCode).json({ error: 'Failed to fetch data from API' });
+    }
+
+    try {
+      // Assuming API response is JSON and contains movie details
+      const { Title, Release, Genre, Director, Actors, Rated, Rating } = JSON.parse(body);
+
+      // Construct a response object with the retrieved details
+      const responseData = {
+        Title,
+        Release,
+        Genre,
+        Director,
+        Actors,
+        Rated,
+        Rating
+      };
+
+      res.json(responseData);
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+      res.status(500).json({ error: 'Failed to parse data from API' });
+    }
+  });
+});
+
+
   let logwebpage = (req, res, next) => {
     console.log(req.url);
     next();
