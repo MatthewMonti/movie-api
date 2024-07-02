@@ -2,269 +2,318 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const uuid = require('uuid');
-const fs = require('fs');
-const path = require('path');
-const cors = require('cors');
-const { check, validationResult } = require('express-validator');
-const passport = require('passport');
-
-// Load environment variables
-require('dotenv').config();
-
-// Initialize Express app
+mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('Mongoose Connected'))
+.catch((err) => {console.error(err); });
+const express = require('express'),
+bodyParser = require('body-parser'),
+morgan = require('morgan');
+uuid = require('uuid');
+fs = require('fs');
+path = require('path');
 const app = express();
-
-// Connect to MongoDB
-mongoose.connect(process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Mongoose Connected'))
-  .catch((err) => { console.error(err); });
-
-// Middleware
 app.use(morgan('common'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// CORS Configuration
+app.use(express.urlencoded({extended: true}));
+const cors = require('cors');
 let allowedOrigins = [
   'http://localhost:8080', 
   'https://movies-flex-6e317721b427.herokuapp.com',
-  'https://reel-cinema.netlify.app',
+  'https://movies-flex-6e317721b427.herokuapp.com/create', 
+  'https://movies-flex-6e317721b427.herokuapp.com/delete',
+  'https://movies-flex-6e317721b427.herokuapp.com/profile',
+  'https://movies-flex-6e317721b427.herokuapp.com/favorites',
+  'https://movies-flex-6e317721b427.herokuapp.com/toggleState',
+  'https://movies-flex-6e317721b427.herokuapp.com/saveToggleState',
   'http://localhost:1234',
+  'https://reel-cinema.netlify.app',
+  "https://reel-cinema.netlify.app/toggleState",
+  "https://reel-cinema.netlify.app/saveToggleState",
+  'https://reel-cinema.netlify.app/create', 
+  'https://reel-cinema.netlify.app/delete',
+  'https://reel-cinema.netlify.app/profile',
+  'https://reel-cinema.netlify.app/favorites',
+
 ];
+const { check, validationResult } = require('express-validator');
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
     }
+    return callback(null, true);
   }
 }));
-
-// Authentication middleware
 let auth = require('./auth.js')(app);
+const passport = require('passport');
+const { isArray } = require('lodash');
+const { ObjectId } = require('mongodb');
+require('./passport.js');
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
+app.use(morgan('combined', {stream:accessLogStream}));
 
-// Request logging
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { flags: 'a' });
-app.use(morgan('combined', { stream: accessLogStream }));
-
-// Welcome message
-app.get('/', (req, res) => {
-  res.status(200).send("Welcome to myFlix Movie Database");
+//WELCOME MESSAGE 
+app.get('/', async (req, res) => {
+  res.status(200).send("Welcome to myFlix Movie Database"),
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
 });
 
-// About page
-app.get('/about', (req, res) => {
+//WELCOME MESSAGE 
+app.get('/about', async (req, res) => {
   res.status(200).sendFile('./public/doc.html', { root: __dirname });
+  req.responseText += '<small>Requested at: ' + 
+  req.requestTime + '</small>';
 });
 
-// Get all movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const movies = await Movies.find();
-    res.status(200).json(movies);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+//MOVIES LIST 
+app.get('/movies', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-// Search movies by title
-app.get('/movies/title/:label', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const label = await Movies.find({ Title: req.params.label });
-    if (label.length === 0) {
-      res.status(404).send(req.params.label + ' movie title not found.');
+//TITLE SEARCH 
+app.get('/movies/title/:label', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Movies.find({ Title: req.params.label })
+  .then((label) => {
+    if (label.length == 0) {
+      res.status(400).send(req.params.label + ' movie title not in database.');
     } else {
-      res.status(200).json(label);
+      res.status(200).json(label)
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
-// Search movies by release year
+//RELEASE YEAR 
 app.get('/movies/release/:year', async (req, res) => {
-  try {
-    const year = await Movies.find({ Release: req.params.year });
-    if (year.length === 0) {
-      res.status(404).send(req.params.year + ' film year not found.');
+  await Movies.find({ Release: req.params.year})
+  .then((year) => {
+    if (year.length == 0) {
+      res.status(400).send(req.params.year + " film year does not have any movies yet or invalid year");
     } else {
-      res.status(200).json(year);
+      res.status(200).json(year)
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
-// Search movies by rated audience
+
+//RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
 app.get('/movies/rated/:audience', async (req, res) => {
-  try {
-    const audience = await Movies.find({ Rated: req.params.audience });
-    if (audience.length === 0) {
-      res.status(404).send(req.params.audience + ' demographic not found.');
+  await Movies.find({ Rated: req.params.audience })
+  .then((audience) => {
+    if (audience.length == 0) {
+      res.status(400).send(req.params.audience + ' demographic is either not serviced by database or is invalid entry.');
     } else {
-      res.status(200).json(audience);
+      res.status(200).json(audience)
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
-// Search movies by rating percentage
+//Quality of FILMS WORKS
 app.get('/movies/rating/:percentage', async (req, res) => {
-  try {
-    const percentage = await Movies.find({ Rating: req.params.percentage });
-    if (percentage.length === 0) {
-      res.status(404).send(req.params.percentage + ' rotten tomatoes percentage not found.');
+  await Movies.find({ Rating: req.params.percentage })
+  .then((percentage) => {
+    if (percentage.length == 0) {
+      res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage outside the range of (0-100)');
     } else {
-      res.status(200).json(percentage);
+      res.status(200).json(percentage)
     }
-  } catch (error) {
+  })
+  .catch((error) => {
     console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+    res.status(500).send('Error: ' + error);
+  });
 });
-
-// Search movies by genre
+ 
+//GENRE SEARCH FOR MOVIE
 app.get('/movies/genre/:genreName', async (req, res) => {
-  try {
-    const movies = await Movies.find({ 'Genre.Name': req.params.genreName });
-    if (movies.length === 0) {
-      res.status(404).send(req.params.genreName + ' category not found.');
+  await Movies.find({'Genre.Name': req.params.genreName})
+  .then((movies) => {
+    if (movies.length == 0) {
+      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future.');
     } else {
-      res.status(200).json(movies);
+      res.status(200).json(movies)
     }
-  } catch (error) {
+  })
+  .catch((error) => {
     console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+    res.status(500).send("Error: " + error);
+  });
 });
 
-// Search movies by director
-app.get('/movies/director/:name', async (req, res) => {
-  try {
-    const movies = await Movies.find({ 'Director.Name': req.params.name });
-    if (movies.length === 0) {
-      res.status(404).send(req.params.name + ' director not found.');
+
+///DIRECTOR SEARCH WORKS
+app.get("/movies/director/:name", async (req, res) => {
+  Movies.find({'Director.Name': req.params.name })
+  .then((movies) => {
+    if (movies.length == 0) {
+      res.status(400).send(req.params.name + ' is a director not yet added to database please try someone else.');
     } else {
-      res.status(200).json(movies);
+      res.status(200).json(movies)
     }
-  } catch (error) {
+  })
+  .catch((error) => {
     console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+    res.status(500).send('Error: ' + error);
+  });
 });
 
-// Get user information
+
+//Get user information
 app.get('/user', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // Get user information from the request object
   res.json(req.user);
 });
+//Add a user - WORKS error works
+app.post('/create',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Birthday', 'Age needed to find revlavent films').not().isEmpty()
+  ], async (req, res) => {
 
-// Add a user
-app.post('/create', [
-  check('Username', 'Username is required and must be at least 5 characters').isLength({ min: 5 }),
-  check('Password', 'Password is required').not().isEmpty(),
-  check('Email', 'Email must be valid').isEmail(),
-  check('Birthday', 'Birthday is required').not().isEmpty()
-], async (req, res) => {
-  try {
-    const errors = validationResult(req);
+  // check the validation object for errors
+    let errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    const hashedPassword = Users.hashPassword(req.body.Password);
-    const existingUser = await Users.findOne({ Username: req.body.Username });
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + ' user is already in our records please try another user');
+        } else {
+          Users
+            .create({
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday,
+            })
+            .then((user) => { 
+              res.status(201).json(user)
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  });
 
-    if (existingUser) {
-      return res.status(400).send(req.body.Username + ' user already exists.');
+
+/// USER CAN UPDATE FOLLOWING - WORKS
+// USER NAME
+//EMAIL
+//BIRTHDAY 
+app.put('/update', 
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], passport.authenticate('jwt', {session: false}), async (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
     }
-
-    const newUser = await Users.create({
+       //CONDITION TO CHECK ADDED HERE
+       if(req.user.Username !== req.body.Username){
+        return res.status(400).send('Permission denied');
+      }
+    // CONDITION ENDS
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOneAndUpdate({Username: req.body.Username }, { $set:
+    {
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Birthday: req.body.Birthday,
-    });
-
-    res.status(201).json(newUser);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
-});
-
-// Update user information
-app.put('/update', [
-  check('Username', 'Username is required and must be at least 5 characters').isLength({ min: 5 }),
-  check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
-  check('Password', 'Password is required').not().isEmpty(),
-  check('Email', 'Email must be valid').isEmail()
-], passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
     }
-
-    if (req.user.Username !== req.body.Username) {
-      return res.status(400).send('Permission denied');
-    }
-
-    const hashedPassword = Users.hashPassword(req.body.Password);
-    const updatedUser = await Users.findOneAndUpdate(
-      { Username: req.body.Username },
-      {
-        $set: {
-          Username: req.body.Username,
-          Password: hashedPassword,
-          Email: req.body.Email,
-        }
-      },
-      { new: true }
-    );
-
+  },
+  { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
     res.json(updatedUser);
-  } catch (error) {
+  })
+  .catch((error) => {
     console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+    res.status(500).send('Error: ' + error);
+  });
 });
 
-// Delete a user
-app.delete('/delete', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const deletedUser = await Users.findOneAndDelete({ Username: req.body.Username });
-    if (!deletedUser) {
-      return res.status(404).send(req.body.Username + ' user not found.');
-    }
-    res.status(200).send(req.body.Username + ' user was removed from records.');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+
+// Delete a user by username - WORKS
+app.delete('/delete', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndDelete({Username: req.body.Username})
+    .then((Username) => {
+        res.status(200).send(req.body.Username + ' user was removed from our records.');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
-// Check if a movie is in user's favorites
+
+
 app.post('/favorites/check', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
+try {
     const { Username, Favorite } = req.body;
+
+    // Find the user by Username and populate favorites
     const user = await Users.findOne({ Username }).populate('favorites');
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    // Check if the movie is in the user's favorites
     const isFavorite = user.favorites.some(movie => movie.Title === Favorite);
+
     res.json({ isFavorite });
   } catch (error) {
     console.error('Error checking favorite status:', error);
@@ -272,64 +321,60 @@ app.post('/favorites/check', passport.authenticate('jwt', { session: false }), a
   }
 });
 
-// Add a movie to user's favorites
-app.post('/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const updatedUser = await Users.findOneAndUpdate(
-      { Username: req.body.Username },
-      { $addToSet: { Favorite: req.body.Favorite } },
-      { new: true }
-    );
-    res.status(201).json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
-});
 
-// Delete a movie from user's favorites
-app.delete('/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const updatedUser = await Users.findOneAndUpdate(
-      { Username: req.body.Username },
-      { $pull: { Favorite: req.body.Favorite } },
-      { new: true }
-    );
+
+// Add a movie to a user's list of favorites
+app.post('/favorites', passport.authenticate('jwt', 
+  { session: false }), async (req, res) => {
+    await Users.findOneAndUpdate({ Username: req.body.Username }, {
+      $addToSet: { Favorite: req.body.Favorite }
+     },
+     { new: true }) // This line makes sure that the updated document is returned
+    .then((updatedUser) => {
+      res.status(201).json(updatedUser);
+
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+  });
+  
+
+
+// Delete a movie to a user's list of favorites
+app.delete('/favorites', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+     $pull: { Favorite: req.body.Favorite }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  .then((updatedUser) => {
     res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error: ' + error.message);
-  }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
-// Search movies externally
-app.get('/search', (req, res) => {
-  const { query } = req.query;
-  if (!query) {
-    return res.status(400).json({ error: 'Query parameter is required' });
-  }
 
-  const baseURL = 'https://movies-flex-6e317721b427.herokuapp.com';
-  const fullURL = `${baseURL}?search=${query}`;
+  let logwebpage = (req, res, next) => {
+    console.log(req.url);
+    next();
+  };
 
-  // Redirect to the constructed URL
-  res.redirect(fullURL);
-});
+  let requestTime = (req, res, next) => {
+    req.requestTime = Date.now();
+    next();
+  };
 
-// Error handling middleware
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
+  app.use(logwebpage);
+  app.use(requestTime);
 
-// Request time middleware
-app.use(function (req, res, next) {
-  req.requestTime = Date.now();
-  next();
-});
 
-// Start server
-const port = process.env.PORT || 8080;
-app.listen(port, '0.0.0.0', () => {
-  console.log('Listening on Port ' + port);
-});
+   // listen for requests
+   const port = process.env.PORT || 8080;
+   app.listen(port, '0.0.0.0',() => {
+    console.log('Listening on Port ' + port);
+   });
