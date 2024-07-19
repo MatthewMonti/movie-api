@@ -33,9 +33,9 @@ let movieSchema = mongoose.Schema({
     Death: {type: Date}
   },
   Image: {type: String, required:[true, 'Poster Image file is missing']},
-  Featured: {type: Boolean},
+  Featured: {type: Boolean },
   url: {type: String, required: [true, 'unable to get movie']},
-  Favorited: { type: Boolean, default: false }
+  Favorited: { type: Boolean}
 });
 
 let userSchema = mongoose.Schema({
