@@ -31,6 +31,8 @@ let allowedOrigins = [
   'https://movies-flex-6e317721b427.herokuapp.com/saveToggleState',
   'http://localhost:1234',
   'https://reel-cinema.netlify.app',
+  'https://reel-cinema.netlify.app/',
+  'https://reel-cinema.netlify.app/signup',
   "https://reel-cinema.netlify.app/toggleState",
   "https://reel-cinema.netlify.app/saveToggleState",
   'https://reel-cinema.netlify.app/create', 
