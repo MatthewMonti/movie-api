@@ -9,7 +9,7 @@
       "Daniel Brühl",
       "Devid Striesow"
     ],
-    "Rated": "Rated-R",
+    "Rated": "R",
     "Rating": "90%",
     "Description": "The story follows teenagers Paul Baumer and his friends Albert and Muller, who voluntarily enlist in the German army, riding a wave of patriotic fervor that quickly dissipates once they face the brutal realities of life on the front. Paul's preconceptions about the enemy and the rights and wrongs of the conflict soon crumble. However, amid the countdown to armistice, Paul must carry on fighting until the end, with no purpose other than to satisfy the top brass' desire to end the war on a German offensive.",
     "Genre": {
@@ -36,7 +36,7 @@
       "Kate McKinnon",
       "Emma Mackey"
     ],
-    "Rated": "Rated-PG-13",
+    "Rated": "PG13",
     "Rating": "80%",
     "Description": "Barbie suffers a crisis that leads her to question her world and her existence.",
     "Genre": {
@@ -61,7 +61,7 @@
       "Sophie Marceau",
       "Patrick McGoohan"
     ],
-    "Rated": "Rated-R",
+    "Rated": "R",
     "Rating": "76%",
     "Description": "Tells the story of the legendary thirteenth century Scottish hero named William Wallace (Mel Gibson). Wallace rallies the Scottish against the English monarch and Edward I (Peter Hanly) after he suffers a personal tragedy by English soldiers. Wallace gathers a group of amateur warriors that is stronger than any English army.",
     "Genre": {
@@ -83,7 +83,7 @@
     "Actors": [ 
       "Mayumi Tanaka", "Keiko Yokozawa", "Kotoe Hatsui"
     ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "96%",
     "Description": "A young boy and a girl with a magic crystal must race against pirates and foreign agents in a search for a legendary floating castle.",
     "Genre": {
@@ -108,7 +108,7 @@
       "Sally Ann Howes",
       "Lionel Jeffries"
     ],
-    "Rated": "Rated-G",
+    "Rated": "G",
     "Rating": "70%",
     "Description": "While truant from school, young siblings Jeremy and Jemima meet the beautiful Truly Scrumptious (Sally Ann Howes), who falls for their widowed father, Caractacus Potts (Dick Van Dyke), and his various oddball inventions, including the family's noisy rebuilt car, Chitty Chitty Bang Bang. One day at the beach, Caractacus tells Truly and the children a fanciful fable about the villainous Baron Bomburst (Gert Frobe) and his evil designs on the Potts family car.",
     "Genre": {
@@ -134,7 +134,7 @@
       "Gian Maria Volontè",
       "Marianne Koch"
     ],
-    "Rated": "Rated-R",
+    "Rated": "R",
     "Rating": "98%",
     "Description":"Wandering gunfighter Joe arrives in the Mexican village of San Miguel in the midst of a power struggle among sheriff John Baxter and the three Rojo brothers. When a regiment of Mexican soldiers bearing gold is waylaid by the Rojo brothers, Joe is hired by Esteban to join the gang, but he plays one side against the other.",
     "Genre":{
@@ -160,7 +160,7 @@
       "Ronnie del Carmen",
       "Matthew Yang King"
     ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "74%",
     "Description": "Disney and Pixar's Elemental, an all-new, original feature film set in Element City, where fire-, water-, land- and air-residents live together. The story introduces Ember, a tough, quick-witted and fiery young woman, whose friendship with a fun, sappy, go-with-the-flow guy named Wade challenges her beliefs about the world they live in.",
     "Genre": {
@@ -186,11 +186,11 @@
       "Dave Bautista", 
       "Karen Gillan" 
     ],
-    "Rated": "Rated-PG-13",
+    "Rated": "PG13",
     "Rating": "82%",
     "Description": "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe",
     "Genre": {
-      "Name": "Sci-Fi",
+      "Name": "Science Fiction",
       "Description": "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, dinosaurs, mutants, interstellar travel, time travel, or other technologies. Science fiction films have often been used to focus on political or social issues, and to explore philosophical issues like the human condition."
     },
     "Director": {
@@ -211,7 +211,7 @@
       "Joe Pesci",
       "Daniel Stern"
     ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "66%",
     "Description": "When bratty 8-year-old Kevin McCallister (Macaulay Culkin) acts out the night before a family trip to Paris, his mother (Catherine O'Hara) makes him sleep in the attic. After the McCallisters mistakenly leave for the airport without Kevin, he awakens to an empty house and assumes his wish to have no family has come true. But his excitement sours when he realizes that two con men (Joe Pesci, Daniel Stern) plan to rob the McCallister residence, and that he alone must protect the family home.",
     "Genre": {
@@ -240,7 +240,7 @@
       "Devin Ratray", 
       "Tim Curry"
     ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "62%",
     "Description": "After snarky youth Kevin McCallister (Macaulay Culkin) loses track of his father at the airport, he mistakenly gets on a plane headed for New York City -- while the rest of the McCallisters fly to Florida. Now alone in the Big Apple, Kevin cons his way into a room at the Plaza Hotel and begins his usual antics. But when Kevin discovers that the Sticky Bandits (Joe Pesci, Daniel Stern) are on the loose, he struggles to stop them from robbing an elderly man's toy store just before Christmas.",
     "Genre": {
@@ -266,7 +266,7 @@
       "Ke Huy Quan", 
       "Amrish Puri"
    ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "77%",
     "Description": "In 1935, Indiana Jones is tasked by Indian villagers with reclaiming a rock stolen from them by a secret cult beneath the catacombs of an ancient palace.",
     "Genre": {
@@ -291,7 +291,7 @@
       "Ke Huy Quan", 
       "Amrish Puri" 
     ],
-    "Rated": "Rated-PG-13",
+    "Rated": "PG13",
     "Rating": "33%",
     "Description": "Parapsychologist Dr. Elise Rainier faces her most fearsome and personal haounting yet, as she is drawn back to her ghostly childhood home where the terror began.",
     "Genre": {
@@ -317,7 +317,7 @@
       "Lance Reddick",
       "Clancy Brown"
     ],
-    "Rated": "Rated-R",
+    "Rated": "R",
     "Rating": "94%",
     "Description": "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
     "Genre": {
@@ -342,7 +342,7 @@
       "Geoffrey Rush",
       "Helena Bonham Carter"
     ],
-    "Rated": "Rated-R",
+    "Rated": "R",
     "Rating": "94%",
     "Description": "England's Prince Albert (Colin Firth) must ascend the throne as King George VI, but he has a speech impediment. Knowing that the country needs her husband to be able to communicate effectively, Elizabeth (Helena Bonham Carter) hires Lionel Logue (Geoffrey Rush), an Australian actor and speech therapist, to help him overcome his stammer. An extraordinary friendship develops between the two men, as Logue uses unconventional means to teach the monarch how to speak with confidence.",
     "Genre": {
@@ -507,7 +507,7 @@
       "Gustavo Vargas",
       "Emily Williams"
   ],
-  "Rated": "Rated-PG-13",
+  "Rated": "PG13",
   "Description": "Sebastian (Ryan Gosling) and Mia (Emma Stone) are drawn together by their common desire to do what they love. But as success mounts they are faced with decisions that begin to fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
   "Genre": {
     "Name": "Musical",
@@ -530,7 +530,7 @@
   "Sean Connery",
   "Alison Doody"
   ],
-  "Rated": "Rated-PG-13",
+  "Rated": "PG13",
   "Rating": "84%",
   "Description": "An art collector appeals to Jones to embark on a search for the Holy Grail. He learns that another archaeologist has disappeared while searching for the precious goblet, and the missing man is his own father, Dr. Henry Jones. The artifact is much harder to find than they expected, and its powers are too much for those impure in heart.",
   "Genre": {
@@ -555,7 +555,7 @@
       "Paul Freeman",
       "John Rhys-Davies"
     ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "93%",
     "Description": "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.",
     "Genre": {
@@ -580,11 +580,11 @@
       "Charlie Hunnam",
       "Anthony Hopkins"
     ],
-    "Rated": "Rated-PG-13",
+    "Rated": "PG13",
     "Rating": "100%",
     "Description": "When a peaceful colony on the edge of a galaxy finds itself threatened by the armies of a tyrannical ruling force, Kora (Sofia Boutella), a mysterious stranger living among the villagers, becomes their best hope for survival. Tasked with finding trained fighters who will unite with her in making an impossible stand against the Mother World, Kora assembles a small band of warriors -- outsiders, insurgents, peasants and orphans of war from different worlds who share a common need for redemption and revenge. As the shadow of an entire Realm bears down on the unlikeliest of moons, a battle over the fate of a galaxy is waged, and in the process, a new army of heroes is formed.",
     "Genre": {
-      "Name": "Sci-Fi",
+      "Name": "Science Fiction",
       "Description": "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, dinosaurs, mutants, interstellar travel, time travel, or other technologies. Science fiction films have often been used to focus on political or social issues, and to explore philosophical issues like the human condition."
     },
     "Director": {
@@ -604,7 +604,7 @@
       "Christopher Plummer",
       "Eleanor Parker"
     ],
-    "Rated": "Rated-G",
+    "Rated": "G",
     "Rating": "83%",
     "Description": "A young novice is sent by her convent in 1930s Austria to become a governess to the seven children of a widowed naval officer.",
     "Genre": {
@@ -630,7 +630,7 @@
       "Jason Wong", 
       "Rhys Yates" 
     ],
-    "Rated": "Rated-R",
+    "Rated": "R",
     "Rating": "83%",
     "Description": "During the war in Afghanistan, a local interpreter risks his own life to carry an injured sergeant across miles of grueling terrain.",
     "Genre": {
@@ -655,7 +655,7 @@
       "Mary Astor",
       "Gladys George"
     ],
-    "Rated": "Rated-PG",
+    "Rated": "PG",
     "Rating": "99%",
     "Description": "In this noir classic, detective Sam Spade (Humphrey Bogart) gets more than he bargained for when he takes a case brought to him by a beautiful but secretive woman (Mary Astor). As soon as Miss Wonderly shows up, trouble follows as Sam's partner is murdered and Sam is accosted by a man (Peter Lorre) demanding he locate a valuable statuette. Sam, entangled in a dangerous web of crime and intrigue, soon realizes he must find the one thing they all seem to want: the bejeweled Maltese falcon.",
     "Genre": {
@@ -689,7 +689,7 @@
       "Martin Balsam",
       "Robert Webber"
     ],
-    "Rated": "Rated-NA",
+    "Rated": "NA",
     "Rating": "100%",
     "Description": "Angry Men is a 1957 American legal drama film directed by Sidney Lumet, adapted from a 1954 teleplay of the same name by Reginald Rose. The film tells the story of a jury of 12 men as they deliberate the conviction or acquittal of a teenager charged with murder on the basis of reasonable doubt; disagreement and conflict among them force the jurors to question their morals and values.",
     "Genre": {
@@ -717,7 +717,7 @@
       "Elsa Lanchester",
       "James Williams"
     ],
-    "Rated": "Rated-NR",
+    "Rated": "NR",
     "Rating": "100%",
     "Description": "A courtroom drama about a young man on trial for a wealthy widow's murder after he suspiciously profits from her will.",
     "Genre": {
