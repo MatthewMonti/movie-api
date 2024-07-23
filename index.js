@@ -21,25 +21,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 const cors = require('cors');
 let allowedOrigins = [
-  'http://localhost:8080', 
   'https://movies-flex-6e317721b427.herokuapp.com',
-  'https://movies-flex-6e317721b427.herokuapp.com/create', 
-  'https://movies-flex-6e317721b427.herokuapp.com/delete',
-  'https://movies-flex-6e317721b427.herokuapp.com/profile',
-  'https://movies-flex-6e317721b427.herokuapp.com/favorites',
-  'https://movies-flex-6e317721b427.herokuapp.com/toggleState',
-  'https://movies-flex-6e317721b427.herokuapp.com/saveToggleState',
   'http://localhost:1234',
-  'https://reel-cinema.netlify.app',
-  'https://reel-cinema.netlify.app/index.html',
-  'https://reel-cinema.netlify.app/signup',
-  "https://reel-cinema.netlify.app/toggleState",
-  "https://reel-cinema.netlify.app/saveToggleState",
-  'https://reel-cinema.netlify.app/create', 
-  'https://reel-cinema.netlify.app/delete',
-  'https://reel-cinema.netlify.app/profile',
-  'https://reel-cinema.netlify.app/favorites',
-
+  'https://reel-cinema.netlify.app'
 ];
 const { check, validationResult } = require('express-validator');
 
