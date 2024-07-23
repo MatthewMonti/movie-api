@@ -46,10 +46,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 app.use(morgan('combined', {stream:accessLogStream}));
 
 //WELCOME MESSAGE 
-app.get('/', async (req, res) => {
-  res.status(200).send("Welcome to myFlix Movie Database"),
-  req.responseText += '<small>Requested at: ' + 
-  req.requestTime + '</small>';
+app.get('/index.html', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 //WELCOME MESSAGE 
