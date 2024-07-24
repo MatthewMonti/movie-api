@@ -47,7 +47,7 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 //WELCOME MESSAGE 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  res.send('Welcome to my backend server for reel movie database!');
 });
 
 //WELCOME MESSAGE 
