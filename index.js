@@ -27,6 +27,10 @@ let allowedOrigins = [
 ];
 const { check, validationResult } = require('express-validator');
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
