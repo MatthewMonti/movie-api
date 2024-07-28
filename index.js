@@ -220,7 +220,7 @@ app.post('/create',
               Username: req.body.Username,
               Password: hashedPassword,
               Email: req.body.Email,
-              Birthday: req.body.Birthday,
+              Birthday: req.body.Birthday
             })
             .then((user) => { 
               res.status(201).json(user)
@@ -273,8 +273,7 @@ app.put('/update',
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
-      Birthday: req.body.Birthday,
-      Favorite: req.body.Favorite
+      Birthday: req.body.Birthday
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
