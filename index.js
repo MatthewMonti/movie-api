@@ -57,6 +57,18 @@ app.get('/about', async (req, res) => {
   req.requestTime + '</small>';
 });
 
+
+app.post('/token/refresh', (req, res) => {
+  const { userId } = req.body;
+  const user = getUserById(userId); // Fetch user by ID
+
+  if (user) {
+    const newToken = generateToken(user); // Generate a new token
+    res.json({ token: newToken });
+  } else {
+    res.status(401).json({ message: 'User not found' });
+  }
+});
 //MOVIES LIST 
 app.get('/movies', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
@@ -240,7 +252,8 @@ app.put('/update',
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
+    check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Birthday', 'Birthday is required').isBirthday()
   ], passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
@@ -260,6 +273,8 @@ app.put('/update',
       Username: req.body.Username,
       Password: hashedPassword,
       Email: req.body.Email,
+      Birthday: req.body.Birthday,
+      Favorite: req.body.Favorite
     }
   },
   { new: true }) // This line makes sure that the updated document is returned
