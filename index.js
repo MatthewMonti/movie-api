@@ -198,6 +198,7 @@ app.post('/create',
     check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Birthday', 'Birthday is required').not().isEmpty()
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -252,7 +253,7 @@ app.put('/update',
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Birthday', 'Birthday is required').isBirthday()
+    check('Birthday', 'Birthday is required').not().isEmpty()
   ], passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
