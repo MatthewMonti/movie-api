@@ -57,31 +57,6 @@ app.get('/about', async (req, res) => {
   req.requestTime + '</small>';
 });
 
-
-app.post('/token/refresh', (req, res) => {
-  const { userId } = req.body;
-  const user = getUserById(userId); // Fetch user by ID
-
-  if (user) {
-    const newToken = generateToken(user); // Generate a new token
-    res.json({ token: newToken });
-  } else {
-    res.status(401).json({ message: 'User not found' });
-  }
-});
-//MOVIES LIST 
-app.get('/movies', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-  await Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
-});
-
 //TITLE SEARCH 
 app.get('/movies/title/:label', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
