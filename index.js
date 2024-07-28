@@ -198,7 +198,6 @@ app.post('/create',
     check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Birthday', 'Age needed to find revlavent films').not().isEmpty()
   ], async (req, res) => {
 
   // check the validation object for errors
