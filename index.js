@@ -231,18 +231,7 @@ app.post('/create',
 //EMAIL
 //BIRTHDAY 
 app.put('/update', 
-  // Validation logic here for request
-  //you can either use a chain of methods like .not().isEmpty()
-  //which means "opposite of isEmpty" in plain english "is not empty"
-  //or use .isLength({min: 5}) which means
-  //minimum value of 5 characters are only allowed
-  [
-    check('Username', 'Username is required').isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Birthday', 'Birthday is required').not().isEmpty()
-  ], passport.authenticate('jwt', {session: false}), async (req, res) => {
+ passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
     let errors = validationResult(req);
@@ -251,12 +240,12 @@ app.put('/update',
       return res.status(422).json({ errors: errors.array() });
     }
        //CONDITION TO CHECK ADDED HERE
-       if(req.user.Username !== req.body.Username){
+       if(req.user._id !== req.body._id){
         return res.status(400).send('Permission denied');
       }
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({Username: req.body.Username }, { $set:
+    await Users.findOneAndUpdate({_id: req.body._id }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -278,9 +267,9 @@ app.put('/update',
 // Delete a user by username - WORKS
 app.delete('/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndDelete({Username: req.body.Username})
-    .then((Username) => {
-        res.status(200).send(req.body.Username + ' user was removed from our records.');
+  await Users.findOneAndDelete({_id: req.body._id})
+    .then((_id) => {
+        res.status(200).send(req.body._id+ ' user was removed from our records.');
     })
     .catch((err) => {
       console.error(err);
@@ -292,10 +281,10 @@ app.delete('/delete', passport.authenticate('jwt',
 
 app.post('/favorites/check', passport.authenticate('jwt', { session: false }), async (req, res) => {
 try {
-    const { Username, Favorite } = req.body;
+    const { _id, Favorite } = req.body;
 
     // Find the user by Username and populate favorites
-    const user = await Users.findOne({ Username }).populate('favorites');
+    const user = await Users.findOne({ _id }).populate('favorites');
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -316,7 +305,7 @@ try {
 // Add a movie to a user's list of favorites
 app.post('/favorites', passport.authenticate('jwt', 
   { session: false }), async (req, res) => {
-    await Users.findOneAndUpdate({ Username: req.body.Username }, {
+    await Users.findOneAndUpdate({ _id: req.body._id }, {
       $addToSet: { Favorite: req.body.Favorite }
      },
      { new: true }) // This line makes sure that the updated document is returned
@@ -335,7 +324,7 @@ app.post('/favorites', passport.authenticate('jwt',
 // Delete a movie to a user's list of favorites
 app.delete('/favorites', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+  await Users.findOneAndUpdate({ _id: req.body._id}, {
      $pull: { Favorite: req.body.Favorite }
    },
    { new: true }) // This line makes sure that the updated document is returned
