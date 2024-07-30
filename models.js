@@ -4,6 +4,7 @@ const { lstatSync } = require('fs');
 
 
 let movieSchema = mongoose.Schema({
+  _id: { type: Types.ObjectId, default: () => new Types.ObjectId() },
   Title: {type: String, required: [true, 'Title Required']},
   Description: {type: String, required: [true, 'Description is Required Field']},
   Release: {type: String, required: [true, 'Release Year of movie is required']},
@@ -39,6 +40,7 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
+    _id: { type: Types.ObjectId, default: () => new Types.ObjectId() },
     Username: {type: String, required: [true, 'Username required'] },
     Password: { type: String, required: [true, 'Password required to have account active']},
     Email: {email: 'TEST@test.com',
