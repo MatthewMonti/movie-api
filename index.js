@@ -242,7 +242,7 @@ app.put('/update',
 
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOneAndUpdate({id: req.body.id }, { $set:
+    await Users.findOneAndUpdate({_id: req.body._id }, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
