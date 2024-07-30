@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 const cors = require('cors');
 let allowedOrigins = [
   'https://movies-flex-6e317721b427.herokuapp.com',
-  'http://localhost:1234',
+  'http://localhost:1234/',
   'https://reel-cinema.netlify.app'
 ];
 const { check, validationResult } = require('express-validator');
