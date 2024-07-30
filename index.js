@@ -239,10 +239,7 @@ app.put('/update',
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-       //CONDITION TO CHECK ADDED HERE
-       if(req.user.id !== req.body.id){
-        return res.status(400).send('Permission denied');
-      }
+
     // CONDITION ENDS
     let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findOneAndUpdate({id: req.body.id }, { $set:
