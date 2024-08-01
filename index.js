@@ -46,19 +46,19 @@ require('./passport.js');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags:'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-//WELCOME MESSAGE 
+//WELCOME MESSAGE - Works
 app.get('/', (req, res) => {
   res.send('Welcome to my backend server for reel movie database!');
 });
 
-//WELCOME MESSAGE 
+//WELCOME MESSAGE - Works
 app.get('/about', async (req, res) => {
   res.status(200).sendFile('./public/doc.html', { root: __dirname });
   req.responseText += '<small>Requested at: ' + 
   req.requestTime + '</small>';
 });
 
-//MOVIES LIST 
+//MOVIES LIST - Works
 app.get('/movies', passport.authenticate('jwt', 
   { session: false }), async (req, res) => {
     await Movie.find()
@@ -71,7 +71,7 @@ app.get('/movies', passport.authenticate('jwt',
       });
   });
 
-//TITLE SEARCH 
+//TITLE SEARCH - Works
 app.get('/movies/title/:label', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await Movie.find({ Title: req.params.label })
@@ -88,7 +88,7 @@ app.get('/movies/title/:label', passport.authenticate('jwt',
   });
 });
 
-//RELEASE YEAR 
+//RELEASE YEAR - Works
 app.get('/movies/release/:year', async (req, res) => {
   await Movie.find({ Release: req.params.year})
   .then((year) => {
@@ -105,12 +105,12 @@ app.get('/movies/release/:year', async (req, res) => {
 });
 
 
-//RATED FOR FIND APPROPRIATE AUDIENCE WORKS 
+//RATED FOR FIND APPROPRIATE AUDIENCE - works
 app.get('/movies/rated/:audience', async (req, res) => {
   await Movie.find({ Rated: req.params.audience })
   .then((audience) => {
     if (audience.length == 0) {
-      res.status(400).send(req.params.audience + ' demographic is either not serviced by database or is invalid entry.');
+      res.status(400).send(req.params.audience + ' put Rating before category otherwise demographic is either not serviced by database or is invalid entry.');
     } else {
       res.status(200).json(audience)
     }
@@ -121,12 +121,12 @@ app.get('/movies/rated/:audience', async (req, res) => {
   });
 });
 
-//Quality of FILMS WORKS
+//Quality of FILMS - works
 app.get('/movies/rating/:percentage', async (req, res) => {
   await Movie.find({ Rating: req.params.percentage })
   .then((percentage) => {
     if (percentage.length == 0) {
-      res.status(400).send(req.params.percentage + ' rotten tomatoes percentage is either a rating that is yet to match a film in our database or invalid percentage outside the range of (0-100)');
+      res.status(400).send(req.params.percentage + ' please properly properly formate with ###% or ##% and in range of (0-100) otherwise no film yet in database matching that criteria');
     } else {
       res.status(200).json(percentage)
     }
@@ -137,12 +137,12 @@ app.get('/movies/rating/:percentage', async (req, res) => {
   });
 });
  
-//GENRE SEARCH FOR MOVIE
+//GENRE SEARCH FOR MOVIE = Works
 app.get('/movies/genre/:genreName', async (req, res) => {
   await Movie.find({'Genre.Name': req.params.genreName})
   .then((movie) => {
     if (movie.length == 0) {
-      res.status(400).send(req.params.genreName + ' category not in our database sorry we consider more additions in the future.');
+      res.status(400).send(req.params.genreName + ' please properly format with Genre before category and if no result we consider adding more films in future');
     } else {
       res.status(200).json(movie)
     }
@@ -154,7 +154,7 @@ app.get('/movies/genre/:genreName', async (req, res) => {
 });
 
 
-///DIRECTOR SEARCH WORKS
+///DIRECTOR SEARCH - Works
 app.get("/movies/director/:name", async (req, res) => {
   Movie.find({'Director.Name': req.params.name })
   .then((movie) => {
@@ -171,20 +171,20 @@ app.get("/movies/director/:name", async (req, res) => {
 });
 
 
-//Get user information
-app.get('/user', passport.authenticate('jwt', { session: false }), (req, res) => {
+//Get user information - Works
+app.get('/user/info', passport.authenticate('jwt', { session: false }), (req, res) => {
   // Get user information from the request object
   res.json(req.user);
 });
 //Add a user - WORKS error works
-app.post('/create',
+app.post('/user/create',
   // Validation logic here for request
   //you can either use a chain of methods like .not().isEmpty()
   //which means "opposite of isEmpty" in plain english "is not empty"
   //or use .isLength({min: 5}) which means
   //minimum value of 5 characters are only allowed
   [
-    check('Username', 'Username is required at least 5 letters').isLength({min: 5}),
+    check('Username', 'Username is required').not().isEmpty(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
     check('Birthday', 'Birthday is required').not().isEmpty()
@@ -226,16 +226,9 @@ app.post('/create',
       });
   });
 
-  /// USER CAN UPDATE FOLLOWING - WORKS
-// USER NAME
-//EMAIL
-//BIRTHDAY 
-app.put('/update', 
-  // Validation logic here for request
-  //you can either use a chain of methods like .not().isEmpty()
-  //which means "opposite of isEmpty" in plain english "is not empty"
-  //or use .isLength({min: 5}) which means
-  //minimum value of 5 characters are only allowed
+  /// USER CAN UPDATE FOLLOWING - works
+
+app.put('/user/update', 
  passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
@@ -246,7 +239,7 @@ app.put('/update',
     }
 
     let hashedPassword = User.hashPassword(req.body.Password);
-    await User.findOneAndUpdate({_id: (req.body._id)}, { $set:
+    await User.findByIdAndUpdate({_id: (req.user._id)}, { $set:
     {
       Username: req.body.Username,
       Password: hashedPassword,
@@ -254,7 +247,7 @@ app.put('/update',
       Birthday: req.body.Birthday,
     }
   },
-  { new: true }) // This line makes sure that the updated document is returned
+  { new: true }) 
   .then((updatedUser) => {
     res.json(updatedUser);
   })
@@ -265,12 +258,12 @@ app.put('/update',
 });
 
 
-// Delete a user by username - WORKS
-app.delete('/delete', passport.authenticate('jwt', 
+// Delete a user by username - works
+app.delete('/user/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await User.findOneAndDelete({_id: (req.body._id)})
+  await User.findByIdAndDelete(req.user._id)
     .then((_id) => {
-        res.status(200).send(req.body._id+ ' user was removed from our records.');
+        res.status(200).send(req.user._id+ ' user was removed from our records.');
     })
     .catch((err) => {
       console.error(err);
@@ -280,68 +273,50 @@ app.delete('/delete', passport.authenticate('jwt',
 
 
 
-app.post('/favorites/check', passport.authenticate('jwt', { session: false }), async (req, res) => {
-try {
-    const { _id, Favorite } = req.body;
-
-    // Find the user by Username and populate favorites
-    const user = await User.findOne({_id: (req.body._id)}).populate('favorites');
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    // Check if the movie is in the user's favorites
-    const isFavorite = user.favorites.some(movie => movie.Title === Favorite);
-
-    res.json({ isFavorite });
-  } catch (error) {
-    console.error('Error checking favorite status:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-
-
-// Add a movie to the user's list of favorites
-app.post('/favorites', async (req, res) => {
+app.get('/favorites/check', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
-    const userId = req.user._id; // Get the logged-in user's ID from req.user
-    const favoriteMovieId = req.body.MovieID; // Assuming the request body contains MovieID
-
-    // Check if the movie exists
-    const movie = await Movie.findById(favoriteMovieId);
-    if (!movie) {
-      return res.status(404).send('Movie not found');
+      const {Favorite } = req.body;
+  
+      // Find the user by Username and populate favorites
+      const isUser = await User.findById(req.user._id).populate('Favorites');
+  
+      if (!isUser) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if the movie is in the user's favorites
+      const isFavorite = isUser.Favorites.some(movie => movie.Title === Favorite);
+  
+      res.json({ isFavorite });
+    } catch (error) {
+      console.error('Error checking favorite status:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
+  });
 
-    // Add the movie to the user's list of favorites if not already added
-    await User.findByIdAndUpdate(
-      userId,
-      { $slice: { FavoriteMovies: favoriteMovieId } }, // $addToSet ensures no duplicates
-      { new: true }
-    )
+
+// Add a movie to a user's list of favorites - works
+app.post('/favorites/add', passport.authenticate('jwt', 
+  { session: false }), async (req, res) => {
+    await User.findByIdAndUpdate(req.user._id , {
+      $addToSet: { Favorites: req.body.Favorites }
+     },
+     { new: true }) // This line makes sure that the updated document is returned
     .then((updatedUser) => {
-      res.status(201).json(updatedUser);
+      res.json(updatedUser);
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error: ' + err.message);
-  }
-});
-  
+  });
 
 
-// Delete a movie to a user's list of favorites
-app.delete('/favorites', passport.authenticate('jwt', 
+// Delete a movie to a user's list of favorites - works
+app.delete('/favorites/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
-  await User.findOneAndUpdate({ _id: ObjectId}, {
-     $pull: { Favorite: req.body.Favorite }
+  await User.findByIdAndUpdate(req.user._id, {
+     $pull: { Favorites: req.body.Favorites }
    },
    { new: true }) // This line makes sure that the updated document is returned
   .then((updatedUser) => {

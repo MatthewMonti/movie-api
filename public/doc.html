@@ -107,7 +107,7 @@
       </tr>
       <tr>
         <td>User information</td>
-        <td>/user</td>
+        <td>/user/info</td>
         <td>GET</td>
         <td> Follow the format below to Login and then use get endpoint to access user info</td>
         <td>
@@ -118,7 +118,7 @@
       </tr>
       <tr>
         <td>User Registration</td>
-        <td>/create</td>
+        <td>/user/create</td>
         <td>POST</td>
         <td> Follow the format below to Create User in body of raw JSON NOTE - date is in decending order from large to small time block</td>
         <td>
@@ -130,7 +130,7 @@
         <td> Display New User info or message already exists if already added</td>     
       </tr>
         <td>User account information changed</td>
-        <td>/update</td>
+        <td>/user/update</td>
         <td>PUT</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate then put id in :idenitity of URL and then add info in JSON body formate below also NOTE - Date Large to Small time blocks</td>
         <td>
@@ -144,17 +144,17 @@
       </tr>
       <tr>
         <td>Allows user to delete account</td>
-        <td>/delete</td>
+        <td>/user/delete</td>
         <td>DELETE</td>
         <td>Follow the instructions of LOGIN ENDPOINT
           Login and Copy Bearer Token (User info) to Authenticate Bearer Token
           With authication then change URL to delete user URL with user id in :identity. Before submitting create a JSON body of movie to delete as seen in example below</td>
-        <td>{'Username': 'Name of Users'}</td>
+        <td>{'Username': 'Name of User'}</td>
         <td>Text confirming user account delected</td>
       </tr>
       <tr>
         <td>User can add Favorite Movies</td>
-        <td>/favorites/</td>
+        <td>/favorites/add</td>
         <td>POST</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then POST.</td>
         <td>
@@ -168,7 +168,7 @@
       <tr>
       <tr>
         <td>User can delete Favorite Movies</td>
-        <td>/favorites/</td>
+        <td>/favorites/delete</td>
         <td>DELETE</td>
         <td>Login and Copy Bearer Token (User info) to Authenticate Bearer Token then change URL wiht api/users/ then add user id and film id then DELETE.</td>
         <td>
