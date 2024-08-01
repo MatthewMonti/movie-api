@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { lstatSync } = require('fs');
 
 
 let movieSchema = mongoose.Schema({
-  _id: { type: ObjectId, required:[true, 'account not in databse']},
   Title: {type: String, required: [true, 'Title Required']},
   Description: {type: String, required: [true, 'Description is Required Field']},
   Release: {type: String, required: [true, 'Release Year of movie is required']},
@@ -40,7 +38,6 @@ let movieSchema = mongoose.Schema({
 });
 
 let userSchema = mongoose.Schema({
-    _id: { type: ObjectId, required:[true, 'account not in databse']},
     Username: {type: String, required: [true, 'Username required'] },
     Password: { type: String, required: [true, 'Password required to have account active']},
     Email: {email: 'TEST@test.com',
@@ -65,7 +62,7 @@ userSchema.statics.hashPassword = (password) => {
 }
 
 userSchema.methods.validatePassword = function (password) {
-  return bcrypt.compareSync(password, this. Password);
+  return bcrypt.compareSync(password, this.password);
   //this password REFERING to user document 
   //NOT userSchema METHODS
   //=> OMITTED Instance methods 
@@ -87,8 +84,8 @@ userSchema.statics.isThisEmailInUse = async function(email) {
   }
   }
 
-let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
+let Movie = mongoose.model('Movie', movieSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;
