@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movie = Models.Movie;
 const User = Models.User;
-//mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
-
-mongoose.connect( "mongodb+srv://MatthewMonti:1830-France-Paris@cluster0.vz9ijr2.mongodb.net/myFlixDB?retryWrites=true&w=majority&appName=Cluster0"
-  , { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect( process.env.URL_ATLAS, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Mongoose Connected'))
 .catch((err) => {console.error(err); });
 const express = require('express'),
