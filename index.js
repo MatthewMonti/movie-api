@@ -225,7 +225,7 @@ app.post('/user/create',
 
   /// USER CAN UPDATE FOLLOWING - works
 
-app.put('/user/update', 
+app.put('/user/username', 
  passport.authenticate('jwt', {session: false}), async (req, res) => {
 
   // check the validation object for errors
@@ -239,9 +239,6 @@ app.put('/user/update',
     await User.findByIdAndUpdate({_id: (req.user._id)}, { $set:
     {
       Username: req.body.Username,
-      Password: hashedPassword,
-      Email: req.body.Email,
-      Birthday: req.body.Birthday,
     }
   },
   { new: true }) 
@@ -254,13 +251,90 @@ app.put('/user/update',
   });
 });
 
+app.put('/user/password', 
+  passport.authenticate('jwt', {session: false}), async (req, res) => {
+ 
+   // check the validation object for errors
+     let errors = validationResult(req);
+ 
+     if (!errors.isEmpty()) {
+       return res.status(422).json({ errors: errors.array() });
+     }
+ 
+     let hashedPassword = User.hashPassword(req.body.Password);
+     await User.findByIdAndUpdate({_id: (req.user._id)}, { $set:
+     {
+       Password: hashedPassword
+     }
+   },
+   { new: true }) 
+   .then((updatedUser) => {
+     res.json(updatedUser);
+   })
+   .catch((error) => {
+     console.error(error);
+     res.status(500).send('Error: ' + error);
+   });
+ });
+
+ app.put('/user/email', 
+  passport.authenticate('jwt', {session: false}), async (req, res) => {
+ 
+   // check the validation object for errors
+     let errors = validationResult(req);
+ 
+     if (!errors.isEmpty()) {
+       return res.status(422).json({ errors: errors.array() });
+     }
+ 
+     let hashedPassword = User.hashPassword(req.body.Password);
+     await User.findByIdAndUpdate({_id: (req.user._id)}, { $set:
+     {
+       Email: req.body.Email
+     }
+   },
+   { new: true }) 
+   .then((updatedUser) => {
+     res.json(updatedUser);
+   })
+   .catch((error) => {
+     console.error(error);
+     res.status(500).send('Error: ' + error);
+   });
+ });
+
+ app.put('/user/birthday', 
+  passport.authenticate('jwt', {session: false}), async (req, res) => {
+ 
+   // check the validation object for errors
+     let errors = validationResult(req);
+ 
+     if (!errors.isEmpty()) {
+       return res.status(422).json({ errors: errors.array() });
+     }
+ 
+     let hashedPassword = User.hashPassword(req.body.Password);
+     await User.findByIdAndUpdate({_id: (req.user._id)}, { $set:
+     {
+       Birthday: req.body.Birthday,
+     }
+   },
+   { new: true }) 
+   .then((updatedUser) => {
+     res.json(updatedUser);
+   })
+   .catch((error) => {
+     console.error(error);
+     res.status(500).send('Error: ' + error);
+   });
+ });
 
 // Delete a user by username - works
 app.delete('/user/delete', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
   await User.findByIdAndDelete(req.user._id)
     .then((_id) => {
-        res.status(200).send(req.user._id+ ' user was removed from our records.');
+        res.status(200).send(req.user.Username+ ' was removed from our records.');
     })
     .catch((err) => {
       console.error(err);
