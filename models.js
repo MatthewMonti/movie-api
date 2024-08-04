@@ -53,7 +53,7 @@ let userSchema = mongoose.Schema({
       },
     },
     Birthday: {type: Date, required: [true, 'Birth date required to have account active']},
-    Favorites: [{ type: mongoose.Schema.Types.String, ref: 'Movie' }], // Reference Movie by ObjectId
+    Favorites: [{ type: Schema.Types.ObjectId, ref: 'Movie' }], // Reference Movie by ObjectId // Reference Movie by ObjectId
   toggleState: { type: Boolean, default: false } // Assuming default should be false
 });
 
